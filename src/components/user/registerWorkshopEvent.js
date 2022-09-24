@@ -19,9 +19,7 @@ import {
 
 const RegisterWorkshopEvent = (props) => {
   const [cities, getCities] = useState([]);
-  const [orderId, setOrderId] = useState("");
-  const [key, setKey] = useState("");
-  const [amount, setAmount] = useState("");
+  var key, orderId, amount;
   const {
     register,
     handleSubmit,
@@ -47,9 +45,47 @@ const RegisterWorkshopEvent = (props) => {
       .then((res) => {
         props.dispatch(clearLoader());
         if (res.data.status === 1) {
-          setAmount(res.data.amount);
-          setOrderId(res.data.razorpayOrderId);
-          setKey(res.data.razorpayKey);
+          amount = res.data.amount;
+          orderId = res.data.razorpayOrderId;
+          key = res.data.razorpayKey;
+
+          var options = {
+            key: key, // Enter the Key ID generated from the register API
+            amount: amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            currency: "INR",
+            name: "GlocalBodh",
+            description: "Test Transaction",
+            image: "GB-globe",
+            order_id: orderId, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1 from the register API
+            handler: function (response) {
+              alert(response.razorpay_payment_id);
+              alert(response.razorpay_order_id);
+              alert(response.razorpay_signature);
+            },
+            prefill: {
+              name: data.name,
+              email: data.email,
+              contact: data.contactNumber,
+            },
+            notes: {
+              address: "Razorpay Corporate Office",
+            },
+            theme: {
+              color: "#3399cc",
+            },
+          };
+          var rzp1 = new Razorpay(options);
+
+          rzp1.on("payment.failed", function (response) {
+            alert(response.error.code);
+            alert(response.error.description);
+            alert(response.error.source);
+            alert(response.error.step);
+            alert(response.error.reason);
+            alert(response.error.metadata.order_id);
+            alert(response.error.metadata.payment_id);
+          });
+          rzp1.open();
         } else {
           alertCustom("error", res.data.message, el.pathname);
           console.log(res.data);
@@ -64,86 +100,7 @@ const RegisterWorkshopEvent = (props) => {
           error.toString();
         alertCustom("error", message, "/home");
       });
-    var options = {
-      key: key, // Enter the Key ID generated from the register API
-      amount: amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-      currency: "INR",
-      name: "Acme Corp",
-      description: "Test Transaction",
-      image: "https://example.com/your_logo",
-      order_id: orderId, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1 from the register API
-      handler: function (response) {
-        alert(response.razorpay_payment_id);
-        alert(response.razorpay_order_id);
-        alert(response.razorpay_signature);
-      },
-      prefill: {
-        name: "rohan",
-        email: "mohan@k.com",
-        contact: "1234567890",
-      },
-      notes: {
-        address: "Razorpay Corporate Office",
-      },
-      theme: {
-        color: "#3399cc",
-      },
-    };
-    var rzp1 = new Razorpay(options);
-
-    rzp1.on("payment.failed", function (response) {
-      alert(response.error.code);
-      alert(response.error.description);
-      alert(response.error.source);
-      alert(response.error.step);
-      alert(response.error.reason);
-      alert(response.error.metadata.order_id);
-      alert(response.error.metadata.payment_id);
-    });
-    // window.onload = function () {
-    document.getElementsByClassName("rzp-button1").onclick = function (e) {
-      rzp1.open();
-      e.preventDefault();
-    };
-    // };
   };
-
-  // var options = {
-  //   key: key, // Enter the Key ID generated from the register API
-  //   amount: amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-  //   currency: "INR",
-  //   name: "Acme Corp",
-  //   description: "Test Transaction",
-  //   image: "https://example.com/your_logo",
-  //   order_id: orderId, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1 from the register API
-  //   handler: function (response) {
-  //     alert(response.razorpay_payment_id);
-  //     alert(response.razorpay_order_id);
-  //     alert(response.razorpay_signature);
-  //   },
-  //   prefill: {
-  //     name: "rohan",
-  //     email: "mohan@k.com",
-  //     contact: "1234567890",
-  //   },
-  //   notes: {
-  //     address: "Razorpay Corporate Office",
-  //   },
-  //   theme: {
-  //     color: "#3399cc",
-  //   },
-  // };
-  // var rzp1 = new Razorpay(options);
-
-  // rzp1.on("payment.failed", function (response) {
-  //   alert(response.error.code);
-  //   alert(response.error.description);
-  //   alert(response.error.source);
-  //   alert(response.error.step);
-  //   alert(response.error.reason);
-  //   alert(response.error.metadata.order_id);
-  //   alert(response.error.metadata.payment_id);
-  // });
   // // window.onload = function () {
   // // document.getElementsByClassName("rzp-button1").onclick = function (e) {
   // //   rzp1.open();
@@ -170,7 +127,6 @@ const RegisterWorkshopEvent = (props) => {
                 id="name"
                 name="name"
                 placeholder="Your Name"
-                value={"burhan"}
                 {...register("name", { required: true })}
                 className={
                   errors.buyer_name
@@ -191,7 +147,6 @@ const RegisterWorkshopEvent = (props) => {
                 id="phone"
                 name="phone"
                 placeholder="Contact Number"
-                value={1234567890}
                 pattern="[0-9]{10}"
                 {...register("contactNumber", { required: true })}
                 className={
@@ -213,7 +168,6 @@ const RegisterWorkshopEvent = (props) => {
                 id="email"
                 name="email"
                 placeholder="Your Email id"
-                value={"a@b.com"}
                 {...register("email", { required: true })}
                 className={
                   errors.email
@@ -238,7 +192,6 @@ const RegisterWorkshopEvent = (props) => {
                 id="orgName"
                 name="orgName"
                 placeholder="Your Organization Name"
-                value={"apple"}
                 {...register("organizationName", { required: true })}
                 className={
                   errors.orgName

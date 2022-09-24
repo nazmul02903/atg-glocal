@@ -147,7 +147,7 @@ const App = (props) => {
           </div>
         </div>
       </Loader>
-      <Footer />
+      {/* <Footer /> */}
     </Router>
   );
 };
