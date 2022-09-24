@@ -16,6 +16,7 @@ import {
   renderStates,
   onChangeStates,
 } from "../../services/render-services";
+import GB_globe from "../../assets/globe-logo.png";
 
 const RegisterWorkshopEvent = (props) => {
   const [cities, getCities] = useState([]);
@@ -55,7 +56,7 @@ const RegisterWorkshopEvent = (props) => {
             currency: "INR",
             name: "GlocalBodh",
             description: "Test Transaction",
-            image: "GB-globe",
+            image: { GB_globe },
             order_id: orderId, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1 from the register API
             handler: function (response) {
               alert(response.razorpay_payment_id);
