@@ -28,7 +28,7 @@ import UserService from "./services/user.service";
 import { clearLoader, setLoader } from "./store/actions/loader";
 import { alertCustom, alertDefault } from "./helpers/alerts";
 
-import Footer from "./components/footer.component";
+// import Footer from "./components/footer.component";
 import ProtectedRoute from "./routes/protectedRoutes";
 const BackToDB = () => {
   return (
