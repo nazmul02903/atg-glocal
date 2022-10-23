@@ -4,17 +4,17 @@ import { useDispatch } from "react-redux";
 import { connect } from "react-redux";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import { renderStatesNew } from "../../services/render-services";
+import { renderStatesNew } from "../../../../services/render-services";
 
-import { validationSchemaFundingUpdateNgo } from "../../constants/schema";
+import { validationSchemaFundingUpdateNgo } from "../../../../constants/schema";
 
-import { clearLoader, setLoader } from "../../store/actions/loader";
-import UserService from "../../services/user.service";
-import { alertCustom } from "../../helpers/alerts";
-import { CSR_IMAGE } from "../../constants/variables";
+import { clearLoader, setLoader } from "../../../../store/actions/loader";
+import UserService from "../../../../services/user.service";
+import { alertCustom } from "../../../../helpers/alerts";
+import { CSR_IMAGE } from "../../../../constants/variables";
 
 import Multiselect from "multiselect-react-dropdown";
-import MyEditor from "../../helpers/editor";
+import MyEditor from "../../../../helpers/editor";
 
 const FillFundingUpdate = (props) => {
   const dispatch = useDispatch();
@@ -176,52 +176,52 @@ const FillFundingUpdate = (props) => {
   } else {
     dispatch(clearLoader());
     return (
-      <form onSubmit={handleSubmit(onSubmit)} className='ngo'>
-        <div className='ngo-form-box w-50'>
-          <div className='ngo-form-box-below w-5/6'></div>
-          <h2 className='p-2'>About the Organisation</h2>
+      <form onSubmit={handleSubmit(onSubmit)} className="ngo">
+        <div className="ngo-form-box w-50">
+          <div className="ngo-form-box-below w-5/6"></div>
+          <h2 className="p-2">About the Organisation</h2>
         </div>
 
-        <div className='mt-4'>
-          <div className='flex gap-2'>
-            <label className='label-box w-1/3 self-start' htmlFor='orgName'>
+        <div className="mt-4">
+          <div className="flex gap-2">
+            <label className="label-box w-1/3 self-start" htmlFor="orgName">
               Name of The Organisation
             </label>
-            <div className='w-2/3'>
+            <div className="w-2/3">
               {" "}
               <input
                 className={`form-control ${errors.orgName ? "is-invalid" : ""}`}
-                type='text'
+                type="text"
                 {...register("orgName")}
               />
               {errors.orgName && errors.orgName.message ? (
-                <div className='invalid-feedback'>{errors.orgName.message}</div>
+                <div className="invalid-feedback">{errors.orgName.message}</div>
               ) : null}
             </div>
           </div>
 
-          <div className='flex mt-4 gap-2'>
-            <div className='w-1/3 self-start '>
-              <label className='label-box'>Select Geographic Location</label>
+          <div className="flex mt-4 gap-2">
+            <div className="w-1/3 self-start ">
+              <label className="label-box">Select Geographic Location</label>
             </div>
-            <div className='w-2/3'>
-              <div className='flex gap-2'>
-                <label className='sub-label-box  w-1/4 text-sm'>
+            <div className="w-2/3">
+              <div className="flex gap-2">
+                <label className="sub-label-box  w-1/4 text-sm">
                   {" "}
                   Head Office
                 </label>
-                <div className='w-1/3'>
-                  <select onChange={onChangeState} className='form-select'>
+                <div className="w-1/3">
+                  <select onChange={onChangeState} className="form-select">
                     {renderStatesNew(props.fuDataBean.stateBeans)}
                   </select>
                 </div>
-                <div className='w-1/3'>
+                <div className="w-1/3">
                   <Multiselect
                     isObject={true}
                     onRemove={handleHeadOfficeSelection}
                     onSelect={handleHeadOfficeSelection}
                     options={cities}
-                    displayValue='name'
+                    displayValue="name"
                     singleSelect={true}
                     style={{
                       searchBox: {
@@ -233,28 +233,28 @@ const FillFundingUpdate = (props) => {
                   />
                 </div>
               </div>
-              <div className='flex gap-2 mt-3'>
-                <label className='sub-label-box  w-1/4 self-center text-sm'>
+              <div className="flex gap-2 mt-3">
+                <label className="sub-label-box  w-1/4 self-center text-sm">
                   Field Locations
                 </label>
-                <div className='w-2/3'>
+                <div className="w-2/3">
                   {" "}
                   {selectedCities.map((x, i) => {
                     return (
-                      <div key={i} className='flex mt-2 gap-2'>
-                        <div className='w-1/3'>
+                      <div key={i} className="flex mt-2 gap-2">
+                        <div className="w-1/3">
                           <select
                             onChange={onChangeState}
-                            className='form-select'
+                            className="form-select"
                           >
                             {renderStatesNew(props.fuDataBean.stateBeans)}
                           </select>
                         </div>
-                        <div className='w-1/3'>
+                        <div className="w-1/3">
                           <Multiselect
                             isObject={true}
                             options={cities}
-                            displayValue='name'
+                            displayValue="name"
                             singleSelect={true}
                             style={{
                               searchBox: {
@@ -267,10 +267,10 @@ const FillFundingUpdate = (props) => {
                           />
                         </div>
 
-                        <div className='w-1/3'>
+                        <div className="w-1/3">
                           {selectedCities.length - 1 === i && (
                             <button
-                              className='btn btn-primary'
+                              className="btn btn-primary"
                               onClick={handleAddClick}
                             >
                               Add
@@ -284,17 +284,17 @@ const FillFundingUpdate = (props) => {
               </div>
             </div>
           </div>
-          <div className='flex mt-3 gap-2'>
-            <label className='label-box w-1/3' htmlFor='orgName'>
+          <div className="flex mt-3 gap-2">
+            <label className="label-box w-1/3" htmlFor="orgName">
               Thematic Area
             </label>
-            <div className='w-2/3'>
+            <div className="w-2/3">
               <Multiselect
                 isObject={true}
                 onRemove={handleThematicArea}
                 onSelect={handleThematicArea}
                 options={props.fuDataBean.thematicAreaBeans}
-                displayValue='name'
+                displayValue="name"
                 style={{
                   searchBox: {
                     border: "1px solid #3b7fbd",
@@ -305,85 +305,85 @@ const FillFundingUpdate = (props) => {
               />
             </div>
           </div>
-          <div className='flex mt-4 gap-2'>
-            <div className='w-1/3 self-start'>
-              <label className='label-box'>
+          <div className="flex mt-4 gap-2">
+            <div className="w-1/3 self-start">
+              <label className="label-box">
                 What is the current team size of your Organisation?
               </label>
             </div>
-            <div className='w-2/3'>
-              <div className='flex gap-2'>
-                <label className='sub-label-box sub-label-box-green w-1/4 text-sm self-start'>
+            <div className="w-2/3">
+              <div className="flex gap-2">
+                <label className="sub-label-box sub-label-box-green w-1/4 text-sm self-start">
                   {" "}
                   Full Time
                 </label>
-                <div className='w-1/4'>
+                <div className="w-1/4">
                   <input
                     className={`form-control ${
                       errors.fullTime ? "is-invalid" : ""
                     }`}
-                    type='text'
+                    type="text"
                     {...register("fullTime")}
                   />
                   {errors.fullTime && errors.fullTime.message ? (
-                    <div className='invalid-feedback'>
+                    <div className="invalid-feedback">
                       {errors.fullTime.message}
                     </div>
                   ) : null}
                 </div>
 
-                <label className='sub-label-box sub-label-box-light-green w-1/4 text-sm self-start'>
+                <label className="sub-label-box sub-label-box-light-green w-1/4 text-sm self-start">
                   {" "}
                   Part Time
                 </label>
-                <div className='w-1/4'>
+                <div className="w-1/4">
                   <input
                     className={`form-control ${
                       errors.partTime ? "is-invalid" : ""
                     }`}
-                    type='text'
+                    type="text"
                     {...register("partTime")}
                   />
                   {errors.partTime && errors.partTime.message ? (
-                    <div className='invalid-feedback'>
+                    <div className="invalid-feedback">
                       {errors.partTime.message}
                     </div>
                   ) : null}
                 </div>
               </div>
-              <div className='flex gap-2 mt-3'>
-                <label className='sub-label-box sub-label-box-green w-1/4 text-sm self-start'>
+              <div className="flex gap-2 mt-3">
+                <label className="sub-label-box sub-label-box-green w-1/4 text-sm self-start">
                   {" "}
                   Consultants
                 </label>
-                <div className='w-1/4'>
+                <div className="w-1/4">
                   <input
                     className={`form-control ${
                       errors.consultants ? "is-invalid" : ""
                     }`}
-                    type='text'
+                    type="text"
                     {...register("consultants")}
                   />
                   {errors.consultants && errors.consultants.message ? (
-                    <div className='invalid-feedback'>
+                    <div className="invalid-feedback">
                       {errors.consultants.message}
                     </div>
                   ) : null}
                 </div>
-                <label className='sub-label-box sub-label-box-light-green w-1/4 text-sm self-start'>
+                <label className="sub-label-box sub-label-box-light-green w-1/4 text-sm self-start">
                   {" "}
                   Volunteers
                 </label>
-                <div className='w-1/4'>
+                <div className="w-1/4">
                   <input
                     className={`form-control ${
                       errors.volunteers ? "is-invalid" : ""
                     }`}
-                    type='text'
+                    type="text"
                     {...register("volunteers")}
                   />
                   {errors.volunteers && errors.volunteers.message ? (
-                    <div className='invalid-feedback'>
+                    <div className="invalid-feedback">
                       {errors.volunteers.message}
                     </div>
                   ) : null}
@@ -391,10 +391,10 @@ const FillFundingUpdate = (props) => {
               </div>
             </div>
           </div>
-          <div className='flex mt-3 gap-4'>
-            <div className='w-1/2 flex gap-2'>
+          <div className="flex mt-3 gap-4">
+            <div className="w-1/2 flex gap-2">
               {" "}
-              <label className='label-box w-5/6 self-start' htmlFor='orgName'>
+              <label className="label-box w-5/6 self-start" htmlFor="orgName">
                 Previous year turnover of your organisation as per audit report?
                 (In INR Lacs and Figures only)
               </label>
@@ -404,18 +404,18 @@ const FillFundingUpdate = (props) => {
                   className={`form-control ${
                     errors.orgTurnover ? "is-invalid" : ""
                   }`}
-                  type='text'
+                  type="text"
                   {...register("orgTurnover")}
                 />
                 {errors.orgTurnover && errors.orgTurnover.message ? (
-                  <div className='invalid-feedback'>
+                  <div className="invalid-feedback">
                     {errors.orgTurnover.message}
                   </div>
                 ) : null}
               </div>
             </div>
-            <div className='w-1/2 flex gap-2'>
-              <label className='label-box w-5/6' htmlFor='orgName'>
+            <div className="w-1/2 flex gap-2">
+              <label className="label-box w-5/6" htmlFor="orgName">
                 What was your highest budget for any of your previous projects?
                 (In INR Lacs and Figures only)
               </label>
@@ -425,11 +425,11 @@ const FillFundingUpdate = (props) => {
                   className={`form-control ${
                     errors.orgBudget ? "is-invalid" : ""
                   }`}
-                  type='text'
+                  type="text"
                   {...register("orgBudget")}
                 />
                 {errors.orgBudget && errors.orgBudget.message ? (
-                  <div className='invalid-feedback'>
+                  <div className="invalid-feedback">
                     {errors.orgBudget.message}
                   </div>
                 ) : null}
@@ -438,35 +438,35 @@ const FillFundingUpdate = (props) => {
           </div>
           {fuDetails.csrSectionBeans.length > 0 && (
             <>
-              <div className='ngo-form-box w-50 mt-4'>
-                <div className='ngo-form-box-below w-5/6'></div>
-                <h2 className='p-2'>Mandatory Requirements</h2>
+              <div className="ngo-form-box w-50 mt-4">
+                <div className="ngo-form-box-below w-5/6"></div>
+                <h2 className="p-2">Mandatory Requirements</h2>
               </div>
-              <div className='mt-4 '>
+              <div className="mt-4 ">
                 <div>
                   {fuDetails.csrSectionBeans.map((section) => {
                     return (
                       <div
-                        className='flex mt-2 custom-card p-2'
+                        className="flex mt-2 custom-card p-2"
                         key={section.identifier}
                       >
-                        <div className='csr-image-box px-2 py-2 w-22'>
+                        <div className="csr-image-box px-2 py-2 w-22">
                           <img
                             src={CSR_IMAGE[section.sectionText]}
-                            alt='legal compliance'
+                            alt="legal compliance"
                           />
-                          <p className='text-xs text-center mt-2'>
+                          <p className="text-xs text-center mt-2">
                             {section.sectionText}
                           </p>
                         </div>
-                        <div className='w-3/4 px-4 '>
+                        <div className="w-3/4 px-4 ">
                           {section.questions.map((question) => {
                             return (
                               <div
-                                className='flex gap-2 mt-2'
+                                className="flex gap-2 mt-2"
                                 key={question.identifier}
                               >
-                                <div className='self-center'>
+                                <div className="self-center">
                                   {" "}
                                   {question.questionText}
                                 </div>
@@ -474,11 +474,11 @@ const FillFundingUpdate = (props) => {
                                   (option, index) => {
                                     return (
                                       <div
-                                        className='boxed'
+                                        className="boxed"
                                         key={option.identifier}
                                       >
                                         <input
-                                          type='radio'
+                                          type="radio"
                                           id={`${option.identifier}_${question.identifier}`}
                                           name={question.identifier}
                                           value={index}
@@ -505,47 +505,47 @@ const FillFundingUpdate = (props) => {
             </>
           )}
 
-          <div className='ngo-form-box w-50 mt-4'>
-            <div className='ngo-form-box-below w-5/6'></div>
-            <h2 className='p-2'> Prior Project Experience</h2>
+          <div className="ngo-form-box w-50 mt-4">
+            <div className="ngo-form-box-below w-5/6"></div>
+            <h2 className="p-2"> Prior Project Experience</h2>
           </div>
           {fuDetails && fuDetails.fundingUpdateAssessmentBean && (
             <div>
-              <div className='flex'>
-                <div className='w-2/3 mt-3'>
+              <div className="flex">
+                <div className="w-2/3 mt-3">
                   {" "}
-                  <label className='label-box ' htmlFor='orgName'>
+                  <label className="label-box " htmlFor="orgName">
                     Has your organisation worked on any project similar to this
                     project?
                   </label>
                 </div>
 
-                <div className='flex  ms-2 mt-3'>
-                  <div className='form-check form-check-inline'>
+                <div className="flex  ms-2 mt-3">
+                  <div className="form-check form-check-inline">
                     <input
                       className={`form-check-input ${
                         errors.prevQue ? "is-invalid" : ""
                       }`}
-                      type='radio'
-                      id='prevQueYes'
-                      value='Yes'
+                      type="radio"
+                      id="prevQueYes"
+                      value="Yes"
                       {...register("prevQue")}
                     />
-                    <label className='form-check-label mt-0' for='inlineRadio1'>
+                    <label className="form-check-label mt-0" for="inlineRadio1">
                       Yes
                     </label>
                   </div>
-                  <div className='form-check form-check-inline'>
+                  <div className="form-check form-check-inline">
                     <input
                       className={`form-check-input ${
                         errors.prevQue ? "is-invalid" : ""
                       }`}
-                      type='radio'
+                      type="radio"
                       {...register("prevQue")}
-                      id='prevQueNO'
-                      value='no'
+                      id="prevQueNO"
+                      value="no"
                     />
-                    <label className='form-check-label mt-0' for='inlineRadio2'>
+                    <label className="form-check-label mt-0" for="inlineRadio2">
                       No
                     </label>
                   </div>
@@ -553,40 +553,40 @@ const FillFundingUpdate = (props) => {
               </div>
 
               {errors.prevQue && errors.prevQue.message ? (
-                <div className='invalid-feedback mt-2'>
+                <div className="invalid-feedback mt-2">
                   {errors.prevQue.message}
                 </div>
               ) : null}
               {showPrevQue === "Yes" && (
                 <div>
                   {" "}
-                  <div className='flex mt-4 mt-2'>
-                    <div className='w-1/3 self-center'>
-                      <label className='label-box'>
+                  <div className="flex mt-4 mt-2">
+                    <div className="w-1/3 self-center">
+                      <label className="label-box">
                         Select Geographic Location
                       </label>
                     </div>
-                    <div className='w-2/3'>
-                      <div className='flex gap-2 ms-4'>
-                        <div className='w-2/3'>
+                    <div className="w-2/3">
+                      <div className="flex gap-2 ms-4">
+                        <div className="w-2/3">
                           {projectLocations.map((x, i) => {
                             return (
-                              <div key={i} className='flex mt-2 gap-2'>
-                                <div className='w-1/3'>
+                              <div key={i} className="flex mt-2 gap-2">
+                                <div className="w-1/3">
                                   <select
                                     onChange={onChangeState}
-                                    className='form-select'
+                                    className="form-select"
                                   >
                                     {renderStatesNew(
                                       props.fuDataBean.stateBeans
                                     )}
                                   </select>
                                 </div>
-                                <div className='w-1/3'>
+                                <div className="w-1/3">
                                   <Multiselect
                                     isObject={true}
                                     options={cities}
-                                    displayValue='name'
+                                    displayValue="name"
                                     singleSelect={true}
                                     style={{
                                       searchBox: {
@@ -601,10 +601,10 @@ const FillFundingUpdate = (props) => {
                                   />
                                 </div>
 
-                                <div className='w-1/3'>
+                                <div className="w-1/3">
                                   {projectLocations.length - 1 === i && (
                                     <button
-                                      className='btn btn-primary'
+                                      className="btn btn-primary"
                                       onClick={handleAddClickProjectLocations}
                                     >
                                       Add
@@ -618,18 +618,18 @@ const FillFundingUpdate = (props) => {
                       </div>
                     </div>
                   </div>
-                  <div className='flex mt-4 gap-2'>
+                  <div className="flex mt-4 gap-2">
                     <label
                       className={`label-box self-start w-1/3 ${
                         errors.description ? "is-invalid" : ""
                       }`}
-                      htmlFor='description'
+                      htmlFor="description"
                     >
                       Key Project Interventions
                     </label>
-                    <div className='w-2/3 '>
+                    <div className="w-2/3 ">
                       <Controller
-                        name='description'
+                        name="description"
                         control={control}
                         rules={{ required: true }}
                         className={
@@ -641,146 +641,146 @@ const FillFundingUpdate = (props) => {
                           <MyEditor {...field} errors={errors} />
                         )}
                       />
-                      <small className='text-danger'>
+                      <small className="text-danger">
                         {errors.description && errors.description.message}
                       </small>
                     </div>
                   </div>
-                  <div className='flex mt-3 gap-2'>
+                  <div className="flex mt-3 gap-2">
                     <label
-                      className='label-box w-1/3 self-start'
-                      htmlFor='orgName'
+                      className="label-box w-1/3 self-start"
+                      htmlFor="orgName"
                     >
                       Target Audience (Beneficiaries)
                     </label>
 
-                    <div className='w-2/3'>
+                    <div className="w-2/3">
                       {" "}
                       <input
                         className={`form-control ${
                           errors.targetAudience ? "is-invalid" : ""
                         }`}
-                        type='text'
+                        type="text"
                         {...register("targetAudience")}
                       />
                       {errors.targetAudience &&
                       errors.targetAudience.message ? (
-                        <div className='invalid-feedback'>
+                        <div className="invalid-feedback">
                           {errors.targetAudience.message}
                         </div>
                       ) : null}
                     </div>
                   </div>
-                  <div className='flex mt-3 gap-2'>
-                    <label className='label-box w-1/3' htmlFor='orgName'>
+                  <div className="flex mt-3 gap-2">
+                    <label className="label-box w-1/3" htmlFor="orgName">
                       Project Year
                     </label>
-                    <div className='w-1/3'>
+                    <div className="w-1/3">
                       {" "}
                       <input
                         className={`form-control ${
                           errors.fromYear ? "is-invalid" : ""
                         }`}
-                        type='text'
+                        type="text"
                         {...register("fromYear")}
                       />
                       {errors.fromYear && errors.fromYear.message ? (
-                        <div className='invalid-feedback'>
+                        <div className="invalid-feedback">
                           {errors.fromYear.message}
                         </div>
                       ) : null}
                     </div>
-                    <div className='w-1/3'>
+                    <div className="w-1/3">
                       {" "}
                       <input
                         className={`form-control ${
                           errors.toYear ? "is-invalid" : ""
                         }`}
-                        type='text'
+                        type="text"
                         {...register("toYear")}
                       />
                       {errors.toYear && errors.toYear.message ? (
-                        <div className='invalid-feedback'>
+                        <div className="invalid-feedback">
                           {errors.toYear.message}
                         </div>
                       ) : null}
                     </div>
                   </div>
-                  <div className='flex mt-3 gap-2'>
-                    <label className='label-box w-1/3' htmlFor='orgName'>
+                  <div className="flex mt-3 gap-2">
+                    <label className="label-box w-1/3" htmlFor="orgName">
                       Project Funded By
                     </label>
-                    <div className='w-2/3'>
+                    <div className="w-2/3">
                       {" "}
                       <input
                         className={`form-control ${
                           errors.fundedBy ? "is-invalid" : ""
                         }`}
-                        type='text'
+                        type="text"
                         {...register("fundedBy")}
                       />
                       {errors.fundedBy && errors.fundedBy.message ? (
-                        <div className='invalid-feedback'>
+                        <div className="invalid-feedback">
                           {errors.fundedBy.message}
                         </div>
                       ) : null}
                     </div>
                   </div>
-                  <div className='flex mt-3 gap-2'>
-                    <label className='label-box w-1/3' htmlFor='orgName'>
+                  <div className="flex mt-3 gap-2">
+                    <label className="label-box w-1/3" htmlFor="orgName">
                       Project Impact Assessment Status (By Third Party)
                     </label>
-                    <div className='w-2/3 flex gap-2'>
-                      <div className='w-1/3'>
+                    <div className="w-2/3 flex gap-2">
+                      <div className="w-1/3">
                         {" "}
                         <input
-                          type='radio'
-                          className='btn-check w-100'
-                          name='optionsOutlined'
-                          id='success-outlined'
-                          autoComplete='off'
+                          type="radio"
+                          className="btn-check w-100"
+                          name="optionsOutlined"
+                          id="success-outlined"
+                          autoComplete="off"
                           {...register("optionsOutlined")}
-                          value='completed'
+                          value="completed"
                         />
                         <label
-                          className='btn btn-outline-success w-100'
-                          htmlFor='success-outlined'
+                          className="btn btn-outline-success w-100"
+                          htmlFor="success-outlined"
                         >
                           Completed
                         </label>
                       </div>
-                      <div className='w-1/3'>
+                      <div className="w-1/3">
                         {" "}
                         <input
-                          type='radio'
-                          className='btn-check'
-                          name='options-outlined'
-                          id='warning-outlined'
-                          autoComplete='off'
-                          value='inProgress'
+                          type="radio"
+                          className="btn-check"
+                          name="options-outlined"
+                          id="warning-outlined"
+                          autoComplete="off"
+                          value="inProgress"
                           {...register("optionsOutlined")}
                         />
                         <label
-                          className='btn btn-outline-warning w-100'
-                          htmlFor='warning-outlined'
+                          className="btn btn-outline-warning w-100"
+                          htmlFor="warning-outlined"
                         >
                           In Progress
                         </label>
                       </div>
-                      <div className='w-1/3'>
+                      <div className="w-1/3">
                         {" "}
                         <input
-                          type='radio'
-                          className='btn-check'
-                          name='optionsOutlined'
-                          id='danger-outlined'
-                          autoComplete='off'
+                          type="radio"
+                          className="btn-check"
+                          name="optionsOutlined"
+                          id="danger-outlined"
+                          autoComplete="off"
                           {...register("optionsOutlined")}
-                          value='notDone'
+                          value="notDone"
                         />
                         <label
-                          className='btn btn-outline-danger w-100'
-                          htmlFor='danger-outlined'
+                          className="btn btn-outline-danger w-100"
+                          htmlFor="danger-outlined"
                         >
                           Not Done
                         </label>
@@ -792,10 +792,10 @@ const FillFundingUpdate = (props) => {
             </div>
           )}
 
-          <div className='form-group mt-2 text-center mt-3'>
+          <div className="form-group mt-2 text-center mt-3">
             <button
-              type='submit'
-              className='btn btn-primary mt-2 btn-lg'
+              type="submit"
+              className="btn btn-primary mt-2 btn-lg"
               disabled={props.isLoading}
             >
               {props.isLoading ? "Please wait..." : "Submit"}

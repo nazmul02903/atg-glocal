@@ -22,6 +22,9 @@ import {
   API_UPDATE_ROLE,
   API_MONTHLY_REFERREL_DATA,
   API_FETCH_USER_BETWEEN_DATES,
+  API_FETCH_EVENT_REGISTRATION,
+  API_FETCH_JOBS_BY_CATEGORY,
+  API_FETCH_FU_BY_CATEGORY,
 } from "../constants/urls";
 
 import AuthHeader from "./auth-header";
@@ -77,11 +80,28 @@ class AdminService {
       }
     );
   }
+  fetchJobsByCategory(categoryId, dataType) {
+    return axios.post(
+      API_FETCH_JOBS_BY_CATEGORY,
+      { jobCategoryId: categoryId, dataType: dataType },
+      { headers: AuthHeader() }
+    );
+  }
+  fetchEventRegistration(id) {
+    return axios.post(
+      API_FETCH_EVENT_REGISTRATION,
 
-  fetchEventsByCategory(category) {
+      { id: id },
+      {
+        headers: AuthHeader(),
+      }
+    );
+  }
+
+  fetchEventsByCategory(category, dataType) {
     return axios.post(
       API_FETCH_EVENTS_BY_CATEGORY,
-      { eventCategoryId: category, dataType: 1 },
+      { eventCategoryId: category, dataType: dataType },
       { headers: AuthHeader() }
     );
   }
@@ -110,6 +130,13 @@ class AdminService {
     return axios.post(API_FETCH_FUNDING_UPDATE, data, {
       headers: AuthHeader(),
     });
+  }
+  fetchFundingUpdateByCategory(categoryId, dataType) {
+    return axios.post(
+      API_FETCH_FU_BY_CATEGORY,
+      { fundingUpdateCategoryId: categoryId, dataType: dataType },
+      { headers: AuthHeader() }
+    );
   }
   fetchRFP() {
     return axios.post(

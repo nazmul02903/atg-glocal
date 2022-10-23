@@ -18,7 +18,8 @@ import {
 import Loader from "./helpers/loader";
 import Header from "./components/header.component";
 import Routes from "./routes/index";
-import UserHome from "./components/user/home.component";
+import Posting from "./components/user/home.component";
+import UserHome from "./components/user/home";
 import AdminHome from "./components/admin/home.component";
 import BackArrow from "./assets/Icons/back-arrow.svg";
 //import Page404 from "./components/page404.component";
@@ -140,6 +141,7 @@ const App = (props) => {
                 component={user && user.admin ? AdminHome : UserHome}
                 sectionId="0"
               />
+              <ProtectedRoute path="/posting" component={Posting} />
               <Route path={["/user", "/admin"]} component={BackToDB} />
               {/* <Route path='*' component={Page404} /> */}
             </Switch>

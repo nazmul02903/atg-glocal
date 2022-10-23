@@ -34,9 +34,9 @@ const Info = (props) => {
           <p>{reason[1]}</p>
         </Tooltip>
       )}
-      placement='top'
+      placement="top"
     >
-      <i className='fa fa-info-circle' />
+      <i className="fa fa-info-circle" />
     </OverlayTrigger>
   );
 };
@@ -53,28 +53,28 @@ const FormControlLabelPosition = (props) => {
     setCSRSection(csrSectionSet);
   };
   return (
-    <FormControl component='fieldset'>
-      <FormGroup aria-label='position' row>
+    <FormControl component="fieldset">
+      <FormGroup aria-label="position" row>
         {csrList.map((item, index) => {
           return (
             <>
               <FormControlLabel
-                className='w-25'
+                className="w-25"
                 value={item.identifier}
                 control={
                   <Checkbox
-                    size='large'
+                    size="large"
                     onChange={handleChangeCheckbox}
                     inputProps={{ "aria-label": "controlled" }}
                   />
                 }
                 label={
                   <>
-                    <span className='me-2'>{item.sectionText}</span>
+                    <span className="me-2">{item.sectionText}</span>
                     <Info reason={QUESTIONS[index]} />
                   </>
                 }
-                labelPlacement='end'
+                labelPlacement="end"
                 key={index}
               />
             </>
@@ -115,13 +115,13 @@ const FundingUpdateNew = (props) => {
     props.dispatch(setLoader());
 
     const data = {
-      title: values.eventTitle,
+      title: values.fuTitle,
       description: values.description,
       applicationDeadline: new Date(values.applicationDeadline).getTime(),
       termsAndConditions: "true",
       location: "",
       externalLink: "",
-
+      fundingUpdateCategory: values.fundingUpdateCategory,
       thematicAreaList: thematicArea,
       postedBy: values.postedBy,
       cities: selectedCities,
@@ -187,19 +187,22 @@ const FundingUpdateNew = (props) => {
   const handlePrevious = (e) => {
     setPrev(e.target.checked);
   };
-  const [eventType, setEventType] = useState("");
+  const [fuType, setFuType] = useState("");
 
-  const eventTypeFieldRegister = register("eventType", { required: true });
+  const [fuCategory, setFuCategory] = useState("");
+
+  const fuTypeFieldRegister = register("fuType", { required: true });
+  const fundingUpdateCategory = register("fuCategory", { required: true });
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className='mx-auto'>
+      <div className="mx-auto">
         <h1>
           Create Funding Proposal{" "}
-          <span className='ms-2 expire-text-box p-2'>
+          <span className="ms-2 expire-text-box p-2">
             {location.state.expiryText}
           </span>
-          <span className='ms-2 in-review p-2'>
+          <span className="ms-2 in-review p-2">
             {location.state.package ? " Premium " : "Standard"}
           </span>
         </h1>
@@ -208,28 +211,49 @@ const FundingUpdateNew = (props) => {
       {props && props.fuDataBean && (
         <div>
           {" "}
-          <div className='custom-card p-4'>
+          <div className="custom-card p-4">
             <h4>Details</h4>
 
-            <div className='form-group'>
-              <label htmlFor='eventTitle'>Funding Update Title</label>
+            <div className="form-group">
+              <label htmlFor="fuTitle">Funding Update Title</label>
               <input
                 className={
-                  errors.eventTitle ? "form-control is-invalid" : "form-control"
+                  errors.fuTitle ? "form-control is-invalid" : "form-control"
                 }
-                type='text'
-                {...register("eventTitle")}
+                type="text"
+                {...register("fuTitle")}
               />
-              {errors.eventTitle && errors.eventTitle.message ? (
-                <div className='invalid-feedback'>
-                  {errors.eventTitle.message}
-                </div>
+              {errors.fuTitle && errors.fuTitle.message ? (
+                <div className="invalid-feedback">{errors.fuTitle.message}</div>
               ) : null}
             </div>
-            <div className='form-group'>
-              <label htmlFor='description'>Key Project Interventions</label>
+            <div className="row mt-2">
+              <label>Funding Update Category</label>
+              <div className="form-group">
+                <select
+                  className={
+                    errors.fuCategory ? "form-select is-invalid" : "form-select"
+                  }
+                  {...fundingUpdateCategory}
+                  onChange={(e) => {
+                    fundingUpdateCategory.onChange(e);
+                    setFuCategory(e.target.value);
+                  }}
+                >
+                  <option value="" label="Select Option" />;
+                  <option value="1" label="Government Funding" />;
+                  <option value="2" label="Foreign Funding" />;
+                  <option value="3" label="CSR Funding" />;
+                </select>
+                <small className="text-danger">
+                  {errors.fuCategory && errors.fuCategory.message}
+                </small>
+              </div>
+            </div>
+            <div className="form-group">
+              <label htmlFor="description">Key Project Interventions</label>
               <Controller
-                name='description'
+                name="description"
                 control={control}
                 rules={{ required: true }}
                 className={
@@ -239,67 +263,67 @@ const FundingUpdateNew = (props) => {
                 }
                 render={(field) => <MyEditor {...field} errors={errors} />}
               />
-              <small className='text-danger'>
+              <small className="text-danger">
                 {errors.description && errors.description.message}
               </small>
             </div>
-            <div className='form-group'>
-              <div className='font-bold text-current'>Thematic Area</div>
+            <div className="form-group">
+              <div className="font-bold text-current">Thematic Area</div>
               <Multiselect
                 isObject={true}
                 onRemove={handleThematicArea}
                 onSelect={handleThematicArea}
                 options={props.fuDataBean.thematicAreaBeans}
-                displayValue='name'
+                displayValue="name"
               />
             </div>
-            <div className='row mt-2'>
+            <div className="row mt-2">
               <label>Geographic Location</label>
-              <div className='form-group'>
+              <div className="form-group">
                 <select
                   className={
-                    errors.eventType ? "form-select is-invalid" : "form-select"
+                    errors.fuType ? "form-select is-invalid" : "form-select"
                   }
-                  {...eventTypeFieldRegister}
+                  {...fuTypeFieldRegister}
                   onChange={(e) => {
-                    eventTypeFieldRegister.onChange(e);
-                    setEventType(e.target.value);
+                    fuTypeFieldRegister.onChange(e);
+                    setFuType(e.target.value);
                   }}
                 >
-                  <option value='' label='Select Option' />;
-                  <option value='Online' label='Pan India' />;
-                  <option value='Offline' label='Location' />;
+                  <option value="" label="Select Option" />;
+                  <option value="Online" label="Pan India" />;
+                  <option value="Offline" label="Location" />;
                 </select>
-                <small className='text-danger'>
-                  {errors.eventType && errors.eventType.message}
+                <small className="text-danger">
+                  {errors.fuType && errors.fuType.message}
                 </small>
               </div>
             </div>
-            {eventType === "Offline" && (
-              <div className='row'>
+            {fuType === "Offline" && (
+              <div className="row">
                 <label>Location</label>
-                <div className='col-6 form-group'>
-                  <select onChange={onChangeState} className='form-select'>
+                <div className="col-6 form-group">
+                  <select onChange={onChangeState} className="form-select">
                     {renderStatesNew(props.fuDataBean.stateBeans)}
                   </select>
                 </div>
-                <div className='col-6 form-group'>
+                <div className="col-6 form-group">
                   <Multiselect
                     isObject={true}
                     onRemove={handleSelectedCities}
                     onSelect={handleSelectedCities}
                     options={cities}
-                    displayValue='name'
+                    displayValue="name"
                   />
                 </div>
               </div>
             )}
           </div>
-          <div className='custom-card p-4 mt-4'>
+          <div className="custom-card p-4 mt-4">
             <h4>Target Audience</h4>
-            <div className='form-group '>
-              <div className='form-group ms-2 w-50'>
-                <label htmlFor='category'>
+            <div className="form-group ">
+              <div className="form-group ms-2 w-50">
+                <label htmlFor="category">
                   Enter the target beneficiaries for your project
                 </label>
                 <input
@@ -309,48 +333,48 @@ const FundingUpdateNew = (props) => {
                   }
                 />
                 {errors.category && errors.category.message ? (
-                  <div className='invalid-feedback'>
+                  <div className="invalid-feedback">
                     {errors.category.message}
                   </div>
                 ) : null}
               </div>
             </div>
-            <div className='row'>
-              <div className='ms-2'>
+            <div className="row">
+              <div className="ms-2">
                 {" "}
-                <label htmlFor='minAge'>Age Group</label>{" "}
+                <label htmlFor="minAge">Age Group</label>{" "}
               </div>
-              <div className='form-group ms-2 w-25'>
+              <div className="form-group ms-2 w-25">
                 <input
                   {...register("minAge")}
                   className={
                     errors.minAge ? "form-control is-invalid" : "form-control"
                   }
-                  placeholder='Minimum Age'
+                  placeholder="Minimum Age"
                 />
                 {errors.minAge && errors.minAge.message ? (
-                  <div className='invalid-feedback'>
+                  <div className="invalid-feedback">
                     {errors.minAge.message}
                   </div>
                 ) : null}
               </div>
-              <div className='form-group ms-2 w-25'>
+              <div className="form-group ms-2 w-25">
                 <input
                   {...register("maxAge")}
                   className={
                     errors.maxAge ? "form-control is-invalid" : "form-control"
                   }
-                  placeholder='Maximum Age'
+                  placeholder="Maximum Age"
                 />
                 {errors.maxAge && errors.maxAge.message ? (
-                  <div className='invalid-feedback'>
+                  <div className="invalid-feedback">
                     {errors.maxAge.message}
                   </div>
                 ) : null}
               </div>
             </div>
 
-            <div className='form-group w-50 ms-2'>
+            <div className="form-group w-50 ms-2">
               <label>Gender</label>
               <Multiselect
                 isObject={true}
@@ -358,16 +382,16 @@ const FundingUpdateNew = (props) => {
                 onSelect={handleGender}
                 options={props.fuDataBean.genderBeans}
                 showCheckbox={true}
-                displayValue='name'
+                displayValue="name"
               />
             </div>
           </div>
-          <div className='custom-card p-4 mt-4'>
+          <div className="custom-card p-4 mt-4">
             <h4>Assesment</h4>
-            <div className='form-group ms-2'>
+            <div className="form-group ms-2">
               <label>
                 CSR Eligibility{" "}
-                <span className='text-muted text-xs'>
+                <span className="text-muted text-xs">
                   <em>
                     ( Please specify which of the following criteria’s an NGO
                     should satisfy as Level 1 requirement while applying for
@@ -381,10 +405,10 @@ const FundingUpdateNew = (props) => {
               />
             </div>
 
-            <FormControl component='fieldset'>
+            <FormControl component="fieldset">
               <label>
                 Previous Projects
-                <span className='text-bold text-xs'>
+                <span className="text-bold text-xs">
                   <em>
                     ( Would you Like NGOs to answer any of the following
                     questions? Select multiple )
@@ -392,39 +416,39 @@ const FundingUpdateNew = (props) => {
                 </span>
               </label>
 
-              <FormGroup aria-label='position' row>
+              <FormGroup aria-label="position" row>
                 <FormControlLabel
-                  value='start'
+                  value="start"
                   control={
                     <Checkbox
-                      size='large'
+                      size="large"
                       inputProps={{ "aria-label": "controlled" }}
                       onChange={handleSize}
                     />
                   }
-                  label='What is the current team size of your Organization?'
-                  labelPlacement='start'
+                  label="What is the current team size of your Organization?"
+                  labelPlacement="start"
                 />
                 <FormControlLabel
-                  value='start'
+                  value="start"
                   control={
                     <Checkbox
-                      size='large'
+                      size="large"
                       inputProps={{ "aria-label": "controlled" }}
                       onChange={handlePrevious}
                     />
                   }
-                  label='Has your organization worked on any project similar to this project ?'
-                  labelPlacement='start'
+                  label="Has your organization worked on any project similar to this project ?"
+                  labelPlacement="start"
                 />
               </FormGroup>
             </FormControl>
           </div>
-          <div className='custom-card p-4 mt-4'>
-            <div className='form-group'>
-              <label htmlFor='postedBy'>
+          <div className="custom-card p-4 mt-4">
+            <div className="form-group">
+              <label htmlFor="postedBy">
                 Posted By{" "}
-                <span className='text-muted'>
+                <span className="text-muted">
                   <em>
                     ( Name of Organization/Organizer/SPOC/Contact Person )
                   </em>
@@ -437,15 +461,15 @@ const FundingUpdateNew = (props) => {
                 }
               />
               {errors.postedBy && errors.postedBy.message ? (
-                <div className='invalid-feedback'>
+                <div className="invalid-feedback">
                   {errors.postedBy.message}
                 </div>
               ) : null}
             </div>
-            <div className='form-group'>
-              <label htmlFor='applicationDeadline'>
+            <div className="form-group">
+              <label htmlFor="applicationDeadline">
                 Last Date of Submission{" "}
-                <span className='text-danger'>
+                <span className="text-danger">
                   <em>
                     ( *Note - The post will be deleted after Last Date of
                     Application or if the post expires )
@@ -459,16 +483,16 @@ const FundingUpdateNew = (props) => {
                     ? "form-control is-invalid"
                     : "form-control"
                 }
-                type='date'
+                type="date"
               />
               {errors.applicationDeadline &&
               errors.applicationDeadline.message ? (
-                <div className='invalid-feedback'>
+                <div className="invalid-feedback">
                   {errors.applicationDeadline.message}
                 </div>
               ) : null}
             </div>
-            <div className='form-group form-check'>
+            <div className="form-group form-check">
               <input
                 {...register("terms")}
                 className={
@@ -476,15 +500,15 @@ const FundingUpdateNew = (props) => {
                     ? "form-check-input is-invalid"
                     : "form-check-input"
                 }
-                type='checkbox'
+                type="checkbox"
               ></input>
-              <label htmlFor='terms' className='form-check-label'>
+              <label htmlFor="terms" className="form-check-label">
                 I Agree to Glocal Bodh
                 <span>
                   <a
-                    href='/rfpPolicy'
+                    href="/rfpPolicy"
                     style={{ color: "#0057A8", textDecoration: "none" }}
-                    target='_blank'
+                    target="_blank"
                   >
                     {" "}
                     Posting Policy
@@ -493,9 +517,9 @@ const FundingUpdateNew = (props) => {
                 ,
                 <span>
                   <a
-                    href='/terms'
+                    href="/terms"
                     style={{ color: "#0057A8", textDecoration: "none" }}
-                    target='_blank'
+                    target="_blank"
                   >
                     Terms of Service
                   </a>
@@ -503,22 +527,22 @@ const FundingUpdateNew = (props) => {
                 {" and "}
                 <span>
                   <a
-                    href='/privacyPolicy'
+                    href="/privacyPolicy"
                     style={{ color: "#0057A8", textDecoration: "none" }}
-                    target='_blank'
+                    target="_blank"
                   >
                     Privacy Policy
                   </a>
                 </span>
               </label>
               {errors.terms && errors.terms.message ? (
-                <div className='invalid-feedback'>{errors.terms.message}</div>
+                <div className="invalid-feedback">{errors.terms.message}</div>
               ) : null}
             </div>
-            <div className='form-group mt-2 text-center'>
+            <div className="form-group mt-2 text-center">
               <button
-                type='submit'
-                className='btn btn-primary mt-2 btn-lg'
+                type="submit"
+                className="btn btn-primary mt-2 btn-lg"
                 disabled={props.isLoading}
               >
                 {props.isLoading ? "Please wait..." : "Submit"}

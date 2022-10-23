@@ -4,13 +4,13 @@ import { useDispatch } from "react-redux";
 import { connect } from "react-redux";
 import { useForm } from "react-hook-form";
 
-import { clearLoader, setLoader } from "../../store/actions/loader";
-import UserService from "../../services/user.service";
-import { alertCustom } from "../../helpers/alerts";
+import { clearLoader, setLoader } from "../../../../store/actions/loader";
+import UserService from "../../../../services/user.service";
+import { alertCustom } from "../../../../helpers/alerts";
 
 import parse from "html-react-parser";
 
-import FillFundingUpdate from "../../components/user/fuFillForm";
+import FillFundingUpdate from "./fuFillForm";
 
 const NgoFundingUpdate = (props) => {
   const {
@@ -52,35 +52,35 @@ const NgoFundingUpdate = (props) => {
           <FillFundingUpdate fuDetails={fuDetails} />
         ) : (
           <form onSubmit={handleSubmit(onSubmit)}>
-            <div className='mt-3 custom-card'>
-              <div className='px-4 py-4 mx-auto mt-2 '>
-                <h4 className='text-center border border-2 rounded-lg p-2 border-primary'>
+            <div className="mt-3 custom-card">
+              <div className="px-4 py-4 mx-auto mt-2 ">
+                <h4 className="text-center border border-2 rounded-lg p-2 border-primary">
                   {fuDetails.title}{" "}
                 </h4>
-                <div className='me-1 flex justify-end'>
-                  <span className='expire-text-box p-2'>
+                <div className="me-1 flex justify-end">
+                  <span className="expire-text-box p-2">
                     {`Expires On ${fuDetails.applicationDeadlineText}`}
                   </span>
                 </div>
-                <div className='mt-3'>
-                  <div className='font-bold label-box w-25'>
+                <div className="mt-3">
+                  <div className="font-bold label-box w-25">
                     Key Project Interventions
                   </div>
-                  <div className='border border-dotted rounded-lg p-3 mt-2 border-primary'>
+                  <div className="border border-dotted rounded-lg p-3 mt-2 border-primary">
                     {" "}
                     {parse(fuDetails.description)}
                   </div>
                 </div>
-                <div className='flex mt-3'>
-                  <div className='font-bold label-box w-25 self-start'>
+                <div className="flex mt-3">
+                  <div className="font-bold label-box w-25 self-start">
                     Thematic Area
                   </div>
-                  <div className='w-75 flex flex-wrap gap-2'>
+                  <div className="w-75 flex flex-wrap gap-2">
                     {fuDetails.thematicAreaBeans &&
                       fuDetails.thematicAreaBeans.map((area) => {
                         return (
                           <div
-                            className='ms-2 rounded-lg bg-blue-100 p-2'
+                            className="ms-2 rounded-lg bg-blue-100 p-2"
                             key={area.id}
                           >
                             {area.name}
@@ -89,16 +89,16 @@ const NgoFundingUpdate = (props) => {
                       })}
                   </div>
                 </div>
-                <div className='flex mt-3'>
-                  <div className='font-bold label-box w-25'>
+                <div className="flex mt-3">
+                  <div className="font-bold label-box w-25">
                     Location of Interest
                   </div>
-                  <div className='w-75 flex flex-wrap gap-2'>
+                  <div className="w-75 flex flex-wrap gap-2">
                     {fuDetails.cityBeans &&
                       fuDetails.cityBeans.map((city) => {
                         return (
                           <div
-                            className='ms-2 rounded-lg bg-blue-100 p-2 '
+                            className="ms-2 rounded-lg bg-blue-100 p-2 "
                             key={city.id}
                           >
                             {city.name}
@@ -107,27 +107,27 @@ const NgoFundingUpdate = (props) => {
                       })}
                   </div>
                 </div>
-                <div className='flex mt-3'>
-                  <div className='font-bold label-box w-25'>
+                <div className="flex mt-3">
+                  <div className="font-bold label-box w-25">
                     Target Audience
                   </div>
-                  <div className='w-75 flex'>
-                    <div className='ms-2 rounded-lg border border-2 border-primary p-2 '>
+                  <div className="w-75 flex">
+                    <div className="ms-2 rounded-lg border border-2 border-primary p-2 ">
                       {fuDetails.fundingUpdateTargetAudienceBean &&
                         fuDetails.fundingUpdateTargetAudienceBean.beneficiaries}
                     </div>
                   </div>
                 </div>
-                <div className='flex mt-3'>
-                  <div className='font-bold label-box w-25'>
+                <div className="flex mt-3">
+                  <div className="font-bold label-box w-25">
                     Beneficiaries Gender
                   </div>
-                  <div className='w-75 flex'>
+                  <div className="w-75 flex">
                     {fuDetails.genderBeans &&
                       fuDetails.genderBeans.map((gender) => {
                         return (
                           <div
-                            className='ms-2 rounded-lg bg-yellow-100 p-2'
+                            className="ms-2 rounded-lg bg-yellow-100 p-2"
                             key={gender.id}
                           >
                             {gender.name}
@@ -137,17 +137,17 @@ const NgoFundingUpdate = (props) => {
                   </div>
                 </div>
 
-                <div className='mt-3 flex'>
-                  <div className='font-bold label-box w-25'>Age Group</div>
-                  <div className='ms-2 rounded-lg bg-yellow-100 p-2'>
+                <div className="mt-3 flex">
+                  <div className="font-bold label-box w-25">Age Group</div>
+                  <div className="ms-2 rounded-lg bg-yellow-100 p-2">
                     {" "}
                     {`${fuDetails.fundingUpdateTargetAudienceBean.minAge} to ${fuDetails.fundingUpdateTargetAudienceBean.maxAge} Years`}
                   </div>
                 </div>
 
-                <div className='mt-4 text-center'>
+                <div className="mt-4 text-center">
                   {" "}
-                  <button className='btn btn-primary' type='submit'>
+                  <button className="btn btn-primary" type="submit">
                     Apply
                   </button>
                 </div>

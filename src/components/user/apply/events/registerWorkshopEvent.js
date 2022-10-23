@@ -1,25 +1,24 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useForm, Controller } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import "../../assets/registerStyle.css";
-// import { Razorpay } from "razorpay";
+import { useForm } from "react-hook-form";
+import "../../../../assets/registerStyle.css";
 import { connect } from "react-redux";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useLocation } from "react-router-dom";
-import { validationSchemaWorkshopRegister } from "../../constants/schema";
-import { clearLoader, setLoader } from "../../store/actions/loader";
-import UserService from "../../services/user.service";
-import { alertCustom } from "../../helpers/alerts";
+import { validationSchemaWorkshopRegister } from "../../../../constants/schema";
+import { clearLoader, setLoader } from "../../../../store/actions/loader";
+import UserService from "../../../../services/user.service";
+import { alertCustom } from "../../../../helpers/alerts";
 import {
   renderCities,
   renderStates,
-  onChangeStates,
-} from "../../services/render-services";
-import GB_globe from "../../assets/globe-logo.png";
+  renderStatesNew,
+} from "../../../../services/render-services";
+import GB_globe from "../../../../assets/globe-logo.png";
 
 const RegisterWorkshopEvent = (props) => {
   const [cities, getCities] = useState([]);
+  const [states, getStates] = useState([]);
+  const [selectedStateId, setSelectedStateId] = useState("Select City");
   var key, orderId, amount;
   const {
     register,
@@ -30,6 +29,34 @@ const RegisterWorkshopEvent = (props) => {
   el.href = window.location.href;
   var pathArray = window.location.pathname.split("/");
 
+  const onChangeState = (e) => {
+    let stateIdx = 0;
+    setSelectedStateId(e.target.value);
+    for (let i = 0; i < states.length; i++) {
+      if (states[i].id === e.target.value) {
+        stateIdx = i;
+        break;
+      }
+    }
+    getCities(states[stateIdx].cityBeans);
+    console.log(states[stateIdx].cityBeans);
+  };
+  useEffect(() => {
+    UserService.fetchAllStates()
+      .then((res) => {
+        getStates(res.data.stateBeans);
+        console.log(res.data.stateBeans);
+      })
+      .catch((error) => {
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+        alertCustom("error", message, "/home");
+      });
+  }, []);
   const onSubmit = (values) => {
     props.dispatch(setLoader());
     const data = {
@@ -37,14 +64,28 @@ const RegisterWorkshopEvent = (props) => {
       contactNumber: values.contactNumber,
       email: values.email,
       organizationName: values.organizationName,
-      // cityId: values.cityId,
-      cityId: "0039e13b-3b09-466d-886f-7a329ebd5668",
+      cityId: values.cityId,
       eventId: pathArray[3],
       eventCategoryId: "1",
     };
     UserService.registerForWorkshop(data)
       .then((res) => {
         props.dispatch(clearLoader());
+        var free = {
+          handler: function (response) {
+            // alert(response.razorpay_payment_id);
+            // alert(response.razorpay_order_id);
+            // alert(response.razorpay_signature);
+            UserService.paymentValidation(response.razorpay_order_id).then(
+              () => {
+                console.log(response.razorpay_order_id);
+              }
+            );
+          },
+        };
+        if (res.data.amount === 0) {
+          free();
+        }
         if (res.data.status === 1) {
           amount = res.data.amount;
           orderId = res.data.razorpayOrderId;
@@ -62,6 +103,14 @@ const RegisterWorkshopEvent = (props) => {
               alert(response.razorpay_payment_id);
               alert(response.razorpay_order_id);
               alert(response.razorpay_signature);
+              UserService.paymentValidation(response.razorpay_order_id).then(
+                (res) => {
+                  if (res.data.status === 1) {
+                    alertCustom("success", "Successfully Registerd", "/home");
+                  }
+                  console.log(response.razorpay_order_id);
+                }
+              );
             },
             prefill: {
               name: data.name,
@@ -76,7 +125,6 @@ const RegisterWorkshopEvent = (props) => {
             },
           };
           var rzp1 = new Razorpay(options);
-
           rzp1.on("payment.failed", function (response) {
             alert(response.error.code);
             alert(response.error.description);
@@ -102,24 +150,13 @@ const RegisterWorkshopEvent = (props) => {
         alertCustom("error", message, "/home");
       });
   };
-  // // window.onload = function () {
-  // // document.getElementsByClassName("rzp-button1").onclick = function (e) {
-  // //   rzp1.open();
-  // //   e.preventDefault();
-  // // };
-  // // };
 
-  const onChangeState = (e) => {
-    onChangeStates(e.target.value).then((res) => {
-      getCities(res.data);
-    });
-  };
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="form-floating">
       <div className="register_screen">
         <div className="topBar"></div>
         <h1 className="heading">Register</h1>
-        <div className="container">
+        <div className="reg-container">
           <div className="fields">
             <div className="field">
               <label>Name </label>
@@ -207,8 +244,14 @@ const RegisterWorkshopEvent = (props) => {
             <div className="field">
               <label>You Are From?</label>
               <div className="w-95 col-6 form-group">
-                <select onChange={onChangeState} className=" w-95 form-select">
-                  {renderStates(props.states)}
+                <select
+                  onChange={onChangeState}
+                  // onClick={() => {
+                  //   setSelectedState(target.value);
+                  // }}
+                  className=" w-95 form-select"
+                >
+                  {renderStatesNew(states)}
                 </select>
               </div>
               <div className="w-95 col-6 form-group">
@@ -233,10 +276,6 @@ const RegisterWorkshopEvent = (props) => {
       <div className="bookNow">
         <button
           type="submit"
-          // onClick={(e) => {
-          //   rzp1.open();
-          //   e.preventDefault();
-          // }}
           id="rzp-button1"
           className="rzp-button1 book-btn btn-primary mt-2 btn-lg"
           disabled={props.isLoading}

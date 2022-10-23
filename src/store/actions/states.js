@@ -10,7 +10,6 @@ export const getStates = () => (dispatch) => {
           type: GET_STATES_SUCCESS,
           payload: response.data,
         });
-
         return Promise.resolve();
       } else {
         const message = response.data.message;

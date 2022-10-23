@@ -24,7 +24,7 @@ export const renderStates = (states) => {
     states.length > 0 &&
     states.map((state, index) => {
       if (index === 0) {
-        return <option value='' key={index} label='Select State' />;
+        return <option value="" key={index} label="Select State" />;
       } else {
         return (
           <option
@@ -44,7 +44,7 @@ export const renderStatesNew = (states) => {
     states.length > 0 &&
     states.map((state, index) => {
       if (index === 0) {
-        return <option value='' key={index} label='Select State' />;
+        return <option value="" key={index} label="Select State" />;
       } else {
         return <option key={index} value={state.id} label={state.name} />;
       }
@@ -58,11 +58,9 @@ export const renderCities = (cities) => {
     cities.length > 0 &&
     cities.map((city, index) => {
       if (index === 0) {
-        return <option key={index} value='' label='Select City' />;
+        return <option key={index} value="" label="Select City" />;
       } else {
-        return (
-          <option key={index} value={city.city_name} label={city.city_name} />
-        );
+        return <option key={index} value={city.id} label={city.name} />;
       }
     })
   );
@@ -71,7 +69,7 @@ export const renderCities = (cities) => {
 export const renderThematicArea = () => {
   return THEMATIC_AREA.map((area, index) => {
     if (index === 0) {
-      return <option value='' key={index} label='Select Option' />;
+      return <option value="" key={index} label="Select Option" />;
     } else {
       return <option key={index} value={area} label={area} />;
     }

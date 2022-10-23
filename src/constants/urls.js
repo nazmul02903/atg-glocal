@@ -30,6 +30,9 @@ export const API_REVIEW_JOB =
 export const API_FETCH_JOBS_USER =
   process.env.REACT_APP_API_ENDPOINT + "job/fetchJobs/";
 
+export const API_FETCH_EVENT_REGISTRATION =
+  process.env.REACT_APP_API_ENDPOINT + "eventRegistration/fetchByEventId";
+
 export const API_URL_UPDATE_JOB =
   process.env.REACT_APP_API_ENDPOINT + "job/updateJob/";
 
@@ -50,6 +53,11 @@ export const API_URL_DELETE_JOB =
 
 export const API_FETCH_EVENTS_BY_CATEGORY =
   process.env.REACT_APP_API_ENDPOINT + "event/fetchEventsByEventCategory/";
+export const API_FETCH_JOBS_BY_CATEGORY =
+  process.env.REACT_APP_API_ENDPOINT + "job/fetchJobsByJobCategory/";
+export const API_FETCH_FU_BY_CATEGORY =
+  process.env.REACT_APP_API_ENDPOINT +
+  "fundingUpdate/fetchFundingUpdatesByFundingUpdateCategory/";
 
 export const API_FETCH_EVENT_DETAILS =
   process.env.REACT_APP_API_ENDPOINT + "event/getEventDetails/";
@@ -65,7 +73,6 @@ export const API_URL_DELETE_WORKSHOP =
 
 export const API_FETCH_FUNDING_UPDATE =
   process.env.REACT_APP_API_ENDPOINT + "fundingUpdate/fetchFundingUpdates/";
-
 export const API_FETCH_RFP =
   process.env.REACT_APP_API_ENDPOINT +
   "requestForProposal/fetchRequestForProposals/";
@@ -138,3 +145,11 @@ export const MAKE_PAYMENT =
 export const FETCH_FUNDING_UPDATES_BY_ID =
   process.env.REACT_APP_API_ENDPOINT +
   "fundingUpdateApplication/fetchFundingUpdateApplicationsByFundingUpdateId";
+export const API_FETCH_ALL_EVENTS =
+  process.env.REACT_APP_API_ENDPOINT + "event/fetchEvents";
+export const PAYMENT_VALIDATION =
+  process.env.REACT_APP_API_ENDPOINT + "eventRegistration/validatePayment";
+export const API_FETCH_HOME =
+  process.env.REACT_APP_API_ENDPOINT + "home/v2/getHome";
+export const API_ALL_STATES =
+  process.env.REACT_APP_API_ENDPOINT + "state/fetchAll/";

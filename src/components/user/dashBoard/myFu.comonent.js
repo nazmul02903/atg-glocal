@@ -1,25 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import UserService from "../../services/user.service";
-import LocationImg from "../../assets/Icons/location.svg";
-import { setLoader, clearLoader } from "../../store/actions/loader";
+import UserService from "../../../services/user.service";
+import LocationImg from "../../../assets/Icons/location.svg";
+import { setLoader, clearLoader } from "../../../store/actions/loader";
 import "bootstrap/dist/css/bootstrap.min.css";
-import FuDetailModal from "../../helpers/fuModal";
+import FuDetailModal from "../../../helpers/fuModal";
 import "react-circular-progressbar/dist/styles.css";
 
-import { useInterval } from "../../helpers/useInterval";
-import { POLLING_INTERVAL } from "../../constants/variables";
+import { useInterval } from "../../../helpers/useInterval";
+import { POLLING_INTERVAL } from "../../../constants/variables";
 import { CircularProgressbar } from "react-circular-progressbar";
-import { CSR_IMAGE } from "../../constants/variables";
-import Logo from "../../assets/Icons/App-Icon.svg";
-import { alertCustom, alertDefault } from "../../helpers/alerts";
+import { CSR_IMAGE } from "../../../constants/variables";
+import Logo from "../../../assets/Icons/App-Icon.svg";
+import { alertCustom, alertDefault } from "../../../helpers/alerts";
 
 import { Link } from "react-router-dom";
 import parse from "html-react-parser";
 
 import Tooltip from "react-bootstrap/Tooltip";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
-import AdminService from "../../services/admin.service";
+import AdminService from "../../../services/admin.service";
 
 const HorizontalLine = () => {
   return (
@@ -28,7 +28,7 @@ const HorizontalLine = () => {
         boxShadow: "0 0 25px 0 rgba(201,208,230,0.38)",
       }}
     >
-      <hr className=' border-4 border-top '></hr>
+      <hr className=" border-4 border-top "></hr>
     </div>
   );
 };
@@ -39,9 +39,9 @@ const Info = (props) => {
     <OverlayTrigger
       delay={{ hide: 450, show: 300 }}
       overlay={(props) => <Tooltip {...props}>{reason}</Tooltip>}
-      placement='top'
+      placement="top"
     >
-      <i className='fa fa-info-circle' />
+      <i className="fa fa-info-circle" />
     </OverlayTrigger>
   );
 };
@@ -192,10 +192,10 @@ const MyFundingUpdate = () => {
     paymentObject.open();
   }
   return (
-    <div className='row p-2' style={{ backgroundColor: "#F9F9FB" }}>
+    <div className="row p-2" style={{ backgroundColor: "#F9F9FB" }}>
       {fu.length !== 0 && (
         <>
-          <div className='col-12 col-sm-6'>
+          <div className="col-12 col-sm-6">
             {fu.map((fu, index) => {
               return (
                 <div
@@ -209,8 +209,8 @@ const MyFundingUpdate = () => {
                     setApplicantList([]);
                   }}
                 >
-                  <div className='d-flex mt-2 active-job'>
-                    <div className='company-logo-bg-none'>
+                  <div className="d-flex mt-2 active-job">
+                    <div className="company-logo-bg-none">
                       {" "}
                       <span
                         style={{
@@ -223,23 +223,23 @@ const MyFundingUpdate = () => {
                       </span>
                     </div>
 
-                    <div className='me-auto w-50 ps-2'>
-                      <div className='text-break'>
+                    <div className="me-auto w-50 ps-2">
+                      <div className="text-break">
                         <span style={{ fontSize: "0.9rem" }}>
                           <strong>{fu.title}</strong>
                         </span>
                       </div>
                     </div>
 
-                    <div className='me-n3'>
-                      <span className='expire-text p-2'>{fu.expiryLabel}</span>
+                    <div className="me-n3">
+                      <span className="expire-text p-2">{fu.expiryLabel}</span>
                     </div>
                   </div>
 
-                  <div className='mt-2'>
+                  <div className="mt-2">
                     {fu.applicantCount !== 0 ? (
                       <button
-                        className='btn btn-danger ms-1 lg-ms-3 rounded-pill btn-sm'
+                        className="btn btn-danger ms-1 lg-ms-3 rounded-pill btn-sm"
                         onClick={() => {
                           setSelectedFu(fu);
                           fetchApplicantList(fu.id);
@@ -249,7 +249,7 @@ const MyFundingUpdate = () => {
                       </button>
                     ) : (
                       <button
-                        className='btn btn-danger ms-1 rounded-pill btn-sm'
+                        className="btn btn-danger ms-1 rounded-pill btn-sm"
                         disabled
                       >
                         No Applicants
@@ -257,7 +257,7 @@ const MyFundingUpdate = () => {
                     )}
                     {!fu.paymentDone && (
                       <button
-                        className='btn btn-primary d-inline  rounded-pill ms-2 btn-sm'
+                        className="btn btn-primary d-inline  rounded-pill ms-2 btn-sm"
                         onClick={(e) => {
                           displayRazorpay();
                         }}
@@ -271,96 +271,96 @@ const MyFundingUpdate = () => {
             })}
           </div>
           {applicantList ? (
-            <div className='col-12 col-sm-6 mt-2 d-none d-md-block d-lg-block custom-card p-2 text-xs'>
+            <div className="col-12 col-sm-6 mt-2 d-none d-md-block d-lg-block custom-card p-2 text-xs">
               {applicantList.map((applicant) => {
                 return (
                   <div
-                    className='bg-gray-100 rounded-lg p-2'
+                    className="bg-gray-100 rounded-lg p-2"
                     key={applicant.userId}
                   >
-                    <div className='flex gap-2'>
-                      <div className='w-2/3 mt-2 fw-bolder  rounded-lg bg-blue-100 p-2'>
+                    <div className="flex gap-2">
+                      <div className="w-2/3 mt-2 fw-bolder  rounded-lg bg-blue-100 p-2">
                         {applicant.name}
                       </div>
-                      <div className='w-25 mt-2 fw-bolder  rounded-lg bg-gray-100 p-1'>
+                      <div className="w-25 mt-2 fw-bolder  rounded-lg bg-gray-100 p-1">
                         {applicant.email}
                       </div>{" "}
-                      <div className='w-25 mt-2 fw-bolder  rounded-lg bg-gray-100 p-1'>
+                      <div className="w-25 mt-2 fw-bolder  rounded-lg bg-gray-100 p-1">
                         {applicant.contactNumber}
                       </div>
                     </div>
-                    <div className='flex'>
-                      <div className='w-1/2'>
-                        <div className='flex flex-wrap  gap-2 p-1'>
-                          <div className='w-1/4  text-center '>
+                    <div className="flex">
+                      <div className="w-1/2">
+                        <div className="flex flex-wrap  gap-2 p-1">
+                          <div className="w-1/4  text-center ">
                             <img
                               src={CSR_IMAGE["Legal Compliances"]}
-                              alt='legal compliance'
-                              className='w-100'
+                              alt="legal compliance"
+                              className="w-100"
                             />
                             <div
-                              className='text-center mx-auto mt-2'
+                              className="text-center mx-auto mt-2"
                               style={{ width: "55%" }}
                             >
                               <CircularProgressbar value={66} text={`${66}%`} />
                             </div>
 
-                            <span className='text-xs'>Csr Name</span>
+                            <span className="text-xs">Csr Name</span>
                           </div>
-                          <div className='w-1/4  text-center '>
+                          <div className="w-1/4  text-center ">
                             <img
                               src={CSR_IMAGE["Legal Compliances"]}
-                              alt='legal compliance'
-                              className='w-100'
+                              alt="legal compliance"
+                              className="w-100"
                             />
                             <div
-                              className='text-center mx-auto mt-2'
+                              className="text-center mx-auto mt-2"
                               style={{ width: "55%" }}
                             >
                               <CircularProgressbar value={66} text={`${66}%`} />
                             </div>
 
-                            <span className='text-xs'>Csr Name</span>
+                            <span className="text-xs">Csr Name</span>
                           </div>
                         </div>{" "}
                       </div>
-                      <div className='w-1/2 mt-2'>
-                        <div className='flex gap-2'>
-                          <div className='w-1/2  rounded-lg bg-blue-500 p-2 text-white'>
+                      <div className="w-1/2 mt-2">
+                        <div className="flex gap-2">
+                          <div className="w-1/2  rounded-lg bg-blue-500 p-2 text-white">
                             Team Size
                           </div>
-                          <div className='w-1/2  rounded-lg bg-blue-100 p-2'>
+                          <div className="w-1/2  rounded-lg bg-blue-100 p-2">
                             {applicant.fullTime}
                           </div>
                         </div>
-                        <div className='w-100  rounded-lg bg-red-100 p-2 mt-2'>
+                        <div className="w-100  rounded-lg bg-red-100 p-2 mt-2">
                           <span>Experience in similar projects</span>
                         </div>
-                        <div className='flex flex-wrap gap-2 mt-2'>
+                        <div className="flex flex-wrap gap-2 mt-2">
                           {" "}
                           <img
                             src={LocationImg}
-                            className='me-1 inline'
-                            alt='Location svg'
+                            className="me-1 inline"
+                            alt="Location svg"
                           />
-                          <div className='w-25 text-white  rounded-lg bg-red-500 p-2'>
+                          <div className="w-25 text-white  rounded-lg bg-red-500 p-2">
                             {applicant.headLocation.name}
                           </div>
                           {applicant.cityBeans.map((city) => {
                             return (
-                              <div className='w-25 text-white  rounded-lg bg-red-500 p-2'>
+                              <div className="w-25 text-white  rounded-lg bg-red-500 p-2">
                                 {city.name}
                               </div>
                             );
                           })}
                         </div>
-                        <div className='w-100 rounded-lg bg-yellow-500 p-2 mt-2 text-white'>
+                        <div className="w-100 rounded-lg bg-yellow-500 p-2 mt-2 text-white">
                           Target Audience
                         </div>
 
-                        <div className='w-100 mt-2'>
+                        <div className="w-100 mt-2">
                           <button
-                            className='btn btn-primary d-inline rounded-pill btn-sm'
+                            className="btn btn-primary d-inline rounded-pill btn-sm"
                             onClick={(e) => {
                               setSelectedApplicant(applicant);
                               setModalShow(true);

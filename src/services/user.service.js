@@ -24,6 +24,12 @@ import {
   FETCH_FUNDING_UPDATES_BY_ID,
   API_FETCH_EVENT_DETAILS,
   REGISTER_WORKSHOP_EVENT,
+  API_FETCH_EVENT_REGISTRATION,
+  API_FETCH_EVENTS_BY_CATEGORY,
+  API_FETCH_ALL_EVENTS,
+  PAYMENT_VALIDATION,
+  API_FETCH_HOME,
+  API_ALL_STATES,
 } from "../constants/urls";
 
 import AuthHeader from "./auth-header";
@@ -52,12 +58,12 @@ class UserService {
     });
   }
 
-  getEventDetails(id) {
+  getEventDetails(id, categoryId) {
     return axios.post(
       API_FETCH_EVENT_DETAILS,
       {
         eventId: id,
-        eventCategoryId: "1",
+        eventCategoryId: categoryId,
       },
       { headers: AuthHeader() }
     );
@@ -66,6 +72,14 @@ class UserService {
     return axios.post(REGISTER_WORKSHOP_EVENT, data, {
       headers: AuthHeader(),
     });
+  }
+  paymentValidation(razorpayOrderId) {
+    return axios.post(
+      PAYMENT_VALIDATION,
+
+      { razorpayOrderId: razorpayOrderId },
+      { headers: AuthHeader() }
+    );
   }
 
   createFundingUpdate(data) {
@@ -164,6 +178,7 @@ class UserService {
     return axios.post(
       API_USER_DETAILS,
       { id: id },
+
       {
         headers: AuthHeader(),
       }
@@ -203,6 +218,45 @@ class UserService {
       {
         headers: AuthHeader(),
       }
+    );
+  }
+
+  fetchEventRegistration(id) {
+    return axios.post(
+      API_FETCH_EVENT_REGISTRATION,
+      { id: id },
+      {
+        headers: AuthHeader(),
+      }
+    );
+  }
+
+  fetchEventsByCategory(category) {
+    return axios.post(
+      API_FETCH_EVENTS_BY_CATEGORY,
+      { eventCategoryId: category, dataType: 1 },
+      { headers: AuthHeader() }
+    );
+  }
+  fetchAllEvents() {
+    return axios.post(
+      API_FETCH_ALL_EVENTS,
+      { dataType: 2 },
+      { headers: AuthHeader() }
+    );
+  }
+  homeV2(user) {
+    return axios.post(
+      API_FETCH_HOME,
+      { user_id: user },
+      { headers: AuthHeader() }
+    );
+  }
+  fetchAllStates(user) {
+    return axios.post(
+      API_ALL_STATES,
+      { user_id: user },
+      { headers: AuthHeader() }
     );
   }
 }

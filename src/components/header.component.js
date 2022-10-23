@@ -127,12 +127,23 @@ const Header = (props) => {
                     <Dropdown.Item as={Link} to="/login" onClick={handleLogout}>
                       <button className="btn btn-danger p-2">Logout</button>
                     </Dropdown.Item>
+                    <Dropdown.Item as={Link} to="/admin/dashboard/events">
+                      My Events
+                    </Dropdown.Item>
                   </Dropdown.Menu>
                 ) : (
                   <Dropdown.Menu variant="dark" className="dropdown-menu-dark">
-                    <Dropdown.Item href="/user/myJobs">My Jobs</Dropdown.Item>
-                    <Dropdown.Item href="/user/myFu">
+                    <Dropdown.Item as={Link} to="/user/dashboard/myEvents">
+                      My Events
+                    </Dropdown.Item>
+                    <Dropdown.Item href="/user/dashboard/myJobs">
+                      My Jobs
+                    </Dropdown.Item>
+                    <Dropdown.Item href="/user/dashboard/myFundingUpdate">
                       My Funding Updates
+                    </Dropdown.Item>
+                    <Dropdown.Item as={Link} to="/posting">
+                      Create Post
                     </Dropdown.Item>
                     <Dropdown.Item href="/user/kycStatus">
                       KYC Status

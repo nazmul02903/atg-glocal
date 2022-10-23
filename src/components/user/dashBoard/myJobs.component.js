@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import UserService from "../../services/user.service";
-import LocationImg from "../../assets/Icons/location.svg";
-import { setLoader, clearLoader } from "../../store/actions/loader";
+import UserService from "../../../services/user.service";
+import LocationImg from "../../../assets/Icons/location.svg";
+import { setLoader, clearLoader } from "../../../store/actions/loader";
 import "bootstrap/dist/css/bootstrap.min.css";
-import MyModal from "../../helpers/detailModal";
+import MyModal from "../../../helpers/detailModal";
 
-import ApplicantModal from "../../helpers/applicantModal";
-import { useInterval } from "../../helpers/useInterval";
-import { POLLING_INTERVAL } from "../../constants/variables";
+import ApplicantModal from "../../../helpers/applicantModal";
+import { useInterval } from "../../../helpers/useInterval";
+import { POLLING_INTERVAL } from "../../../constants/variables";
 import { Link } from "react-router-dom";
 import parse from "html-react-parser";
 
@@ -21,7 +21,7 @@ const HorizontalLine = () => {
         boxShadow: "0 0 25px 0 rgba(201,208,230,0.38)",
       }}
     >
-      <hr className=' border-4 border-top '></hr>
+      <hr className=" border-4 border-top "></hr>
     </div>
   );
 };
@@ -32,9 +32,9 @@ const Info = (props) => {
     <OverlayTrigger
       delay={{ hide: 450, show: 300 }}
       overlay={(props) => <Tooltip {...props}>{reason}</Tooltip>}
-      placement='top'
+      placement="top"
     >
-      <i className='fa fa-info-circle' />
+      <i className="fa fa-info-circle" />
     </OverlayTrigger>
   );
 };
@@ -69,15 +69,15 @@ const MyJobs = () => {
     });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
   return (
-    <div className='row p-2' style={{ backgroundColor: "#F9F9FB" }}>
+    <div className="row p-2" style={{ backgroundColor: "#F9F9FB" }}>
       {jobs.length !== 0 && (
         <>
-          <div className='col-12 col-sm-6'>
-            <select className='form-select' onChange={handleFilter}>
-              <option value='All' label='All' />
-              <option value='In Review' label='In Review' />
-              <option value='Live' label='Live' />
-              <option value='Cancelled' label='Cancelled' />
+          <div className="col-12 col-sm-6">
+            <select className="form-select" onChange={handleFilter}>
+              <option value="All" label="All" />
+              <option value="In Review" label="In Review" />
+              <option value="Live" label="Live" />
+              <option value="Cancelled" label="Cancelled" />
             </select>
             {jobs
               .filter((job) => {
@@ -92,15 +92,15 @@ const MyJobs = () => {
               .map((job, index) => {
                 return (
                   <div
-                    className='custom-card mt-3 p-2 list-group-item list-group-item-action'
+                    className="custom-card mt-3 p-2 list-group-item list-group-item-action"
                     key={index}
                     onClick={(e) => {
                       setSelectedJob(job);
                     }}
                   >
-                    <div className='d-flex mt-2 active-job'>
+                    <div className="d-flex mt-2 active-job">
                       {job.companyLogo.length !== 0 ? (
-                        <div className='company-logo-bg'>
+                        <div className="company-logo-bg">
                           <span
                             style={{
                               position: "relative",
@@ -110,13 +110,13 @@ const MyJobs = () => {
                           >
                             <img
                               src={job.companyLogo}
-                              alt='Company Logo'
-                              width='25'
+                              alt="Company Logo"
+                              width="25"
                             />
                           </span>
                         </div>
                       ) : (
-                        <div className='company-logo-bg-none'>
+                        <div className="company-logo-bg-none">
                           {" "}
                           <span
                             style={{
@@ -129,19 +129,19 @@ const MyJobs = () => {
                           </span>
                         </div>
                       )}
-                      <div className='me-auto w-50 ps-2'>
-                        <div className='text-break'>
+                      <div className="me-auto w-50 ps-2">
+                        <div className="text-break">
                           <span style={{ fontSize: "0.9rem" }}>
                             <strong>{job.designation}</strong>
                           </span>
                         </div>
-                        <div className='text-muted'>
+                        <div className="text-muted">
                           <span style={{ fontSize: "0.8rem" }}>
                             {job.companyName}
                           </span>
                         </div>
                       </div>
-                      <div className='me-3 '>
+                      <div className="me-3 ">
                         {" "}
                         <span
                           className={
@@ -155,29 +155,29 @@ const MyJobs = () => {
                           {job.jobStatusText}
                         </span>
                       </div>
-                      <div className='me-n3'>
-                        <span className='expire-text p-2'>
+                      <div className="me-n3">
+                        <span className="expire-text p-2">
                           {job.expiryText}
                         </span>
                       </div>
                     </div>
-                    <div className='mt-2 p-1'>
-                      <span className='job-type p-2'>{job.jobType}</span>
-                      <span className='ms-2 p-2 text-muted'>
+                    <div className="mt-2 p-1">
+                      <span className="job-type p-2">{job.jobType}</span>
+                      <span className="ms-2 p-2 text-muted">
                         {job.salaryText}
                       </span>
-                      <span className='ms-2 p-2 text-muted'>
+                      <span className="ms-2 p-2 text-muted">
                         <img
                           src={LocationImg}
-                          className='me-1 inline'
-                          alt='Location svg'
+                          className="me-1 inline"
+                          alt="Location svg"
                         />
                         {job.location}
                       </span>
                     </div>
-                    <div className='mt-2'>
+                    <div className="mt-2">
                       <button
-                        className='btn btn-primary d-inline d-sm-none rounded-pill btn-sm'
+                        className="btn btn-primary d-inline d-sm-none rounded-pill btn-sm"
                         onClick={(e) => {
                           setSelectedJob(job);
                           setModalShow(true);
@@ -194,9 +194,9 @@ const MyJobs = () => {
                             },
                           }}
                         >
-                          <button className='btn btn-dark ms-1 lg-ms-3 rounded-pill btn-sm'>
+                          <button className="btn btn-dark ms-1 lg-ms-3 rounded-pill btn-sm">
                             Update
-                            <span className='ms-2'>
+                            <span className="ms-2">
                               <Info reason={job.reasonText} />
                             </span>
                           </button>
@@ -204,7 +204,7 @@ const MyJobs = () => {
                       )}
                       {job.jobApplicationBeans.length ? (
                         <button
-                          className='btn btn-danger ms-1 lg-ms-3 rounded-pill btn-sm'
+                          className="btn btn-danger ms-1 lg-ms-3 rounded-pill btn-sm"
                           onClick={() => {
                             setSelectedJob(job);
                             setModalShowApplicant(true);
@@ -214,7 +214,7 @@ const MyJobs = () => {
                         </button>
                       ) : (
                         <button
-                          className='btn btn-danger ms-1 rounded-pill btn-sm'
+                          className="btn btn-danger ms-1 rounded-pill btn-sm"
                           disabled
                         >
                           No Applicants
@@ -241,11 +241,11 @@ const MyJobs = () => {
             )}
           </div>
           {selectedJob !== null && (
-            <div className='col-12 col-sm-6 d-none d-md-block d-lg-block custom-card p-0'>
-              <div className='text-center'>
-                <div className='company-logo-bg-large mx-auto mt-3'>
+            <div className="col-12 col-sm-6 d-none d-md-block d-lg-block custom-card p-0">
+              <div className="text-center">
+                <div className="company-logo-bg-large mx-auto mt-3">
                   {selectedJob.companyLogo ? (
-                    <div className='company-logo-bg-large'>
+                    <div className="company-logo-bg-large">
                       <span
                         style={{
                           position: "relative",
@@ -255,13 +255,13 @@ const MyJobs = () => {
                       >
                         <img
                           src={selectedJob.companyLogo}
-                          alt='Company Logo'
-                          width='45'
+                          alt="Company Logo"
+                          width="45"
                         />
                       </span>
                     </div>
                   ) : (
-                    <div className='company-logo-bg-large-none'>
+                    <div className="company-logo-bg-large-none">
                       {" "}
                       <span
                         style={{
@@ -275,21 +275,21 @@ const MyJobs = () => {
                     </div>
                   )}
                 </div>
-                <div className='mt-2 fw-bolder'>{selectedJob.companyName}</div>
-                <div className='text-muted fw-light'>
+                <div className="mt-2 fw-bolder">{selectedJob.companyName}</div>
+                <div className="text-muted fw-light">
                   <img
                     src={LocationImg}
-                    className='me-1 inline'
-                    alt='Location svg'
+                    className="me-1 inline"
+                    alt="Location svg"
                   />
                   {selectedJob.location}
                 </div>
-                <div className='mt-4 p-1'>
-                  <span className='fw-bold p-2'>{selectedJob.designation}</span>
-                  <span className='ms-2 job-type p-2'>
+                <div className="mt-4 p-1">
+                  <span className="fw-bold p-2">{selectedJob.designation}</span>
+                  <span className="ms-2 job-type p-2">
                     {selectedJob.jobType}
                   </span>
-                  <span className='ms-2 p-2 expire-text-box'>
+                  <span className="ms-2 p-2 expire-text-box">
                     {selectedJob.expiryText}
                   </span>
                 </div>
@@ -300,10 +300,10 @@ const MyJobs = () => {
                   boxShadow: "0 0 25px 0 rgba(201,208,230,0.38)",
                 }}
               >
-                <hr className=' border-4 border-top '></hr>
+                <hr className=" border-4 border-top "></hr>
               </div>
 
-              <div style={{ fontSize: "0.8rem" }} className='p-2'>
+              <div style={{ fontSize: "0.8rem" }} className="p-2">
                 <div>{parse(selectedJob.jobDescription)}</div>
 
                 <HorizontalLine />
@@ -317,11 +317,11 @@ const MyJobs = () => {
                 <HorizontalLine />
 
                 <div>
-                  <div className='fw-bold'>SPOC Person Details</div>
-                  <div className='mt-1'>
+                  <div className="fw-bold">SPOC Person Details</div>
+                  <div className="mt-1">
                     {"Posted By ( Name of the contact person ) :"}
                   </div>
-                  <div className='mt-1 fw-bold text-muted'>
+                  <div className="mt-1 fw-bold text-muted">
                     {selectedJob.postedBy}
                   </div>
                 </div>

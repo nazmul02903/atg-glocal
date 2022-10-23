@@ -2,27 +2,98 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { connect } from "react-redux";
 import { useForm } from "react-hook-form";
-import { clearLoader, setLoader } from "../../store/actions/loader";
-import UserService from "../../services/user.service";
-import { alertCustom } from "../../helpers/alerts";
+import { clearLoader, setLoader } from "../../../../store/actions/loader";
+import UserService from "../../../../services/user.service";
+import { alertCustom } from "../../../../helpers/alerts";
 import RegisterWorkshopEvent from "./registerWorkshopEvent";
-import "../../assets/workshopEventDetails.css";
-import Language from "../../assets/lang.png";
-import Bell from "../../assets/bell.png";
-import Search from "../../assets/search.png";
-import Calendar from "../../assets/calendar.png";
-import Location from "../../assets/location.png";
-import EventIcon from "../../assets/event-icon.png";
-import Logo from "../../assets/gb.png";
-import Chair from "../../assets/chair.png";
-import Note from "../../assets/event_note.png";
-import Rupee from "../../assets/currency_rupee.png";
-
+import "../../../../assets/workshopEventDetails.css";
+import Language from "../../../../assets/lang.png";
+import Bell from "../../../../assets/bell.png";
+import Search from "../../../../assets/search.png";
+import Calendar from "../../../../assets/calendar.png";
+import Location from "../../../../assets/location.png";
+import EventIcon from "../../../../assets/event-icon.png";
+import Logo from "../../../../assets/gb.png";
+import Chair from "../../../../assets/chair.png";
+import Note from "../../../../assets/event_note.png";
+import Rupee from "../../../../assets/currency_rupee.png";
+import "reactjs-popup/dist/index.css";
+import { ShareButton } from "react-custom-share";
+import {
+  FaEnvelope,
+  FaFacebook,
+  FaLinkedin,
+  FaTwitter,
+  FaWhatsapp,
+} from "react-icons/fa";
 function workshopEventDetails(props) {
   //add active class name
   const [summaryActive, setSummaryActive] = useState(false);
+  const [shareToggle, setShareToggle] = useState(false);
   const [topicsActive, setTopicsActive] = useState(false);
   const [otherActive, setOtherActive] = useState(false);
+  const [copied, setCopied] = useState(false);
+  var el = document.createElement("a");
+  el.href = window.location.href;
+  const shareButtonProps = [
+    {
+      url: el.href,
+      network: "Facebook",
+      text: "checkout this event",
+      longtext: "Don't miss out on the opportunity!",
+    },
+    {
+      url: el.href,
+      network: "Email",
+      text: "checkout this event",
+      longtext: "Don't miss out on the opportunity!",
+    },
+    {
+      url: el.href,
+      network: "WhatsApp",
+      text: "checkout this event",
+      longtext: "Don't miss out on the opportunity!",
+    },
+    {
+      url: el.href,
+      network: "Twitter",
+      text: "checkout this event",
+      longtext: "Don't miss out on the opportunity!",
+    },
+    {
+      url: el.href,
+      network: "Linkedin",
+      text: "checkout this event",
+      longtext: "Don't miss out on the opportunity!",
+    },
+  ];
+
+  function copy() {
+    const el = document.createElement("input");
+    el.value = window.location.href;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand("copy");
+    document.body.removeChild(el);
+    setCopied(true);
+  }
+
+  // const shareBtn = document.getElementsByClassName("share-btn");
+  const shareOptions = document.getElementsByClassName("share-options");
+  // shareBtn.addEventListener("click", () => {
+  //   shareOptions.classList.toggle("active");
+  // });
+  // window.onload = function () {
+  //   shareBtn.addEventListener("click", () => {
+  //     shareOptions.classList.toggle("active");
+  //   });
+  // };
+  // document.addEventListener("DOMContentLoaded", function () {
+  //   shareBtn.addEventListener("click", () => {
+  //     shareOptions.classList.toggle("active");
+  //   });
+  // });
+
   // const addClass = () => {
   //   if (window.scrollY >= 50) {
   //     setSummaryActive(true);
@@ -71,7 +142,7 @@ function workshopEventDetails(props) {
   };
   const { id } = props.match.params;
   useEffect(() => {
-    UserService.getEventDetails(id)
+    UserService.getEventDetails(id, 1)
       .then((res) => {
         setWorkshopDetails(res.data.eventBean);
       })
@@ -117,9 +188,11 @@ function workshopEventDetails(props) {
                 </div>
               </div>
               <div className="banner ">
-                {/* <div className="days_remaining">
-                  <p className="days_remaining_text"></p>
-                </div> */}
+                <div className="days_remaining">
+                  <p className="days_remaining_text">
+                    {workshopDetails.daysToExpiry}
+                  </p>
+                </div>
               </div>
               <div className="navBar">
                 <div
@@ -253,10 +326,18 @@ function workshopEventDetails(props) {
                     </div>
                     <div className="frame8172">
                       <div className="row-frame">
-                        <div className="price priceImg left">
-                          <img className="rupee" src={Rupee} alt="" />
-                          {workshopDetails.fees}{" "}
-                        </div>
+                        {workshopDetails.fees === 0 ? (
+                          <div className="price priceImg left">
+                            {/* <img className="rupee" src={Rupee} alt="" /> */}
+                            Free!
+                          </div>
+                        ) : (
+                          <div className="price priceImg left">
+                            <img className="rupee" src={Rupee} alt="" />
+                            {workshopDetails.fees}{" "}
+                          </div>
+                        )}
+
                         <div className="frame8173 right">
                           <div className="frame3842">
                             <div className="likedBy">Liked by</div>
@@ -289,10 +370,67 @@ function workshopEventDetails(props) {
               </div>
               <div className="footer">
                 <div className="btn-container">
-                  <button className="register" type="submit">
-                    Register
-                  </button>
-                  <button className="share-btn"></button>
+                  <div>
+                    {" "}
+                    <button className="register" type="submit">
+                      Register
+                    </button>
+                  </div>{" "}
+                  <div className="container">
+                    <div
+                      className="share-btn"
+                      onClick={() => {
+                        shareToggle
+                          ? setShareToggle(false)
+                          : setShareToggle(true);
+                      }}
+                    ></div>
+                    <div
+                      className={
+                        shareToggle ? "share-options active" : "share-options"
+                      }
+                    >
+                      <p className="title">share</p>
+                      <div className="social-media?">
+                        <ShareButton
+                          {...shareButtonProps[0]}
+                          className="social-media-btn"
+                        >
+                          <FaFacebook />
+                        </ShareButton>
+                        <ShareButton
+                          {...shareButtonProps[1]}
+                          className="social-media-btn"
+                        >
+                          <FaEnvelope />
+                        </ShareButton>
+                        <ShareButton
+                          {...shareButtonProps[2]}
+                          className="social-media-btn"
+                        >
+                          <FaWhatsapp />
+                        </ShareButton>
+                        <ShareButton
+                          {...shareButtonProps[3]}
+                          className="social-media-btn"
+                        >
+                          <FaTwitter />
+                        </ShareButton>
+                        <ShareButton
+                          {...shareButtonProps[4]}
+                          className="social-media-btn"
+                        >
+                          <FaLinkedin />
+                        </ShareButton>
+                      </div>
+                      <div className="link-container">
+                        <p className="link">{el.href}</p>
+                        <h1 className="copy-btn" onClick={copy}>
+                          copy
+                        </h1>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

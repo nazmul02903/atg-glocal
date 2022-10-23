@@ -29,17 +29,17 @@ const HomeAdmin = (props) => {
     <Container>
       <Row>
         <Col xs={12} sm={3}>
-          <Card className='custom-card'>
+          <Card className="custom-card">
             <CardImg
-              className='mx-auto'
+              className="mx-auto"
               src={imgJob}
-              alt='Card image cap'
+              alt="Card image cap"
               style={{ width: "50%", height: "100px" }}
             />
-            <CardBody className='text-center'>
-              <CardTitle tag='h5'>Review Jobs</CardTitle>
-              <Link to='/admin/reviewJob'>
-                <Button className='mt-3' color='primary'>
+            <CardBody className="text-center">
+              <CardTitle tag="h5">Review Jobs</CardTitle>
+              <Link to="/admin/reviewJob">
+                <Button className="mt-3" color="primary">
                   Review
                 </Button>
               </Link>
@@ -47,17 +47,17 @@ const HomeAdmin = (props) => {
           </Card>
         </Col>
         <Col xs={12} sm={3}>
-          <Card className='custom-card'>
+          <Card className="custom-card">
             <CardImg
-              className='mx-auto'
+              className="mx-auto"
               src={imgJob}
-              alt='Card image cap'
+              alt="Card image cap"
               style={{ width: "50%", height: "100px" }}
             />
-            <CardBody className='text-center'>
-              <CardTitle tag='h5'>News</CardTitle>
-              <Link to='/admin/createNews'>
-                <Button className='mt-3' color='primary'>
+            <CardBody className="text-center">
+              <CardTitle tag="h5">News</CardTitle>
+              <Link to="/admin/createNews">
+                <Button className="mt-3" color="primary">
                   Create
                 </Button>
               </Link>
@@ -66,17 +66,17 @@ const HomeAdmin = (props) => {
         </Col>
 
         <Col xs={12} sm={3}>
-          <Card className='custom-card'>
+          <Card className="custom-card">
             <CardImg
-              className='mx-auto'
+              className="mx-auto"
               src={imgJob}
-              alt='Card image cap'
+              alt="Card image cap"
               style={{ width: "50%", height: "100px" }}
             />
-            <CardBody className='text-center'>
-              <CardTitle tag='h5'>Manage Users</CardTitle>
-              <Link to='/admin/manageUsers'>
-                <Button className='mt-3' color='primary'>
+            <CardBody className="text-center">
+              <CardTitle tag="h5">Manage Users</CardTitle>
+              <Link to="/admin/manageUsers">
+                <Button className="mt-3" color="primary">
                   Explore
                 </Button>
               </Link>
@@ -85,17 +85,17 @@ const HomeAdmin = (props) => {
         </Col>
 
         <Col xs={12} sm={3}>
-          <Card className='custom-card'>
+          <Card className="custom-card">
             <CardImg
-              className='mx-auto'
+              className="mx-auto"
               src={imgJob}
-              alt='Card image cap'
+              alt="Card image cap"
               style={{ width: "50%", height: "100px" }}
             />
-            <CardBody className='text-center'>
-              <CardTitle tag='h5'>GC List</CardTitle>
-              <Link to='/admin/gcData'>
-                <Button className='mt-3' color='primary'>
+            <CardBody className="text-center">
+              <CardTitle tag="h5">GC List</CardTitle>
+              <Link to="/admin/gcData">
+                <Button className="mt-3" color="primary">
                   Explore
                 </Button>
               </Link>
@@ -105,18 +105,34 @@ const HomeAdmin = (props) => {
       </Row>
       <Row>
         <Col xs={12} sm={3}>
-          <Card className='custom-card'>
+          <Card className="custom-card">
             <CardImg
-              className='mx-auto'
+              className="mx-auto"
               src={imgJob}
-              alt='Card image cap'
+              alt="Card image cap"
               style={{ width: "50%", height: "100px" }}
             />
-            <CardBody className='text-center'>
-              <CardTitle tag='h5'>User List</CardTitle>
-              <Link to='/admin/newUserList'>
-                <Button className='mt-3' color='primary'>
+            <CardBody className="text-center">
+              <CardTitle tag="h5">User List</CardTitle>
+              <Link to="/admin/newUserList">
+                <Button className="mt-3" color="primary">
                   Search
+                </Button>
+              </Link>
+            </CardBody>
+          </Card>
+          <Card className="custom-card">
+            <CardImg
+              className="mx-auto"
+              src={imgJob}
+              alt="Card image cap"
+              style={{ width: "50%", height: "100px" }}
+            />
+            <CardBody className="text-center">
+              <CardTitle tag="h5">User List</CardTitle>
+              <Link to="/admin/dashboard/events">
+                <Button className="mt-3" color="primary">
+                  dashboard
                 </Button>
               </Link>
             </CardBody>

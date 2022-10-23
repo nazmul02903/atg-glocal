@@ -24,7 +24,7 @@ import imgFunding from "../../assets/Icons/fundig-updates.svg";
 import imgWorkshop from "../../assets/Icons/workshop.svg";
 import imgAwards from "../../assets/Icons/reports.svg";
 import YouTube from "../../assets/YouTube.png";
-import Popup from "../../components/popup";
+import Popup from "../../helpers/popup";
 import "../../assets/popup.css";
 
 const Home = (props) => {
@@ -45,10 +45,10 @@ const Home = (props) => {
       return true;
     } else {
       let data = paidModulesBean.filter((obj) => obj.active === true);
-
       if (data) {
         if (data.find((obj) => obj.id === id)) {
           return !data.find((obj) => obj.id === id).active;
+          // return true;
         } else {
           return true;
         }
@@ -140,9 +140,10 @@ const Home = (props) => {
       <Row>
         <Col xs={12} sm={3}>
           <Card
-            className={
-              isActive("1") ? "disabled-card custom-card" : "custom-card"
-            }
+            // className={
+            //   isActive("1") ? "disabled-card custom-card" : "custom-card"
+            // }
+            className="custom-card"
           >
             <CardImg
               className="mx-auto"
@@ -163,7 +164,7 @@ const Home = (props) => {
                 {" "}
                 <Link
                   to={{
-                    pathname: "/user/createJob",
+                    pathname: "/user/create/job",
                     state: {
                       expiryText: getPaidModule("1").expiryDate,
                       package: getPaidModule("1").packageMode,
@@ -179,9 +180,10 @@ const Home = (props) => {
         </Col>
         <Col xs={12} sm={3}>
           <Card
-            className={
-              allowedEvents() ? "disabled-card custom-card" : "custom-card"
-            }
+            className="custom-card"
+            // className={
+            //   allowedEvents() ? "disabled-card custom-card" : "custom-card"
+            // }
           >
             <CardImg
               className="mx-auto"
@@ -198,10 +200,11 @@ const Home = (props) => {
                   Create
                 </DropdownToggle>
                 <DropdownMenu style={{ width: "270px" }}>
-                  <DropdownItem disabled={isActive("2")}>
+                  {/* <DropdownItem disabled={isActive("2")}> */}
+                  <DropdownItem>
                     <Link
                       to={{
-                        pathname: "/user/event/workshopEvent",
+                        pathname: "/user/create/event/workshopEvent",
                         state: {
                           expiryText: getPaidModule("2").expiryDate,
                           package: getPaidModule("2").packageMode,
@@ -221,10 +224,11 @@ const Home = (props) => {
                     </Link>
                   </DropdownItem>
 
-                  <DropdownItem disabled={isActive("4")}>
+                  {/* <DropdownItem disabled={isActive("4")}> */}
+                  <DropdownItem>
                     <Link
                       to={{
-                        pathname: "/user/event/exhibitionEvent",
+                        pathname: "/user/create/event/exhibitionEvent",
                         state: {
                           expiryText: getPaidModule("4").expiryDate,
                           package: getPaidModule("4").packageMode,
@@ -244,10 +248,11 @@ const Home = (props) => {
                     </Link>
                   </DropdownItem>
 
-                  <DropdownItem disabled={isActive("3")}>
+                  {/* <DropdownItem disabled={isActive("3")}> */}
+                  <DropdownItem>
                     <Link
                       to={{
-                        pathname: "/user/event/awardEvent",
+                        pathname: "/user/create/event/awardEvent",
                         state: {
                           expiryText: getPaidModule("3").expiryDate,
                           package: getPaidModule("3").packageMode,
@@ -266,7 +271,8 @@ const Home = (props) => {
                       Awards/Competitions
                     </Link>
                   </DropdownItem>
-                  <DropdownItem disabled={isActive("8")} className="mt-2">
+                  {/* <DropdownItem disabled={isActive("8")} className="mt-2"> */}
+                  {/* <DropdownItem className="mt-2">
                     <Link
                       to={{
                         pathname: "/user/fundingUpdateNew",
@@ -287,7 +293,7 @@ const Home = (props) => {
                       </span>
                       Funding Update New
                     </Link>
-                  </DropdownItem>
+                  </DropdownItem> */}
                 </DropdownMenu>
               </Dropdown>
             </CardBody>
@@ -295,9 +301,10 @@ const Home = (props) => {
         </Col>
         <Col xs={12} sm={3}>
           <Card
-            className={
-              isActive("9") ? "disabled-card custom-card" : "custom-card"
-            }
+            className="custom-card"
+            // className={
+            //   isActive("9") ? "disabled-card custom-card" : "custom-card"
+            // }
           >
             <CardImg
               className="mx-auto"
@@ -330,9 +337,10 @@ const Home = (props) => {
         </Col>
         <Col xs={12} sm={3}>
           <Card
-            className={
-              isActive("8") ? "disabled-card custom-card" : "custom-card"
-            }
+            className="custom-card"
+            // className={
+            //   isActive("8") ? "disabled-card custom-card" : "custom-card"
+            // }
           >
             <CardImg
               className="mx-auto"
@@ -348,7 +356,7 @@ const Home = (props) => {
               <Button className="mt-2" color="primary">
                 <Link
                   to={{
-                    pathname: "/user/fundingUpdateOld",
+                    pathname: "/user/create/fundingUpdate",
                     state: {
                       expiryText: getPaidModule("8").expiryDate,
                       package: getPaidModule("8").packageMode,
@@ -366,9 +374,10 @@ const Home = (props) => {
       <Row>
         <Col xs={12} sm={3}>
           <Card
-            className={
-              isActive("6") ? "disabled-card custom-card" : "custom-card"
-            }
+            className="custom-card"
+            // className={
+            //   isActive("6") ? "disabled-card custom-card" : "custom-card"
+            // }
           >
             <CardImg
               className="mx-auto"
