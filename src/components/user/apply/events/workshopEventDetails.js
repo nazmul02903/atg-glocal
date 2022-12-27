@@ -26,7 +26,7 @@ import {
   FaTwitter,
   FaWhatsapp,
 } from "react-icons/fa";
-function workshopEventDetails(props) {
+function WorkshopEventDetails(props) {
   //add active class name
   const [summaryActive, setSummaryActive] = useState(false);
   const [shareToggle, setShareToggle] = useState(false);
@@ -447,4 +447,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(workshopEventDetails);
+export default connect(mapStateToProps)(WorkshopEventDetails);

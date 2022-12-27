@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import useRazorpay from "react-razorpay";
 import "../../../../assets/registerStyle.css";
 import { connect } from "react-redux";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -28,6 +29,7 @@ const RegisterWorkshopEvent = (props) => {
   var el = document.createElement("a");
   el.href = window.location.href;
   var pathArray = window.location.pathname.split("/");
+  const Razorpay = useRazorpay();
 
   const onChangeState = (e) => {
     let stateIdx = 0;

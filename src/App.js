@@ -31,6 +31,7 @@ import { alertCustom, alertDefault } from "./helpers/alerts";
 
 // import Footer from "./components/footer.component";
 import ProtectedRoute from "./routes/protectedRoutes";
+import PublicRoutes from "./routes/publicRoutes";
 const BackToDB = () => {
   return (
     <div className="d-flex justify-content-end me-2 mt-3" id="backToDashboard">

@@ -19,15 +19,20 @@ import Function3 from "../../assets/homepg/img/function-3.png";
 import UserService from "../../services/user.service";
 import { alertCustom } from "../../helpers/alerts";
 import { clearLoader, setLoader } from "../../store/actions/loader";
-import { useDispatch } from "react-redux";
-function home(props) {
+import { useDispatch, useSelector } from "react-redux";
+
+function Home(props) {
   const [banners, setBanners] = useState();
   const [categories, setCategories] = useState();
   const [subCategoriesEvents, setSubCategoriesEvents] = useState();
   const [subCategoriesJobs, setSubCategoriesJobs] = useState();
   const [subCategoriesFundings, setSubCategoriesFundings] = useState();
   const dispatch = useDispatch();
+  const { isLoggedIn } = useSelector(state => state.auth)
+  console.log(isLoggedIn);
+
   useEffect(() => {
+    // if(!isLoggedIn) return
     dispatch(setLoader());
     UserService.homeV2()
       .then((res) => {
@@ -47,7 +52,7 @@ function home(props) {
           error.toString();
         alertCustom("error", message, "/home");
       });
-  }, []);
+  }, [isLoggedIn]);
 
   if (!subCategoriesEvents) {
     dispatch(setLoader());
@@ -583,4 +588,4 @@ function home(props) {
   }
 }
 
-export default home;
+export default Home;
