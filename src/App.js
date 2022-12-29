@@ -136,7 +136,7 @@ const App = (props) => {
 
           <div className="container mt-2" id="content-wrap">
             <Switch>
-              <ProtectedRoute
+              <PublicRoutes
                 exact
                 path={["/", "/home"]}
                 component={user && user.admin ? AdminHome : UserHome}
