@@ -32,7 +32,7 @@ function Home(props) {
   console.log(isLoggedIn);
 
   useEffect(() => {
-    // if(!isLoggedIn) return
+    if(!isLoggedIn) return
     dispatch(setLoader());
     UserService.homeV2()
       .then((res) => {
@@ -54,19 +54,20 @@ function Home(props) {
       });
   }, [isLoggedIn]);
 
-  if (!subCategoriesEvents) {
+  if (isLoggedIn && !subCategoriesEvents) {
     dispatch(setLoader());
     return null;
   }
-  if (!subCategoriesFundings) {
+  if (isLoggedIn && !subCategoriesFundings) {
     dispatch(setLoader());
     return null;
   }
-  if (!subCategoriesJobs) {
+  if (isLoggedIn && !subCategoriesJobs) {
     dispatch(setLoader());
     return null;
-  } else {
-    dispatch(clearLoader());
+  } 
+  // else {
+    // dispatch(clearLoader());
     return (
       <div className="home">
         <div className="home-navBar home-row">
@@ -75,6 +76,7 @@ function Home(props) {
               <img src={Logo} alt="" />
             </div>
           </Link>
+         {!isLoggedIn &&
           <div className="actions home-row">
             <div className="lang action">English</div>
             <Link to="/login" className="link-tags">
@@ -84,6 +86,7 @@ function Home(props) {
               <div className="singUp action">SingUp</div>
             </Link>
           </div>
+          }
         </div>
         <div className="sect-1 home-row">
           <div className="details">
@@ -110,15 +113,15 @@ function Home(props) {
               <div className="division">
                 <Link to="/event/1" className="services-link">
                   <div className="imgBox eventBox">
-                    <img
+                    {isLoggedIn && <img
                       src={subCategoriesEvents[0].imageUrl}
                       className="icon"
                       alt=""
-                    />
+                    /> }
                   </div>
 
                   <div className="division-name">
-                    {subCategoriesEvents[0].name}
+                    {isLoggedIn && subCategoriesEvents[0].name}
                   </div>
                 </Link>
                 <div className="division-subtext">
@@ -129,15 +132,15 @@ function Home(props) {
               <div className="division">
                 <Link to="/event/2" className="services-link">
                   <div className="imgBox eventBox">
-                    <img
+                    {isLoggedIn && <img
                       src={subCategoriesEvents[1].imageUrl}
                       className="icon"
                       alt=""
-                    />
+                    />}
                   </div>
 
                   <div className="division-name">
-                    {subCategoriesEvents[1].name}
+                    {isLoggedIn && subCategoriesEvents[1].name }
                   </div>
                 </Link>
                 <div className="division-subtext">
@@ -148,15 +151,15 @@ function Home(props) {
               <div className="division">
                 <Link to="/event/3" className="services-link">
                   <div className="imgBox eventBox">
-                    <img
+                    {isLoggedIn && <img
                       src={subCategoriesEvents[2].imageUrl}
                       className="icon"
                       alt=""
-                    />
+                    /> }
                   </div>
 
                   <div className="division-name">
-                    {subCategoriesEvents[2].name}
+                    {isLoggedIn && subCategoriesEvents[2].name}
                   </div>
                 </Link>
                 <div className="division-subtext">
@@ -173,7 +176,7 @@ function Home(props) {
                   </div>
 
                   <div className="division-name">
-                    {subCategoriesFundings[0].name}
+                    {/* {subCategoriesFundings[0].name} */}
                   </div>
                 </Link>
                 <div className="division-subtext">
@@ -188,7 +191,7 @@ function Home(props) {
                   </div>
 
                   <div className="division-name">
-                    {subCategoriesFundings[1].name}
+                    {isLoggedIn && subCategoriesFundings[1].name}
                   </div>
                 </Link>
                 <div className="division-subtext">
@@ -203,7 +206,7 @@ function Home(props) {
                   </div>
 
                   <div className="division-name">
-                    {subCategoriesFundings[2].name}
+                    {isLoggedIn && subCategoriesFundings[2].name }
                   </div>
                 </Link>
                 <div className="division-subtext">
@@ -220,7 +223,7 @@ function Home(props) {
                   </div>
 
                   <div className="division-name">
-                    {subCategoriesJobs[0].name}
+                    {isLoggedIn && subCategoriesJobs[0].name }
                   </div>
                 </Link>
                 <div className="division-subtext">
@@ -235,7 +238,7 @@ function Home(props) {
                   </div>
 
                   <div className="division-name">
-                    {subCategoriesJobs[1].name}
+                    {isLoggedIn && subCategoriesJobs[1].name }
                   </div>
                 </Link>
                 <div className="division-subtext">
@@ -250,7 +253,7 @@ function Home(props) {
                   </div>
 
                   <div className="division-name">
-                    {subCategoriesJobs[2].name}
+                    {isLoggedIn && subCategoriesJobs[2].name }
                   </div>
                 </Link>
                 <div className="division-subtext">
@@ -271,9 +274,9 @@ function Home(props) {
             </div>
             <div className="card-holder home-row event-cardHolder horizontal-scroll">
               <div className=" event-card">
-                {/* <h1>{banners[0].id}</h1> */}
+                {isLoggedIn && <h1>{banners[0].id}</h1> }
                 <img
-                  src={banners[0].imageUrl}
+                  src={isLoggedIn && banners[0].imageUrl}
                   className="event-banner"
                   alt=""
                 />
@@ -291,7 +294,7 @@ function Home(props) {
               </div>
               <div className=" event-card">
                 <img
-                  src={banners[1].imageUrl}
+                  src={isLoggedIn && banners[1].imageUrl}
                   className="event-banner"
                   alt=""
                 />
@@ -309,7 +312,7 @@ function Home(props) {
               </div>
               <div className=" event-card">
                 <img
-                  src={banners[2].imageUrl}
+                  src={isLoggedIn && banners[2].imageUrl}
                   className="event-banner"
                   alt=""
                 />
@@ -585,7 +588,7 @@ function Home(props) {
         </div>
       </div>
     );
-  }
+  // }
 }
 
 export default Home;
