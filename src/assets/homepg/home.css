@@ -70,6 +70,7 @@
 }
 .jobBox {
   border: 2px #fdb614 solid;
+  overflow: hidden;
 }
 .heading {
   font-family: "Noto Sans", sans-serif;

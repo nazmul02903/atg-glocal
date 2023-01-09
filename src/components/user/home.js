@@ -74,8 +74,8 @@ function Home(props) {
     dispatch(setLoader());
     return null;
   }
-  // else {
-  // dispatch(clearLoader());
+  else {
+  dispatch(clearLoader());
   return (
     <div className="home">
       <div className="home-navBar home-row">
@@ -596,7 +596,7 @@ function Home(props) {
       </div>
     </div>
   );
-  // }
+  }
 }
 
 export default Home;
