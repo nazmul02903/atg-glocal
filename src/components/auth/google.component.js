@@ -30,10 +30,10 @@ function LoginWithGoogle() {
     onSuccess,
     onFailure,
     clientId,
-    isSignedIn: true,
-    accessType: "online",
+    // isSignedIn: false,
+    // accessType: "online",
     // responseType: "code",
-    prompt: "consent",
+    // prompt: "consent",
   });
 
   return (

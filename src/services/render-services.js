@@ -60,7 +60,7 @@ export const renderCities = (cities) => {
       if (index === 0) {
         return <option key={index} value="" label="Select City" />;
       } else {
-        return <option key={index} value={city.id} label={city.name} />;
+        return <option key={index} value={city.city_name} label={city.city_name} />;
       }
     })
   );

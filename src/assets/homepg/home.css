@@ -61,6 +61,9 @@
   width: 160px;
   height: 151px;
   margin: auto;
+  overflow: hidden;
+  object-fit: contain;
+  display: flex;
 }
 .eventBox {
   border: 2px #0e559c solid;
@@ -70,6 +73,7 @@
 }
 .jobBox {
   border: 2px #fdb614 solid;
+  overflow: hidden;
 }
 .heading {
   font-family: "Noto Sans", sans-serif;

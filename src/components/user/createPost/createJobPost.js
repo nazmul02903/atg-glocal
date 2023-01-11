@@ -143,6 +143,7 @@ const CreateJobPost = (props) => {
   const onChangeState = (e) => {
     onChangeStates(e.target.value).then((res) => {
       getCities(res.data);
+      // console.log(res.data);
     });
   };
 
