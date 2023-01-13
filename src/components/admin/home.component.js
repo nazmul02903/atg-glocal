@@ -102,7 +102,7 @@ const HomeAdmin = (props) => {
             </CardBody>
           </Card>
         </Col>
-            <Col xs={12} sm={3}>
+        <Col xs={12} sm={3}>
           <Card className="custom-card">
             <CardImg
               className="mx-auto"
@@ -120,7 +120,7 @@ const HomeAdmin = (props) => {
             </CardBody>
           </Card>
         </Col>
-         <Col xs={12} sm={3}>
+        <Col xs={12} sm={3}>
           <Card className="custom-card">
             <CardImg
               className="mx-auto"
