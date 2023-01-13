@@ -57,7 +57,7 @@ const HomeAdmin = (props) => {
             />
             <CardBody className="text-center">
               <CardTitle tag="h5">Review Events</CardTitle>
-              <Link to="">
+              <Link to="/admin/reviewEvent">
                 <Button className="mt-3" color="primary">
                   Review
                 </Button>

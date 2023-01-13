@@ -25,6 +25,7 @@ import {
   API_FETCH_EVENT_REGISTRATION,
   API_FETCH_JOBS_BY_CATEGORY,
   API_FETCH_FU_BY_CATEGORY,
+  API_FETCH_EVENTS_TO_REVIEW,
 } from "../constants/urls";
 
 import AuthHeader from "./auth-header";
@@ -96,6 +97,10 @@ class AdminService {
         headers: AuthHeader(),
       }
     );
+  }
+
+  fetchEvents() {
+    return axios.post(API_FETCH_EVENTS_TO_REVIEW, {}, { headers: AuthHeader() });
   }
 
   fetchEventsByCategory(category, dataType) {
