@@ -46,6 +46,44 @@ const HomeAdmin = (props) => {
             </CardBody>
           </Card>
         </Col>
+        {/* Review Events Card */}
+        <Col xs={12} sm={3}>
+          <Card className="custom-card">
+            <CardImg
+              className="mx-auto"
+              src={imgJob}
+              alt="Card image cap"
+              style={{ width: "50%", height: "100px" }}
+            />
+            <CardBody className="text-center">
+              <CardTitle tag="h5">Review Events</CardTitle>
+              <Link to="">
+                <Button className="mt-3" color="primary">
+                  Review
+                </Button>
+              </Link>
+            </CardBody>
+          </Card>
+        </Col>
+        {/* Review Funding Update Card */}
+        <Col xs={12} sm={3}>
+          <Card className="custom-card">
+            <CardImg
+              className="mx-auto"
+              src={imgJob}
+              alt="Card image cap"
+              style={{ width: "50%", height: "100px" }}
+            />
+            <CardBody className="text-center">
+              <CardTitle tag="h5">Review Funding</CardTitle>
+              <Link to="/admin/allFundingUpdates">
+                <Button className="mt-3" color="primary">
+                  Review
+                </Button>
+              </Link>
+            </CardBody>
+          </Card>
+        </Col>
         <Col xs={12} sm={3}>
           <Card className="custom-card">
             <CardImg
