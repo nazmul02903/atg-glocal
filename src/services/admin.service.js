@@ -25,6 +25,8 @@ import {
   API_FETCH_EVENT_REGISTRATION,
   API_FETCH_JOBS_BY_CATEGORY,
   API_FETCH_FU_BY_CATEGORY,
+  API_FETCH_EVENT_TO_REVIEW,
+  API_FETCH_FUNDING_UPDATE_TO_REVIEW,
 } from "../constants/urls";
 
 import AuthHeader from "./auth-header";
@@ -38,6 +40,7 @@ class AdminService {
       headers: AuthHeader(),
     });
   }
+
   createNews(data) {
     return axios.post(API_URL_CREATE_NEWS, data, {
       headers: AuthHeader(),
@@ -87,6 +90,12 @@ class AdminService {
       { headers: AuthHeader() }
     );
   }
+
+  // nazmulHasan =============
+  fetchEvents() {
+    return axios.post(API_FETCH_EVENT_TO_REVIEW, {}, { headers: AuthHeader() });
+  }
+
   fetchEventRegistration(id) {
     return axios.post(
       API_FETCH_EVENT_REGISTRATION,
@@ -123,6 +132,14 @@ class AdminService {
     return axios.post(
       API_URL_DELETE_WORKSHOP,
       { id: id },
+      { headers: AuthHeader() }
+    );
+  }
+  //nazmulHasan -------------------------
+  fetchFundingUpdates() {
+    return axios.post(
+      API_FETCH_FUNDING_UPDATE_TO_REVIEW,
+      {},
       { headers: AuthHeader() }
     );
   }

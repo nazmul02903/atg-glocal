@@ -7,6 +7,7 @@ import LocationImg from "../assets/Icons/location.svg";
 
 const EventDetailModal = (props) => {
   const { event } = props;
+  console.log(event);
 
   return (
     <Modal
@@ -18,7 +19,8 @@ const EventDetailModal = (props) => {
     >
       <Modal.Header>
         <Modal.Title id="contained-modal-title-vcenter">
-          {event.title} <p className="text-muted m-0">{event.eventTimeText}</p>
+          {event?.title}{" "}
+          <p className="text-muted m-0">{event?.eventTimeText}</p>
           <p className="text-muted m-0">
             <img src={LocationImg} alt="" height="10" />
             <span className="ms-1 text-sm">{event.venue}</span>
