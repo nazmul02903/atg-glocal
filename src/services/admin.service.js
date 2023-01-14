@@ -27,6 +27,7 @@ import {
   API_FETCH_FU_BY_CATEGORY,
   API_FETCH_EVENT_TO_REVIEW,
   API_FETCH_FUNDING_UPDATE_TO_REVIEW,
+  API_REVIEW_EVENT,
 } from "../constants/urls";
 
 import AuthHeader from "./auth-header";
@@ -94,6 +95,12 @@ class AdminService {
   // nazmulHasan =============
   fetchEvents() {
     return axios.post(API_FETCH_EVENT_TO_REVIEW, {}, { headers: AuthHeader() });
+  }
+
+  reviewEvent(data) {
+    return axios.post(API_REVIEW_EVENT, data, {
+      headers: AuthHeader(),
+    });
   }
 
   fetchEventRegistration(id) {

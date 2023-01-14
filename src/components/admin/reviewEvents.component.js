@@ -4,12 +4,11 @@ import { connect } from "react-redux";
 import AdminService from "../../services/admin.service";
 import LocationImg from "../../assets/Icons/location.svg";
 import "bootstrap/dist/css/bootstrap.min.css";
-import DetailModal from "../../helpers/detailModal";
 import ApplicantModal from "../../helpers/applicantModal";
 import { setLoader, clearLoader } from "../../store/actions/loader";
 import { useInterval } from "../../helpers/useInterval";
 import { POLLING_INTERVAL } from "../../constants/variables";
-import EventDetailModal from "../../helpers/eventDetailModal";
+import EventReviewDetailModal from "../../helpers/eventReviewDetailModal";
 
 const ReviewEvents = (props) => {
   const [events, setEvents] = useState([]);
@@ -126,8 +125,8 @@ const ReviewEvents = (props) => {
         );
       })}
       {modalShow && (
-        <EventDetailModal
-          event={selectedEvent}
+        <EventReviewDetailModal
+          data={selectedEvent}
           show={modalShow}
           onHide={() => setModalShow(false)}
         />

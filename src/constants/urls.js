@@ -55,6 +55,9 @@ export const API_URL_DELETE_JOB =
 export const API_FETCH_EVENT_TO_REVIEW =
   process.env.REACT_APP_API_ENDPOINT + "event/fetchEventsToReview";
 
+export const API_REVIEW_EVENT =
+  process.env.REACT_APP_API_ENDPOINT + "event/reviewEvent/";
+
 export const API_FETCH_EVENTS_BY_CATEGORY =
   process.env.REACT_APP_API_ENDPOINT + "event/fetchEventsByEventCategory/";
 export const API_FETCH_JOBS_BY_CATEGORY =
