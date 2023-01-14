@@ -11,7 +11,7 @@ import { alert, alertCustom } from "./alerts";
 import { FormProvider, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-const JobDetailModal = (props) => {
+const EventReviewModal = (props) => {
   const methods = useForm({ resolver: yupResolver(validationSchemaReviewJob) });
 
   const { data } = props;
@@ -20,22 +20,24 @@ const JobDetailModal = (props) => {
   const { watch } = methods;
   const status = watch("approve", "");
 
-  let jobStatus;
+  let eventStatus;
   const onSubmit = (values) => {
-    values.jobStatus = jobStatus;
-    values.jobId = data.jobId;
-    values.jobStatus = 2;
+    console.log(values);
+    values.eventStatus = eventStatus;
+    values.eventId = data.id;
+    values.eventStatus = 2;
 
     if (status === "disapprove") {
       values.applicantLink = "";
       values.employerLink = "";
-      values.jobStatus = 3;
+      values.eventStatus = 3;
     }
 
-    AdminService.reviewJob(values)
+    AdminService.reviewEvent(values)
       .then((res) => {
+        console.log(res.data);
         if (res.data.status === 1) {
-          alert("success", "Job is Successfully Reviewed");
+          alert("success", "Event is Successfully Reviewed");
         } else {
           alert("error", res.data.message);
         }
@@ -55,14 +57,14 @@ const JobDetailModal = (props) => {
     >
       <Modal.Header>
         <Modal.Title id='contained-modal-title-vcenter'>
-          Job Details
+          Event Details
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        {parse(data.requirement)}
+        {/* {parse(data.requirement)}
         {parse(data.companyDetails)}
-        {parse(data.jobDescription)}
-        {props.user.admin && data.jobStatus === 1 && (
+        {parse(data.jobDescription)} */}
+        {props.user.admin && (
           <FormProvider {...methods}>
             <CustomForm onSubmit={onSubmit}>
               <Label label='Actions' />
@@ -95,4 +97,4 @@ function matchStateToProps(state) {
     user,
   };
 }
-export default connect(matchStateToProps)(JobDetailModal);
+export default connect(matchStateToProps)(EventReviewModal);

@@ -3,9 +3,12 @@ import { connect } from "react-redux";
 import AdminService from '../../services/admin.service';
 import { clearLoader, setLoader } from '../../store/actions/loader';
 import LocationImg from "../../assets/Icons/location.svg";
+import EventReviewModal from '../../helpers/eventReviewModal';
 
 const ReviewEvent = (props) => {
     const [events, setEvents] = useState([]);
+    const [modalShow, setModalShow] = useState(false);
+    const [selectedEvent, setSelectedEvent] = useState({});
 
     useEffect(() => {
         props.dispatch(setLoader());
@@ -79,7 +82,8 @@ const ReviewEvent = (props) => {
                         type='button'
                         className='btn btn-primary'
                         onClick={(e) => {
-                            console.log(event);
+                            setSelectedEvent(event);
+                            setModalShow(true);
                         }}
                     >
                         View event details
@@ -89,6 +93,14 @@ const ReviewEvent = (props) => {
                 </div>
                 );
             })}
+
+            {modalShow && (
+                <EventReviewModal
+                data={selectedEvent}
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+                />
+            )}
 
         </div>
     );

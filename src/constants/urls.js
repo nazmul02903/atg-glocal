@@ -33,6 +33,9 @@ export const API_FETCH_JOBS_USER =
 export const API_FETCH_EVENTS_TO_REVIEW =
   process.env.REACT_APP_API_ENDPOINT + "/event/fetchEventsToReview";
 
+export const API_REVIEW_EVENT =
+  process.env.REACT_APP_API_ENDPOINT + "event/reviewEvent/";
+
 export const API_FETCH_EVENT_REGISTRATION =
   process.env.REACT_APP_API_ENDPOINT + "eventRegistration/fetchByEventId";
 
