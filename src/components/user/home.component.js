@@ -92,51 +92,7 @@ const Home = (props) => {
   }
 
   return (
-    <Container>
-      <Row>
-        <Col className="mx-auto" xs={12} sm={5}>
-          <div className="text-center YT-center">
-            <a
-              href="https://youtu.be/ADqFKQGAP-U"
-              class="youtube_float"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img class="youtube-icon" src={YouTube} />
-            </a>
-            <a
-              href="https://youtu.be/ADqFKQGAP-U"
-              class="youtube_float"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <button className="YT-text-btn btn btn-primary">
-                Check our video to understand the process
-              </button>
-            </a>
-          </div>
-
-          <div className="whatsapp_container">
-            <a
-              href="https://api.whatsapp.com/send?phone=919004810804&text=Tell me about GlocalBodh"
-              class="whatsapp_float"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <p className="whatsapp_msg">Hi! Connect with us on WhatsApp</p>
-            </a>
-            <a
-              href="https://api.whatsapp.com/send?phone=919004810804&text=Tell me about GlocalBodh"
-              class="whatsapp_float"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <i class="fa fa-whatsapp whatsapp-icon"></i>
-            </a>
-          </div>
-        </Col>
-      </Row>
-
+    <Container> 
       <Row>
         <Col xs={12} sm={3}>
           <Card
@@ -350,7 +306,7 @@ const Home = (props) => {
             />
             <CardBody className="text-center">
               <CardTitle>
-                <h6>Create Funding Update</h6>
+                <h6>Create NGO search</h6>
               </CardTitle>
 
               <Button className="mt-2" color="primary">
@@ -371,7 +327,7 @@ const Home = (props) => {
           </Card>
         </Col>
       </Row>
-      <Row>
+      {/* <Row>
         <Col xs={12} sm={3}>
           <Card
             className="custom-card"
@@ -407,8 +363,51 @@ const Home = (props) => {
             </CardBody>
           </Card>
         </Col>
+      </Row> */}
+      <Row>
+        <Col className="mx-auto" xs={12} sm={5}>
+          <div className="text-center YT-center mb-5">
+            <a
+              href="https://youtu.be/ADqFKQGAP-U"
+              class="youtube_float"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img class="youtube-icon" src={YouTube} />
+            </a>
+            <a
+              href="https://youtu.be/ADqFKQGAP-U"
+              class="youtube_float"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <button className="YT-text-btn btn btn-primary">
+                Check our video to understand the process
+              </button>
+            </a>
+          </div>
+{/* 
+          <div className="whatsapp_container">
+            <a
+              href="https://api.whatsapp.com/send?phone=919004810804&text=Tell me about GlocalBodh"
+              class="whatsapp_float"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <p className="whatsapp_msg">Hi! Connect with us on WhatsApp</p>
+            </a>
+            <a
+              href="https://api.whatsapp.com/send?phone=919004810804&text=Tell me about GlocalBodh"
+              class="whatsapp_float"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i class="fa fa-whatsapp whatsapp-icon"></i>
+            </a>
+          </div> */}
+        </Col>
       </Row>
-      <Popup className="popUp" trigger={timedPopup} setTrigger={setTimedPopup}>
+      {/* <Popup className="popUp" trigger={timedPopup} setTrigger={setTimedPopup}>
         <div className="inner-popUp">
           <h3 className="know-services">
             <a
@@ -421,7 +420,7 @@ const Home = (props) => {
             to know our services
           </h3>
         </div>
-      </Popup>
+      </Popup> */}
     </Container>
   );
 };

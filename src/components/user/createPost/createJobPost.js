@@ -361,7 +361,7 @@ const CreateJobPost = (props) => {
           </small>
         </Col>
       </FormGroup>
-      <FormGroup row>
+      {/* <FormGroup row>
         <Col sm={6}>
           <label>External Link</label>
           <Input type="text" {...register("externalLink")} defaultValue="" />
@@ -369,7 +369,7 @@ const CreateJobPost = (props) => {
             {errors.externalLink && errors.externalLink.message}
           </small>
         </Col>
-      </FormGroup>
+      </FormGroup> */}
 
       <FormGroup row>
         <Col sm={6}>

@@ -9,6 +9,9 @@
   height: 50px;
   margin-top: 20px;
 }
+.nav-item{
+  list-style: none;
+}
 .actions {
   gap: 10px;
 }
@@ -64,6 +67,13 @@
   overflow: hidden;
   object-fit: contain;
   display: flex;
+  padding: 1rem;
+  overflow: hidden;
+  object-fit: contain;
+}
+.imgBox img{
+  object-fit: contain;
+  height: 100%;
 }
 .eventBox {
   border: 2px #0e559c solid;
