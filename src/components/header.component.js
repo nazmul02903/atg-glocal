@@ -24,6 +24,7 @@ const Header = (props) => {
     dispatch(setLoader());
     signOut();
   };
+  
   const onLogoutSuccess = (res) => {
     dispatch(logout());
     localStorage.removeItem("user");
@@ -156,6 +157,7 @@ const Header = (props) => {
               </Dropdown>
             </li>
           )}
+
         </ul>
       </div>
     </nav>

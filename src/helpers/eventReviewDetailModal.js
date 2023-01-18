@@ -31,6 +31,8 @@ const EventReviewDetailsModal = (props) => {
 
     AdminService.reviewEvent(values)
       .then((res) => {
+        console.log(res);
+        // return
         if (res.data.status === 1) {
           alert("success", "Event is Successfully Reviewed");
         } else {
