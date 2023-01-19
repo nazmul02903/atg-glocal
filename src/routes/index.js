@@ -13,6 +13,7 @@ const Routes = () => {
       <UserRoutes />
 
       <AdminRoutes />
+      
     </Switch>
   );
 };

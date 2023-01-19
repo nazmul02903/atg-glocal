@@ -393,3 +393,42 @@ a:hover {
     font-size: 1rem;
   }
 }
+
+// Bottom bar
+
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: fit-content;
+  color: white;
+  z-index: 100;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.bottom-bar button {
+  border: none;
+}
+
+.bottom-bar img {
+  width: 32px;
+}
+
+.bottom-bar p {
+    font-size: 1.7rem;
+    margin: 0;
+    margin-top: -5px;
+    color: gray;
+  }
+  
+  .bottom-bar .btn-active-text {
+    font-weight: 900;
+    color: #000001;
+  }
+
+  @include media-breakpoint-up(lg) {
+    .bottom-bar {
+      display: none;
+    }  
+  }

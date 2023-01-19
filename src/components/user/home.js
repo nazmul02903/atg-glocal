@@ -23,6 +23,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Dropdown from "react-bootstrap/Dropdown";
 import { useGoogleLogout } from "react-google-login";
 import { logout } from "../../store/actions/auth";
+import BottomBar from "../bottom-bar/bottomBar.component";
 const clientId = process.env.REACT_APP_OAUTH_CLIENT_ID;
 
 function Home(props) {
@@ -619,7 +620,9 @@ function Home(props) {
               <button className="appStore"></button>
             </div>
           </div>
-          <div className="footer-bottom"></div>
+          <div className="footer-bottom">
+            <BottomBar />
+          </div>
         </div>
       </div>
     );
