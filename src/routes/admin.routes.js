@@ -1,7 +1,6 @@
 import React from "react";
 
 import ReviewJob from "../components/admin/reviewJobs.component";
-import ReviewEvent from "../components/admin/reviewEvents.component";
 import News from "../components/admin/createNews.component";
 
 import ProtectedRoute from "./protectedRoutes";
@@ -16,12 +15,21 @@ import ManageUser from "../components/admin/manageUsers.component";
 import GcList from "../components/admin/gcList.component";
 import UserList from "../components/admin/userList.component";
 import AllJobsAdmin from "../components/admin/allJobs.component";
+import ReviewEvents from "../components/admin/reviewEvents.component";
+import ReviewFund from "../components/admin/reviewFund.component";
 const AdminRoutes = () => {
   return (
     <div>
       <Switch>
         <ProtectedRoute exact path="/admin/reviewJob" component={ReviewJob} />
-        <ProtectedRoute exact path="/admin/reviewEvent" component={ReviewEvent} />
+        {/* nazmul  hasan----------------- */}
+        <ProtectedRoute
+          exact
+          path="/admin/reviewEvent"
+          component={ReviewEvents}
+        />
+        <ProtectedRoute exact path="/admin/reviewFund" component={ReviewFund} />
+        {/*End nazmul  hasan----------------- */}
         <ProtectedRoute exact path="/admin/createNews" component={News} />
         <ProtectedRoute exact path="/admin/allJobs" component={AllJobsAdmin} />
         <ProtectedRoute exact path="/admin/allNews" component={AllNews} />

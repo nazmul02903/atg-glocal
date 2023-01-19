@@ -11,7 +11,7 @@ import { alert, alertCustom } from "./alerts";
 import { FormProvider, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-const EventReviewModal = (props) => {
+const EventReviewDetailsModal = (props) => {
   const methods = useForm({ resolver: yupResolver(validationSchemaReviewJob) });
 
   const { data } = props;
@@ -20,22 +20,19 @@ const EventReviewModal = (props) => {
   const { watch } = methods;
   const status = watch("approve", "");
 
-  let eventStatus;
   const onSubmit = (values) => {
-    console.log(values);
-    values.eventStatus = eventStatus;
     values.eventId = data.id;
     values.eventStatus = 2;
 
     if (status === "disapprove") {
-      values.applicantLink = "";
-      values.employerLink = "";
       values.eventStatus = 3;
     }
+    console.log(values);
 
     AdminService.reviewEvent(values)
       .then((res) => {
-        console.log(res.data);
+        console.log(res);
+        // return
         if (res.data.status === 1) {
           alert("success", "Event is Successfully Reviewed");
         } else {
@@ -50,40 +47,40 @@ const EventReviewModal = (props) => {
   return (
     <Modal
       show={props.show}
-      size='lg'
-      aria-labelledby='contained-modal-title-vcenter'
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
       centered
       scrollable={true}
     >
       <Modal.Header>
-        <Modal.Title id='contained-modal-title-vcenter'>
+        <Modal.Title id="contained-modal-title-vcenter">
           Event Details
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        {/* {parse(data.requirement)}
-        {parse(data.companyDetails)}
-        {parse(data.jobDescription)} */}
+        {parse(data.title)}
+        {parse(data.eventCategoryText)}
+        {parse(data.description)}
         {props.user.admin && (
           <FormProvider {...methods}>
             <CustomForm onSubmit={onSubmit}>
-              <Label label='Actions' />
+              <Label label="Actions" />
               <Radio
-                name='approve'
+                name="approve"
                 values={["approve", "disapprove"]}
                 labels={["Approve", "Disapprove"]}
               />
 
               {status === "disapprove" && (
-                <TextArea name='reasonText' label='Reasons' />
+                <TextArea name="reasonText" label="Reasons" />
               )}
-              <button className='btn btn-primary mt-2'>Submit</button>
+              <button className="btn btn-primary mt-2">Submit</button>
             </CustomForm>
           </FormProvider>
         )}
       </Modal.Body>
       <Modal.Footer>
-        <button className='btn btn-primary' onClick={props.onHide}>
+        <button className="btn btn-primary" onClick={props.onHide}>
           Close
         </button>
       </Modal.Footer>
@@ -97,4 +94,4 @@ function matchStateToProps(state) {
     user,
   };
 }
-export default connect(matchStateToProps)(EventReviewModal);
+export default connect(matchStateToProps)(EventReviewDetailsModal);

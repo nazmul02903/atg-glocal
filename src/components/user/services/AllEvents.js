@@ -31,8 +31,16 @@ const AllEvents = (props) => {
     });
   }, [id]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  const getEventName = () => {
+    if (id === '1') return 'Workshops & Trainings'
+    if (id === '2') return 'Awards & Competitions'
+    if (id === '3') return 'Exhibitions & Summits'
+    return ''
+  }
+
   return (
     <div className="list-group row">
+      <h3 className="mt-4 mb-4"> {getEventName()} </h3>
       {events.map((event, index) => {
         return (
           <div
