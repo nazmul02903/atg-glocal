@@ -94,7 +94,7 @@ function Home(props) {
   };
 
   const onFailure = () => {
-     alertCustom("error", "Somthing went wrong", "/home");
+    alertCustom("error", "Somthing went wrong", "/home");
     //console.log("Handle failure cases");
   };
   const { signOut } = useGoogleLogout({
@@ -257,7 +257,7 @@ function Home(props) {
         </div>
         {/* nazmul hasan */}
 
-        <div className="my-3">
+        <div className="my-3 banner-slider">
           <Slider dots={true}>
             <img src={FirstSlider} alt="" />
             <img src={FirstSlider} alt="" />
@@ -265,7 +265,7 @@ function Home(props) {
             <img src={FirstSlider} alt="" />
           </Slider>
         </div>
-        <div className="my-20">
+        <div className="my-20 postReq-wrapper">
           <div className="postReq-content">
             <h2>Post your requirements free !!</h2>
             <p className="mb-5">

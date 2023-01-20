@@ -448,7 +448,7 @@ hr {
 
 /* nazmul hasan */
 .postReq-slider {
-  font-family: 'Noto Sans';
+  font-family: "Noto Sans";
   background: #d3d9f8;
   border-radius: 0px 0px 15.0698px 15.0698px;
 }
@@ -481,7 +481,7 @@ hr {
 .service-provide {
   padding: 52px 10px;
   background-color: #4a4a4a;
-  font-family: 'Noto Sans';
+  font-family: "Noto Sans";
 }
 
 .service-provide h4 {
@@ -507,7 +507,7 @@ hr {
   margin: 0;
 }
 
-.service-items{
+.service-items {
   margin-top: 32px;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -532,7 +532,18 @@ hr {
   color: #000000;
 }
 
-
 .slick-dots li button:before {
   font-size: 10px !important;
+}
+
+@media screen and (min-width: 624px) {
+  .service-provide {
+    display: none;
+  }
+  .postReq-wrapper {
+    display: none;
+  }
+  .banner-slider {
+    display: none;
+  }
 }
