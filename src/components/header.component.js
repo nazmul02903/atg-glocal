@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import Logo from "../assets/homepg/img/gb-logo.png";
 
 import Dropdown from "react-bootstrap/Dropdown";
 import { connect, useDispatch } from "react-redux";
@@ -13,22 +14,32 @@ import logo from "../assets/Icons/GlocalBodhLogo.svg";
 import { alertCustom } from "../helpers/alerts";
 
 import { useGoogleLogout } from "react-google-login";
+import { useSelector } from "react-redux";
+import LoginComponent from "./auth/login.component";
 const clientId = process.env.REACT_APP_OAUTH_CLIENT_ID;
 
 const Header = (props) => {
   const location = useLocation();
   const dispatch = useDispatch();
-  const { user } = props;
+  // const { user } = props;
+
+  const { isLoggedIn } = useSelector(state => state.auth)
+  const [loginActive, setLoginActive] = useState(false)
+  const { user } = useSelector(state => state.auth)
 
   const handleLogout = () => {
     dispatch(setLoader());
     signOut();
   };
-  
+
+  const openLoginModal = () => setLoginActive(true)
+  const closeLoginModal = () => setLoginActive(false)
+
   const onLogoutSuccess = (res) => {
     dispatch(logout());
     localStorage.removeItem("user");
     dispatch(clearLoader());
+    window.location = '/'
     //console.log("Logged out Success");
   };
 
@@ -44,123 +55,98 @@ const Header = (props) => {
   });
 
   return (
-    <nav className="navbar navbar-expand navbar-dark bg-dark">
-      <div className="leftNavBar">
-        <Link
-          to={"/home"}
-          className="navbar-brand"
-          data-toggle="collapse"
-          data-target=".dual-collapse2"
-        >
-          <img
-            className="glocal-bodh-logo inline"
-            src={logo}
-            height="40"
-            alt="userLogo"
-          />
+    <>
+      <div className="home-navBar container home-row">
+        <Link to="/">
+          <div className="logo">
+            <img src={Logo} alt="" />
+          </div>
         </Link>
-        <a
-          style={{ textDecoration: "none" }}
-          target="_blank"
-          href="https://glocalbodh.webflight.in/"
-          className="about-GB"
-        >
-          <button className="btn btn-primary about-GB">About GlocalBodh</button>
-        </a>
+        {!isLoggedIn ?
+          <div className="actions home-row">
+            <div className="lang action">English</div>
+            <div className="link-tags">
+              <div className="logIn action" onClick={openLoginModal} >LogIn</div>
+            </div>
+            <Link to="/register" className="link-tags">
+              <div className="singUp action">SingUp</div>
+            </Link>
+          </div>
+          :
+          <div>
+            {user && (
+              <li className="nav-item">
+                <Dropdown>
+                  <Dropdown.Toggle variant="dark">
+                    <h5 className="d-inline">{user.name}</h5>
+                    {/* <img className='' src={user} height='50' alt='profileImg' /> */}
+                  </Dropdown.Toggle>
+                  {user.admin ? (
+                    <Dropdown.Menu className="dropdown-menu-dark" variant="dark">
+                      <Dropdown.Item href="/admin/allJobs">
+                        All Jobs
+                      </Dropdown.Item>
+                      <Dropdown.Item as={Link} to="/admin/allNews">
+                        All News
+                      </Dropdown.Item>
+                      <Dropdown.Item as={Link} to="/admin/events/1">
+                        Workshops & Trainings
+                      </Dropdown.Item>
+                      <Dropdown.Item as={Link} to="/admin/events/2">
+                        Awards & Competitions
+                      </Dropdown.Item>
+                      <Dropdown.Item as={Link} to="/admin/events/3">
+                        Exhibition & Summits
+                      </Dropdown.Item>
+                      <Dropdown.Item as={Link} to="/admin/allFundingUpdates">
+                        Funding Updates
+                      </Dropdown.Item>
+                      <Dropdown.Item as={Link} to="/admin/allRFP">
+                        RFP
+                      </Dropdown.Item>
+                      <Dropdown.Item as={Link} to="/admin/kycList">
+                        KYC List
+                      </Dropdown.Item>
+                      <Dropdown.Item as={Link} to="/admin/academics">
+                        Academics
+                      </Dropdown.Item>
+                      <Dropdown.Item as={Link} to="/login" onClick={handleLogout}>
+                        <button className="btn btn-danger p-2">Logout</button>
+                      </Dropdown.Item>
+                      <Dropdown.Item as={Link} to="/admin/dashboard/events">
+                        My Events
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
+                  ) : (
+                    <Dropdown.Menu variant="dark" className="dropdown-menu-dark">
+                      <Dropdown.Item as={Link} to="/user/dashboard/myEvents">
+                        My Events
+                      </Dropdown.Item>
+                      <Dropdown.Item href="/user/dashboard/myJobs">
+                        My Jobs
+                      </Dropdown.Item>
+                      <Dropdown.Item href="/user/dashboard/myFundingUpdate">
+                        My Funding Updates
+                      </Dropdown.Item>
+                      <Dropdown.Item as={Link} to="/posting">
+                        Create Post
+                      </Dropdown.Item>
+                      <Dropdown.Item href="/user/kycStatus">
+                        KYC Status
+                      </Dropdown.Item>
+                      <Dropdown.Item as={Link} to="/login" onClick={handleLogout}>
+                        <button className="btn btn-danger p-2">Logout</button>
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
+                  )}
+                </Dropdown>
+              </li>
+            )}
+          </div>
+        }
       </div>
-
-      <div className="navbar-collapse d-flex justify-content-end rightNavBar">
-        <ul className="navbar-nav me-2 rightNavBar">
-          {location.pathname === "/csrForm" ? (
-            <li className="nav-item">
-              <button className="btn btn-primary">
-                <Link to="/" style={{ textDecoration: "none" }}>
-                  Go Back To Dashboard
-                </Link>
-              </button>{" "}
-            </li>
-          ) : user ? (
-            <li className="nav-item">
-              <button className="btn btn-primary">
-                <Link to="/csrForm" style={{ textDecoration: "none" }}>
-                  Take CSR Funding Eligibility Test
-                </Link>
-              </button>{" "}
-            </li>
-          ) : null}
-
-          {user && (
-            <li className="nav-item ">
-              <Dropdown>
-                <Dropdown.Toggle variant="dark">
-                  <h5 className="d-inline">{user.name}</h5>
-                  {/* <img className='' src={user} height='50' alt='profileImg' /> */}
-                </Dropdown.Toggle>
-                {user.admin ? (
-                  <Dropdown.Menu className="dropdown-menu-dark" variant="dark">
-                    <Dropdown.Item href="/admin/allJobs">
-                      All Jobs
-                    </Dropdown.Item>
-                    <Dropdown.Item as={Link} to="/admin/allNews">
-                      All News
-                    </Dropdown.Item>
-                    <Dropdown.Item as={Link} to="/admin/events/1">
-                      Workshops & Trainings
-                    </Dropdown.Item>
-                    <Dropdown.Item as={Link} to="/admin/events/2">
-                      Awards & Competitions
-                    </Dropdown.Item>
-                    <Dropdown.Item as={Link} to="/admin/events/3">
-                      Exhibition & Summits
-                    </Dropdown.Item>
-                    <Dropdown.Item as={Link} to="/admin/allFundingUpdates">
-                      Funding Updates
-                    </Dropdown.Item>
-                    <Dropdown.Item as={Link} to="/admin/allRFP">
-                      RFP
-                    </Dropdown.Item>
-                    <Dropdown.Item as={Link} to="/admin/kycList">
-                      KYC List
-                    </Dropdown.Item>
-                    <Dropdown.Item as={Link} to="/admin/academics">
-                      Academics
-                    </Dropdown.Item>
-                    <Dropdown.Item as={Link} to="/login" onClick={handleLogout}>
-                      <button className="btn btn-danger p-2">Logout</button>
-                    </Dropdown.Item>
-                    <Dropdown.Item as={Link} to="/admin/dashboard/events">
-                      My Events
-                    </Dropdown.Item>
-                  </Dropdown.Menu>
-                ) : (
-                  <Dropdown.Menu variant="dark" className="dropdown-menu-dark">
-                    <Dropdown.Item as={Link} to="/user/dashboard/myEvents">
-                      My Events
-                    </Dropdown.Item>
-                    <Dropdown.Item href="/user/dashboard/myJobs">
-                      My Jobs
-                    </Dropdown.Item>
-                    <Dropdown.Item href="/user/dashboard/myFundingUpdate">
-                      My Funding Updates
-                    </Dropdown.Item>
-                    <Dropdown.Item as={Link} to="/posting">
-                      Create Post
-                    </Dropdown.Item>
-                    <Dropdown.Item href="/user/kycStatus">
-                      KYC Status
-                    </Dropdown.Item>
-                    <Dropdown.Item as={Link} to="/login" onClick={handleLogout}>
-                      <button className="btn btn-danger p-2">Logout</button>
-                    </Dropdown.Item>
-                  </Dropdown.Menu>
-                )}
-              </Dropdown>
-            </li>
-          )}
-
-        </ul>
-      </div>
-    </nav>
+      <LoginComponent show={loginActive} handleClose={closeLoginModal} />
+    </>
   );
 };
 

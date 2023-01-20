@@ -23,6 +23,7 @@
   line-height: 20px;
   text-align: center;
   color: #212121;
+  cursor: pointer;
 }
 .sect-1 {
   margin: 65px 0;

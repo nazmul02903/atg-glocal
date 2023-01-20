@@ -30,6 +30,7 @@ import {
   PAYMENT_VALIDATION,
   API_FETCH_HOME,
   API_ALL_STATES,
+  API_FETCH_HOME_ASSETS,
 } from "../constants/urls";
 
 import AuthHeader from "./auth-header";
@@ -249,6 +250,13 @@ class UserService {
     return axios.post(
       API_FETCH_HOME,
       { user_id: user },
+      { headers: AuthHeader() }
+    );
+  }
+  homeAssets(user) {
+    return axios.post(
+      API_FETCH_HOME_ASSETS,
+      {},
       { headers: AuthHeader() }
     );
   }

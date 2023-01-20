@@ -132,7 +132,7 @@ const App = (props) => {
     <Router history={history} className="App">
       <Loader isLoading={isLoading}>
         <div id="page-container">
-          {/* <Header /> */}
+          <Header />
 
           <div className="container mt-2" id="content-wrap">
             <Switch>

@@ -96,9 +96,6 @@ const Home = (props) => {
       <Row>
         <Col xs={12} sm={3}>
           <Card
-            // className={
-            //   isActive("1") ? "disabled-card custom-card" : "custom-card"
-            // }
             className="custom-card"
           >
             <CardImg
@@ -136,11 +133,7 @@ const Home = (props) => {
         </Col>
         <Col xs={12} sm={3}>
           <Card
-            className="custom-card"
-            // className={
-            //   allowedEvents() ? "disabled-card custom-card" : "custom-card"
-            // }
-          >
+            className="custom-card">
             <CardImg
               className="mx-auto"
               src={imgEvents}

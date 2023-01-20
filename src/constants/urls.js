@@ -164,5 +164,7 @@ export const PAYMENT_VALIDATION =
   process.env.REACT_APP_API_ENDPOINT + "eventRegistration/validatePayment";
 export const API_FETCH_HOME =
   process.env.REACT_APP_API_ENDPOINT + "home/v2/getHome";
+export const API_FETCH_HOME_ASSETS =
+  process.env.REACT_APP_API_ENDPOINT + "home/getHomeAssets";
 export const API_ALL_STATES =
   process.env.REACT_APP_API_ENDPOINT + "state/fetchAll/";

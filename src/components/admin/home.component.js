@@ -149,6 +149,25 @@ const HomeAdmin = (props) => {
               style={{ width: "50%", height: "100px" }}
             />
             <CardBody className="text-center">
+              <CardTitle tag="h5">User List</CardTitle>
+              <Link to="/admin/newUserList">
+                <Button className="mt-3" color="primary">
+                  Search
+                </Button>
+              </Link>
+            </CardBody>
+          </Card>
+        </Col>
+
+        {/* <Col xs={12} sm={3}>
+          <Card className="custom-card">
+            <CardImg
+              className="mx-auto"
+              src={imgJob}
+              alt="Card image cap"
+              style={{ width: "50%", height: "100px" }}
+            />
+            <CardBody className="text-center">
               <CardTitle tag="h5">Review Events</CardTitle>
               <Link to="/admin/reviewEvent">
                 <Button className="mt-3" color="primary">
@@ -175,27 +194,12 @@ const HomeAdmin = (props) => {
               </Link>
             </CardBody>
           </Card>
-        </Col>
+        </Col> */}
       </Row>
       <Row>
         <Col xs={12} sm={3}>
-          <Card className="custom-card">
-            <CardImg
-              className="mx-auto"
-              src={imgJob}
-              alt="Card image cap"
-              style={{ width: "50%", height: "100px" }}
-            />
-            <CardBody className="text-center">
-              <CardTitle tag="h5">User List</CardTitle>
-              <Link to="/admin/newUserList">
-                <Button className="mt-3" color="primary">
-                  Search
-                </Button>
-              </Link>
-            </CardBody>
-          </Card>
-          <Card className="custom-card">
+
+          {/* <Card className="custom-card">
             <CardImg
               className="mx-auto"
               src={imgJob}
@@ -210,7 +214,7 @@ const HomeAdmin = (props) => {
                 </Button>
               </Link>
             </CardBody>
-          </Card>
+          </Card> */}
         </Col>
       </Row>
     </Container>

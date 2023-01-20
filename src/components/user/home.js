@@ -49,7 +49,7 @@ function Home(props) {
     dispatch(logout());
     localStorage.removeItem("user");
     dispatch(clearLoader());
-    window.location='/'
+    window.location = '/'
     //console.log("Logged out Success");
   };
 
@@ -70,26 +70,26 @@ function Home(props) {
 
   const openLoginModal = () => setLoginActive(true)
   const closeLoginModal = () => setLoginActive(false)
-    
+
   useEffect(() => {
-    if (!isLoggedIn) return
+    // if (!isLoggedIn) return
     dispatch(setLoader());
     let userId = ''
     if (isLoggedIn) {
       userId = JSON.parse(localStorage.getItem('user')).userId
     }
     // console.log(userId);
-    UserService.homeV2(userId)
-      .then((res) => {
-        console.log(res);
+    UserService.homeAssets()
+      .then(res => {
+        console.log('data', res.data)
         dispatch(clearLoader());
         setBanners(res.data.bannerBeans);
         setCategories(res.data.homeCategories);
         setSubCategoriesEvents(res.data.homeCategories[0].homeSubCategories);
         setSubCategoriesFundings(res.data.homeCategories[1].homeSubCategories);
         setSubCategoriesJobs(res.data.homeCategories[2].homeSubCategories);
-      })
-      .catch((error) => {
+      }).catch((error) => {
+        console.log('error', error.response);
         const message =
           (error.response &&
             error.response.data &&
@@ -98,7 +98,27 @@ function Home(props) {
           error.toString();
         alertCustom("error", message, "/home");
       });
-  }, [isLoggedIn]);
+
+    // UserService.homeV2(userId)
+    //   .then((res) => {
+    //     console.log(res);
+    //     dispatch(clearLoader());
+    //     setBanners(res.data.bannerBeans);
+    //     setCategories(res.data.homeCategories);
+    //     setSubCategoriesEvents(res.data.homeCategories[0].homeSubCategories);
+    //     setSubCategoriesFundings(res.data.homeCategories[1].homeSubCategories);
+    //     setSubCategoriesJobs(res.data.homeCategories[2].homeSubCategories);
+    //   })
+    //   .catch((error) => {
+    //     const message =
+    //       (error.response &&
+    //         error.response.data &&
+    //         error.response.data.message) ||
+    //       error.message ||
+    //       error.toString();
+    //     alertCustom("error", message, "/home");
+    //   });
+  }, []);
 
   if (isLoggedIn && !subCategoriesEvents) {
     dispatch(setLoader());
@@ -116,314 +136,314 @@ function Home(props) {
     dispatch(clearLoader());
     return (
       <>
-      
-      <div className="home">
-        <div className="home-navBar home-row">
-          <Link to="/">
-            <div className="logo">
-              <img src={Logo} alt="" />
-            </div>
-          </Link>
-          {!isLoggedIn ?
-            <div className="actions home-row">
-              <div className="lang action">English</div>
-              <div className="link-tags">
-                <div className="logIn action" onClick={openLoginModal} >LogIn</div>
+
+        <div className="home">
+          {/* <div className="home-navBar home-row">
+            <Link to="/">
+              <div className="logo">
+                <img src={Logo} alt="" />
               </div>
-              <Link to="/register" className="link-tags">
-                <div className="singUp action">SingUp</div>
-              </Link>
+            </Link>
+            {!isLoggedIn ?
+              <div className="actions home-row">
+                <div className="lang action">English</div>
+                <div className="link-tags">
+                  <div className="logIn action" onClick={openLoginModal} >LogIn</div>
+                </div>
+                <Link to="/register" className="link-tags">
+                  <div className="singUp action">SingUp</div>
+                </Link>
+              </div>
+              :
+              <div>
+                {user && (
+                  <li className="nav-item">
+                    <Dropdown>
+                      <Dropdown.Toggle variant="dark">
+                        <h5 className="d-inline">{user.name}</h5>
+                      </Dropdown.Toggle>
+                      {user.admin ? (
+                        <Dropdown.Menu className="dropdown-menu-dark" variant="dark">
+                          <Dropdown.Item href="/admin/allJobs">
+                            All Jobs
+                          </Dropdown.Item>
+                          <Dropdown.Item as={Link} to="/admin/allNews">
+                            All News
+                          </Dropdown.Item>
+                          <Dropdown.Item as={Link} to="/admin/events/1">
+                            Workshops & Trainings
+                          </Dropdown.Item>
+                          <Dropdown.Item as={Link} to="/admin/events/2">
+                            Awards & Competitions
+                          </Dropdown.Item>
+                          <Dropdown.Item as={Link} to="/admin/events/3">
+                            Exhibition & Summits
+                          </Dropdown.Item>
+                          <Dropdown.Item as={Link} to="/admin/allFundingUpdates">
+                            Funding Updates
+                          </Dropdown.Item>
+                          <Dropdown.Item as={Link} to="/admin/allRFP">
+                            RFP
+                          </Dropdown.Item>
+                          <Dropdown.Item as={Link} to="/admin/kycList">
+                            KYC List
+                          </Dropdown.Item>
+                          <Dropdown.Item as={Link} to="/admin/academics">
+                            Academics
+                          </Dropdown.Item>
+                          <Dropdown.Item as={Link} to="/login" onClick={handleLogout}>
+                            <button className="btn btn-danger p-2">Logout</button>
+                          </Dropdown.Item>
+                          <Dropdown.Item as={Link} to="/admin/dashboard/events">
+                            My Events
+                          </Dropdown.Item>
+                        </Dropdown.Menu>
+                      ) : (
+                        <Dropdown.Menu variant="dark" className="dropdown-menu-dark">
+                          <Dropdown.Item as={Link} to="/user/dashboard/myEvents">
+                            My Events
+                          </Dropdown.Item>
+                          <Dropdown.Item href="/user/dashboard/myJobs">
+                            My Jobs
+                          </Dropdown.Item>
+                          <Dropdown.Item href="/user/dashboard/myFundingUpdate">
+                            My Funding Updates
+                          </Dropdown.Item>
+                          <Dropdown.Item as={Link} to="/posting">
+                            Create Post
+                          </Dropdown.Item>
+                          <Dropdown.Item href="/user/kycStatus">
+                            KYC Status
+                          </Dropdown.Item>
+                          <Dropdown.Item as={Link} to="/login" onClick={handleLogout}>
+                            <button className="btn btn-danger p-2">Logout</button>
+                          </Dropdown.Item>
+                        </Dropdown.Menu>
+                      )}
+                    </Dropdown>
+                  </li>
+                )}
+              </div>
+            }
+          </div> */}
+
+          <div className="sect-1 home-row">
+            <div className="details">
+              <div className="large-text">
+                Connecting people working in NGOs to Opportunities
+              </div>
+              <div className="small-text">
+                Whatever you’re looking to do this year, Meetup can help. For 20
+                years, people have turned to Meetup to meet people, make friends,{" "}
+              </div>
             </div>
-            :
-            <div>
-              {user && (
-                <li className="nav-item">
-                  <Dropdown>
-                    <Dropdown.Toggle variant="dark">
-                      <h5 className="d-inline">{user.name}</h5>
-                      {/* <img className='' src={user} height='50' alt='profileImg' /> */}
-                    </Dropdown.Toggle>
-                    {user.admin ? (
-                      <Dropdown.Menu className="dropdown-menu-dark" variant="dark">
-                        <Dropdown.Item href="/admin/allJobs">
-                          All Jobs
-                        </Dropdown.Item>
-                        <Dropdown.Item as={Link} to="/admin/allNews">
-                          All News
-                        </Dropdown.Item>
-                        <Dropdown.Item as={Link} to="/admin/events/1">
-                          Workshops & Trainings
-                        </Dropdown.Item>
-                        <Dropdown.Item as={Link} to="/admin/events/2">
-                          Awards & Competitions
-                        </Dropdown.Item>
-                        <Dropdown.Item as={Link} to="/admin/events/3">
-                          Exhibition & Summits
-                        </Dropdown.Item>
-                        <Dropdown.Item as={Link} to="/admin/allFundingUpdates">
-                          Funding Updates
-                        </Dropdown.Item>
-                        <Dropdown.Item as={Link} to="/admin/allRFP">
-                          RFP
-                        </Dropdown.Item>
-                        <Dropdown.Item as={Link} to="/admin/kycList">
-                          KYC List
-                        </Dropdown.Item>
-                        <Dropdown.Item as={Link} to="/admin/academics">
-                          Academics
-                        </Dropdown.Item>
-                        <Dropdown.Item as={Link} to="/login" onClick={handleLogout}>
-                          <button className="btn btn-danger p-2">Logout</button>
-                        </Dropdown.Item>
-                        <Dropdown.Item as={Link} to="/admin/dashboard/events">
-                          My Events
-                        </Dropdown.Item>
-                      </Dropdown.Menu>
-                    ) : (
-                      <Dropdown.Menu variant="dark" className="dropdown-menu-dark">
-                        <Dropdown.Item as={Link} to="/user/dashboard/myEvents">
-                          My Events
-                        </Dropdown.Item>
-                        <Dropdown.Item href="/user/dashboard/myJobs">
-                          My Jobs
-                        </Dropdown.Item>
-                        <Dropdown.Item href="/user/dashboard/myFundingUpdate">
-                          My Funding Updates
-                        </Dropdown.Item>
-                        <Dropdown.Item as={Link} to="/posting">
-                          Create Post
-                        </Dropdown.Item>
-                        <Dropdown.Item href="/user/kycStatus">
-                          KYC Status
-                        </Dropdown.Item>
-                        <Dropdown.Item as={Link} to="/login" onClick={handleLogout}>
-                          <button className="btn btn-danger p-2">Logout</button>
-                        </Dropdown.Item>
-                      </Dropdown.Menu>
-                    )}
-                  </Dropdown>
-                </li>
-              )}
-            </div>
-          }
-        </div>
-        <div className="sect-1 home-row">
-          <div className="details">
-            <div className="large-text">
-              Connecting people working in NGOs to Opportunities
-            </div>
-            <div className="small-text">
-              Whatever you’re looking to do this year, Meetup can help. For 20
-              years, people have turned to Meetup to meet people, make friends,{" "}
+            <div className="graphic">
+              <img src={Graphic} alt="" />
             </div>
           </div>
-          <div className="graphic">
-            <img src={Graphic} alt="" />
-          </div>
-        </div>
-        <div className="sect-2">
-          {/* <div className="heading">How GlocalBodh Works</div>
+          <div className="sect-2">
+            {/* <div className="heading">How GlocalBodh Works</div>
           <div className="sub-text">
             Meet new people who share your interests through online and
             in-person events. It’s free to create an account.
           </div> */}
-          <div className="divisions home-column">
+            <div className="divisions home-column">
 
-            <div className="home-row divisions-row">
-              {isLoggedIn && subCategoriesEvents.map((event, idx) => {
-                return (
-                  <div className="division" key={idx} >
-                    <Link to={`/event/${idx + 1}`} className="services-link">
-                      <div className="imgBox eventBox">
-                      <div className="division-name-inside">
-                        {event.name}
+              <div className="home-row divisions-row">
+                {subCategoriesEvents.map((event, idx) => {
+                  return (
+                    <div className="division" key={idx} >
+                      <Link to={`/event/${idx + 1}`} className="services-link">
+                        <div className="imgBox eventBox">
+                          <div className="division-name-inside">
+                            {event.name}
+                          </div>
+                          <img
+                            src={event.imageUrl}
+                            className="icon"
+                            alt=""
+                          />
+                        </div>
+                        <div className="division-name">
+                          {event.name}
+                        </div>
+                      </Link>
+                      <div className="division-subtext">
+                        Do what you love, meet others who love it, find your
+                        community. The rest is history!
                       </div>
-                        <img
-                          src={event.imageUrl}
-                          className="icon"
-                          alt=""
-                        />
-                      </div>
-                      <div className="division-name">
-                        {event.name}
-                      </div>
-                    </Link>
-                    <div className="division-subtext">
-                      Do what you love, meet others who love it, find your
-                      community. The rest is history!
                     </div>
-                  </div>
-                )
-              })}
-            </div>
+                  )
+                })}
+              </div>
 
-            <div className="home-row divisions-row">
-              {isLoggedIn && subCategoriesJobs.map((event, idx) => {
-                return (
-                  <div className="division" key={idx} >
-                    <Link to={`/jobs/${idx + 1}`} className="services-link">
-                      <div className="imgBox eventBox">
-                      <div className="division-name-inside">
-                        {event.name}
+              <div className="home-row divisions-row">
+                {subCategoriesJobs.map((event, idx) => {
+                  return (
+                    <div className="division" key={idx} >
+                      <Link to={`/jobs/${idx + 1}`} className="services-link">
+                        <div className="imgBox eventBox">
+                          <div className="division-name-inside">
+                            {event.name}
+                          </div>
+                          <img
+                            src={event.imageUrl}
+                            className="icon"
+                            alt=""
+                          />
+                        </div>
+                        <div className="division-name">
+                          {event.name}
+                        </div>
+                      </Link>
+                      <div className="division-subtext">
+                        Do what you love, meet others who love it, find your
+                        community. The rest is history!
                       </div>
-                        <img
-                          src={event.imageUrl}
-                          className="icon"
-                          alt=""
-                        />
-                      </div>
-                      <div className="division-name">
-                        {event.name}
-                      </div>
-                    </Link>
-                    <div className="division-subtext">
-                      Do what you love, meet others who love it, find your
-                      community. The rest is history!
                     </div>
-                  </div>
-                )
-              })}
-            </div>
+                  )
+                })}
+              </div>
 
-            <div className="home-row divisions-row">
-              {isLoggedIn && subCategoriesFundings.map((event, idx) => {
-                return (
-                  <div className="division" key={idx} >
-                    <Link to={`/fundingUpdates/${idx + 1}`} className="services-link">
-                      <div className="imgBox eventBox">
-                      <div className="division-name-inside">
-                        {event.name}
+              <div className="home-row divisions-row">
+                {subCategoriesFundings.map((event, idx) => {
+                  return (
+                    <div className="division" key={idx} >
+                      <Link to={`/fundingUpdates/${idx + 1}`} className="services-link">
+                        <div className="imgBox eventBox">
+                          <div className="division-name-inside">
+                            {event.name}
+                          </div>
+                          <img
+                            src={event.imageUrl}
+                            className="icon"
+                            alt=""
+                          />
+                        </div>
+                        <div className="division-name">
+                          {event.name}
+                        </div>
+                      </Link>
+                      <div className="division-subtext">
+                        Do what you love, meet others who love it, find your
+                        community. The rest is history!
                       </div>
-                        <img
-                          src={event.imageUrl}
-                          className="icon"
-                          alt=""
-                        />
-                      </div>
-                      <div className="division-name">
-                        {event.name}
-                      </div>
-                    </Link>
-                    <div className="division-subtext">
-                      Do what you love, meet others who love it, find your
-                      community. The rest is history!
                     </div>
-                  </div>
-                )
-              })}
-            </div>
+                  )
+                })}
+              </div>
 
+            </div>
           </div>
-        </div>
-        <div className="sect-3">
-          <div className="upcoming-events">
-            <div className="top">
-              <div className=" upcoming-heading">Upcoming online events</div>
-              <Link to="" className="link-tags">
-                <div className="more">more</div>
-              </Link>
-            </div>
-            <div className="card-holder home-row event-cardHolder horizontal-scroll">
-              <div className=" event-card">
-                {/* {isLoggedIn && banners !== undefined && banners !== [] ? <h1>{banners[0].id}</h1> : '' } */}
-                {/* <img
+          <div className="sect-3">
+            <div className="upcoming-events">
+              <div className="top">
+                <div className=" upcoming-heading">Upcoming online events</div>
+                <Link to="" className="link-tags">
+                  <div className="more">more</div>
+                </Link>
+              </div>
+              <div className="card-holder home-row event-cardHolder horizontal-scroll">
+                <div className=" event-card">
+                  {/* {isLoggedIn && banners !== undefined && banners !== [] ? <h1>{banners[0].id}</h1> : '' } */}
+                  {/* <img
                   src={isLoggedIn && banners[0].imageUrl}
                   className="event-banner"
                   alt=""
                 /> */}
-                <div className="event-details">
-                  <div className="event-date">Wed, Aug 31 · 11:00 PM UTC</div>
-                  <div className="event-name">Getting To Know You</div>
-                  <div className="event-subText">
-                    World Gets Cozy Juicy Real
+                  <div className="event-details">
+                    <div className="event-date">Wed, Aug 31 · 11:00 PM UTC</div>
+                    <div className="event-name">Getting To Know You</div>
+                    <div className="event-subText">
+                      World Gets Cozy Juicy Real
+                    </div>
+                  </div>
+                  <div className="attendee">
+                    <div className="elipticals"></div>
+                    <div className="numb_attendee">499 attendee</div>
                   </div>
                 </div>
-                <div className="attendee">
-                  <div className="elipticals"></div>
-                  <div className="numb_attendee">499 attendee</div>
-                </div>
-              </div>
-              <div className=" event-card">
-                {/* <img
+                <div className=" event-card">
+                  {/* <img
                   src={isLoggedIn && banners[1].imageUrl}
                   className="event-banner"
                   alt=""
                 /> */}
-                <div className="event-details">
-                  <div className="event-date">Wed, Aug 31 · 11:00 PM UTC</div>
-                  <div className="event-name">Getting To Know You</div>
-                  <div className="event-subText">
-                    World Gets Cozy Juicy Real
+                  <div className="event-details">
+                    <div className="event-date">Wed, Aug 31 · 11:00 PM UTC</div>
+                    <div className="event-name">Getting To Know You</div>
+                    <div className="event-subText">
+                      World Gets Cozy Juicy Real
+                    </div>
+                  </div>
+                  <div className="attendee">
+                    <div className="elipticals"></div>
+                    <div className="numb_attendee">499 attendee</div>
                   </div>
                 </div>
-                <div className="attendee">
-                  <div className="elipticals"></div>
-                  <div className="numb_attendee">499 attendee</div>
-                </div>
-              </div>
-              <div className=" event-card">
-                {/* <img
+                <div className=" event-card">
+                  {/* <img
                   src={isLoggedIn && banners[2].imageUrl}
                   className="event-banner"
                   alt=""
                 /> */}
-                <div className="event-details">
-                  <div className="event-date">Wed, Aug 31 · 11:00 PM UTC</div>
-                  <div className="event-name">Getting To Know You</div>
-                  <div className="event-subText">
-                    World Gets Cozy Juicy Real
+                  <div className="event-details">
+                    <div className="event-date">Wed, Aug 31 · 11:00 PM UTC</div>
+                    <div className="event-name">Getting To Know You</div>
+                    <div className="event-subText">
+                      World Gets Cozy Juicy Real
+                    </div>
+                  </div>
+                  <div className="attendee">
+                    <div className="elipticals"></div>
+                    <div className="numb_attendee">499 attendee</div>
                   </div>
                 </div>
-                <div className="attendee">
-                  <div className="elipticals"></div>
-                  <div className="numb_attendee">499 attendee</div>
-                </div>
-              </div>
-              <div className=" event-card">
-                <img src={EventBanner} className="event-banner" alt="" />
-                <div className="event-details">
-                  <div className="event-date">Wed, Aug 31 · 11:00 PM UTC</div>
-                  <div className="event-name">Getting To Know You</div>
-                  <div className="event-subText">
-                    World Gets Cozy Juicy Real
+                <div className=" event-card">
+                  <img src={EventBanner} className="event-banner" alt="" />
+                  <div className="event-details">
+                    <div className="event-date">Wed, Aug 31 · 11:00 PM UTC</div>
+                    <div className="event-name">Getting To Know You</div>
+                    <div className="event-subText">
+                      World Gets Cozy Juicy Real
+                    </div>
+                  </div>
+                  <div className="attendee">
+                    <div className="elipticals"></div>
+                    <div className="numb_attendee">499 attendee</div>
                   </div>
                 </div>
-                <div className="attendee">
-                  <div className="elipticals"></div>
-                  <div className="numb_attendee">499 attendee</div>
-                </div>
-              </div>
-              <div className=" event-card">
-                <img src={EventBanner} className="event-banner" alt="" />
-                <div className="event-details">
-                  <div className="event-date">Wed, Aug 31 · 11:00 PM UTC</div>
-                  <div className="event-name">Getting To Know You</div>
-                  <div className="event-subText">
-                    World Gets Cozy Juicy Real
+                <div className=" event-card">
+                  <img src={EventBanner} className="event-banner" alt="" />
+                  <div className="event-details">
+                    <div className="event-date">Wed, Aug 31 · 11:00 PM UTC</div>
+                    <div className="event-name">Getting To Know You</div>
+                    <div className="event-subText">
+                      World Gets Cozy Juicy Real
+                    </div>
+                  </div>
+                  <div className="attendee">
+                    <div className="elipticals"></div>
+                    <div className="numb_attendee">499 attendee</div>
                   </div>
                 </div>
-                <div className="attendee">
-                  <div className="elipticals"></div>
-                  <div className="numb_attendee">499 attendee</div>
-                </div>
-              </div>
-              <div className=" event-card">
-                <img src={EventBanner} className="event-banner" alt="" />
-                <div className="event-details">
-                  <div className="event-date">Wed, Aug 31 · 11:00 PM UTC</div>
-                  <div className="event-name">Getting To Know You</div>
-                  <div className="event-subText">
-                    World Gets Cozy Juicy Real
+                <div className=" event-card">
+                  <img src={EventBanner} className="event-banner" alt="" />
+                  <div className="event-details">
+                    <div className="event-date">Wed, Aug 31 · 11:00 PM UTC</div>
+                    <div className="event-name">Getting To Know You</div>
+                    <div className="event-subText">
+                      World Gets Cozy Juicy Real
+                    </div>
                   </div>
-                </div>
-                <div className="attendee">
-                  <div className="elipticals"></div>
-                  <div className="numb_attendee">499 attendee</div>
+                  <div className="attendee">
+                    <div className="elipticals"></div>
+                    <div className="numb_attendee">499 attendee</div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          {/* <div className="groups">
+            {/* <div className="groups">
           <div className="top">
             <div className="popular">Popular Groups</div>
             <Link to="">
@@ -545,103 +565,103 @@ function Home(props) {
             </div>
           </div>
         </div> */}
-        </div>
-        <div className="sect-4 home-row">
-          <div className="phone1">
-            <img src={Phone1} alt="" />
           </div>
-          <div className="download-info home-column">
-            <img src={GlobeLogo} className="globe-logo" alt="" />
-            <div className="text">
-              Stay connected. <br />
-              Download the app.
+          <div className="sect-4 home-row">
+            <div className="phone1">
+              <img src={Phone1} alt="" />
             </div>
-            <div className="store">
-              <button className="playStore"></button>
-              <button className="appStore"></button>
-            </div>
-          </div>
-          <div className="phone2">
-            <img src={Phone2} alt="" />
-          </div>
-        </div>
-        <div className="sect-5 home-column">
-          <div className="community-heading heading">
-            {" "}
-            Glocalbodh Communities
-          </div>
-          <div className="community-subtext subtext">
-            People on Glocalboadh have fostered community, learned new skills,
-            started businesses, and made life-long friends. Learn how.
-          </div>
-          <div className="community-cards home-row">
-            <div className=" community-card home-column">
-              <div className="function-img-container">
-                <img src={Function1} className="function-img" alt="" />
+            <div className="download-info home-column">
+              <img src={GlobeLogo} className="globe-logo" alt="" />
+              <div className="text">
+                Stay connected. <br />
+                Download the app.
               </div>
-              <div className="function-heading">
-                Three Ways To Make Coworker Friendships While Working From Home
-              </div>
-              <div className="function-description">
-                Work friendships don’t need to fade just because you’re working
-                remotely. Here are three fun ways you can get to know your
-                colleagues.
+              <div className="store">
+                <button className="playStore"></button>
+                <button className="appStore"></button>
               </div>
             </div>
-            <div className=" community-card home-column">
-              <div className="function-img-container">
-                <img src={Function2} className="function-img" alt="" />
+            <div className="phone2">
+              <img src={Phone2} alt="" />
+            </div>
+          </div>
+          <div className="sect-5 home-column">
+            <div className="community-heading heading">
+              {" "}
+              Glocalbodh Communities
+            </div>
+            <div className="community-subtext subtext">
+              People on Glocalboadh have fostered community, learned new skills,
+              started businesses, and made life-long friends. Learn how.
+            </div>
+            <div className="community-cards home-row">
+              <div className=" community-card home-column">
+                <div className="function-img-container">
+                  <img src={Function1} className="function-img" alt="" />
+                </div>
+                <div className="function-heading">
+                  Three Ways To Make Coworker Friendships While Working From Home
+                </div>
+                <div className="function-description">
+                  Work friendships don’t need to fade just because you’re working
+                  remotely. Here are three fun ways you can get to know your
+                  colleagues.
+                </div>
               </div>
-              <div className="function-heading">
-                Five Ways to Feel More Connected
+              <div className=" community-card home-column">
+                <div className="function-img-container">
+                  <img src={Function2} className="function-img" alt="" />
+                </div>
+                <div className="function-heading">
+                  Five Ways to Feel More Connected
+                </div>
+                <div className="function-description">
+                  Since Meetup began nearly 20 years ago, we’ve fostered
+                  connections between more than 50 million people in 190 countries
+                  worldwide. Here are five simple strategies to help you feel more
+                  connected and improve your wellbeing.
+                </div>
               </div>
-              <div className="function-description">
-                Since Meetup began nearly 20 years ago, we’ve fostered
-                connections between more than 50 million people in 190 countries
-                worldwide. Here are five simple strategies to help you feel more
-                connected and improve your wellbeing.
+              <div className=" community-card home-column">
+                <div className="function-img-container">
+                  <img src={Function3} className="function-img" alt="" />
+                </div>
+                <div className="function-heading">
+                  How To Live Your Best Social Life
+                </div>
+                <div className="function-description">
+                  Social interaction is a key part of any healthy lifestyle.
+                  Discover all different kinds of events that’ll help you maintain
+                  a fun and fulfilling social life.
+                </div>
               </div>
             </div>
-            <div className=" community-card home-column">
-              <div className="function-img-container">
-                <img src={Function3} className="function-img" alt="" />
+          </div>
+
+          <div className="footer">
+            <div className="header"></div>
+            <div className="links">
+              <div className="account"></div>
+              <div className="glocalBodh"></div>
+              <div className="other"></div>
+            </div>
+            <div className="mobile-links">
+              <div className="social-media">
+                <h4></h4>
+                <div className="social-links"></div>
               </div>
-              <div className="function-heading">
-                How To Live Your Best Social Life
+              <div className="buttons">
+                <button className="playStore"></button>
+                <button className="appStore"></button>
               </div>
-              <div className="function-description">
-                Social interaction is a key part of any healthy lifestyle.
-                Discover all different kinds of events that’ll help you maintain
-                a fun and fulfilling social life.
-              </div>
+            </div>
+            <div className="footer-bottom">
+              <BottomBar />
             </div>
           </div>
         </div>
 
-        <div className="footer">
-          <div className="header"></div>
-          <div className="links">
-            <div className="account"></div>
-            <div className="glocalBodh"></div>
-            <div className="other"></div>
-          </div>
-          <div className="mobile-links">
-            <div className="social-media">
-              <h4></h4>
-              <div className="social-links"></div>
-            </div>
-            <div className="buttons">
-              <button className="playStore"></button>
-              <button className="appStore"></button>
-            </div>
-          </div>
-          <div className="footer-bottom">
-            <BottomBar />
-          </div>
-        </div>
-      </div>
-
-      <LoginComponent show={loginActive} handleClose={closeLoginModal} />
+        <LoginComponent show={loginActive} handleClose={closeLoginModal} />
       </>
     );
   }
