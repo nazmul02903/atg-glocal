@@ -55,6 +55,7 @@ const MyJobs = () => {
     dispatch(setLoader());
     //console.log("Checking for data updates");
     await UserService.fetchJobs().then((res) => {
+      console.log('fetch', res.data);
       dispatch(clearLoader());
       setJobs(res.data.jobDetailsBeans);
     });
@@ -63,6 +64,7 @@ const MyJobs = () => {
   useEffect(() => {
     dispatch(setLoader());
     UserService.fetchJobs().then((res) => {
+      console.log('fetch2', res.data);
       dispatch(clearLoader());
       setJobs(res.data.jobDetailsBeans);
       setSelectedJob(res.data.jobDetailsBeans[0]);

@@ -48,6 +48,8 @@ const MyEvents = (props) => {
   const [registrations, setregistrations] = useState([]);
   const [modalShowregistration, setModalShowregistration] = useState(false);
 
+console.log('events', events)
+
   const [filterValue, setFilterValue] = useState("All");
   const handleFilter = (e) => {
     setFilterValue(e.target.value);
@@ -69,7 +71,7 @@ const MyEvents = (props) => {
       setSelectedEvent(res.data.eventBeans[0]);
     });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
+  
   return (
     <div className="row p-2" style={{ backgroundColor: "#F9F9FB" }}>
       {events.length !== 0 && (
@@ -165,7 +167,7 @@ const MyEvents = (props) => {
                         <span
                           className={
                             event.eventCategoryText === "Workshops & Trainings"
-                              ? "in-review p-2"
+                              ? "in-review p-2 inline-block"
                               : event.eventCategoryText ===
                                 "Awards & Competitions"
                               ? "live p-2"
@@ -175,8 +177,8 @@ const MyEvents = (props) => {
                           {event.eventCategoryText}
                         </span>
                       </div>
-                      <div className="me-n3">
-                        <span className="expire-text p-2">
+                      <div className="">
+                        <span className="expire-text text-center p-2 inline-block">
                           {event.daysToExpiry} days left to register
                         </span>
                       </div>

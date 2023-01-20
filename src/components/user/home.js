@@ -23,6 +23,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Dropdown from "react-bootstrap/Dropdown";
 import { useGoogleLogout } from "react-google-login";
 import { logout } from "../../store/actions/auth";
+import LoginComponent from "../auth/login.component";
 const clientId = process.env.REACT_APP_OAUTH_CLIENT_ID;
 
 function Home(props) {
@@ -33,7 +34,7 @@ function Home(props) {
   const [subCategoriesFundings, setSubCategoriesFundings] = useState([]);
   const dispatch = useDispatch();
   const { isLoggedIn } = useSelector(state => state.auth)
-
+  const [loginActive, setLoginActive] = useState(false)
   const { user } = useSelector(state => state.auth)
   // console.log(user);
 
@@ -47,6 +48,7 @@ function Home(props) {
     dispatch(logout());
     localStorage.removeItem("user");
     dispatch(clearLoader());
+    window.location='/'
     //console.log("Logged out Success");
   };
 
@@ -65,6 +67,8 @@ function Home(props) {
   // console.log('subCategoriesJobs', subCategoriesJobs);
   // console.log('subCategoriesFundings', subCategoriesFundings);
 
+  const openLoginModal = () => setLoginActive(true)
+  const closeLoginModal = () => setLoginActive(false)
 
   useEffect(() => {
     if (!isLoggedIn) return
@@ -110,6 +114,8 @@ function Home(props) {
   else {
     dispatch(clearLoader());
     return (
+      <>
+      
       <div className="home">
         <div className="home-navBar home-row">
           <Link to="/">
@@ -120,9 +126,9 @@ function Home(props) {
           {!isLoggedIn ?
             <div className="actions home-row">
               <div className="lang action">English</div>
-              <Link to="/login" className="link-tags">
-                <div className="logIn action">LogIn</div>
-              </Link>
+              <div className="link-tags">
+                <div className="logIn action" onClick={openLoginModal} >LogIn</div>
+              </div>
               <Link to="/register" className="link-tags">
                 <div className="singUp action">SingUp</div>
               </Link>
@@ -251,7 +257,7 @@ function Home(props) {
               {isLoggedIn && subCategoriesJobs.map((event, idx) => {
                 return (
                   <div className="division" key={idx} >
-                    <Link to={`/event/${idx + 1}`} className="services-link">
+                    <Link to={`/jobs/${idx + 1}`} className="services-link">
                       <div className="imgBox eventBox">
                         <img
                           src={event.imageUrl}
@@ -276,7 +282,7 @@ function Home(props) {
               {isLoggedIn && subCategoriesFundings.map((event, idx) => {
                 return (
                   <div className="division" key={idx} >
-                    <Link to={`/event/${idx + 1}`} className="services-link">
+                    <Link to={`/fundingUpdates/${idx + 1}`} className="services-link">
                       <div className="imgBox eventBox">
                         <img
                           src={event.imageUrl}
@@ -622,6 +628,9 @@ function Home(props) {
           <div className="footer-bottom"></div>
         </div>
       </div>
+
+      <LoginComponent show={loginActive} handleClose={closeLoginModal} />
+      </>
     );
   }
 }

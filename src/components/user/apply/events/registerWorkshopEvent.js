@@ -10,7 +10,7 @@ import { clearLoader, setLoader } from "../../../../store/actions/loader";
 import UserService from "../../../../services/user.service";
 import { alertCustom } from "../../../../helpers/alerts";
 import {
-  renderCities,
+  renderCitiesName,
   renderStates,
   renderStatesNew,
 } from "../../../../services/render-services";
@@ -59,6 +59,7 @@ const RegisterWorkshopEvent = (props) => {
         alertCustom("error", message, "/home");
       });
   }, []);
+  
   const onSubmit = (values) => {
     props.dispatch(setLoader());
     const data = {
@@ -265,7 +266,7 @@ const RegisterWorkshopEvent = (props) => {
                   }
                   {...register("cityId")}
                 >
-                  {renderCities(cities)}
+                  {renderCitiesName(cities)}
                 </select>
                 <small className="text-danger">
                   {errors.cityId && errors.cityId.message}

@@ -65,6 +65,19 @@ export const renderCities = (cities) => {
     })
   );
 };
+export const renderCitiesName = (cities) => {
+  return (
+    cities &&
+    cities.length > 0 &&
+    cities.map((city, index) => {
+      if (index === 0) {
+        return <option key={index} value="" label="Select City" />;
+      } else {
+        return <option key={index} value={city.name} label={city.name} />;
+      }
+    })
+  );
+};
 
 export const renderThematicArea = () => {
   return THEMATIC_AREA.map((area, index) => {

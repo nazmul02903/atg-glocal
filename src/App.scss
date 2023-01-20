@@ -117,13 +117,20 @@ a:hover {
 .input-box {
   position: relative;
 }
-
+.login-modal{
+  padding-right: 0 !important;
+}
 .custom-card {
   background-color: #ffffff;
   border-radius: 9px;
   border: none;
-
   box-shadow: 0 7px 11px 0 #d8e0f2;
+}
+.login-card{
+  background-color: #ffffff;
+  border-radius: 9px;
+  border: none;
+  box-shadow: none;
 }
 .btn-primary {
   background-color: #0057a8;
@@ -214,7 +221,7 @@ a:hover {
   font-size: 0.7rem;
 
   font-weight: bold;
-  border-radius: 15px 0 0 15px;
+  border-radius: 15px;
   background-color: #fce5e5;
 }
 .expire-text-box {
