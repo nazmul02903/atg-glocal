@@ -15,6 +15,7 @@ const JobDetailModal = (props) => {
   const methods = useForm({ resolver: yupResolver(validationSchemaReviewJob) });
 
   const { data } = props;
+  console.log(data);
 
   const { watch } = methods;
   const status = watch("approve", "");

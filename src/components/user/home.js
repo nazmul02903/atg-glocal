@@ -24,6 +24,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import { useGoogleLogout } from "react-google-login";
 import { logout } from "../../store/actions/auth";
 import LoginComponent from "../auth/login.component";
+import BottomBar from "../bottom-bar/bottomBar.component";
 const clientId = process.env.REACT_APP_OAUTH_CLIENT_ID;
 
 function Home(props) {
@@ -234,6 +235,9 @@ function Home(props) {
                   <div className="division" key={idx} >
                     <Link to={`/event/${idx + 1}`} className="services-link">
                       <div className="imgBox eventBox">
+                      <div className="division-name-inside">
+                        {event.name}
+                      </div>
                         <img
                           src={event.imageUrl}
                           className="icon"
@@ -259,6 +263,9 @@ function Home(props) {
                   <div className="division" key={idx} >
                     <Link to={`/jobs/${idx + 1}`} className="services-link">
                       <div className="imgBox eventBox">
+                      <div className="division-name-inside">
+                        {event.name}
+                      </div>
                         <img
                           src={event.imageUrl}
                           className="icon"
@@ -284,6 +291,9 @@ function Home(props) {
                   <div className="division" key={idx} >
                     <Link to={`/fundingUpdates/${idx + 1}`} className="services-link">
                       <div className="imgBox eventBox">
+                      <div className="division-name-inside">
+                        {event.name}
+                      </div>
                         <img
                           src={event.imageUrl}
                           className="icon"
@@ -625,7 +635,9 @@ function Home(props) {
               <button className="appStore"></button>
             </div>
           </div>
-          <div className="footer-bottom"></div>
+          <div className="footer-bottom">
+            <BottomBar />
+          </div>
         </div>
       </div>
 
