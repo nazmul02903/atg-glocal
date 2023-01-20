@@ -69,7 +69,7 @@ function Home(props) {
 
   const openLoginModal = () => setLoginActive(true)
   const closeLoginModal = () => setLoginActive(false)
- 
+    
   useEffect(() => {
     if (!isLoggedIn) return
     dispatch(setLoader());
