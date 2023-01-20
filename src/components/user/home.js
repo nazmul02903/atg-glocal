@@ -94,7 +94,7 @@ function Home(props) {
   };
 
   const onFailure = () => {
-    // alertCustom("error", "Somthing went wrong", "/home");
+     alertCustom("error", "Somthing went wrong", "/home");
     //console.log("Handle failure cases");
   };
   const { signOut } = useGoogleLogout({

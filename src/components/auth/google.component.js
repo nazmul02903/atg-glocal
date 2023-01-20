@@ -23,7 +23,7 @@ function LoginWithGoogle() {
 
   const onFailure = (res) => {
     console.log("Login failed: res:", res);
-    // alert("error", "Something went wrong. Please try again later");
+     alert("error", "Something went wrong. Please try again later");
   };
 
   const { signIn } = useGoogleLogin({
