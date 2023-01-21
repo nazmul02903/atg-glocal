@@ -25,6 +25,7 @@ import { useGoogleLogout } from "react-google-login";
 import { logout } from "../../store/actions/auth";
 import LoginComponent from "../auth/login.component";
 import BottomBar from "../bottom-bar/bottomBar.component";
+import csrFunding from "../../assets/homepg/img/csrFunding.svg";
 const clientId = process.env.REACT_APP_OAUTH_CLIENT_ID;
 
 function Home(props) {
@@ -335,6 +336,15 @@ function Home(props) {
 
             </div>
           </div>
+
+          <div className="csr-funding-homepage">
+            <h1>CSR Funding Eligibility Test</h1>
+            <p>Get Your NGO Verified By Our Experts</p>
+            <img src={csrFunding} alt="" />
+            <button>START CSR TEST</button>
+          </div>
+          {/* CSR Funding SECTION END*/}
+          
           <div className="sect-3">
             <div className="upcoming-events">
               <div className="top">
