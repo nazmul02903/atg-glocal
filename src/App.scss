@@ -423,7 +423,7 @@ a:hover {
 }
 
 .bottom-bar p {
-    font-size: 1.7rem;
+    font-size: 14px;
     margin: 0;
     margin-top: -5px;
     color: gray;
@@ -439,7 +439,16 @@ a:hover {
       display: none;
     }  
   }
-
+@media screen and (min-width: 768px) {
+ .bottom-bar {
+     display: none;
+     opacity: 0;
+  }
+  .bottom-bar p {
+    font-size: 16px;
+  }
+  
+}
 // CSR Funding section in Homepage
 
 .csr-funding-homepage {

@@ -83,7 +83,7 @@ function Home(props) {
   const [loginActive, setLoginActive] = useState(false)
   const { user } = useSelector(state => state.auth)
   // console.log(user);
-const history = useHistory()
+  const history = useHistory()
   const handleLogout = () => {
     dispatch(setLoader());
     signOut();
@@ -106,7 +106,7 @@ const history = useHistory()
     onLogoutSuccess,
     onFailure,
   });
-  console.log("banners", banners);
+  console.log("banners", banners)
   // console.log('categories', categories);
   // console.log('subCategoriesEvents', subCategoriesEvents);
   // console.log('subCategoriesJobs', subCategoriesJobs);
@@ -212,38 +212,10 @@ const history = useHistory()
                           {event.name}
                         </div>
                       </Link>
-                      <div className="division-subtext">
+                      {/* <div className="division-subtext">
                         Do what you love, meet others who love it, find your
                         community. The rest is history!
-                      </div>
-                    </div>
-                  )
-                })}
-              </div>
-
-              <div className="home-row divisions-row">
-                {subCategoriesJobs.map((event, idx) => {
-                  return (
-                    <div className="division" key={idx} >
-                      <Link to={`/jobs/${idx + 1}`} className="services-link">
-                        <div className="imgBox eventBox">
-                          <div className="division-name-inside">
-                            {event.name}
-                          </div>
-                          <img
-                            src={event.imageUrl}
-                            className="icon"
-                            alt=""
-                          />
-                        </div>
-                        <div className="division-name">
-                          {event.name}
-                        </div>
-                      </Link>
-                      <div className="division-subtext">
-                        Do what you love, meet others who love it, find your
-                        community. The rest is history!
-                      </div>
+                      </div> */}
                     </div>
                   )
                 })}
@@ -268,14 +240,36 @@ const history = useHistory()
                           {event.name}
                         </div>
                       </Link>
-                      <div className="division-subtext">
-                        Do what you love, meet others who love it, find your
-                        community. The rest is history!
-                      </div>
                     </div>
                   )
                 })}
               </div>
+              
+              <div className="home-row divisions-row">
+                {subCategoriesJobs.map((event, idx) => {
+                  return (
+                    <div className="division" key={idx} >
+                      <Link to={`/jobs/${idx + 1}`} className="services-link">
+                        <div className="imgBox eventBox">
+                          <div className="division-name-inside">
+                            {event.name}
+                          </div>
+                          <img
+                            src={event.imageUrl}
+                            className="icon"
+                            alt=""
+                          />
+                        </div>
+                        <div className="division-name">
+                          {event.name}
+                        </div>
+                      </Link>
+                    </div>
+                  )
+                })}
+              </div>
+
+            
 
             </div>
           </div>
@@ -284,7 +278,7 @@ const history = useHistory()
             <h1>CSR Funding Eligibility Test</h1>
             <p>Get Your NGO Verified By Our Experts</p>
             <img src={csrFunding} alt="" />
-            <button onClick={()=> history.push('/csrForm')} >START CSR TEST</button>
+            <button onClick={() => history.push('/csrForm')} >START CSR TEST</button>
           </div>
           {/* CSR Funding SECTION END*/}
 
@@ -629,13 +623,15 @@ const history = useHistory()
             <p>Get your NGO verified by our experts</p>
             <div className="service-items">
               {services.map((service, i) => (
-                <div
-                  style={{ backgroundColor: service.bgColor }}
-                  key={i}
-                  className="single-service"
-                >
-                  <img src={service.img} alt="" />
-                  <span>{service.title}</span>
+                <div className="service-wrapper">
+                  <div
+                    style={{ backgroundColor: service.bgColor }}
+                    key={i}
+                    className="single-service"
+                  >
+                    <img src={service.img} alt="" />
+                    <span>{service.title}</span>
+                  </div>
                 </div>
               ))}
             </div>

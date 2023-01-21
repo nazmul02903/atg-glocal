@@ -529,7 +529,7 @@ hr {
 
   .division {
     width: auto;
-    height: 120px;
+    height: 115px;
     flex: 1;
   }
 
@@ -542,11 +542,11 @@ hr {
     font-family: "Noto Sans", sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 13px;
     text-align: center;
     color: #0058a9;
     margin: auto;
-    word-break: break-all;
+    word-break: keep-all;
     max-height: 55px;
   }
 
@@ -563,7 +563,8 @@ hr {
   }
 
   .imgBox img {
-    max-width: 50px;
+    max-width: 45px;
+    flex: 1;
   }
 }
 
@@ -634,7 +635,11 @@ hr {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
-
+.service-wrapper{
+  /* min-height: 206px; */
+  display: flex;
+  align-items: stretch;
+}
 .single-service {
   box-shadow: 0px 2.04315px 4.08629px rgba(0, 0, 0, 0.25);
   border-radius: 8.17259px;
@@ -643,8 +648,16 @@ hr {
   display: flex;
   gap: 15px;
   flex-direction: column;
+justify-content: space-between;
+overflow-x: hidden;
+  flex: 1;
 }
 
+.single-service img {
+  max-width: 120px;
+object-fit: contain;
+  margin: 0 auto;
+}
 .single-service span {
   font-weight: 500;
   font-size: 13.2876px;
@@ -658,7 +671,7 @@ hr {
   font-size: 10px !important;
 }
 
-@media screen and (min-width: 624px) {
+@media screen and (min-width: 768px) {
 
   .service-provide {
     display: none;
@@ -673,7 +686,7 @@ hr {
   }
 }
 
-@media screen and (max-width: 624px) {
+@media screen and (max-width: 768px) {
 
   .sect-1, .sect-3, .sect-4, .sect-5 {
     display: none;
@@ -698,5 +711,8 @@ hr {
 
   .home-navBar .logo img {
     width: 100%;
+  }
+  .imgBox img{
+    height: auto;
   }
 }
