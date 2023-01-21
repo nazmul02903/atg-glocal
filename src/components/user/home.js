@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "../../assets/homepg/home.css";
 import Logo from "../../assets/homepg/img/gb-logo.png";
 import Graphic from "../../assets/homepg/img/graphic.png";
@@ -83,7 +83,7 @@ function Home(props) {
   const [loginActive, setLoginActive] = useState(false)
   const { user } = useSelector(state => state.auth)
   // console.log(user);
-
+const history = useHistory()
   const handleLogout = () => {
     dispatch(setLoader());
     signOut();
@@ -284,7 +284,7 @@ function Home(props) {
             <h1>CSR Funding Eligibility Test</h1>
             <p>Get Your NGO Verified By Our Experts</p>
             <img src={csrFunding} alt="" />
-            <button>START CSR TEST</button>
+            <button onClick={()=> history.push('/csrForm')} >START CSR TEST</button>
           </div>
           {/* CSR Funding SECTION END*/}
 
@@ -640,7 +640,7 @@ function Home(props) {
               ))}
             </div>
           </div>
-          
+
           <div className="footer">
             <div className="header"></div>
             <div className="links">
