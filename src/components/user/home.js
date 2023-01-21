@@ -9,6 +9,12 @@ import CSRFund from "../../assets/homepg/img/csrFund.svg";
 import GovFund from "../../assets/homepg/img/govFund.svg";
 import GovJob from "../../assets/homepg/img/govJob.svg";
 import NGOJob from "../../assets/homepg/img/ngoJob.svg";
+import FirstSlider from "../../assets/slider/slider1.jpg";
+import postReqSlider from "../../assets/slider/postreqSlider.jpg";
+import service1 from "../../assets/service/service1.jpg";
+import service2 from "../../assets/service/service2.jpg";
+import service3 from "../../assets/service/service3.png";
+import service4 from "../../assets/service/service4.jpg";
 import EventBanner from "../../assets/homepg/img/banner.png";
 import Phone1 from "../../assets/homepg/img/phone-1.png";
 import Phone2 from "../../assets/homepg/img/phone-2.png";
@@ -26,7 +32,45 @@ import { logout } from "../../store/actions/auth";
 import LoginComponent from "../auth/login.component";
 import BottomBar from "../bottom-bar/bottomBar.component";
 import csrFunding from "../../assets/homepg/img/csrFunding.svg";
+
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 const clientId = process.env.REACT_APP_OAUTH_CLIENT_ID;
+
+const services = [
+  {
+    title: "Report Writing",
+    bgColor: "#DB8A7F",
+    img: service1,
+  },
+  {
+    title: "Project Proposal",
+    bgColor: "#7FC5DB",
+    img: service2,
+  },
+  {
+    title: "Content Writing",
+    bgColor: "#DBAB7F",
+    img: service3,
+  },
+  {
+    title: "Brochure Design",
+    bgColor: "#9CDB7F",
+    img: service4,
+  },
+  {
+    title: "Content Writing",
+    bgColor: "#DBAB7F",
+    img: service3,
+  },
+  {
+    title: "Brochure Design",
+    bgColor: "#9CDB7F",
+    img: service4,
+  },
+];
 
 function Home(props) {
   const [banners, setBanners] = useState();
@@ -45,7 +89,6 @@ function Home(props) {
     signOut();
   };
 
-
   const onLogoutSuccess = (res) => {
     dispatch(logout());
     localStorage.removeItem("user");
@@ -63,7 +106,7 @@ function Home(props) {
     onLogoutSuccess,
     onFailure,
   });
-  // console.log('banners', banners);
+  console.log("banners", banners);
   // console.log('categories', categories);
   // console.log('subCategoriesEvents', subCategoriesEvents);
   // console.log('subCategoriesJobs', subCategoriesJobs);
@@ -75,9 +118,9 @@ function Home(props) {
   useEffect(() => {
     // if (!isLoggedIn) return
     dispatch(setLoader());
-    let userId = ''
+    let userId = "";
     if (isLoggedIn) {
-      userId = JSON.parse(localStorage.getItem('user')).userId
+      userId = JSON.parse(localStorage.getItem("user")).userId;
     }
     // console.log(userId);
     UserService.homeAssets()
@@ -99,26 +142,6 @@ function Home(props) {
           error.toString();
         alertCustom("error", message, "/home");
       });
-
-    // UserService.homeV2(userId)
-    //   .then((res) => {
-    //     console.log(res);
-    //     dispatch(clearLoader());
-    //     setBanners(res.data.bannerBeans);
-    //     setCategories(res.data.homeCategories);
-    //     setSubCategoriesEvents(res.data.homeCategories[0].homeSubCategories);
-    //     setSubCategoriesFundings(res.data.homeCategories[1].homeSubCategories);
-    //     setSubCategoriesJobs(res.data.homeCategories[2].homeSubCategories);
-    //   })
-    //   .catch((error) => {
-    //     const message =
-    //       (error.response &&
-    //         error.response.data &&
-    //         error.response.data.message) ||
-    //       error.message ||
-    //       error.toString();
-    //     alertCustom("error", message, "/home");
-    //   });
   }, []);
 
   if (isLoggedIn && !subCategoriesEvents) {
@@ -132,101 +155,22 @@ function Home(props) {
   if (isLoggedIn && !subCategoriesJobs) {
     dispatch(setLoader());
     return null;
-  }
-  else {
+  } else {
     dispatch(clearLoader());
     return (
       <>
 
         <div className="home">
-          {/* <div className="home-navBar home-row">
-            <Link to="/">
-              <div className="logo">
-                <img src={Logo} alt="" />
-              </div>
-            </Link>
-            {!isLoggedIn ?
-              <div className="actions home-row">
-                <div className="lang action">English</div>
-                <div className="link-tags">
-                  <div className="logIn action" onClick={openLoginModal} >LogIn</div>
-                </div>
-                <Link to="/register" className="link-tags">
-                  <div className="singUp action">SingUp</div>
-                </Link>
-              </div>
-              :
-              <div>
-                {user && (
-                  <li className="nav-item">
-                    <Dropdown>
-                      <Dropdown.Toggle variant="dark">
-                        <h5 className="d-inline">{user.name}</h5>
-                      </Dropdown.Toggle>
-                      {user.admin ? (
-                        <Dropdown.Menu className="dropdown-menu-dark" variant="dark">
-                          <Dropdown.Item href="/admin/allJobs">
-                            All Jobs
-                          </Dropdown.Item>
-                          <Dropdown.Item as={Link} to="/admin/allNews">
-                            All News
-                          </Dropdown.Item>
-                          <Dropdown.Item as={Link} to="/admin/events/1">
-                            Workshops & Trainings
-                          </Dropdown.Item>
-                          <Dropdown.Item as={Link} to="/admin/events/2">
-                            Awards & Competitions
-                          </Dropdown.Item>
-                          <Dropdown.Item as={Link} to="/admin/events/3">
-                            Exhibition & Summits
-                          </Dropdown.Item>
-                          <Dropdown.Item as={Link} to="/admin/allFundingUpdates">
-                            Funding Updates
-                          </Dropdown.Item>
-                          <Dropdown.Item as={Link} to="/admin/allRFP">
-                            RFP
-                          </Dropdown.Item>
-                          <Dropdown.Item as={Link} to="/admin/kycList">
-                            KYC List
-                          </Dropdown.Item>
-                          <Dropdown.Item as={Link} to="/admin/academics">
-                            Academics
-                          </Dropdown.Item>
-                          <Dropdown.Item as={Link} to="/login" onClick={handleLogout}>
-                            <button className="btn btn-danger p-2">Logout</button>
-                          </Dropdown.Item>
-                          <Dropdown.Item as={Link} to="/admin/dashboard/events">
-                            My Events
-                          </Dropdown.Item>
-                        </Dropdown.Menu>
-                      ) : (
-                        <Dropdown.Menu variant="dark" className="dropdown-menu-dark">
-                          <Dropdown.Item as={Link} to="/user/dashboard/myEvents">
-                            My Events
-                          </Dropdown.Item>
-                          <Dropdown.Item href="/user/dashboard/myJobs">
-                            My Jobs
-                          </Dropdown.Item>
-                          <Dropdown.Item href="/user/dashboard/myFundingUpdate">
-                            My Funding Updates
-                          </Dropdown.Item>
-                          <Dropdown.Item as={Link} to="/posting">
-                            Create Post
-                          </Dropdown.Item>
-                          <Dropdown.Item href="/user/kycStatus">
-                            KYC Status
-                          </Dropdown.Item>
-                          <Dropdown.Item as={Link} to="/login" onClick={handleLogout}>
-                            <button className="btn btn-danger p-2">Logout</button>
-                          </Dropdown.Item>
-                        </Dropdown.Menu>
-                      )}
-                    </Dropdown>
-                  </li>
-                )}
-              </div>
-            }
-          </div> */}
+          {/* nazmul hasan */}
+
+          <div className="my-3 banner-slider">
+            <Slider dots={true}>
+              <img src={FirstSlider} alt="" />
+              <img src={FirstSlider} alt="" />
+              <img src={FirstSlider} alt="" />
+              <img src={FirstSlider} alt="" />
+            </Slider>
+          </div>
 
           <div className="sect-1 home-row">
             <div className="details">
@@ -249,7 +193,6 @@ function Home(props) {
             in-person events. It’s free to create an account.
           </div> */}
             <div className="divisions home-column">
-
               <div className="home-row divisions-row">
                 {subCategoriesEvents.map((event, idx) => {
                   return (
@@ -344,7 +287,7 @@ function Home(props) {
             <button>START CSR TEST</button>
           </div>
           {/* CSR Funding SECTION END*/}
-          
+
           <div className="sect-3">
             <div className="upcoming-events">
               <div className="top">
@@ -576,6 +519,7 @@ function Home(props) {
           </div>
         </div> */}
           </div>
+
           <div className="sect-4 home-row">
             <div className="phone1">
               <img src={Phone1} alt="" />
@@ -595,6 +539,7 @@ function Home(props) {
               <img src={Phone2} alt="" />
             </div>
           </div>
+
           <div className="sect-5 home-column">
             <div className="community-heading heading">
               {" "}
@@ -648,6 +593,54 @@ function Home(props) {
             </div>
           </div>
 
+          <div className="my-20 postReq-wrapper">
+            <div className="postReq-content">
+              <h2>Post your requirements free !!</h2>
+              <p className="mb-5">
+                <span className="block mb-4">
+                  Posting our platform is completely free
+                </span>
+                <span>
+                  Post Events to get registrations from NGO community Post Jobs to
+                  get candidates to work in social secto Post to search NGOs that
+                  natch your project criteria
+                </span>
+              </p>
+            </div>
+            <Slider dots={true}>
+              <div className="postReq-slider">
+                <img src={postReqSlider} alt="" />
+                <h4>Post An Event</h4>
+              </div>
+              <div className="postReq-slider">
+                <img src={postReqSlider} alt="" />
+                <h4>Post An Event</h4>
+              </div>
+              <div className="postReq-slider">
+                <img src={postReqSlider} alt="" />
+                <h4>Post An Event</h4>
+              </div>
+            </Slider>
+          </div>
+
+          {/* Service we Provide section */}
+          <div className="service-provide">
+            <h4>Services We Provide</h4>
+            <p>Get your NGO verified by our experts</p>
+            <div className="service-items">
+              {services.map((service, i) => (
+                <div
+                  style={{ backgroundColor: service.bgColor }}
+                  key={i}
+                  className="single-service"
+                >
+                  <img src={service.img} alt="" />
+                  <span>{service.title}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          
           <div className="footer">
             <div className="header"></div>
             <div className="links">

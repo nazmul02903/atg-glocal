@@ -23,7 +23,7 @@ function LoginWithGoogle() {
 
   const onFailure = (res) => {
     console.log("Login failed: res:", res);
-    alert("error", "Something went wrong. Please try again later");
+     alert("error", "Something went wrong. Please try again later");
   };
 
   const { signIn } = useGoogleLogin({
@@ -42,7 +42,7 @@ function LoginWithGoogle() {
         dispatch(setLoader());
         signIn();
       }}
-      className='google-button mx-auto mt-3'
+      className='mx-auto mt-3 google-button'
     >
       <div className='google-btn'>
         <div className='google-icon-wrapper'>
@@ -50,7 +50,7 @@ function LoginWithGoogle() {
             src={GoogleLogo}
             width='30px'
             alt='google login'
-            className='google-icon inline'
+            className='inline google-icon'
           />
         </div>
         <p className='btn-text'>
