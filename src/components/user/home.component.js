@@ -92,7 +92,7 @@ const Home = (props) => {
   }
 
   return (
-    <Container> 
+    <Container>
       <Row>
         <Col xs={12} sm={3}>
           <Card
@@ -172,7 +172,29 @@ const Home = (props) => {
                       Workshops and Training
                     </Link>
                   </DropdownItem>
-
+                  {/* <DropdownItem disabled={isActive("3")}> */}
+                  <DropdownItem>
+                    <Link
+                      to={{
+                        pathname: "/user/create/event/awardEvent",
+                        state: {
+                          expiryText: getPaidModule("3").expiryDate,
+                          package: getPaidModule("3").packageMode,
+                        },
+                      }}
+                      style={{ textDecoration: "none" }}
+                    >
+                      <span>
+                        <img
+                          className="inline"
+                          src={imgAwards}
+                          width="50"
+                          alt="workshop"
+                        />
+                      </span>
+                      Awards/Competitions
+                    </Link>
+                  </DropdownItem>
                   {/* <DropdownItem disabled={isActive("4")}> */}
                   <DropdownItem>
                     <Link
@@ -197,29 +219,7 @@ const Home = (props) => {
                     </Link>
                   </DropdownItem>
 
-                  {/* <DropdownItem disabled={isActive("3")}> */}
-                  <DropdownItem>
-                    <Link
-                      to={{
-                        pathname: "/user/create/event/awardEvent",
-                        state: {
-                          expiryText: getPaidModule("3").expiryDate,
-                          package: getPaidModule("3").packageMode,
-                        },
-                      }}
-                      style={{ textDecoration: "none" }}
-                    >
-                      <span>
-                        <img
-                          className="inline"
-                          src={imgAwards}
-                          width="50"
-                          alt="workshop"
-                        />
-                      </span>
-                      Awards/Competitions
-                    </Link>
-                  </DropdownItem>
+
                   {/* <DropdownItem disabled={isActive("8")} className="mt-2"> */}
                   {/* <DropdownItem className="mt-2">
                     <Link
@@ -251,9 +251,9 @@ const Home = (props) => {
         <Col xs={12} sm={3}>
           <Card
             className="custom-card"
-            // className={
-            //   isActive("9") ? "disabled-card custom-card" : "custom-card"
-            // }
+          // className={
+          //   isActive("9") ? "disabled-card custom-card" : "custom-card"
+          // }
           >
             <CardImg
               className="mx-auto"
@@ -287,9 +287,9 @@ const Home = (props) => {
         <Col xs={12} sm={3}>
           <Card
             className="custom-card"
-            // className={
-            //   isActive("8") ? "disabled-card custom-card" : "custom-card"
-            // }
+          // className={
+          //   isActive("8") ? "disabled-card custom-card" : "custom-card"
+          // }
           >
             <CardImg
               className="mx-auto"
@@ -379,7 +379,7 @@ const Home = (props) => {
               </button>
             </a>
           </div>
-{/* 
+          {/* 
           <div className="whatsapp_container">
             <a
               href="https://api.whatsapp.com/send?phone=919004810804&text=Tell me about GlocalBodh"
