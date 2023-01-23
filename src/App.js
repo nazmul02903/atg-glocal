@@ -36,7 +36,7 @@ const BackToDB = () => {
   return (
     <div className="d-flex justify-content-end me-2 mt-3" id="backToDashboard">
       <button className="btn" style={{ backgroundColor: "#4A5865" }}>
-        <Link to="/posting" style={{ textDecoration: "none", color: "white" }}>
+        <Link to={'/'} style={{ textDecoration: "none", color: "white" }}>
           <span>
             <img src={BackArrow} alt="Back arrow" />
             {"  Back To Dashboard "}
