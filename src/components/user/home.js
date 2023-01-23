@@ -165,10 +165,12 @@ function Home(props) {
 
           <div className="my-3 banner-slider">
             <Slider dots={true}>
+              {banners.map(banner => {
+                return <img src={banner.imageUrl} alt="" />
+              })}
+              {/* <img src={FirstSlider} alt="" />
               <img src={FirstSlider} alt="" />
-              <img src={FirstSlider} alt="" />
-              <img src={FirstSlider} alt="" />
-              <img src={FirstSlider} alt="" />
+              <img src={FirstSlider} alt="" /> */}
             </Slider>
           </div>
 
