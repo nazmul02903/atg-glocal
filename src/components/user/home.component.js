@@ -23,9 +23,13 @@ import imgRFP from "../../assets/Icons/RFP.svg";
 import imgFunding from "../../assets/Icons/fundig-updates.svg";
 import imgWorkshop from "../../assets/Icons/workshop.svg";
 import imgAwards from "../../assets/Icons/reports.svg";
+import EventAwardIcon from "../../assets/event_awards.svg";
+import EventWorkshopIcon from "../../assets/event_workshop.svg";
+import EventExhibitionIcon from "../../assets/event_exhibition.svg";
 import YouTube from "../../assets/YouTube.png";
 import Popup from "../../helpers/popup";
 import "../../assets/popup.css";
+
 
 const Home = (props) => {
   const [timedPopup, setTimedPopup] = useState(false);
@@ -150,7 +154,7 @@ const Home = (props) => {
                 </DropdownToggle>
                 <DropdownMenu style={{ width: "270px" }}>
                   {/* <DropdownItem disabled={isActive("2")}> */}
-                  <DropdownItem>
+                  <DropdownItem className="py-2" >
                     <Link
                       to={{
                         pathname: "/user/create/event/workshopEvent",
@@ -160,20 +164,21 @@ const Home = (props) => {
                         },
                       }}
                       style={{ textDecoration: "none" }}
+                      className="flex items-center"
                     >
-                      <span>
+                      <div className="flex items-center mr-2">
                         <img
                           className="inline"
-                          src={imgWorkshop}
-                          width="50"
+                          src={EventWorkshopIcon}
+                          width="30"
                           alt="workshop"
                         />
-                      </span>
+                      </div>
                       Workshops and Training
                     </Link>
                   </DropdownItem>
                   {/* <DropdownItem disabled={isActive("3")}> */}
-                  <DropdownItem>
+                  <DropdownItem className="py-2">
                     <Link
                       to={{
                         pathname: "/user/create/event/awardEvent",
@@ -183,20 +188,21 @@ const Home = (props) => {
                         },
                       }}
                       style={{ textDecoration: "none" }}
+                      className="flex items-center"
                     >
-                      <span>
+                      <div className="flex items-center mr-2">
                         <img
                           className="inline"
-                          src={imgAwards}
-                          width="50"
+                          src={EventAwardIcon}
+                          width="30"
                           alt="workshop"
                         />
-                      </span>
+                      </div>
                       Awards/Competitions
                     </Link>
                   </DropdownItem>
                   {/* <DropdownItem disabled={isActive("4")}> */}
-                  <DropdownItem>
+                  <DropdownItem className="py-2">
                     <Link
                       to={{
                         pathname: "/user/create/event/exhibitionEvent",
@@ -206,15 +212,16 @@ const Home = (props) => {
                         },
                       }}
                       style={{ textDecoration: "none" }}
+                      className="flex items-center"
                     >
-                      <span>
+                      <div className="flex items-center mr-2">
                         <img
                           className="inline"
-                          src={imgWorkshop}
-                          width="50"
+                          src={EventExhibitionIcon}
+                          width="30"
                           alt="workshop"
                         />
-                      </span>
+                      </div>
                       Event/Exhibition{" "}
                     </Link>
                   </DropdownItem>

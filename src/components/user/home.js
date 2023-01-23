@@ -174,7 +174,7 @@ function Home(props) {
             </Slider>
           </div>
 
-          <div className="sect-1 home-row">
+          {/* <div className="sect-1 home-row">
             <div className="details">
               <div className="large-text">
                 Connecting people working in NGOs to Opportunities
@@ -187,7 +187,7 @@ function Home(props) {
             <div className="graphic">
               <img src={Graphic} alt="" />
             </div>
-          </div>
+          </div> */}
           <div className="sect-2">
             {/* <div className="heading">How GlocalBodh Works</div>
           <div className="sub-text">

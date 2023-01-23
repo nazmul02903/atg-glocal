@@ -5,6 +5,7 @@ import Modal from "react-bootstrap/Modal";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
+import Cross from "../../assets/Icons/cross.svg";
 import Logo from "../../assets/Icons/App-Icon.svg";
 import LoginWithGoogle from "./google.component";
 
@@ -35,7 +36,7 @@ const Login = (props) => {
       scrollable={true}
       className='login-modal'
     >
-      <div className='col-12 justify-content-center'>
+      <div className='col-12 justify-content-center pt-6'>
         <div className='mx-auto text-center'>
           <img
             src={Logo}
@@ -45,12 +46,12 @@ const Login = (props) => {
           />
         </div>
 
-        <div className='card col-12 col-sm-6 login-card'>
+        <div className='card col-12 col-sm-6 login-card rounded-lg'>
           <div className='text-center'>
             <h4>Welcome Back !</h4>
-            <h5 className='text-muted'>
+            {/* <h5 className='text-muted'>
               Enter your credentials to access your account.
-            </h5>
+            </h5> */}
           </div>
 
           <div className='card-body col-12 col-sm-12'>
@@ -58,13 +59,17 @@ const Login = (props) => {
           </div>
         </div>
       </div>
-      <Modal.Footer>
+      <div className="modal-close-icon">
+        <img src={Cross}  onClick={handleClose ? handleClose : ()=>{}} />
+      </div>
+
+      {/* <Modal.Footer>
         <button className='btn btn-primary'
         onClick={handleClose ? handleClose : ()=>{}}
         >
           Close
         </button>
-      </Modal.Footer>
+      </Modal.Footer> */}
     </Modal>
   );
 };

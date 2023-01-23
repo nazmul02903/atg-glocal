@@ -170,7 +170,7 @@ export const validationSchemaExhibitionEvent = Yup.object().shape({
   }),
 });
 export const validationSchemaFundingUpdate = Yup.object().shape({
-  eventTitle: Yup.string()
+  fuTitle: Yup.string()
     .max(80, "Must be 80 characters or less")
     .required("Event Title is required"),
   description: Yup.string()
