@@ -73,7 +73,7 @@ const services = [
 ];
 
 function Home(props) {
-  const [banners, setBanners] = useState();
+  const [banners, setBanners] = useState([]);
   const [categories, setCategories] = useState([]);
   const [subCategoriesEvents, setSubCategoriesEvents] = useState([]);
   const [subCategoriesJobs, setSubCategoriesJobs] = useState([]);
@@ -106,7 +106,7 @@ function Home(props) {
     onLogoutSuccess,
     onFailure,
   });
-  console.log("banners", banners)
+  // console.log("banners", banners)
   // console.log('categories', categories);
   // console.log('subCategoriesEvents', subCategoriesEvents);
   // console.log('subCategoriesJobs', subCategoriesJobs);

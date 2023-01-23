@@ -434,7 +434,7 @@ const AwardEvent = (props) => {
           </div>
         </div>
       )}
-      <div className='form-group'>
+      {/* <div className='form-group'>
         <label htmlFor='eventLink'>Link to web-page</label>
         <input
           {...register("eventLink")}
@@ -445,7 +445,7 @@ const AwardEvent = (props) => {
         {errors.eventLink && errors.eventLink.message ? (
           <div className='invalid-feedback'>{errors.eventLink.message}</div>
         ) : null}
-      </div>
+      </div> */}
       <div className='form-group'>
         <label htmlFor='postedBy'>
           Posted By

@@ -120,8 +120,7 @@ export const validationSchemaAwardEvent = Yup.object().shape({
   //totalSeats: Yup.number().typeError("you must specify a number"),
   applicationDeadline: Yup.string().required("Please select Deadline Date"),
   eventLink: Yup.string()
-    .max(255, "Must be 255 characters or less")
-    .required("This is required"),
+    .max(255, "Must be 255 characters or less"),
   terms: Yup.bool().oneOf([true], "Accept Terms & Conditions is required"),
   postedBy: Yup.string()
     .max(255, "Must be 255 characters or less")
@@ -156,8 +155,7 @@ export const validationSchemaExhibitionEvent = Yup.object().shape({
 
   applicationDeadline: Yup.string().required("Please select Deadline Date"),
   eventLink: Yup.string()
-    .max(255, "Must be 255 characters or less")
-    .required("This is required"),
+    .max(255, "Must be 255 characters or less"),
   terms: Yup.bool().oneOf([true], "Accept Terms & Conditions is required"),
   postedBy: Yup.string()
     .max(255, "Must be 255 characters or less")
@@ -221,8 +219,7 @@ export const validationSchemaWorkshopEvent = Yup.object().shape({
 
   applicationDeadline: Yup.string().required("Please select Deadline Date"),
   eventLink: Yup.string()
-    .max(255, "Must be 255 characters or less")
-    .required("This is required"),
+    .max(255, "Must be 255 characters or less"),
   terms: Yup.bool().oneOf([true], "Accept Terms & Conditions is required"),
   postedBy: Yup.string()
     .max(255, "Must be 255 characters or less")
