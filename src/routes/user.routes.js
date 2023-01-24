@@ -91,17 +91,17 @@ const UserRoutes = () => {
         <ProtectedRoute exact path="/event/:id" component={AllEvents} />
         <ProtectedRoute
           exact
-          path="/event/:category/:id"
+          path="/event/:category/:id/:eventId"
           component={WorkshopsEventDetails}
         />
         <ProtectedRoute
           exact
-          path="/event/:category/:id"
+          path="/event/:category/:id/:eventId"
           component={awardsEventDetails}
         />
         <ProtectedRoute
           exact
-          path="/event/:category/:id"
+          path="/event/:category/:id/:eventId"
           component={exhibitionsEventDetails}
         />
       </Switch>

@@ -77,7 +77,6 @@ function WorkshopEventDetails(props) {
     document.body.removeChild(el);
     setCopied(true);
   }
-
   // const shareBtn = document.getElementsByClassName("share-btn");
   const shareOptions = document.getElementsByClassName("share-options");
   // shareBtn.addEventListener("click", () => {

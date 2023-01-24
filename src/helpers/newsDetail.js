@@ -14,7 +14,6 @@ const NewsDetailModal = (props) => {
    if(!newsDetail) return <></>
    if(Object.keys(newsDetail).length === 0) return <></>
    
-   console.log('newsDetail', newsDetail);
    return (
       <Modal
          show={show}

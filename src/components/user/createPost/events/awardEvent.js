@@ -154,7 +154,8 @@ const AwardEvent = (props) => {
     S3FileUpload.uploadFile(e.target.files[0], S3_CONFIG_AWARDS)
       .then((data) => setPosterLink(data.location))
       .catch((err) => {
-        alertCustom("error", err.message, "/home");
+        console.log(err);
+        // alertCustom("error", err.message, "/home");
       });
   };
   return (

@@ -27,6 +27,7 @@ const AllEvents = (props) => {
     dispatch(setLoader());
     AdminService.fetchEventsByCategory(id, 1).then((res) => {
       dispatch(clearLoader());
+      console.log('data', res.data.eventBeans);
       setEvents(res.data.eventBeans);
     });
   }, [id]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -37,7 +38,6 @@ const AllEvents = (props) => {
     if (id === '3') return 'Exhibitions & Summits'
     return ''
   }
-
   return (
     <div className="list-group row">
       <h3 className="mt-4 mb-4"> {getEventName()} </h3>
@@ -73,7 +73,7 @@ const AllEvents = (props) => {
             <div className="mt-3">
               <a
                 className="btn btn-primary ms-2"
-                href={`${process.env.REACT_APP_URL}/event/${event.eventCategoryText}/${event.id}`}
+                href={`${process.env.REACT_APP_URL}/event/${event.eventCategoryText}/${event.id}/${event.eventId}`}
                 role="button"
                 target="_blank"
                 rel="noreferrer noopener"

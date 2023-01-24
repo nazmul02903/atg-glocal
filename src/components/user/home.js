@@ -550,7 +550,7 @@ function Home(props) {
                     <img src={bean.newsLink.slice(0,5) === 'https' ? bean.newsLink :Function1} 
                     className="function-img" alt="" />
                   </div>
-                  <div className="function-heading">{bean.title.slice(1, 50)}</div>
+                  <div className="function-heading">{bean.title.slice(0, 50)}</div>
                   <div className="function-description"
                     dangerouslySetInnerHTML={{
                       __html: bean.description.length > 100 ? `${bean.description.slice(3, 100)}...`

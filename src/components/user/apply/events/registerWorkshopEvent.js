@@ -68,7 +68,7 @@ const RegisterWorkshopEvent = (props) => {
       email: values.email,
       organizationName: values.organizationName,
       cityId: values.cityId,
-      eventId: pathArray[3],
+      eventId: pathArray[4],
       eventCategoryId: "1",
     };
     UserService.registerForWorkshop(data)
