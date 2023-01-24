@@ -8,10 +8,13 @@ import Cross from "../assets/Icons/cross.svg";
 import Logo from "../assets/Icons/App-Icon.svg";
 
 const NewsDetailModal = (props) => {
-   // console.log(props);
    const { show, handleClose, newsDetail } = props
    const { description, title, newsLink } = newsDetail
-
+   
+   if(!newsDetail) return <></>
+   if(Object.keys(newsDetail).length === 0) return <></>
+   
+   console.log('newsDetail', newsDetail);
    return (
       <Modal
          show={show}
@@ -28,10 +31,9 @@ const NewsDetailModal = (props) => {
                   <img src={newsLink.slice(0,5) === 'https' ? newsLink :Function1} className="function-img" alt="" />
                </div>
                <div className="function-heading">{title.slice(1, 50)}</div>
-               <div className="function-description">
-                  {
-                  description
-               }</div>
+               <div className="function-description"  dangerouslySetInnerHTML={{ __html: description }}>
+                  {/* {description} */}
+               </div>
             </div>
          </div>
          <div className="modal-close-icon">

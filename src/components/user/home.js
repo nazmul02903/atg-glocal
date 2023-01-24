@@ -112,7 +112,7 @@ function Home(props) {
     onLogoutSuccess,
     onFailure,
   });
-  const handleNewsClick = (newsBean)=>{
+  const handleNewsClick = (newsBean) => {
     setNewsDetail(newsBean)
     setNewsDetailModalActive(true)
   }
@@ -545,15 +545,18 @@ function Home(props) {
             </div>
             <Slider dots={true} slidesToShow={3} slidesToScroll={3}  >
               {newsBeans.map((bean, i) => (
-                <div className="community-card home-column cursor-pointer" onClick={()=>handleNewsClick(bean)}>
+                <div className="community-card home-column cursor-pointer" onClick={() => handleNewsClick(bean)}>
                   <div className="function-img-container">
                     <img src={Function1} className="function-img" alt="" />
                   </div>
                   <div className="function-heading">{bean.title.slice(1, 50)}</div>
-                  <div className="function-description">{
-                    bean.description.length > 100 ? `${bean.description.slice(1, 100)}...`
-                      : bean.description
-                  }</div>
+                  <div className="function-description"
+                    dangerouslySetInnerHTML={{
+                      __html: bean.description.length > 100 ? `${bean.description.slice(3, 100)}...`
+                        : bean.description
+                    }}>
+
+                  </div>
                 </div>
               ))}
             </Slider>
@@ -634,7 +637,7 @@ function Home(props) {
 
         <LoginComponent show={loginActive} handleClose={closeLoginModal} />
         <NewsDetailModal show={newsDetailModalActive}
-          handleClose={() => setNewsDetailModalActive(false)} newsDetail={newsDetail} /> 
+          handleClose={() => setNewsDetailModalActive(false)} newsDetail={newsDetail} />
       </>
     );
   }
