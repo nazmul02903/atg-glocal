@@ -16,6 +16,7 @@ import { alertCustom } from "../helpers/alerts";
 import { useGoogleLogout } from "react-google-login";
 import { useSelector } from "react-redux";
 import LoginComponent from "./auth/login.component";
+import RegisterComponent from "./auth/registermodal.component";
 const clientId = process.env.REACT_APP_OAUTH_CLIENT_ID;
 
 const Header = (props) => {
@@ -25,6 +26,8 @@ const Header = (props) => {
 
   const { isLoggedIn } = useSelector(state => state.auth)
   const [loginActive, setLoginActive] = useState(false)
+  
+  const [signUpActive, setSignUpActive] = useState(false)
   const { user } = useSelector(state => state.auth)
 
   const handleLogout = () => {
@@ -44,7 +47,7 @@ const Header = (props) => {
   };
 
   const onFailure = () => {
-    alertCustom("error", "Somthing went wrong", "/home");
+   // alertCustom("error", "Somthing went wrong", "/home");
     //console.log("Handle failure cases");
   };
 
@@ -56,7 +59,7 @@ const Header = (props) => {
 
   return (
     <>
-      <div className="home-navBar container home-row">
+      <div className="container home-navBar home-row">
         <Link to="/">
           <div className="logo">
             <img src={Logo} alt="" />
@@ -68,9 +71,12 @@ const Header = (props) => {
             <div className="link-tags">
               <div className="logIn action" onClick={openLoginModal} >LogIn</div>
             </div>
-            <Link to="/register" className="link-tags">
+            <div className="link-tags">
+              <div className="logIn action" onClick={() => setSignUpActive(true)} >Signup</div>
+            </div>
+            {/* <Link to="/register" className="link-tags">
               <div className="singUp action">SingUp</div>
-            </Link>
+            </Link> */}
           </div>
           :
           <div>
@@ -111,7 +117,7 @@ const Header = (props) => {
                         Academics
                       </Dropdown.Item>
                       <Dropdown.Item as={Link} to="/login" onClick={handleLogout}>
-                        <button className="btn btn-danger p-2">Logout</button>
+                        <button className="p-2 btn btn-danger">Logout</button>
                       </Dropdown.Item>
                       <Dropdown.Item as={Link} to="/admin/dashboard/events">
                         My Events
@@ -135,7 +141,7 @@ const Header = (props) => {
                         KYC Status
                       </Dropdown.Item>
                       <Dropdown.Item as={Link} to="/login" onClick={handleLogout}>
-                        <button className="btn btn-danger p-2">Logout</button>
+                        <button className="p-2 btn btn-danger">Logout</button>
                       </Dropdown.Item>
                     </Dropdown.Menu>
                   )}
@@ -146,6 +152,7 @@ const Header = (props) => {
         }
       </div>
       <LoginComponent show={loginActive} handleClose={closeLoginModal} />
+      <RegisterComponent show={signUpActive} handleClose={() => setSignUpActive(false)}/>
     </>
   );
 };

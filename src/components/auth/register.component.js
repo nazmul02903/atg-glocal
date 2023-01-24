@@ -39,7 +39,7 @@ const Register = (props) => {
         <img
           src={Logo}
           alt='profile-img'
-          className='img-fluid inline'
+          className='inline img-fluid'
           width='70'
         />
       </div>
@@ -84,7 +84,7 @@ const Register = (props) => {
           </div>
 
           {message && (
-            <div className='form-group mt-2'>
+            <div className='mt-2 form-group'>
               <div
                 className={
                   successfull ? "alert alert-success" : "alert alert-danger"
@@ -95,7 +95,7 @@ const Register = (props) => {
               </div>
             </div>
           )}
-          <div className='form-group mt-2 text-center'>
+          <div className='mt-2 text-center form-group'>
             <Link to='/login' style={{ textDecoration: "none" }}>
               <span className='text-muted'>Already have an Account ?</span>{" "}
               <span style={{ color: "#0057A8" }}>Log In</span>
