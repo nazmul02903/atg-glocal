@@ -78,13 +78,14 @@ function Home(props) {
   const [subCategoriesEvents, setSubCategoriesEvents] = useState([]);
   const [subCategoriesJobs, setSubCategoriesJobs] = useState([]);
   const [subCategoriesFundings, setSubCategoriesFundings] = useState([]);
+  const [newsBeans, setNewsBeans] = useState([]);
   const dispatch = useDispatch();
   const { isLoggedIn } = useSelector(state => state.auth)
   const [loginActive, setLoginActive] = useState(false)
   const { user } = useSelector(state => state.auth)
   const [news, setNews] = useState([])
   // console.log(user);
-  const history = useHistory()
+  const history = useHistory();
   const handleLogout = () => {
     dispatch(setLoader());
     signOut();
@@ -94,7 +95,7 @@ function Home(props) {
     dispatch(logout());
     localStorage.removeItem("user");
     dispatch(clearLoader());
-    window.location = '/'
+    window.location = "/";
     //console.log("Logged out Success");
   };
 
@@ -113,8 +114,8 @@ function Home(props) {
   // console.log('subCategoriesJobs', subCategoriesJobs);
   // console.log('subCategoriesFundings', subCategoriesFundings);
 
-  const openLoginModal = () => setLoginActive(true)
-  const closeLoginModal = () => setLoginActive(false)
+  const openLoginModal = () => setLoginActive(true);
+  const closeLoginModal = () => setLoginActive(false);
 
   useEffect(() => {
     // if (!isLoggedIn) return
@@ -125,17 +126,18 @@ function Home(props) {
     }
     // console.log(userId);
     UserService.homeAssets()
-      .then(res => {
-        console.log('data', res.data)
+      .then((res) => {
+        console.log("data", res.data);
+        setNewsBeans(res.data.newsBeans);
         dispatch(clearLoader());
         setBanners(res.data.bannerBeans);
         setCategories(res.data.homeCategories);
         setSubCategoriesEvents(res.data.homeCategories[0].homeSubCategories);
         setSubCategoriesFundings(res.data.homeCategories[1].homeSubCategories);
         setSubCategoriesJobs(res.data.homeCategories[2].homeSubCategories);
-        setNews(res.data.newsBeans)
-      }).catch((error) => {
-        console.log('error', error.response);
+      })
+      .catch((error) => {
+        console.log("error", error.response);
         const message =
           (error.response &&
             error.response.data &&
@@ -161,14 +163,13 @@ function Home(props) {
     dispatch(clearLoader());
     return (
       <>
-
         <div className="home">
           {/* nazmul hasan */}
 
           <div className="my-3 banner-slider">
             <Slider dots={true}>
-              {banners.map(banner => {
-                return <img src={banner.imageUrl} alt="" />
+              {banners.map((banner) => {
+                return <img src={banner.imageUrl} alt="" />;
               })}
               {/* <img src={FirstSlider} alt="" />
               <img src={FirstSlider} alt="" />
@@ -183,7 +184,8 @@ function Home(props) {
               </div>
               <div className="small-text">
                 Whatever you’re looking to do this year, Meetup can help. For 20
-                years, people have turned to Meetup to meet people, make friends,{" "}
+                years, people have turned to Meetup to meet people, make
+                friends,{" "}
               </div>
             </div>
             <div className="graphic">
@@ -200,81 +202,63 @@ function Home(props) {
               <div className="home-row divisions-row">
                 {subCategoriesEvents.map((event, idx) => {
                   return (
-                    <div className="division" key={idx} >
+                    <div className="division" key={idx}>
                       <Link to={`/event/${idx + 1}`} className="services-link">
                         <div className="imgBox eventBox">
                           <div className="division-name-inside">
                             {event.name}
                           </div>
-                          <img
-                            src={event.imageUrl}
-                            className="icon"
-                            alt=""
-                          />
+                          <img src={event.imageUrl} className="icon" alt="" />
                         </div>
-                        <div className="division-name">
-                          {event.name}
-                        </div>
+                        <div className="division-name">{event.name}</div>
                       </Link>
                       {/* <div className="division-subtext">
                         Do what you love, meet others who love it, find your
                         community. The rest is history!
                       </div> */}
                     </div>
-                  )
+                  );
                 })}
               </div>
 
               <div className="home-row divisions-row">
                 {subCategoriesFundings.map((event, idx) => {
                   return (
-                    <div className="division" key={idx} >
-                      <Link to={`/fundingUpdates/${idx + 1}`} className="services-link">
+                    <div className="division" key={idx}>
+                      <Link
+                        to={`/fundingUpdates/${idx + 1}`}
+                        className="services-link"
+                      >
                         <div className="imgBox eventBox">
                           <div className="division-name-inside">
                             {event.name}
                           </div>
-                          <img
-                            src={event.imageUrl}
-                            className="icon"
-                            alt=""
-                          />
+                          <img src={event.imageUrl} className="icon" alt="" />
                         </div>
-                        <div className="division-name">
-                          {event.name}
-                        </div>
+                        <div className="division-name">{event.name}</div>
                       </Link>
                     </div>
-                  )
+                  );
                 })}
               </div>
-              
+
               <div className="home-row divisions-row">
                 {subCategoriesJobs.map((event, idx) => {
                   return (
-                    <div className="division" key={idx} >
+                    <div className="division" key={idx}>
                       <Link to={`/jobs/${idx + 1}`} className="services-link">
                         <div className="imgBox eventBox">
                           <div className="division-name-inside">
                             {event.name}
                           </div>
-                          <img
-                            src={event.imageUrl}
-                            className="icon"
-                            alt=""
-                          />
+                          <img src={event.imageUrl} className="icon" alt="" />
                         </div>
-                        <div className="division-name">
-                          {event.name}
-                        </div>
+                        <div className="division-name">{event.name}</div>
                       </Link>
                     </div>
-                  )
+                  );
                 })}
               </div>
-
-            
-
             </div>
           </div>
 
@@ -282,20 +266,22 @@ function Home(props) {
             <h1>CSR Funding Eligibility Test</h1>
             <p>Get Your NGO Verified By Our Experts</p>
             <img src={csrFunding} alt="" />
-            <button onClick={() => history.push('/csrForm')} >START CSR TEST</button>
+            <button onClick={() => history.push("/csrForm")}>
+              START CSR TEST
+            </button>
           </div>
           {/* CSR Funding SECTION END*/}
 
           <div className="sect-3">
             <div className="upcoming-events">
               <div className="top">
-                <div className=" upcoming-heading">Upcoming online events</div>
+                <div className="upcoming-heading">Upcoming online events</div>
                 <Link to="" className="link-tags">
                   <div className="more">more</div>
                 </Link>
               </div>
               <div className="card-holder home-row event-cardHolder horizontal-scroll">
-                <div className=" event-card">
+                <div className="event-card">
                   {/* {isLoggedIn && banners !== undefined && banners !== [] ? <h1>{banners[0].id}</h1> : '' } */}
                   {/* <img
                   src={isLoggedIn && banners[0].imageUrl}
@@ -314,7 +300,7 @@ function Home(props) {
                     <div className="numb_attendee">499 attendee</div>
                   </div>
                 </div>
-                <div className=" event-card">
+                <div className="event-card">
                   {/* <img
                   src={isLoggedIn && banners[1].imageUrl}
                   className="event-banner"
@@ -332,7 +318,7 @@ function Home(props) {
                     <div className="numb_attendee">499 attendee</div>
                   </div>
                 </div>
-                <div className=" event-card">
+                <div className="event-card">
                   {/* <img
                   src={isLoggedIn && banners[2].imageUrl}
                   className="event-banner"
@@ -350,7 +336,7 @@ function Home(props) {
                     <div className="numb_attendee">499 attendee</div>
                   </div>
                 </div>
-                <div className=" event-card">
+                <div className="event-card">
                   <img src={EventBanner} className="event-banner" alt="" />
                   <div className="event-details">
                     <div className="event-date">Wed, Aug 31 · 11:00 PM UTC</div>
@@ -364,7 +350,7 @@ function Home(props) {
                     <div className="numb_attendee">499 attendee</div>
                   </div>
                 </div>
-                <div className=" event-card">
+                <div className="event-card">
                   <img src={EventBanner} className="event-banner" alt="" />
                   <div className="event-details">
                     <div className="event-date">Wed, Aug 31 · 11:00 PM UTC</div>
@@ -378,7 +364,7 @@ function Home(props) {
                     <div className="numb_attendee">499 attendee</div>
                   </div>
                 </div>
-                <div className=" event-card">
+                <div className="event-card">
                   <img src={EventBanner} className="event-banner" alt="" />
                   <div className="event-details">
                     <div className="event-date">Wed, Aug 31 · 11:00 PM UTC</div>
@@ -547,48 +533,20 @@ function Home(props) {
               People on Glocalboadh have fostered community, learned new skills,
               started businesses, and made life-long friends. Learn how.
             </div>
-            <div className="community-cards home-row">
-              <div className=" community-card home-column">
-                <div className="function-img-container">
-                  <img src={Function1} className="function-img" alt="" />
+            <Slider dots={true} slidesToShow={3} slidesToScroll={3}>
+              {newsBeans.map((bean, i) => (
+                <div className="community-card home-column">
+                  <div className="function-img-container">
+                    <img src={Function1} className="function-img" alt="" />
+                  </div>
+                  <div className="function-heading">{bean.title.slice(1, 50)}</div>
+                  <div className="function-description">{
+                    bean.description.length > 100 ? `${bean.description.slice(1, 100)}...`
+                      : bean.description
+                  }</div>
                 </div>
-                <div className="function-heading">
-                  Three Ways To Make Coworker Friendships While Working From Home
-                </div>
-                <div className="function-description">
-                  Work friendships don’t need to fade just because you’re working
-                  remotely. Here are three fun ways you can get to know your
-                  colleagues.
-                </div>
-              </div>
-              <div className=" community-card home-column">
-                <div className="function-img-container">
-                  <img src={Function2} className="function-img" alt="" />
-                </div>
-                <div className="function-heading">
-                  Five Ways to Feel More Connected
-                </div>
-                <div className="function-description">
-                  Since Meetup began nearly 20 years ago, we’ve fostered
-                  connections between more than 50 million people in 190 countries
-                  worldwide. Here are five simple strategies to help you feel more
-                  connected and improve your wellbeing.
-                </div>
-              </div>
-              <div className=" community-card home-column">
-                <div className="function-img-container">
-                  <img src={Function3} className="function-img" alt="" />
-                </div>
-                <div className="function-heading">
-                  How To Live Your Best Social Life
-                </div>
-                <div className="function-description">
-                  Social interaction is a key part of any healthy lifestyle.
-                  Discover all different kinds of events that’ll help you maintain
-                  a fun and fulfilling social life.
-                </div>
-              </div>
-            </div>
+              ))}
+            </Slider>
           </div>
 
           <div className="my-20 postReq-wrapper">
@@ -599,9 +557,9 @@ function Home(props) {
                   Posting our platform is completely free
                 </span>
                 <span>
-                  Post Events to get registrations from NGO community Post Jobs to
-                  get candidates to work in social secto Post to search NGOs that
-                  natch your project criteria
+                  Post Events to get registrations from NGO community Post Jobs
+                  to get candidates to work in social secto Post to search NGOs
+                  that natch your project criteria
                 </span>
               </p>
             </div>
