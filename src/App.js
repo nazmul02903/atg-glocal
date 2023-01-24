@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { Router, Switch, Link, Route } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.scss";
@@ -33,15 +34,19 @@ import { alertCustom, alertDefault } from "./helpers/alerts";
 import ProtectedRoute from "./routes/protectedRoutes";
 import PublicRoutes from "./routes/publicRoutes";
 const BackToDB = () => {
+  let history = useHistory();
+
   return (
     <div className="d-flex justify-content-end me-2 mt-3" id="backToDashboard">
       <button className="btn" style={{ backgroundColor: "#4A5865" }}>
-        <Link to={'/'} style={{ textDecoration: "none", color: "white" }}>
+        <div to={'/'} style={{ textDecoration: "none", color: "white" }}
+          onClick={() => history.goBack()}
+        >
           <span>
             <img src={BackArrow} alt="Back arrow" />
             {"  Back To Dashboard "}
           </span>
-        </Link>
+        </div>
       </button>
     </div>
   );

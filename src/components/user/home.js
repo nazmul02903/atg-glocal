@@ -80,9 +80,16 @@ function Home(props) {
   const [subCategoriesFundings, setSubCategoriesFundings] = useState([]);
   const [newsBeans, setNewsBeans] = useState([]);
   const dispatch = useDispatch();
+<<<<<<< HEAD
   const { isLoggedIn } = useSelector((state) => state.auth);
   const [loginActive, setLoginActive] = useState(false);
   const { user } = useSelector((state) => state.auth);
+=======
+  const { isLoggedIn } = useSelector(state => state.auth)
+  const [loginActive, setLoginActive] = useState(false)
+  const { user } = useSelector(state => state.auth)
+  const [news, setNews] = useState([])
+>>>>>>> 75d3111a0391eda1850c1e5ad1d9f286b639ce74
   // console.log(user);
   const history = useHistory();
   const handleLogout = () => {
@@ -134,9 +141,15 @@ function Home(props) {
         setSubCategoriesEvents(res.data.homeCategories[0].homeSubCategories);
         setSubCategoriesFundings(res.data.homeCategories[1].homeSubCategories);
         setSubCategoriesJobs(res.data.homeCategories[2].homeSubCategories);
+<<<<<<< HEAD
       })
       .catch((error) => {
         console.log("error", error.response);
+=======
+        setNews(res.data.newsBeans)
+      }).catch((error) => {
+        console.log('error', error.response);
+>>>>>>> 75d3111a0391eda1850c1e5ad1d9f286b639ce74
         const message =
           (error.response &&
             error.response.data &&
@@ -176,7 +189,7 @@ function Home(props) {
             </Slider>
           </div>
 
-          <div className="sect-1 home-row">
+          {/* <div className="sect-1 home-row">
             <div className="details">
               <div className="large-text">
                 Connecting people working in NGOs to Opportunities
@@ -190,7 +203,7 @@ function Home(props) {
             <div className="graphic">
               <img src={Graphic} alt="" />
             </div>
-          </div>
+          </div> */}
           <div className="sect-2">
             {/* <div className="heading">How GlocalBodh Works</div>
           <div className="sub-text">

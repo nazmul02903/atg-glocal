@@ -109,7 +109,7 @@ const FundingUpdateNew = (props) => {
     setCities(__FOUND.cityBeans);
   };
   const location = useLocation();
-
+  // console.log('errors', errors);
   const onSubmit = (values) => {
     let csrSections = [...csrSection];
     props.dispatch(setLoader());
@@ -141,6 +141,7 @@ const FundingUpdateNew = (props) => {
     UserService.createFundingUpdate(data)
       .then((res) => {
         props.dispatch(clearLoader());
+        console.log('res', res);
         if (res.data.status === 1) {
           alertCustom("success", "Successfully Created", "/home");
         } else {
@@ -148,6 +149,7 @@ const FundingUpdateNew = (props) => {
         }
       })
       .catch((error) => {
+        console.log('error.response', error.response);
         const message =
           (error.response &&
             error.response.data &&
@@ -486,7 +488,7 @@ const FundingUpdateNew = (props) => {
                 type="date"
               />
               {errors.applicationDeadline &&
-              errors.applicationDeadline.message ? (
+                errors.applicationDeadline.message ? (
                 <div className="invalid-feedback">
                   {errors.applicationDeadline.message}
                 </div>

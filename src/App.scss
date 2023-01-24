@@ -132,6 +132,13 @@ a:hover {
   border: none;
   box-shadow: none;
 }
+.login-modal .modal-dialog{
+  max-width: 600px;
+}
+.login-modal .modal-content{
+ border-radius: 20px;
+}
+
 .btn-primary {
   background-color: #0057a8;
 }
@@ -144,38 +151,45 @@ a:hover {
 }
 
 .google-btn {
-  width: 184px;
+  width: 194px;
   height: 42px;
-  background-color: $google-blue;
-  border-radius: 2px;
-  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.25);
+  // background-color: $google-blue;
+  border-radius: 10px;
+  border: 1px solid #4242428c;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: 2px 10px;
+  // box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.25);
   .google-icon-wrapper {
-    position: absolute;
-    margin-top: 1px;
+
     margin-left: 1px;
-    width: 40px;
-    height: 40px;
+    // width: 40px;
     border-radius: 2px;
-    background-color: $white;
+
+    overflow: hidden;
   }
   .google-icon {
-    margin-top: 6px;
     width: 25px;
     height: 25px;
   }
   .btn-text {
     float: right;
-    margin: 11px 11px 0 0;
-    color: $white;
+    // margin: 11px 11px 0 0;
+    margin-left: 10px;
+    color: rgba(0, 0, 0, 0.774);
+    font-weight: 400;
     font-size: 14px;
     letter-spacing: 0.2px;
+    margin-bottom: 0;
+    white-space: nowrap;
   }
-  &:hover {
-    box-shadow: 0 0 6px $google-blue;
-  }
-  &:active {
-    background: $button-active-blue;
-  }
+  // &:hover {
+  //   box-shadow: 0 0 6px $google-blue;
+  // }
+  // &:active {
+  //   background: $button-active-blue;
+  // }
 }
 
 .disabled-card {
@@ -450,7 +464,24 @@ a:hover {
   
 }
 // CSR Funding section in Homepage
+.modal-close-icon{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+}
+.modal-close-icon img{
+ width: 50px;
+ opacity: 0.6;
+ cursor: pointer;
+ background-color: #fff;
+ transition: 0.2s;
+ border-radius: 50%;
+}
+.modal-close-icon img:hover{
+  background-color: rgb(223, 222, 222);
 
+}
 .csr-funding-homepage {
   background-color: #D3E2F8;
   padding: 20px;

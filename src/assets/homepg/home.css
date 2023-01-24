@@ -682,7 +682,8 @@ object-fit: contain;
   }
 
   .banner-slider {
-    display: none;
+    display: block;
+    padding: 1rem 3rem 4rem;
   }
 }
 
