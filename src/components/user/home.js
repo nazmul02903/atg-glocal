@@ -145,9 +145,9 @@ function Home(props) {
         setSubCategoriesEvents(res.data.homeCategories[0].homeSubCategories);
         setSubCategoriesFundings(res.data.homeCategories[1].homeSubCategories);
         setSubCategoriesJobs(res.data.homeCategories[2].homeSubCategories);
-      })
-      .catch((error) => {
-        console.log("error", error.response);
+        setNews(res.data.newsBeans)
+      }).catch((error) => {
+        console.log('error', error.response);
         const message =
           (error.response &&
             error.response.data &&
@@ -186,22 +186,7 @@ function Home(props) {
               <img src={FirstSlider} alt="" /> */}
             </Slider>
           </div>
-
-          {/* <div className="sect-1 home-row">
-            <div className="details">
-              <div className="large-text">
-                Connecting people working in NGOs to Opportunities
-              </div>
-              <div className="small-text">
-                Whatever you’re looking to do this year, Meetup can help. For 20
-                years, people have turned to Meetup to meet people, make
-                friends,{" "}
-              </div>
-            </div>
-            <div className="graphic">
-              <img src={Graphic} alt="" />
-            </div>
-          </div> */}
+          
           <div className="sect-2">
             {/* <div className="heading">How GlocalBodh Works</div>
           <div className="sub-text">
