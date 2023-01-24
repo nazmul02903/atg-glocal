@@ -82,6 +82,7 @@ function Home(props) {
   const { isLoggedIn } = useSelector(state => state.auth)
   const [loginActive, setLoginActive] = useState(false)
   const { user } = useSelector(state => state.auth)
+  const [news, setNews] = useState([])
   // console.log(user);
   const history = useHistory()
   const handleLogout = () => {
@@ -132,6 +133,7 @@ function Home(props) {
         setSubCategoriesEvents(res.data.homeCategories[0].homeSubCategories);
         setSubCategoriesFundings(res.data.homeCategories[1].homeSubCategories);
         setSubCategoriesJobs(res.data.homeCategories[2].homeSubCategories);
+        setNews(res.data.newsBeans)
       }).catch((error) => {
         console.log('error', error.response);
         const message =
