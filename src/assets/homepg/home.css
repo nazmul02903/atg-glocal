@@ -670,6 +670,29 @@ object-fit: contain;
 .slick-dots li button:before {
   font-size: 10px !important;
 }
+.news-modal .modal-dialog{
+  max-width: 800px;
+}
+.news-modal .modal-content{
+ border-radius: 20px;
+ overflow: auto;
+ max-height: 600px;
+}
+
+.modal-community-card{
+  width: auto;
+  overflow-y: auto;
+}
+.modal-community-card .function-img-container{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+.modal-community-card img {
+  max-width: 500px;
+  margin:  0 auto;
+}
+
 
 @media screen and (min-width: 768px) {
 

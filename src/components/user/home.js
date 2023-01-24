@@ -36,6 +36,7 @@ import csrFunding from "../../assets/homepg/img/csrFunding.svg";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import NewsDetailModal from "../../helpers/newsDetail";
 
 const clientId = process.env.REACT_APP_OAUTH_CLIENT_ID;
 
@@ -84,6 +85,9 @@ function Home(props) {
   const [loginActive, setLoginActive] = useState(false)
   const { user } = useSelector(state => state.auth)
   const [news, setNews] = useState([])
+  const [newsDetailModalActive, setNewsDetailModalActive] = useState(true)
+  const [newsDetail, setNewsDetail] = useState({})
+
   // console.log(user);
   const history = useHistory();
   const handleLogout = () => {
@@ -108,6 +112,12 @@ function Home(props) {
     onLogoutSuccess,
     onFailure,
   });
+  const handleNewsClick = (newsBean)=>{
+    setNewsDetail(newsBean)
+    setNewsDetailModalActive(true)
+  }
+  // console.log("newsDetail", newsDetail)
+  // console.log("newsBeans", newsBeans)
   // console.log("banners", banners)
   // console.log('categories', categories);
   // console.log('subCategoriesEvents', subCategoriesEvents);
@@ -533,9 +543,9 @@ function Home(props) {
               People on Glocalboadh have fostered community, learned new skills,
               started businesses, and made life-long friends. Learn how.
             </div>
-            <Slider dots={true} slidesToShow={3} slidesToScroll={3}>
+            <Slider dots={true} slidesToShow={3} slidesToScroll={3}  >
               {newsBeans.map((bean, i) => (
-                <div className="community-card home-column">
+                <div className="community-card home-column cursor-pointer" onClick={()=>handleNewsClick(bean)}>
                   <div className="function-img-container">
                     <img src={Function1} className="function-img" alt="" />
                   </div>
@@ -623,6 +633,8 @@ function Home(props) {
         </div>
 
         <LoginComponent show={loginActive} handleClose={closeLoginModal} />
+        <NewsDetailModal show={newsDetailModalActive}
+          handleClose={() => setNewsDetailModalActive(false)} newsDetail={newsDetail} /> 
       </>
     );
   }
