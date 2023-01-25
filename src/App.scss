@@ -530,3 +530,44 @@ a:hover {
     margin-top: 20px;
   }
 }
+
+.services-homepage {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .services-homepage {
+    display: block;
+  }
+
+  .services-homepage h1 {
+    text-align: center;
+    color: #0057A8;
+    font-size: 2.5rem;
+    margin: 80px 0px;
+  }
+
+  .services-homepage .service {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 40px 0px;
+    justify-content: space-between;
+  }
+
+  .services-homepage .service div {
+    padding: 20px;
+  }
+
+  .services-homepage .service h2 {
+    color: #0057A8;
+  }
+
+  .services-homepage .service button {
+    color: #0057A8;
+    background-color: #fff;
+    border: 2px solid #0057A8;
+    border-radius: 5px;
+    padding: 10px 20px;
+  }
+}
