@@ -518,6 +518,97 @@ a:hover {
 .csr-funding-homepage-lg {
   display: none;
 }
+.all-events-form-wrapper{
+  background: #FFFFFF;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+}
+.all-events-form-wrapper p {
+  font-size: 1.25rem;
+}
+.all-events-form-wrapper input,
+.all-events-form-wrapper textarea{
+  background: #F2F7FB;
+  box-shadow: inset 0px 1px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  padding: 6px 8px;
+  border: none;
+  outline: none;
+}
+.all-events-form-wrapper button{
+  background: #0058A9;
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+
+/* categories */
+
+.all-events-categories .category-item{
+  padding: 6px 16px;
+  cursor: pointer;
+  font-size: 1.25rem;
+  flex: 1;
+  max-width: 200px;
+}
+
+.all-events-categories .category-item.selected{
+ color: #0058A9;
+ border-bottom: 2px solid #0058A9;
+}
+.all-events-categories .category-item p{
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.event-cards{
+  p{
+    margin-bottom: 0;
+  }
+  .event-card{
+    background: #FDFDFD;
+    box-shadow: 0px 2.58705px 2.58705px rgba(0, 0, 0, 0.25);
+    border-radius: 5.17409px;
+    margin-right: 0;
+  }
+  .event-img{
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+  }
+  .event-card-content{
+    padding: 10px 10px;
+    padding-top: 0px;
+    .event-icon{
+      width: 30px;
+    }
+    .event-title{
+      font-weight: 600;
+      margin-left: 6px;
+    }
+    .event-fees{
+      margin-left: auto;
+      color: #3E4041;
+    }
+  }
+  .event-footer{
+    .created-at{
+      font-size: 10.35px;
+      line-height: 20px;
+      color: #434343;
+    }
+  }
+  .event-venue{
+    color: #6F7287;
+    font-size: 12px;
+  }
+  .organizer{
+    color: #6F7287;
+    font-size: 10px;
+    margin-top: 6px;
+    span{
+      font-weight: 500;
+    }
+  }
+}
 
 @media screen and (min-width: 768px) {
   .csr-funding-homepage {
@@ -567,4 +658,10 @@ a:hover {
     padding: 5px 0px;
     margin-top: 20px;
   }
+  
+.all-events-categories .category-item{
+  flex: auto;
+  padding: 16px 10px;
+}
+
 }

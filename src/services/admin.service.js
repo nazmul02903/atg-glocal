@@ -28,6 +28,7 @@ import {
   API_FETCH_EVENT_TO_REVIEW,
   API_FETCH_FUNDING_UPDATE_TO_REVIEW,
   API_REVIEW_EVENT,
+  API_FETCH_ALL_EVENTS,
 } from "../constants/urls";
 
 import AuthHeader from "./auth-header";
@@ -121,6 +122,15 @@ class AdminService {
       { headers: AuthHeader() }
     );
   }
+  
+  fetchAllEvents(dataType) {
+    return axios.post(
+      API_FETCH_ALL_EVENTS,
+      { dataType: dataType },
+      { headers: AuthHeader() }
+    );
+  }
+
   deleteAward(id) {
     return axios.post(
       API_URL_DELETE_AWARD,
