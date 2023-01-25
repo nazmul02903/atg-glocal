@@ -81,34 +81,9 @@ const ShareEventModal = (props) => {
                }
                {/* <ShareButton
                   {...shareButtonProps[0]}
-                  className="social-media-btn"
-               >
+                  className="social-media-btn">
                   <FaFacebook />
-               </ShareButton>
-               <ShareButton
-                  {...shareButtonProps[1]}
-                  className="social-media-btn"
-               >
-                  <FaEnvelope />
-               </ShareButton>
-               <ShareButton
-                  {...shareButtonProps[2]}
-                  className="social-media-btn"
-               >
-                  <FaWhatsapp />
-               </ShareButton>
-               <ShareButton
-                  {...shareButtonProps[3]}
-                  className="social-media-btn"
-               >
-                  <FaTwitter />
-               </ShareButton>
-               <ShareButton
-                  {...shareButtonProps[4]}
-                  className="social-media-btn"
-               >
-                  <FaLinkedin />
-               </ShareButton> */}
+               </ShareButton>*/}
             </div>
          </div>
          <div className="modal-close-icon">

@@ -163,7 +163,7 @@
 .division-name {
   font-family: "Noto Sans", sans-serif;
   font-style: normal;
-  font-weight: 400;
+  /* font-weight: 400; */
   font-size: 20px;
   line-height: 28px;
   text-align: center;
@@ -713,6 +713,14 @@ object-fit: contain;
   color: #0E559C;
   text-align: center;
 }
+.home-category-subtitle{
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  color: #8f8f8f;
+  margin-bottom: 2rem;
+}
 @media screen and (min-width: 768px) {
   .sect-2{
     margin-bottom: 3rem;
@@ -721,10 +729,15 @@ object-fit: contain;
     margin-bottom: 10px;
   }
   .home-category-title{
-    font-size: 30px;
-    margin-bottom: 4rem;
+    font-size: 40px;
+    margin-bottom: 0rem;
     margin-top: 1rem;
+    margin-bottom: 1rem;
   }
+.home-category-subtitle{
+  margin-bottom: 4rem;
+  font-size: 20px;
+}
   .service-provide {
     display: none;
   }

@@ -195,8 +195,11 @@ function Home(props) {
             in-person events. It’s free to create an account.
           </div> */}
             <div className="divisions home-column">
-              <p className="home-category-title">
+              <p className="home-category-title font-semibold">
                 Social Sector Updates
+              </p>
+              <p className="home-category-subtitle">
+              Get latest news & updates from the social sector
               </p>
               <div className="home-row divisions-row">
                 {subCategoriesEvents.map((event, idx) => {
@@ -204,12 +207,12 @@ function Home(props) {
                     <div className="division" key={idx}>
                       <Link to={`/event/${idx + 1}`} className="services-link">
                         <div className="imgBox eventBox">
-                          <div className="division-name-inside">
+                          <div className="division-name-inside font-semibold">
                             {event.name}
                           </div>
                           <img src={event.imageUrl} className="icon" alt="" />
                         </div>
-                        <div className="division-name">{event.name}</div>
+                        <div className="division-name font-semibold">{event.name}</div>
                       </Link>
                       {/* <div className="division-subtext">
                         Do what you love, meet others who love it, find your
@@ -234,7 +237,7 @@ function Home(props) {
                           </div>
                           <img src={event.imageUrl} className="icon" alt="" />
                         </div>
-                        <div className="division-name">{event.name}</div>
+                        <div className="division-name font-semibold">{event.name}</div>
                       </Link>
                     </div>
                   );
@@ -252,7 +255,7 @@ function Home(props) {
                           </div>
                           <img src={event.imageUrl} className="icon" alt="" />
                         </div>
-                        <div className="division-name">{event.name}</div>
+                        <div className="division-name font-semibold">{event.name}</div>
                       </Link>
                     </div>
                   );
