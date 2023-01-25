@@ -32,6 +32,7 @@ import { logout } from "../../store/actions/auth";
 import LoginComponent from "../auth/login.component";
 import BottomBar from "../bottom-bar/bottomBar.component";
 import csrFunding from "../../assets/homepg/img/csrFunding.svg";
+import bro from "../../assets/homepg/img/bro.svg";
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -265,7 +266,22 @@ function Home(props) {
               START CSR TEST
             </button>
           </div>
-          {/* CSR Funding SECTION END*/}
+
+          <div className="csr-funding-homepage-lg">
+            <div>
+              <h6>Is your organisation eligible for</h6>
+              <h1>CSR</h1>
+              <h3>Funding?</h3>
+            </div>
+            <img src={bro} alt="" />
+            <div className="csr-fund-info">
+              <p>
+                Take our CSR Eligibility Test to determine your company's readiness to implement socially responsible initiatives. Start making a positive impact today!
+              </p>
+              <button onClick={() => history.push('/csrForm')} >TEST NOW</button>
+            </div>
+          </div>
+          
 
           <div className="sect-3">
             <div className="upcoming-events">
@@ -519,7 +535,7 @@ function Home(props) {
             </div>
           </div>
 
-          <div className="sect-5 home-column">
+          {/* <div className="sect-5 home-column">
             <div className="community-heading heading">
               {" "}
               Glocalbodh Communities

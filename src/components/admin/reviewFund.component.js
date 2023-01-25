@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-
 import AdminService from "../../services/admin.service";
+import { clearLoader, setLoader } from "../../store/actions/loader";
+
 import LocationImg from "../../assets/Icons/location.svg";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ApplicantModal from "../../helpers/applicantModal";
-import { setLoader, clearLoader } from "../../store/actions/loader";
 import { useInterval } from "../../helpers/useInterval";
 import { POLLING_INTERVAL } from "../../constants/variables";
 import EventReviewDetailModal from "../../helpers/eventReviewDetailModal";

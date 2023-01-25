@@ -76,7 +76,7 @@ const HomeAdmin = (props) => {
             />
             <CardBody className="text-center">
               <CardTitle tag="h5">Review Funding</CardTitle>
-              <Link to="/admin/allFundingUpdates">
+              <Link to="/admin/reviewFund">
                 <Button className="mt-3" color="primary">
                   Review
                 </Button>
