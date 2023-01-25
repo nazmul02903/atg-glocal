@@ -44,7 +44,7 @@ const AllEvents = (props) => {
   const [modalShow, setModalShow] = React.useState(false);
   const [modalShowDelete, setModalShowDelete] = useState(false);
   const [eventList, setEventList] = useState(tempeventList)
-  const [shareModalActive, setShareModalActive] = useState(true)
+  const [shareModalActive, setShareModalActive] = useState(false)
 
   useInterval(async () => {
     // dispatch(setLoader());
