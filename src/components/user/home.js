@@ -187,7 +187,7 @@ function Home(props) {
               <img src={FirstSlider} alt="" /> */}
             </Slider>
           </div>
-          
+
           <div className="sect-2">
             {/* <div className="heading">How GlocalBodh Works</div>
           <div className="sub-text">
@@ -195,6 +195,9 @@ function Home(props) {
             in-person events. It’s free to create an account.
           </div> */}
             <div className="divisions home-column">
+              <p className="home-category-title">
+                Social Sector Updates
+              </p>
               <div className="home-row divisions-row">
                 {subCategoriesEvents.map((event, idx) => {
                   return (
@@ -281,10 +284,11 @@ function Home(props) {
               <button onClick={() => history.push('/csrForm')} >TEST NOW</button>
             </div>
           </div>
-          
 
-          <div className="sect-3">
-            <div className="upcoming-events">
+          {/* 
+           <div className="sect-3">
+
+           <div className="upcoming-events">
               <div className="top">
                 <div className="upcoming-heading">Upcoming online events</div>
                 <Link to="" className="link-tags">
@@ -293,12 +297,6 @@ function Home(props) {
               </div>
               <div className="card-holder home-row event-cardHolder horizontal-scroll">
                 <div className="event-card">
-                  {/* {isLoggedIn && banners !== undefined && banners !== [] ? <h1>{banners[0].id}</h1> : '' } */}
-                  {/* <img
-                  src={isLoggedIn && banners[0].imageUrl}
-                  className="event-banner"
-                  alt=""
-                /> */}
                   <div className="event-details">
                     <div className="event-date">Wed, Aug 31 · 11:00 PM UTC</div>
                     <div className="event-name">Getting To Know You</div>
@@ -312,11 +310,11 @@ function Home(props) {
                   </div>
                 </div>
                 <div className="event-card">
-                  {/* <img
-                  src={isLoggedIn && banners[1].imageUrl}
-                  className="event-banner"
-                  alt=""
-                /> */}
+                  <img
+                    src={isLoggedIn && banners[1].imageUrl}
+                    className="event-banner"
+                    alt=""
+                  />
                   <div className="event-details">
                     <div className="event-date">Wed, Aug 31 · 11:00 PM UTC</div>
                     <div className="event-name">Getting To Know You</div>
@@ -329,192 +327,11 @@ function Home(props) {
                     <div className="numb_attendee">499 attendee</div>
                   </div>
                 </div>
-                <div className="event-card">
-                  {/* <img
-                  src={isLoggedIn && banners[2].imageUrl}
-                  className="event-banner"
-                  alt=""
-                /> */}
-                  <div className="event-details">
-                    <div className="event-date">Wed, Aug 31 · 11:00 PM UTC</div>
-                    <div className="event-name">Getting To Know You</div>
-                    <div className="event-subText">
-                      World Gets Cozy Juicy Real
-                    </div>
-                  </div>
-                  <div className="attendee">
-                    <div className="elipticals"></div>
-                    <div className="numb_attendee">499 attendee</div>
-                  </div>
-                </div>
-                <div className="event-card">
-                  <img src={EventBanner} className="event-banner" alt="" />
-                  <div className="event-details">
-                    <div className="event-date">Wed, Aug 31 · 11:00 PM UTC</div>
-                    <div className="event-name">Getting To Know You</div>
-                    <div className="event-subText">
-                      World Gets Cozy Juicy Real
-                    </div>
-                  </div>
-                  <div className="attendee">
-                    <div className="elipticals"></div>
-                    <div className="numb_attendee">499 attendee</div>
-                  </div>
-                </div>
-                <div className="event-card">
-                  <img src={EventBanner} className="event-banner" alt="" />
-                  <div className="event-details">
-                    <div className="event-date">Wed, Aug 31 · 11:00 PM UTC</div>
-                    <div className="event-name">Getting To Know You</div>
-                    <div className="event-subText">
-                      World Gets Cozy Juicy Real
-                    </div>
-                  </div>
-                  <div className="attendee">
-                    <div className="elipticals"></div>
-                    <div className="numb_attendee">499 attendee</div>
-                  </div>
-                </div>
-                <div className="event-card">
-                  <img src={EventBanner} className="event-banner" alt="" />
-                  <div className="event-details">
-                    <div className="event-date">Wed, Aug 31 · 11:00 PM UTC</div>
-                    <div className="event-name">Getting To Know You</div>
-                    <div className="event-subText">
-                      World Gets Cozy Juicy Real
-                    </div>
-                  </div>
-                  <div className="attendee">
-                    <div className="elipticals"></div>
-                    <div className="numb_attendee">499 attendee</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* <div className="groups">
-          <div className="top">
-            <div className="popular">Popular Groups</div>
-            <Link to="">
-              <div className="more">more</div>
-            </Link>
-          </div>
-          <div className="group-cards home-row horizontal-scroll">
-            <div className="group-card home-column">
-              <div className="name-icon home-row">
-                <div className="g-icon-container">
-                  <img src={Group1} className="g-icon" alt="" />
-                </div>
-                <div className="new-name home-column">
-                  <div className="new">New</div>
-                  <div className="g-name">The New Accusers Podcast</div>
-                </div>
-              </div>
-              <hr />
-              <div className="group-details home-column">
-                <div className="group-date">Wed, Aug 31 · 11:00 PM UTC</div>
-                <div className="group-subtext">Getting To Know You!</div>
-              </div>
-            </div>
-            <div className="group-card home-column">
-              <div className="name-icon home-row">
-                <div className="g-icon-container">
-                  <img src={Group1} className="g-icon" alt="" />
-                </div>
-                <div className="new-name home-column">
-                  <div className="new">New</div>
-                  <div className="g-name">The New Accusers Podcast</div>
-                </div>
-              </div>
-              <hr />
-              <div className="group-details home-column">
-                <div className="group-date">Wed, Aug 31 · 11:00 PM UTC</div>
-                <div className="group-subtext">Getting To Know You!</div>
-              </div>
-            </div>
-            <div className="group-card home-column">
-              <div className="name-icon home-row">
-                <div className="g-icon-container">
-                  <img src={Group1} className="g-icon" alt="" />
-                </div>
-                <div className="new-name home-column">
-                  <div className="new">New</div>
-                  <div className="g-name">The New Accusers Podcast</div>
-                </div>
-              </div>
-              <hr />
-              <div className="group-details home-column">
-                <div className="group-date">Wed, Aug 31 · 11:00 PM UTC</div>
-                <div className="group-subtext">Getting To Know You!</div>
-              </div>
-            </div>
-            <div className="group-card home-column">
-              <div className="name-icon home-row">
-                <div className="g-icon-container">
-                  <img src={Group1} className="g-icon" alt="" />
-                </div>
-                <div className="new-name home-column">
-                  <div className="new">New</div>
-                  <div className="g-name">The New Accusers Podcast</div>
-                </div>
-              </div>
-              <hr />
-              <div className="group-details home-column">
-                <div className="group-date">Wed, Aug 31 · 11:00 PM UTC</div>
-                <div className="group-subtext">Getting To Know You!</div>
-              </div>
-            </div>
-            <div className="group-card home-column">
-              <div className="name-icon home-row">
-                <div className="g-icon-container">
-                  <img src={Group1} className="g-icon" alt="" />
-                </div>
-                <div className="new-name home-column">
-                  <div className="new">New</div>
-                  <div className="g-name">The New Accusers Podcast</div>
-                </div>
-              </div>
-              <hr />
-              <div className="group-details home-column">
-                <div className="group-date">Wed, Aug 31 · 11:00 PM UTC</div>
-                <div className="group-subtext">Getting To Know You!</div>
-              </div>
-            </div>
-            <div className="group-card home-column">
-              <div className="name-icon home-row">
-                <div className="g-icon-container">
-                  <img src={Group1} className="g-icon" alt="" />
-                </div>
-                <div className="new-name home-column">
-                  <div className="new">New</div>
-                  <div className="g-name">The New Accusers Podcast</div>
-                </div>
-              </div>
-              <hr />
-              <div className="group-details home-column">
-                <div className="group-date">Wed, Aug 31 · 11:00 PM UTC</div>
-                <div className="group-subtext">Getting To Know You!</div>
-              </div>
-            </div>
-            <div className="group-card home-column">
-              <div className="name-icon home-row">
-                <div className="g-icon-container">
-                  <img src={Group1} className="g-icon" alt="" />
-                </div>
-                <div className="new-name home-column">
-                  <div className="new">New</div>
-                  <div className="g-name">The New Accusers Podcast</div>
-                </div>
-              </div>
-              <hr />
-              <div className="group-details home-column">
-                <div className="group-date">Wed, Aug 31 · 11:00 PM UTC</div>
-                <div className="group-subtext">Getting To Know You!</div>
-              </div>
-            </div>
-          </div>
-        </div> */}
-          </div>
 
+              </div>
+              </div>
+          </div> 
+          */}
           <div className="sect-4 home-row">
             <div className="phone1">
               <img src={Phone1} alt="" />
@@ -535,7 +352,7 @@ function Home(props) {
             </div>
           </div>
 
-          {/* <div className="sect-5 home-column">
+          <div className="sect-5 home-column">
             <div className="community-heading heading">
               {" "}
               Glocalbodh Communities
@@ -548,8 +365,8 @@ function Home(props) {
               {newsBeans.map((bean, i) => (
                 <div className="community-card community-slider home-column cursor-pointer" onClick={() => handleNewsClick(bean)}>
                   <div className="function-img-container">
-                    <img src={bean.newsLink.slice(0,5) === 'https' ? bean.newsLink :Function1} 
-                    className="function-img" alt="" />
+                    <img src={bean.newsLink.slice(0, 5) === 'https' ? bean.newsLink : Function1}
+                      className="function-img" alt="" />
                   </div>
                   <div className="function-heading">{bean.title.slice(0, 50)}</div>
                   <div className="function-description"

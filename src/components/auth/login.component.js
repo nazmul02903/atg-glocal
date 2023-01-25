@@ -11,7 +11,7 @@ import LoginWithGoogle from "./google.component";
 
 const Login = (props) => {
   // console.log(props);
-  const { show, handleClose } = props
+  const { show, handleClose, handleSignup } = props
   if (props.user) {
     return (
       // <Redirect
@@ -54,13 +54,16 @@ const Login = (props) => {
             </h5> */}
           </div>
 
-          <div className='card-body col-12 col-sm-12'>
+          <div className='card-body pb-2 col-12 col-sm-12'>
             <LoginWithGoogle />
           </div>
+          <p className="login-signup-redirect">
+            New here ? <span onClick={handleSignup}> Signup </span> with Glocalbodh
+          </p>
         </div>
       </div>
       <div className="modal-close-icon">
-        <img src={Cross}  onClick={handleClose ? handleClose : ()=>{}} />
+        <img src={Cross} onClick={handleClose ? handleClose : () => { }} />
       </div>
 
       {/* <Modal.Footer>

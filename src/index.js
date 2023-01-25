@@ -10,7 +10,7 @@ import { BaseProvider } from "baseui";
 import Theme from "./theme";
 
 const engine = new Styletron();
-
+//SET NODE_OPTIONS=--openssl-legacy-provider && 
 ReactDOM.render(
   <Provider store={store}>
     <StyletronProvider value={engine}>

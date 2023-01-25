@@ -26,7 +26,7 @@ const Header = (props) => {
 
   const { isLoggedIn } = useSelector(state => state.auth)
   const [loginActive, setLoginActive] = useState(false)
-  
+
   const [signUpActive, setSignUpActive] = useState(false)
   const { user } = useSelector(state => state.auth)
 
@@ -45,9 +45,16 @@ const Header = (props) => {
     window.location = '/'
     //console.log("Logged out Success");
   };
-
+  const handleLogin = () => {
+    setLoginActive(true)
+    setSignUpActive(false)
+  }
+  const handleSignup = () => {
+    setLoginActive(false)
+    setSignUpActive(true)
+  }
   const onFailure = () => {
-   // alertCustom("error", "Somthing went wrong", "/home");
+    // alertCustom("error", "Somthing went wrong", "/home");
     //console.log("Handle failure cases");
   };
 
@@ -151,8 +158,12 @@ const Header = (props) => {
           </div>
         }
       </div>
-      <LoginComponent show={loginActive} handleClose={closeLoginModal} />
-      <RegisterComponent show={signUpActive} handleClose={() => setSignUpActive(false)}/>
+      <LoginComponent show={loginActive}
+        handleClose={closeLoginModal}
+        handleSignup={handleSignup} />
+      <RegisterComponent show={signUpActive}
+        handleClose={() => setSignUpActive(false)}
+       handleLogin={handleLogin} />
     </>
   );
 };

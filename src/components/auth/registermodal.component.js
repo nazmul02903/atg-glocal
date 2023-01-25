@@ -16,9 +16,8 @@ import { validationSchemaRegister } from "../../constants/schema";
 import Swal from "sweetalert2";
 
 const Register = (props) => {
-  const { show, handleClose } = props
+  const { show, handleClose,  message, handleLogin  } = props
   const [successfull, setSuccessfull] = useState(false);
-  const { message } = props;
 
   const onSubmit = (data) => {
     const { dispatch } = props;
@@ -112,9 +111,9 @@ const Register = (props) => {
               </div>
             )}
             <div className='mt-2 text-center form-group'>
-              <Link to='/login' style={{ textDecoration: "none" }}>
+              <Link to='/' style={{ textDecoration: "none" }}>
                 <span className='text-muted'>Already have an Account ?</span>{" "}
-                <span style={{ color: "#0057A8" }}>Log In</span>
+                <span style={{ color: "#0057A8" }} onClick={handleLogin} >Log In</span>
               </Link>
             </div>
           </div>

@@ -68,7 +68,7 @@
 .sect-2 {
   background: #f0f1f5;
   padding: 3% 8% 5% 8%;
-  margin: -12px;
+  /* margin: -12px; */
 }
 
 .imgBox {
@@ -133,7 +133,7 @@
 }
 
 .divisions {
-  margin-top: 60px;
+  margin-top: 5px;
   justify-content: space-evenly;
 }
 
@@ -146,7 +146,7 @@
   flex-direction: column;
   width: 33%;
   justify-content: space-evenly;
-  height: 275px;
+  height: auto;
   margin-bottom: 25px;
 }
 
@@ -166,13 +166,13 @@
   font-weight: 400;
   font-size: 20px;
   line-height: 28px;
-  /* or 140% */
-
   text-align: center;
 
   color: #0058a9;
   width: 50%;
   margin: auto;
+  margin-top: 0;
+  margin-bottom: 10px;
 }
 
 .division-subtext {
@@ -416,7 +416,7 @@ hr {
 .sect-4 {
   display: flex;
   justify-content: space-evenly;
-  margin: 200px 0 110px 0;
+  margin: 150px 0 110px 0;
 }
 
 .download-info {
@@ -704,8 +704,27 @@ object-fit: contain;
   height: 100%;
   object-fit: cover;
 }
-@media screen and (min-width: 768px) {
 
+.home-category-title{
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  color: #0E559C;
+  text-align: center;
+}
+@media screen and (min-width: 768px) {
+  .sect-2{
+    margin-bottom: 3rem;
+  }
+  .imgBox{
+    margin-bottom: 10px;
+  }
+  .home-category-title{
+    font-size: 30px;
+    margin-bottom: 4rem;
+    margin-top: 1rem;
+  }
   .service-provide {
     display: none;
   }
@@ -717,6 +736,10 @@ object-fit: contain;
   .banner-slider {
     display: block;
     padding: 1rem 3rem 4rem;
+  }
+  .banner-slider img {
+    max-height: 400px;
+    object-fit: contain;
   }
 }
 
