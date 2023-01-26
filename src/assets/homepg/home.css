@@ -29,7 +29,12 @@
  
 }
 @media screen and (max-width: 768px) {
-
+.link-tags-signup{
+  display: none;
+}
+.link-tags .action {
+  font-size: 14px;
+}
   .home-navBar .dropdown{
     display: none;
   }

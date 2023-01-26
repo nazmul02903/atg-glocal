@@ -106,8 +106,8 @@ const Header = (props) => {
           </div>
         </div>
 
-        {
-          isLoggedIn &&
+        {/* {
+          isLoggedIn && */}
           <>
             <div className="flex justify-end items-center flex-1 mr-3 gap-x-6 md:gap-x-8">
               {navObj.map((nav, i) => (
@@ -121,15 +121,15 @@ const Header = (props) => {
               <img src={searchIcon} alt="" />
             </div>
           </>
-        }
+        {/* } */}
         {!isLoggedIn ?
-          <div className="actions home-row navbar-wrapper">
+          <div className="actions flex items-center home-row navbar-wrapper">
             {/* <Navbar /> */}
             {/* <div className="lang action">English</div> */}
             <div className="link-tags">
               <div className="logIn action text-lg underline" onClick={openLoginModal} >LogIn</div>
             </div>
-            <div className="link-tags">
+            <div className="link-tags-signup">
               <div className="logIn action text-lg underline" onClick={() => setSignUpActive(true)} >Signup</div>
             </div>
             {/* <Link to="/register" className="link-tags">
