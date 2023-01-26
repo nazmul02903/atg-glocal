@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Logo from "../assets/homepg/img/gb-logo.png";
+import mobileLogo from "../assets/homepg/img/mobileLogo.png"
 
 import Dropdown from "react-bootstrap/Dropdown";
 import { connect, useDispatch } from "react-redux";
@@ -17,6 +18,7 @@ import { useGoogleLogout } from "react-google-login";
 import { useSelector } from "react-redux";
 import LoginComponent from "./auth/login.component";
 import RegisterComponent from "./auth/registermodal.component";
+import Navbar from "./navbar.component";
 const clientId = process.env.REACT_APP_OAUTH_CLIENT_ID;
 
 const Header = (props) => {
@@ -63,17 +65,19 @@ const Header = (props) => {
         <Link to="/">
           <div className="logo">
             <img src={Logo} alt="" />
+            <img src={mobileLogo} alt="" />
           </div>
         </Link>
         {!isLoggedIn ?
-          <div className="actions home-row">
-            <div className="lang action">English</div>
+          <div className="actions home-row navbar-wrapper">
+            <Navbar/>
+            {/* <div className="lang action">English</div>
             <div className="link-tags">
               <div className="logIn action" onClick={openLoginModal} >LogIn</div>
             </div>
             <div className="link-tags">
               <div className="logIn action" onClick={() => setSignUpActive(true)} >Signup</div>
-            </div>
+            </div> */}
             {/* <Link to="/register" className="link-tags">
               <div className="singUp action">SingUp</div>
             </Link> */}
