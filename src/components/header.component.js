@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import Logo from "../assets/homepg/img/gb-logo.png";
 import mobileLogo from "../assets/homepg/img/mobileLogo.png"
 
@@ -55,7 +55,7 @@ const Header = (props) => {
   const location = useLocation();
   const dispatch = useDispatch();
   // const { user } = props;
-
+  const history = useHistory();
   const { isLoggedIn } = useSelector(state => state.auth)
   const [loginActive, setLoginActive] = useState(false)
 
@@ -100,7 +100,7 @@ const Header = (props) => {
     <>
       <div className="containe home-navBar home-row">
         <div to="/">
-          <div className="logo">
+          <div className="logo cursor-pointer" onClick={()=>history.push('/')} >
             <img src={Logo} alt="" />
             <img src={mobileLogo} alt="" />
           </div>

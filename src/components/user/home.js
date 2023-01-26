@@ -101,7 +101,7 @@ function Home(props) {
     dispatch(setLoader());
     signOut();
   };
-
+ 
   const onLogoutSuccess = (res) => {
     dispatch(logout());
     localStorage.removeItem("user");

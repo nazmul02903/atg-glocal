@@ -105,8 +105,8 @@ const AllEvents = (props) => {
   }
   return (
     <>
-      <div className="pt-6 md:pt-10">
-        <div className="grid grid-cols-12 md:grid-cols-12 mb-6 md:mb-10">
+      <div className="pt-0 md:pt-10">
+        <div className="grid grid-cols-12 md:grid-cols-12 mb-6 md:mb-10 hidden md:grid">
           <div className="col-span-12 md:col-span-8 mb-5 md:mb-0">
             <img src={CommunityImg} className='w-full' />
           </div>
