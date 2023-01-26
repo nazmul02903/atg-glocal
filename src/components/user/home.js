@@ -88,12 +88,12 @@ function Home(props) {
   const [subCategoriesFundings, setSubCategoriesFundings] = useState([]);
   const [newsBeans, setNewsBeans] = useState([]);
   const dispatch = useDispatch();
-  const { isLoggedIn } = useSelector(state => state.auth)
-  const [loginActive, setLoginActive] = useState(false)
-  const { user } = useSelector(state => state.auth)
-  const [news, setNews] = useState([])
-  const [newsDetailModalActive, setNewsDetailModalActive] = useState(true)
-  const [newsDetail, setNewsDetail] = useState({})
+  const { isLoggedIn } = useSelector((state) => state.auth);
+  const [loginActive, setLoginActive] = useState(false);
+  const { user } = useSelector((state) => state.auth);
+  const [news, setNews] = useState([]);
+  const [newsDetailModalActive, setNewsDetailModalActive] = useState(true);
+  const [newsDetail, setNewsDetail] = useState({});
 
   // console.log(user);
   const history = useHistory();
@@ -120,9 +120,9 @@ function Home(props) {
     onFailure,
   });
   const handleNewsClick = (newsBean) => {
-    setNewsDetail(newsBean)
-    setNewsDetailModalActive(true)
-  }
+    setNewsDetail(newsBean);
+    setNewsDetailModalActive(true);
+  };
   // console.log("newsDetail", newsDetail)
   // console.log("newsBeans", newsBeans)
   // console.log("banners", banners)
@@ -152,9 +152,10 @@ function Home(props) {
         setSubCategoriesEvents(res.data.homeCategories[0].homeSubCategories);
         setSubCategoriesFundings(res.data.homeCategories[1].homeSubCategories);
         setSubCategoriesJobs(res.data.homeCategories[2].homeSubCategories);
-        setNews(res.data.newsBeans)
-      }).catch((error) => {
-        console.log('error', error.response);
+        setNews(res.data.newsBeans);
+      })
+      .catch((error) => {
+        console.log("error", error.response);
         const message =
           (error.response &&
             error.response.data &&
@@ -288,9 +289,11 @@ function Home(props) {
             <img src={csr} alt="" />
             <div className="csr-fund-info">
               <p>
-                Take our CSR Eligibility Test to determine your company's readiness to implement socially responsible initiatives. Start making a positive impact today!
+                Take our CSR Eligibility Test to determine your company's
+                readiness to implement socially responsible initiatives. Start
+                making a positive impact today!
               </p>
-              <button onClick={() => history.push('/csrForm')} >TEST NOW</button>
+              <button onClick={() => history.push("/csrForm")}>TEST NOW</button>
             </div>
           </div>
           
@@ -402,7 +405,7 @@ function Home(props) {
             </div>
             <Slider dots={true} slidesToShow={3} slidesToScroll={3}  >
               {newsBeans.map((bean, i) => (
-                <div className="community-card community-slider home-column cursor-pointer" onClick={() => handleNewsClick(bean)}>
+                <div className="cursor-pointer community-card community-slider home-column" onClick={() => handleNewsClick(bean)}>
                   <div className="function-img-container">
                     <img src={bean.newsLink.slice(0, 5) === 'https' ? bean.newsLink : Function1}
                       className="function-img" alt="" />
@@ -478,8 +481,11 @@ function Home(props) {
 
         <Footer />
         <LoginComponent show={loginActive} handleClose={closeLoginModal} />
-        <NewsDetailModal show={newsDetailModalActive}
-          handleClose={() => setNewsDetailModalActive(false)} newsDetail={newsDetail} />
+        <NewsDetailModal
+          show={newsDetailModalActive}
+          handleClose={() => setNewsDetailModalActive(false)}
+          newsDetail={newsDetail}
+        />
       </>
     );
   }

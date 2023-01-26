@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Logo from "../assets/homepg/img/gb-logo.png";
+import mobileLogo from "../assets/homepg/img/mobileLogo.png"
 
 import Dropdown from "react-bootstrap/Dropdown";
 import { connect, useDispatch } from "react-redux";
@@ -17,7 +18,38 @@ import { useGoogleLogout } from "react-google-login";
 import { useSelector } from "react-redux";
 import LoginComponent from "./auth/login.component";
 import RegisterComponent from "./auth/registermodal.component";
+import Navbar from "./navbar.component";
+
+import eventIcon from "./../assets/Icons/navbar/event.svg";
+import jobsIcon from "./../assets/Icons/navbar/jobs.svg";
+import mailIcon from "./../assets/Icons/navbar/mail.svg";
+import fundIcon from "./../assets/Icons/navbar/fund.svg";
+import searchIcon from "./../assets/Icons/navbar/search.svg";
+import langIcon from "./../assets/Icons/navbar/LangIcon.svg";
 const clientId = process.env.REACT_APP_OAUTH_CLIENT_ID;
+
+const navObj = [
+  {
+    name: "Events",
+    icon: eventIcon,
+  },
+  {
+    name: "Jobs",
+    icon: jobsIcon,
+  },
+  {
+    name: "Fundings",
+    icon: fundIcon,
+  },
+  {
+    name: "Contact",
+    icon: mailIcon,
+  },
+  {
+    name: "Eng",
+    icon: langIcon,
+  },
+];
 
 const Header = (props) => {
   const location = useLocation();
@@ -66,21 +98,34 @@ const Header = (props) => {
 
   return (
     <>
-      <div className="container home-navBar home-row">
-        <Link to="/">
+      <div className="containe home-navBar home-row">
+        <div to="/">
           <div className="logo">
             <img src={Logo} alt="" />
+            <img src={mobileLogo} alt="" />
           </div>
-        </Link>
+        </div>
+        <div className="flex justify-end items-center flex-1 mr-3 gap-x-6 md:gap-x-8">
+        {navObj.map((nav, i) => (
+          <div className="navbar-item">
+            <img src={nav.icon} alt="" />
+            <span>{nav?.name}</span>
+          </div>
+        ))}
+        </div>
+        <div className="nav-search-icon mx-4">
+          <img src={searchIcon} alt=""  />
+        </div>
         {!isLoggedIn ?
-          <div className="actions home-row">
-            <div className="lang action">English</div>
+          <div className="actions home-row navbar-wrapper">
+            <Navbar />
+            {/* <div className="lang action">English</div>
             <div className="link-tags">
               <div className="logIn action" onClick={openLoginModal} >LogIn</div>
             </div>
             <div className="link-tags">
               <div className="logIn action" onClick={() => setSignUpActive(true)} >Signup</div>
-            </div>
+            </div> */}
             {/* <Link to="/register" className="link-tags">
               <div className="singUp action">SingUp</div>
             </Link> */}
@@ -163,7 +208,7 @@ const Header = (props) => {
         handleSignup={handleSignup} />
       <RegisterComponent show={signUpActive}
         handleClose={() => setSignUpActive(false)}
-       handleLogin={handleLogin} />
+        handleLogin={handleLogin} />
     </>
   );
 };
