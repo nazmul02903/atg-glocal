@@ -357,7 +357,8 @@ a:hover {
   }
   .input-box .fa {
     position: absolute;
-    top: 20px;
+    top: 50%;
+    transform: translateY(-50%);
     right: 20px;
   }
   .company-logo-bg {
