@@ -133,7 +133,7 @@ const App = (props) => {
     }
   }, [user]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  return (
+  return ( 
     <Router history={history} className="App">
       <Loader isLoading={isLoading}>
         <div id="page-container">
