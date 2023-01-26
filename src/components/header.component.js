@@ -105,27 +105,33 @@ const Header = (props) => {
             <img src={mobileLogo} alt="" />
           </div>
         </div>
-        <div className="flex justify-end items-center flex-1 mr-3 gap-x-6 md:gap-x-8">
-        {navObj.map((nav, i) => (
-          <div className="navbar-item">
-            <img src={nav.icon} alt="" />
-            <span>{nav?.name}</span>
-          </div>
-        ))}
-        </div>
-        <div className="nav-search-icon mx-4">
-          <img src={searchIcon} alt=""  />
-        </div>
+
+        {
+          isLoggedIn &&
+          <>
+            <div className="flex justify-end items-center flex-1 mr-3 gap-x-6 md:gap-x-8">
+              {navObj.map((nav, i) => (
+                <div className="navbar-item">
+                  <img src={nav.icon} alt="" />
+                  <span>{nav?.name}</span>
+                </div>
+              ))}
+            </div>
+            <div className="nav-search-icon mx-4">
+              <img src={searchIcon} alt="" />
+            </div>
+          </>
+        }
         {!isLoggedIn ?
           <div className="actions home-row navbar-wrapper">
-            <Navbar />
-            {/* <div className="lang action">English</div>
+            {/* <Navbar /> */}
+            {/* <div className="lang action">English</div> */}
             <div className="link-tags">
-              <div className="logIn action" onClick={openLoginModal} >LogIn</div>
+              <div className="logIn action text-lg underline" onClick={openLoginModal} >LogIn</div>
             </div>
             <div className="link-tags">
-              <div className="logIn action" onClick={() => setSignUpActive(true)} >Signup</div>
-            </div> */}
+              <div className="logIn action text-lg underline" onClick={() => setSignUpActive(true)} >Signup</div>
+            </div>
             {/* <Link to="/register" className="link-tags">
               <div className="singUp action">SingUp</div>
             </Link> */}
