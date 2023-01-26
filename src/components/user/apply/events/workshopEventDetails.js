@@ -367,7 +367,7 @@ function WorkshopEventDetails(props) {
                   Other details: {workshopDetails.speakers}{" "}
                 </div>
               </div>
-              <div className="footer">
+              <div className="footer-event">
                 <div className="btn-container">
                   <div>
                     {" "}

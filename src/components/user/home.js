@@ -32,12 +32,18 @@ import { logout } from "../../store/actions/auth";
 import LoginComponent from "../auth/login.component";
 import BottomBar from "../bottom-bar/bottomBar.component";
 import csrFunding from "../../assets/homepg/img/csrFunding.svg";
-import bro from "../../assets/homepg/img/bro.svg";
+import csr from "../../assets/homepg/img/csr.svg";
+import services1 from "../../assets/homepg/img/services1.svg"
+import services2 from "../../assets/homepg/img/services2.svg"
+import services3 from "../../assets/homepg/img/services3.svg"
+import appstore from "../../assets/homepg/img/appstore.svg"
+import googleplay from "../../assets/homepg/img/googleplay.svg"
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import NewsDetailModal from "../../helpers/newsDetail";
+import Footer from "../footer.component";
 
 const clientId = process.env.REACT_APP_OAUTH_CLIENT_ID;
 
@@ -279,12 +285,42 @@ function Home(props) {
               <h1>CSR</h1>
               <h3>Funding?</h3>
             </div>
-            <img src={bro} alt="" />
+            <img src={csr} alt="" />
             <div className="csr-fund-info">
               <p>
                 Take our CSR Eligibility Test to determine your company's readiness to implement socially responsible initiatives. Start making a positive impact today!
               </p>
               <button onClick={() => history.push('/csrForm')} >TEST NOW</button>
+            </div>
+          </div>
+          
+          <div className="services-homepage">
+            <h1>Services We Offer</h1>
+            <div className="service">
+              <img src={services1} alt="" srcset="" />
+              <div>
+                <h2>Employee Engagement Activity</h2>
+                <p>Improve employee satisfaction and productivity with our customized engagement activities. From team building to professional development, we'll design a program tailored to your company's needs.</p>
+                <button>KNOW MORE</button>
+              </div>
+            </div>
+
+            <div className="service">
+              <div>
+                <h2>Research</h2>
+                <p>Let our research expertise help your social organization make informed decisions and drive positive change. Contact us to discuss your research needs.</p>
+                <button>KNOW MORE</button>
+              </div>
+              <img src={services2} alt="" srcset="" />
+            </div>
+            
+            <div className="service">
+              <img src={services3} alt="" srcset="" />
+              <div>
+                <h2>Legal Services</h2>
+                <p>Need legal assistance for your social organization? We offer comprehensive legal services to help you navigate compliance and achieve your mission. Contact us today!</p>
+                <button>KNOW MORE</button>
+              </div>
             </div>
           </div>
 
@@ -434,29 +470,13 @@ function Home(props) {
             </div>
           </div>
 
-          <div className="footer">
-            <div className="header"></div>
-            <div className="links">
-              <div className="account"></div>
-              <div className="glocalBodh"></div>
-              <div className="other"></div>
-            </div>
-            <div className="mobile-links">
-              <div className="social-media">
-                <h4></h4>
-                <div className="social-links"></div>
-              </div>
-              <div className="buttons">
-                <button className="playStore"></button>
-                <button className="appStore"></button>
-              </div>
-            </div>
-            <div className="footer-bottom">
-              <BottomBar />
-            </div>
+          <div className="footer-sm">
+            <BottomBar />
           </div>
+
         </div>
 
+        <Footer />
         <LoginComponent show={loginActive} handleClose={closeLoginModal} />
         <NewsDetailModal show={newsDetailModalActive}
           handleClose={() => setNewsDetailModalActive(false)} newsDetail={newsDetail} />
