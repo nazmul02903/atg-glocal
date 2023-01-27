@@ -54,7 +54,10 @@ function LoginWithGoogle() {
           />
         </div>
         <p className='btn-text'>
-          Sign in with google
+          Sign in with {' '}
+          <span className='font-semibold'>
+          google
+          </span>
         </p>
       </div>
     </button>

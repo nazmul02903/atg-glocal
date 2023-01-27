@@ -45,10 +45,10 @@ const navObj = [
     name: "Contact",
     icon: mailIcon,
   },
-  {
-    name: "Eng",
-    icon: langIcon,
-  },
+  // {
+  //   name: "Eng",
+  //   icon: langIcon,
+  // },
 ];
 
 const Header = (props) => {
@@ -58,7 +58,7 @@ const Header = (props) => {
   const history = useHistory();
   const { isLoggedIn } = useSelector(state => state.auth)
   const [loginActive, setLoginActive] = useState(false)
-
+  const [language, setLanguage] = useState('Eng')
   const [signUpActive, setSignUpActive] = useState(false)
   const { user } = useSelector(state => state.auth)
 
@@ -100,7 +100,7 @@ const Header = (props) => {
     <>
       <div className="containe home-navBar home-row">
         <div to="/">
-          <div className="logo cursor-pointer" onClick={()=>history.push('/')} >
+          <div className="logo cursor-pointer" onClick={() => history.push('/')} >
             <img src={Logo} alt="" />
             <img src={mobileLogo} alt="" />
           </div>
@@ -108,19 +108,38 @@ const Header = (props) => {
 
         {/* {
           isLoggedIn && */}
-          <>
-            <div className="flex justify-end items-center flex-1 mr-3 gap-x-6 md:gap-x-8">
-              {navObj.map((nav, i) => (
+        <>
+          <div className="flex justify-end items-center flex-1 mr-3 gap-x-6 md:gap-x-8">
+            {navObj.map((nav, i) => (
+              <div className="navbar-item">
+                <img src={nav.icon} alt="" />
+                <span> {nav?.name} </span>
+              </div>
+            ))}
+            <Dropdown className="language-dropdown">
+              <Dropdown.Toggle>
                 <div className="navbar-item">
-                  <img src={nav.icon} alt="" />
-                  <span>{nav?.name}</span>
+                  <img src={langIcon} alt="" />
+                  <span> {language} </span>
                 </div>
-              ))}
-            </div>
-            <div className="nav-search-icon mx-4">
-              <img src={searchIcon} alt="" />
-            </div>
-          </>
+              </Dropdown.Toggle>
+              <Dropdown.Menu className="dropdown-menu-dark" variant="dark">
+                <Dropdown.Item onClick={()=>setLanguage('Eng')} >
+                  Eng
+                </Dropdown.Item>
+                <Dropdown.Item onClick={()=>setLanguage('Mar')} >
+                  Mar
+                </Dropdown.Item>
+                <Dropdown.Item onClick={()=>setLanguage('Hin')} >
+                  Hin
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </div>
+          <div className="nav-search-icon mx-4">
+            <img src={searchIcon} alt="" />
+          </div>
+        </>
         {/* } */}
         {!isLoggedIn ?
           <div className="actions flex items-center home-row navbar-wrapper">
