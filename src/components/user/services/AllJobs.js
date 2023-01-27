@@ -116,7 +116,7 @@ const AllJobs = (props) => {
               <input className="flex-1 mb-4" />
               <textarea className="flex-1 mb-4"></textarea>
               <button className="w-full bg-[#0058A9] text-white">
-                Post Event Free
+                Post Job Free
               </button>
             </div>
           </div>
