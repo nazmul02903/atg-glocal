@@ -23,6 +23,8 @@ import UserHome from "./components/user/home";
 import AdminHome from "./components/admin/home.component";
 import BackArrow from "./assets/Icons/back-arrow.svg";
 //import Page404 from "./components/page404.component";
+import googleplay from "../src/assets/homepg/img/googleplay.svg";
+import appstore from "../src/assets/homepg/img/appstore.svg";
 
 import Swal from "sweetalert2";
 import UserService from "./services/user.service";
@@ -32,6 +34,7 @@ import { alertCustom, alertDefault } from "./helpers/alerts";
 // import Footer from "./components/footer.component";
 import ProtectedRoute from "./routes/protectedRoutes";
 import PublicRoutes from "./routes/publicRoutes";
+import BottomBar from "./components/bottom-bar/bottomBar.component";
 const BackToDB = () => {
   return (
     <div className="d-flex justify-content-end me-2 mt-3" id="backToDashboard">
@@ -150,6 +153,61 @@ const App = (props) => {
           </div>
         </div>
       </Loader>
+            <div className="footer-sm">
+              <BottomBar />
+            </div>
+            <div className="footer">
+              <div className="footer-header">
+                <p>Create your Glocalbodh account</p>
+                <button>Get Started</button>
+              </div>
+              <div className="footer-content">
+                <div>
+                  <h6>Your Account</h6>
+                  <ul>
+                    <li>Sign up</li>
+                    <li>Log in</li>
+                    <li>Help</li>
+                    <li>Become an affiliate</li>
+                  </ul>
+                </div>
+                <div>
+                  <h6>Glocalbodh</h6>
+                  <ul>
+                    <li>About</li>
+                    <li>Blog</li>
+                    <li>Pricing</li>
+                    <li>Careers</li>
+                    <li>Apps</li>
+                    <li>Podcast</li>
+                  </ul>
+                </div>
+                <div>
+                  <h6>Other</h6>
+                  <ul>
+                    <li>Groups</li>
+                    <li>Calendar</li>
+                    <li>Topics</li>
+                    <li>Cities</li>
+                    <li>Online Events</li>
+                    <li>Local Guides</li>
+                  </ul>
+                </div>
+              </div>
+              <div className="footer-follow-section">
+                <p>Follow us</p>
+                <div>
+                  <img src={googleplay} alt="" />
+                  <img style={{marginLeft: "10px"}} src={appstore} alt="" />
+                </div>
+              </div>
+              <div className="footer-bottom">
+                <p>© 2022 Glocalbodh</p>
+                <p>Terms of Service</p>
+                <p>Privacy Policy</p>
+                <p>Help</p>
+              </div>
+            </div>
       {/* <Footer /> */}
     </Router>
   );

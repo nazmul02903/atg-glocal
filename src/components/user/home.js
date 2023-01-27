@@ -694,11 +694,11 @@ function Home(props) {
             </div>
           </div>
 
-          <div className="footer-sm">
+          {/* <div className="footer-sm">
             <BottomBar />
-          </div>
+          </div> */}
 
-          <div className="footer">
+          {/* <div className="footer">
             <div className="footer-header">
               <p>Create your Glocalbodh account</p>
               <button>Get Started</button>
@@ -749,7 +749,7 @@ function Home(props) {
               <p>Privacy Policy</p>
               <p>Help</p>
             </div>
-          </div>
+          </div> */}
         </div>
 
         <LoginComponent show={loginActive} handleClose={closeLoginModal} />
