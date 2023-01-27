@@ -10,7 +10,6 @@ import UpdateKYC from "../components/user/forms/updateKYC";
 import MyJobs from "../components/user/dashBoard/myJobs.component";
 import UpdateJob from "../components/user/forms/updateJob";
 import Academics from "../components/user/createPost/createAcademics";
-import CSRForm from "../components/csr/csrForm";
 import NgoFundingUpdate from "../components/user/apply/fundingUpdate/ngoFundingUpdate";
 import FundingUpdateNew from "../components/user/createPost/createFundingupdateNew";
 import FundingUpdateOld from "../components/user/forms/createFundingUpdateOld";
@@ -74,7 +73,6 @@ const UserRoutes = () => {
           path="/user/dashboard/myJobs"
           component={MyJobs}
         />
-        <ProtectedRoute exact path="/csrForm" component={CSRForm} />
 
         <ProtectedRoute exact path="/jobs/:id" component={allJobsComponent} />
         <ProtectedRoute

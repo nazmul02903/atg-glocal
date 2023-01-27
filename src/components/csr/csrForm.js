@@ -55,45 +55,43 @@ const CSRForm = (props) => {
         <CSR csrDetails={csrDetails} orgData={orgData} />
       ) : (
         <div>
-          <div className='text-center'>
+          <div className="text-center">
             <h2>Let's Move one step closer towards </h2>
             <h2>your organisation's growth</h2>
           </div>
-          <div className='p-3 sm:max-w-xl sm:mx-auto custom-card mt-8'>
+          <div className="p-3 sm:max-w-xl sm:mx-auto custom-card mt-8">
             <form onSubmit={handleSubmit(onSubmit)}>
-              <div className='font-bold text-current'>Organisation Details</div>
+              <div className="font-bold text-current">Organisation Details</div>
               {orgData && (
                 <div>
                   {" "}
-                  <div className='ml-4'>
-                    <div className='form-group'>
-                      <label htmlFor='organisationName'>
+                  <div className="ml-4">
+                    <div className="form-group">
+                      <label htmlFor="organisationName">
                         Organisation Name
                       </label>
                       <input
-                        className='disabled form-control'
+                        className=" form-control"
                         defaultValue={orgData.organizationName}
-                        type='text'
-                        readOnly
-                        disabled
+                        type="text"
                       />
                     </div>
                   </div>
-                  <div className='form-group'>
-                    <div className='font-bold text-current'>Thematic Area</div>
+                  <div className="form-group">
+                    <div className="font-bold text-current">Thematic Area</div>
                     <Multiselect
                       isObject={true}
                       onRemove={handleThematicArea}
                       onSelect={handleThematicArea}
                       options={orgData.thematicAreaBeans}
-                      displayValue='name'
+                      displayValue="name"
                     />
                   </div>
                 </div>
               )}
 
-              <div className='form-group ml-4 mt-4 '>
-                <button type='submit' className='btn btn-primary mt-2'>
+              <div className="form-group ml-4 mt-4 ">
+                <button type="submit" className="btn btn-primary mt-2">
                   Take Test
                 </button>
               </div>
