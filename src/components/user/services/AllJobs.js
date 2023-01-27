@@ -1,164 +1,191 @@
 import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import AdminService from "../../../services/admin.service";
-import LocationImg from "../../../assets/Icons/location.svg";
 import "bootstrap/dist/css/bootstrap.min.css";
-import DetailModal from "../../../helpers/detailModal";
-import ApplicantModal from "../../../helpers/applicantModal";
+import EventDetailModal from "../../../helpers/eventDetailModal";
 import { setLoader, clearLoader } from "../../../store/actions/loader";
 import ConfirmationModal from "../../../helpers/confirmationModal";
 import { useInterval } from "../../../helpers/useInterval";
 import { POLLING_INTERVAL } from "../../../constants/variables";
+import CommunityImg from "../../../assets/Icons/community-full.svg";
+import EventCardImg from "../../../assets/event-card.png";
+import ShareIcon from "../../../assets/Icons/share.svg";
+import ShareEventModal from "../../../helpers/shareEventModal";
+
+const tempJobList = [
+  {
+    id: 0,
+    name: "All",
+    selected: true,
+  },
+  {
+    id: 2,
+    name: "Csr Jobs",
+    selected: false,
+  },
+  {
+    id: 3,
+    name: "Govt Jobs",
+    selected: false,
+  },
+  {
+    id: 1,
+    name: "Ngo Jobs",
+    selected: false,
+  },
+];
 
 const AllJobs = (props) => {
-  const [jobs, setJobs] = useState([]);
-  const [selectedJob, setSelectedJob] = useState({});
-  const [modalShow, setModalShow] = React.useState(false);
-  const [modalShowApplicant, setModalShowApplicant] = useState(false);
-  const [modalShowDelete, setModalShowDelete] = useState(false);
+  const dispatch = useDispatch();
   const { id } = props.match.params;
+  const [jobs, setJobs] = useState([]);
+  // const [selectedEvent, setSelectedEvent] = useState({});
+  // const [modalShow, setModalShow] = React.useState(false);
+  // const [modalShowDelete, setModalShowDelete] = useState(false);
+  const [jobList, setJobList] = useState(tempJobList);
+  const [shareModalActive, setShareModalActive] = useState(false);
+
+  //debuging ----------------------------------------------
+  console.log(jobs);
 
   useInterval(async () => {
-    props.dispatch(setLoader());
-    await AdminService.fetchJobsByCategory(id, 1).then((res) => {
-      props.dispatch(clearLoader());
-      setJobs(res.data.jobDetailsBeans);
-    });
+    // dispatch(setLoader());
+    // await AdminService.fetchEventsByCategory(id, 1).then((res) => {
+    //   dispatch(clearLoader());
+    //   setEvents(res.data.eventBeans);
+    // });
   }, POLLING_INTERVAL);
+
   useEffect(() => {
-    props.dispatch(setLoader());
-    AdminService.fetchJobsByCategory(id, 1).then((res) => {
-      props.dispatch(clearLoader());
-      setJobs(res.data.jobDetailsBeans);
-      console.log(jobs);
+    const job = jobList.find((job) => job.id === parseInt(id));
+    if (!job) return;
+    let tempjob = jobList.map((ev) => {
+      if (ev.id === parseInt(id)) {
+        return { ...ev, selected: true };
+      } else {
+        return { ...ev, selected: false };
+      }
     });
-  }, [id]);
+    setJobList(tempjob);
+  }, [id]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const filterValue = "Live";
+  useEffect(() => {
+    dispatch(setLoader());
+    const selectedJob = jobList.find((job) => job.selected === true);
+    if (!selectedJob) return;
+    const id = selectedJob.id;
+    if (id === 0) {
+      AdminService.fetchAllJobs(1).then((res) => {
+        dispatch(clearLoader());
+        setJobs(res.data.jobDetailsBeans);
+      });
+    } else {
+      AdminService.fetchJobsByCategory(id, 1).then((res) => {
+        dispatch(clearLoader());
+        setJobs(res.data.jobDetailsBeans);
+      });
+    }
+  }, [jobList]);
+
+  const handlJobChange = (id) => {
+    let tempjob = jobList.map((ev) => {
+      if (ev.id === id) {
+        return { ...ev, selected: true };
+      } else {
+        return { ...ev, selected: false };
+      }
+    });
+    setJobList(tempjob);
+  };
+  // const getEventName = () => {
+  //   if (id === "1") return "Workshops & Trainings";
+  //   if (id === "2") return "Awards & Competitions";
+  //   if (id === "3") return "Exhibitions & Summits";
+  //   return "";
+  // };
   return (
-    <div className="list-group row mt-2">
-      {jobs
-        .filter((job) => {
-          if (job.jobStatusText === filterValue) {
-            return job;
-          }
-          if (filterValue === "All") {
-            return job;
-          }
-          return null;
-        })
-        .map((job, index) => {
-          return (
-            <div
-              className="list-group-item  col-sm-12 align-items-start rounded mb-2 bg-light bg-gradient mt-3"
-              key={index}
-            >
-              <div className="d-flex w-100 justify-content-between">
-                <h5 className="mb-1">{job.companyName}</h5>
-                <p className="mt-1">
-                  <span
-                    className="rounded-pill p-2 "
-                    style={{
-                      color: "#F9F9F9",
-
-                      backgroundColor:
-                        job.jobStatusText === "Reviewed"
-                          ? "#d43530"
-                          : "#00CCA9",
-                    }}
-                  >
-                    {job.jobStatusText === "Reviewed"
-                      ? "Live"
-                      : job.jobStatusText}
-                  </span>
-                  <span
-                    className="rounded-pill p-2 font-weight-bold ms-2"
-                    style={{ color: "#E74E54", backgroundColor: "#FDD8D8" }}
-                  >
-                    {job.expiryText}
-                  </span>
-                </p>
-              </div>
-              <div className="mt-2 mb-2">
-                <span
-                  className="rounded-pill p-2"
-                  style={{ color: "#3B7FBD", backgroundColor: "#E1F0F7" }}
-                >
-                  {job.jobType}
-                </span>
-
-                <span
-                  className="rounded-pill p-2 ms-3"
-                  style={{ backgroundColor: "#FFF9E6" }}
-                >
-                  {`₹${job.salaryText}`}
-                </span>
-              </div>
-              <div className="mt-4">
-                <span
-                  className="rounded-pill p-2"
-                  style={{ color: "#F9F9F9", backgroundColor: "#F2643F" }}
-                >
-                  {job.designation}
-                </span>
-              </div>
-              <div className="mt-3">
-                <span className="py-2 text-muted">
-                  <img src={LocationImg} height="25" alt="" />
-                  {job.location}
-                </span>
-              </div>
-              <div className="mt-2">
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  onClick={(e) => {
-                    setSelectedJob(job);
-                    setModalShow(true);
-                  }}
-                >
-                  View job details
-                </button>
-                {/* {job.jobApplicationBeans.length ? (
-                  <button
-                    className="btn btn-danger ms-3"
-                    onClick={() => {
-                      setSelectedJob(job);
-                      setModalShowApplicant(true);
-                    }}
-                  >
-                    View Applicant Details
-                  </button>
-                ) : (
-                  <button className="btn btn-danger ms-1" disabled>
-                    No Applicants
-                  </button>
-                )} */}
-              </div>
+    <>
+      <div className="pt-0 md:pt-10">
+        <div className="grid hidden grid-cols-12 mb-6 md:grid-cols-12 md:mb-10 md:grid">
+          <div className="col-span-12 mb-5 md:col-span-8 md:mb-0">
+            <img src={CommunityImg} className="w-full" />
+          </div>
+          <div className="col-span-12 md:col-span-4 all-events-form">
+            <div className="flex flex-col justify-center px-4 py-4 all-events-form-wrapper md:ml-8">
+              <p className="mb-4 text-base">Post Your Event</p>
+              <input className="flex-1 mb-4" />
+              <textarea className="flex-1 mb-4"></textarea>
+              <button className="w-full bg-[#0058A9] text-white">
+                Post Event Free
+              </button>
             </div>
-          );
-        })}
-      {modalShow && (
-        <DetailModal
-          data={selectedJob}
-          show={modalShow}
-          onHide={() => setModalShow(false)}
-        />
-      )}
-      {/* {modalShowApplicant && (
-        <ApplicantModal
-          data={selectedJob}
-          show={modalShowApplicant}
-          onHide={() => setModalShowApplicant(false)}
-        />
-      )} */}
-    </div>
+          </div>
+        </div>
+        <div className="ml-0 list-group row">
+          <div className="flex items-center mb-6 all-events-categories md:mb-8">
+            {jobList.map((event) => {
+              return (
+                <div
+                  key={event.id}
+                  className={`category-item ${
+                    event.selected ? "selected font-bold" : "font-semibold"
+                  }`}
+                  onClick={() => handlJobChange(event.id)}
+                >
+                  <p> {event.name} </p>
+                </div>
+              );
+            })}
+          </div>
+          {/* <h3 className="mt-4 mb-4"> {getEventName()} </h3> */}
+          <div className="grid grid-cols-12 event-cards gap-y-4 md:gap-x-5">
+            {jobs.map((job, index) => {
+              return (
+                <div
+                  key={job.jobId}
+                  className="col-span-12 event-card md:col-span-4"
+                >
+                  <div className="flex">
+                    <img src={EventCardImg} className="event-img" />
+                  </div>
+                  <div className="event-card-content">
+                    <div className="flex items-center mb-0">
+                      <img
+                        src={job.jobCategoryImageUrl}
+                        className="event-icon"
+                      />
+                      <p className="event-title">{job.companyName}</p>
+                      <p className="event-fees">{`₹${job?.minSalary}`}</p>
+                    </div>
+
+                    <div className="flex justify-between event-footer">
+                      <p className="created-at"> {job.createdAtText} </p>
+                      <img
+                        src={ShareIcon}
+                        className="cursor-pointer"
+                        onClick={() => setShareModalActive(true)}
+                      />
+                    </div>
+                    <div className="flex justify-between">
+                      <p className="event-venue">{job.location}</p>
+                      <p className="organizer">
+                        organized by <span> {job.designation} </span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
+      <ShareEventModal
+        show={shareModalActive}
+        handleClose={() => setShareModalActive(false)}
+      />
+    </>
   );
 };
-function matchPropsToState(state) {
-  const { isLoading } = state.loader;
-  return {
-    isLoading,
-  };
-}
-export default connect(matchPropsToState)(AllJobs);
+
+export default AllJobs;
