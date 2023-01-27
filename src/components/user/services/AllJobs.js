@@ -112,7 +112,7 @@ const AllJobs = (props) => {
           </div>
           <div className="col-span-12 md:col-span-4 all-events-form">
             <div className="flex flex-col justify-center px-4 py-4 all-events-form-wrapper md:ml-8">
-              <p className="mb-4 text-base">Post Your Event</p>
+              <p className="mb-4 text-base">Post Your Job</p>
               <input className="flex-1 mb-4" />
               <textarea className="flex-1 mb-4"></textarea>
               <button className="w-full bg-[#0058A9] text-white">
