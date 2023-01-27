@@ -523,13 +523,65 @@ function Home(props) {
             </div>
           </div>
 
-          <div className="footer-sm">
+          {/* <div className="footer-sm">
             <BottomBar />
-          </div>
+          </div> */}
 
+          {/* <div className="footer">
+            <div className="footer-header">
+              <p>Create your Glocalbodh account</p>
+              <button>Get Started</button>
+            </div>
+            <div className="footer-content">
+              <div>
+                <h6>Your Account</h6>
+                <ul>
+                  <li>Sign up</li>
+                  <li>Log in</li>
+                  <li>Help</li>
+                  <li>Become an affiliate</li>
+                </ul>
+              </div>
+              <div>
+                <h6>Glocalbodh</h6>
+                <ul>
+                  <li>About</li>
+                  <li>Blog</li>
+                  <li>Pricing</li>
+                  <li>Careers</li>
+                  <li>Apps</li>
+                  <li>Podcast</li>
+                </ul>
+              </div>
+              <div>
+                <h6>Other</h6>
+                <ul>
+                  <li>Groups</li>
+                  <li>Calendar</li>
+                  <li>Topics</li>
+                  <li>Cities</li>
+                  <li>Online Events</li>
+                  <li>Local Guides</li>
+                </ul>
+              </div>
+            </div>
+            <div className="footer-follow-section">
+              <p>Follow us</p>
+              <div>
+                <img src={googleplay} alt="" />
+                <img src={appstore} alt="" />
+              </div>
+            </div>
+            <div className="footer-bottom">
+              <p>© 2022 Glocalbodh</p>
+              <p>Terms of Service</p>
+              <p>Privacy Policy</p>
+              <p>Help</p>
+            </div>
+          </div> */}
         </div>
 
-        <Footer />
+        {/* <Footer /> */}
         <LoginComponent show={loginActive} handleClose={closeLoginModal} />
         <NewsDetailModal
           show={newsDetailModalActive}

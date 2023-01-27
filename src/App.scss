@@ -842,6 +842,7 @@ a:hover {
     li{
       font-size: 14px;
       margin-bottom: 6px;
+      cursor: pointer;
     }
   }
 
@@ -865,6 +866,10 @@ a:hover {
    .footer-bottom {
     display: flex;
     gap: 15px;
+
+    p{
+      cursor: pointer;
+    }
   }
 }
 @media screen and (min-width: 768px) {
