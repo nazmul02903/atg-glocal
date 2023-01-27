@@ -44,6 +44,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import NewsDetailModal from "../../helpers/newsDetail";
 import Footer from "../footer.component";
+import { useTranslation } from "react-i18next";
 
 const clientId = process.env.REACT_APP_OAUTH_CLIENT_ID;
 
@@ -94,14 +95,14 @@ function Home(props) {
   const [news, setNews] = useState([]);
   const [newsDetailModalActive, setNewsDetailModalActive] = useState(true);
   const [newsDetail, setNewsDetail] = useState({});
-
+  const { t } = useTranslation();
   // console.log(user);
   const history = useHistory();
   const handleLogout = () => {
     dispatch(setLoader());
     signOut();
   };
- 
+
   const onLogoutSuccess = (res) => {
     dispatch(logout());
     localStorage.removeItem("user");
@@ -203,10 +204,10 @@ function Home(props) {
           </div> */}
             <div className="divisions home-column">
               <p className="home-category-title font-semibold">
-                Social Sector Updates
+                {t('Social Sector Updates.1')}
               </p>
               <p className="home-category-subtitle">
-              Get latest news & updates from the social sector
+                {t('Get latest news & updates from the social sector.1')}
               </p>
               <div className="home-row divisions-row">
                 {subCategoriesEvents.map((event, idx) => {
@@ -215,11 +216,13 @@ function Home(props) {
                       <Link to={`/event/${idx + 1}`} className="services-link">
                         <div className="imgBox eventBox">
                           <div className="division-name-inside font-semibold">
-                            {event.name}
+                            {t(`${event.name}.1`)}
                           </div>
                           <img src={event.imageUrl} className="icon" alt="" />
                         </div>
-                        <div className="division-name font-semibold">{event.name}</div>
+                        <div className="division-name font-semibold">
+                          {t(`${event.name}.1`)}
+                        </div>
                       </Link>
                       {/* <div className="division-subtext">
                         Do what you love, meet others who love it, find your
@@ -240,11 +243,13 @@ function Home(props) {
                       >
                         <div className="imgBox eventBox">
                           <div className="division-name-inside">
-                            {event.name}
+                            {t(`${event.name}.1`)}
                           </div>
                           <img src={event.imageUrl} className="icon" alt="" />
                         </div>
-                        <div className="division-name font-semibold">{event.name}</div>
+                        <div className="division-name font-semibold">
+                          {t(`${event.name}.1`)}
+                        </div>
                       </Link>
                     </div>
                   );
@@ -258,11 +263,13 @@ function Home(props) {
                       <Link to={`/jobs/${idx + 1}`} className="services-link">
                         <div className="imgBox eventBox">
                           <div className="division-name-inside">
-                            {event.name}
+                            {t(`${event.name}.1`)}
                           </div>
                           <img src={event.imageUrl} className="icon" alt="" />
                         </div>
-                        <div className="division-name font-semibold">{event.name}</div>
+                        <div className="division-name font-semibold">
+                          {t(`${event.name}.1`)}
+                        </div>
                       </Link>
                     </div>
                   );
@@ -272,57 +279,88 @@ function Home(props) {
           </div>
 
           <div className="csr-funding-homepage">
-            <h1>CSR Funding Eligibility Test</h1>
-            <p>Get Your NGO Verified By Our Experts</p>
+            <h1>
+              {t('CSR Funding Eligibility Test.1')}
+            </h1>
+            <p>
+              {t('Get Your NGO Verified By Our Experts.1')}
+            </p>
             <img src={csrFunding} alt="" />
             <button onClick={() => history.push("/csrForm")}>
-              START CSR TEST
+              {t('START CSR TEST.1')}
             </button>
           </div>
 
           <div className="csr-funding-homepage-lg">
             <div>
-              <h6>Is your organisation eligible for</h6>
-              <h1>CSR</h1>
-              <h3>Funding?</h3>
+              <h6>
+                {t('Is your organisation eligible for.1')}
+              </h6>
+              <h1>
+                {t('CSR.1')}
+              </h1>
+              <h3>
+                {t('Funding?.1')}
+              </h3>
             </div>
             <img src={csr} alt="" />
             <div className="csr-fund-info">
               <p>
-                Take our CSR Eligibility Test to determine your company's
-                readiness to implement socially responsible initiatives. Start
-                making a positive impact today!
+                {t(`Take our CSR Eligibility Test to determine your company's readiness to implement socially responsible initiatives. Start making a positive impact today!.1`)}
               </p>
-              <button onClick={() => history.push("/csrForm")}>TEST NOW</button>
+              <button onClick={() => history.push("/csrForm")}>
+                {t('TEST NOW.1')}
+              </button>
             </div>
           </div>
-          
+
           <div className="services-homepage">
-            <h1>Services We Offer</h1>
+            <h1>
+              {t('Services We Offer.1')}
+            </h1>
             <div className="service">
               <img src={services1} alt="" srcset="" />
               <div>
-                <h2>Employee Engagement Activity</h2>
-                <p>Improve employee satisfaction and productivity with our customized engagement activities. From team building to professional development, we'll design a program tailored to your company's needs.</p>
-                <button>KNOW MORE</button>
+                <h2>
+
+                  {t('Employee Engagement Activity.1')}
+                </h2>
+                <p>
+                  {t("Improve employee satisfaction and productivity with our customized engagement activities. From team building to professional development, we'll design a program tailored to your company's needs..1")}
+                </p>
+                <button>
+                  {t('KNOW MORE.1')}
+                </button>
               </div>
             </div>
 
             <div className="service">
               <div>
-                <h2>Research</h2>
-                <p>Let our research expertise help your social organization make informed decisions and drive positive change. Contact us to discuss your research needs.</p>
-                <button>KNOW MORE</button>
+                <h2>
+                  {t('Research.1')}
+                </h2>
+                <p>
+                  {t('Let our research expertise help your social organization make informed decisions and drive positive change. Contact us to discuss your research needs..1')}
+                </p>
+                <button>
+                  {t('KNOW MORE.1')}
+                </button>
               </div>
               <img src={services2} alt="" srcset="" />
             </div>
-            
+
             <div className="service">
               <img src={services3} alt="" srcset="" />
               <div>
-                <h2>Legal Services</h2>
-                <p>Need legal assistance for your social organization? We offer comprehensive legal services to help you navigate compliance and achieve your mission. Contact us today!</p>
-                <button>KNOW MORE</button>
+                <h2>
+                  {t('Legal Services.1')}
+                </h2>
+                <p>
+                  {t('Need legal assistance for your social organization? We offer comprehensive legal services to help you navigate compliance and achieve your mission. Contact us today!.1')}
+                </p>
+                <button>
+                  {t('KNOW MORE.1')}
+                </button>
               </div>
             </div>
           </div>
@@ -381,8 +419,11 @@ function Home(props) {
             <div className="download-info home-column">
               <img src={GlobeLogo} className="globe-logo" alt="" />
               <div className="text">
-                Stay connected. <br />
-                Download the app.
+
+                {t('Stay connected..1')}
+                <br />
+
+                {t('Download the app..1')}
               </div>
               <div className="store">
                 <button className="playStore"></button>
@@ -397,11 +438,10 @@ function Home(props) {
           <div className="sect-5 home-column">
             <div className="community-heading heading">
               {" "}
-              Glocalbodh Communities
+              {t('GlocalBodh Communities.1')}
             </div>
             <div className="community-subtext subtext">
-              People on Glocalboadh have fostered community, learned new skills,
-              started businesses, and made life-long friends. Learn how.
+              {t('People on Glocalboadh have fostered community, learned new skills, started businesses, and made life-long friends. Learn how..1')}
             </div>
             <Slider dots={true} slidesToShow={3} slidesToScroll={3}  >
               {newsBeans.map((bean, i) => (
@@ -425,38 +465,48 @@ function Home(props) {
 
           <div className="my-20 postReq-wrapper">
             <div className="postReq-content">
-              <h2>Post your requirements free !!</h2>
+              <h2>
+                {t('Post your requirements free.1')}!!
+              </h2>
               <p className="mb-5">
                 <span className="block mb-4">
-                  Posting our platform is completely free
+                  {t('Posting our platform is completely free.1')}
                 </span>
                 <span>
-                  Post Events to get registrations from NGO community Post Jobs
-                  to get candidates to work in social secto Post to search NGOs
-                  that natch your project criteria
+                  {t('Post Events to get registrations from NGO community Post Jobs to get candidates to work in social secto Post to search NGOs that natch your project criteria.1')}
                 </span>
               </p>
             </div>
             <Slider dots={true}>
               <div className="postReq-slider">
                 <img src={postReqSlider} alt="" />
-                <h4>Post An Event</h4>
+                <h4>
+                  {t('Post An Event.1')}
+                </h4>
               </div>
               <div className="postReq-slider">
                 <img src={postReqSlider} alt="" />
-                <h4>Post An Event</h4>
+                <h4>
+                  {t('Post An Event.1')}
+                </h4>
               </div>
               <div className="postReq-slider">
                 <img src={postReqSlider} alt="" />
-                <h4>Post An Event</h4>
+                <h4>
+                  {t('Post An Event.1')}
+                </h4>
               </div>
             </Slider>
           </div>
 
           {/* Service we Provide section */}
           <div className="service-provide">
-            <h4>Services We Provide</h4>
-            <p>Get your NGO verified by our experts</p>
+            <h4>
+              {t('Services We Provide.1')}
+            </h4>
+            <p>
+              {t('Get your NGO verified by our experts.1')}
+            </p>
             <div className="service-items">
               {services.map((service, i) => (
                 <div className="service-wrapper">

@@ -33,6 +33,9 @@ import { alertCustom, alertDefault } from "./helpers/alerts";
 // import Footer from "./components/footer.component";
 import ProtectedRoute from "./routes/protectedRoutes";
 import PublicRoutes from "./routes/publicRoutes";
+
+
+
 const BackToDB = () => {
   let history = useHistory();
 

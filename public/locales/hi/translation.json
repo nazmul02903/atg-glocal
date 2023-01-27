@@ -1,0 +1,137 @@
+{
+    "Events": {
+        "1": "आयोजन"
+    },
+    "Jobs": {
+        "1": "नौकरियां"
+    },
+    "Fundings": {
+        "1": "अनुदान"
+    },
+    "Contact": {
+        "1": "संपर्क"
+    },
+    "Login": {
+        "1": "लॉग इन करें"
+    },
+    "Signup": {
+        "1": "साइन अप करें"
+    },
+    "Social Sector Updates": {
+        "1": "सामाजिक क्षेत्र अद्यतन"
+    },
+    "Get latest news & updates from the social sector": {
+        "1": "सामाजिक क्षेत्र से नवीनतम समाचार और अपडेट प्राप्त करें सामाजिक क्षेत्र से नवीनतम समाचार और अपडेट प्राप्त करें"
+    },
+    "Awards & Competitions": {
+        "1": "पुरस्कार और प्रतियोगिताएं"
+    },
+    "Workshops & Trainings": {
+        "1": "कार्यशालाएं और प्रशिक्षण"
+    },
+    "Exhibitions & Summits": {
+        "1": "प्रदर्शनियों और शिखर सम्मेलन"
+    },
+    "Govt. Funds": {
+        "1": "सरकार। फंड"
+    },
+    "Foreign Funds": {
+        "1": "विदेशी कोष"
+    },
+    "CSR Funds": {
+        "1": "सीएसआर फंड"
+    },
+    "NGO Jobs": {
+        "1": "एनजीओ नौकरियां"
+    },
+    "CSR Jobs": {
+        "1": "सीएसआर नौकरियां"
+    },
+    "Govt. Jobs": {
+        "1": "सरकारी नौकरी"
+    },
+    "CSR Funding Eligibility Test": {
+        "1": "सीएसआर फंडिंग एलिजिबिलिटी टेस्ट"
+    },
+    "Get Your NGO Verified By Our Experts": {
+        "1": "हमारे विशेषज्ञों से अपने एनजीओ की पुष्टि करवाएं"
+    },
+    "START CSR TEST": {
+        "1": "सीएसआर टेस्ट शुरू करें"
+    },
+    "Is your organisation eligible for": {
+        "1": "क्या आपका संगठन योग्य है"
+    },
+    "CSR": {
+        "1": "सीएसआर"
+    },
+    "Funding?": {
+        "1": "अनुदान??"
+    },
+    "Take our CSR Eligibility Test to determine your company's readiness to implement socially responsible initiatives. Start making a positive impact today!": {
+        "1": "सामाजिक रूप से जिम्मेदार पहलों को लागू करने के लिए आपकी कंपनी की तैयारी निर्धारित करने के लिए हमारी सीएसआर पात्रता परीक्षा लें। आज ही सकारात्मक प्रभाव डालना शुरू करें!"
+    },
+    "TEST NOW": {
+        "1": "अभी परीक्षण करें"
+    },
+    "Services We Offer": {
+        "1": "सेवाएं हम प्रदान करते हैं"
+    },
+    "Employee Engagement Activity": {
+        "1": "कर्मचारी सगाई गतिविधि"
+    },
+    "Improve employee satisfaction and productivity with our customized engagement activities. From team building to professional development, we'll design a program tailored to your company's needs.": {
+        "1": "हमारी अनुकूलित संलग्नता गतिविधियों के साथ कर्मचारी संतुष्टि और उत्पादकता में सुधार करें। टीम निर्माण से लेकर व्यावसायिक विकास तक, हम आपकी कंपनी की आवश्यकताओं के अनुरूप एक कार्यक्रम तैयार करेंगे।"
+    },
+    "KNOW MORE": {
+        "1": "अधिक जानते हैं"
+    },
+    "Legal Services": {
+        "1": "कानूनी सेवा"
+    },
+    "Research": {
+        "1": "शोध करना"
+    },
+    "Let our research expertise help your social organization make informed decisions and drive positive change. Contact us to discuss your research needs.": {
+        "1": "हमारी शोध विशेषज्ञता को आपके सामाजिक संगठन को सूचित निर्णय लेने और सकारात्मक बदलाव लाने में मदद करने दें। अपनी शोध आवश्यकताओं पर चर्चा करने के लिए हमसे संपर्क करें।"
+    },
+    "Need legal assistance for your social organization? We offer comprehensive legal services to help you navigate compliance and achieve your mission. Contact us today!": {
+        "1": "अपने सामाजिक संगठन के लिए कानूनी सहायता चाहिए? हम आपको अनुपालन नेविगेट करने और अपने मिशन को प्राप्त करने में मदद करने के लिए व्यापक कानूनी सेवाएं प्रदान करते हैं। हमसे आज ही संपर्क करें!"
+    },
+    "Stay connected.": {
+        "1": "जुड़े रहो।"
+    },
+    "Download the app.": {
+        "1": "ऐप डाउनलोड करें।"
+    },
+    "GlocalBodh Communities": {
+        "1": "ग्लोकलबोध समुदाय"
+    },
+    "GlocalBodh": {
+        "1": "ग्लोकलबोध"
+    },
+    "Glocalbodh": {
+        "1": "ग्लोकलबोध"
+    },
+    "People on Glocalboadh have fostered community, learned new skills, started businesses, and made life-long friends. Learn how.": {
+        "1": "ग्लोकलबॉध पर लोगों ने समुदाय को बढ़ावा दिया है, नए कौशल सीखे हैं, व्यवसाय शुरू किए हैं और जीवन भर के दोस्त बनाए हैं। सीखो कैसे।"
+    },
+    "Post your requirements free": {
+        "1": "अपनी आवश्यकताओं को निःशुल्क पोस्ट करें"
+    },
+    "Posting our platform is completely free": {
+        "1": "हमारे प्लेटफॉर्म पर पोस्टिंग करना पूरी तरह से फ्री है"
+    },
+    "Post Events to get registrations from NGO community Post Jobs to get candidates to work in social secto Post to search NGOs that natch your project criteria": {
+        "1": "एनजीओ समुदाय से पंजीकरण प्राप्त करने के लिए कार्यक्रम पोस्ट करें उम्मीदवारों को सामाजिक क्षेत्र में काम करने के लिए नौकरी पोस्ट करें आपके प्रोजेक्ट मानदंड को पूरा करने वाले एनजीओ को खोजने के लिए पोस्ट करें"
+    },
+    "Post An Event": {
+        "1": "एक घटना पोस्ट करें"
+    },
+    "Services We Provide": {
+        "1": "हम जो सेवाएं प्रदान करते हैं"
+    },
+    "Get your NGO verified by our experts": {
+        "1": "अपने एनजीओ को हमारे विशेषज्ञों द्वारा सत्यापित करवाएं"
+    }
+}

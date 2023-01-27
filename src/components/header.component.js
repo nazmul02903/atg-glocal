@@ -26,6 +26,9 @@ import mailIcon from "./../assets/Icons/navbar/mail.svg";
 import fundIcon from "./../assets/Icons/navbar/fund.svg";
 import searchIcon from "./../assets/Icons/navbar/search.svg";
 import langIcon from "./../assets/Icons/navbar/LangIcon.svg";
+import i18next from 'i18next';
+import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
 const clientId = process.env.REACT_APP_OAUTH_CLIENT_ID;
 
 const navObj = [
@@ -60,12 +63,30 @@ const Header = (props) => {
   const [loginActive, setLoginActive] = useState(false)
   const [language, setLanguage] = useState('Eng')
   const [signUpActive, setSignUpActive] = useState(false)
-  const { user } = useSelector(state => state.auth)
 
+  const { user } = useSelector(state => state.auth)
+  const { t } = useTranslation();
+
+  function handleClick(lang) {
+    let languageToSet = lang
+    if(lang === 'Eng'){
+      languageToSet = 'en'
+    } else if(lang === 'Mar'){
+      languageToSet = 'mr'
+    } if(lang === 'Hin'){
+      languageToSet = 'hi'
+    }
+    i18next.changeLanguage(languageToSet)
+  }
+  
   const handleLogout = () => {
     dispatch(setLoader());
     signOut();
   };
+
+  useEffect(() => {
+    handleClick(language)
+  }, [language])
 
   const openLoginModal = () => setLoginActive(true)
   const closeLoginModal = () => setLoginActive(false)
@@ -113,24 +134,24 @@ const Header = (props) => {
             {navObj.map((nav, i) => (
               <div className="navbar-item">
                 <img src={nav.icon} alt="" />
-                <span> {nav?.name} </span>
+                <span> {t(`${nav?.name}.1`)} </span>
               </div>
             ))}
-            <Dropdown className="language-dropdown">
-              <Dropdown.Toggle>
+            <Dropdown className="language-dropdown" >
+              <Dropdown.Toggle  >
                 <div className="navbar-item">
                   <img src={langIcon} alt="" />
                   <span> {language} </span>
                 </div>
               </Dropdown.Toggle>
               <Dropdown.Menu className="dropdown-menu-dark" variant="dark">
-                <Dropdown.Item onClick={()=>setLanguage('Eng')} >
+                <Dropdown.Item onClick={() => setLanguage('Eng')} >
                   Eng
                 </Dropdown.Item>
-                <Dropdown.Item onClick={()=>setLanguage('Mar')} >
+                <Dropdown.Item onClick={() => setLanguage('Mar')} >
                   Mar
                 </Dropdown.Item>
-                <Dropdown.Item onClick={()=>setLanguage('Hin')} >
+                <Dropdown.Item onClick={() => setLanguage('Hin')} >
                   Hin
                 </Dropdown.Item>
               </Dropdown.Menu>
@@ -146,10 +167,15 @@ const Header = (props) => {
             {/* <Navbar /> */}
             {/* <div className="lang action">English</div> */}
             <div className="link-tags">
-              <div className="logIn action text-lg underline" onClick={openLoginModal} >LogIn</div>
+              <div className="logIn action text-lg underline" onClick={openLoginModal} >
+              {t('Login.1')}
+              </div>
             </div>
             <div className="link-tags-signup">
-              <div className="logIn action text-lg underline" onClick={() => setSignUpActive(true)} >Signup</div>
+              <div className="logIn action text-lg underline"
+               onClick={() => setSignUpActive(true)} >
+                {t('Signup.1')}
+              </div>
             </div>
             {/* <Link to="/register" className="link-tags">
               <div className="singUp action">SingUp</div>

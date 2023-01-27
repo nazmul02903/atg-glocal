@@ -29,7 +29,7 @@ const NewsDetailModal = (props) => {
                <div className="function-img-container">
                   <img src={newsLink.slice(0,5) === 'https' ? newsLink :Function1} className="function-img" alt="" />
                </div>
-               <div className="function-heading">{title.slice(1, 50)}</div>
+               <div className="function-heading">{title.slice(0, 50)}</div>
                <div className="function-description"  dangerouslySetInnerHTML={{ __html: description }}>
                   {/* {description} */}
                </div>

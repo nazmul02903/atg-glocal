@@ -8,6 +8,7 @@ import { Client as Styletron } from "styletron-engine-atomic";
 import { Provider as StyletronProvider } from "styletron-react";
 import { BaseProvider } from "baseui";
 import Theme from "./theme";
+import './i18n';
 
 const engine = new Styletron();
 //SET NODE_OPTIONS=--openssl-legacy-provider && 
