@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect} from "react";
 import { connect } from "react-redux";
-import { Router, Switch, Link, Route } from "react-router-dom";
+import { Router, Switch, Route } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -24,8 +24,6 @@ import UserHome from "./components/user/home";
 import AdminHome from "./components/admin/home.component";
 import BackArrow from "./assets/Icons/back-arrow.svg";
 //import Page404 from "./components/page404.component";
-import googleplay from "../src/assets/homepg/img/googleplay.svg";
-import appstore from "../src/assets/homepg/img/appstore.svg";
 
 import Swal from "sweetalert2";
 import UserService from "./services/user.service";
@@ -143,7 +141,7 @@ const App = (props) => {
         <div id="page-container">
           <Header />
 
-          <div className="container mt-2" id="content-wrap">
+          <div className="mt-2 grid justify-center" id="content-wrap">
             <Switch>
               <PublicRoutes
                 exact

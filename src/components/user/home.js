@@ -182,7 +182,7 @@ function Home(props) {
     dispatch(clearLoader());
     return (
       <>
-        <div className="home">
+        <div className="home container">
           {/* nazmul hasan */}
 
           <div className="my-3 banner-slider">

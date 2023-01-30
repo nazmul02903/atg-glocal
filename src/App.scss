@@ -897,3 +897,15 @@ a:hover {
     }
   }
 }
+
+// Jobs page
+
+.jobs-header {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.jobs-page button {
+  background-color: #0057A8;
+  color: #fff;
+}

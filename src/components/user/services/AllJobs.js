@@ -11,6 +11,13 @@ import CommunityImg from "../../../assets/Icons/community-full.svg";
 import EventCardImg from "../../../assets/event-card.png";
 import ShareIcon from "../../../assets/Icons/share.svg";
 import ShareEventModal from "../../../helpers/shareEventModal";
+import jobsBanner from "../../../assets/jobspg/jobsBanner.svg";
+import jobType from "../../../assets/Icons/jobType.svg";
+import financialServices from "../../../assets/Icons/financialServices.svg";
+import alumni from "../../../assets/Icons/alumni.svg";
+import applicants from "../../../assets/Icons/applicants.svg";
+import skills from "../../../assets/Icons/skills.svg";
+import JobModal from "../../../helpers/jobModal";
 
 const tempJobList = [
   {
@@ -44,9 +51,10 @@ const AllJobs = (props) => {
   // const [modalShowDelete, setModalShowDelete] = useState(false);
   const [jobList, setJobList] = useState(tempJobList);
   const [shareModalActive, setShareModalActive] = useState(false);
+  const [selectedJob, setSelectedJob] = useState({});
 
   //debuging ----------------------------------------------
-  console.log(jobs);
+  // console.log(jobs);
 
   useInterval(async () => {
     // dispatch(setLoader());
@@ -83,11 +91,12 @@ const AllJobs = (props) => {
       AdminService.fetchJobsByCategory(id, 1).then((res) => {
         dispatch(clearLoader());
         setJobs(res.data.jobDetailsBeans);
+        setSelectedJob(res.data.jobDetailsBeans[0]);
       });
     }
   }, [jobList]);
 
-  const handlJobChange = (id) => {
+  const handleCategoryChange = (id) => {
     let tempjob = jobList.map((ev) => {
       if (ev.id === id) {
         return { ...ev, selected: true };
@@ -97,6 +106,16 @@ const AllJobs = (props) => {
     });
     setJobList(tempjob);
   };
+
+  const handleSelectedJob = (id) => {
+    const newSelection = jobs.find((job) => job.jobId === id);
+    setSelectedJob(newSelection);
+  };
+
+  useEffect(() => {
+    console.log(selectedJob);
+  }, [selectedJob]);
+
   // const getEventName = () => {
   //   if (id === "1") return "Workshops & Trainings";
   //   if (id === "2") return "Awards & Competitions";
@@ -105,78 +124,126 @@ const AllJobs = (props) => {
   // };
   return (
     <>
-      <div className="pt-0 md:pt-10">
-        <div className="grid hidden grid-cols-12 mb-6 md:grid-cols-12 md:mb-10 md:grid">
-          <div className="col-span-12 mb-5 md:col-span-8 md:mb-0">
-            <img src={CommunityImg} className="w-full" />
-          </div>
-          <div className="col-span-12 md:col-span-4 all-events-form">
-            <div className="flex flex-col justify-center px-4 py-4 all-events-form-wrapper md:ml-8">
-              <p className="mb-4 text-base">Post Your Job</p>
-              <input className="flex-1 mb-4" />
-              <textarea className="flex-1 mb-4"></textarea>
-              <button className="w-full bg-[#0058A9] text-white">
-                Post Job Free
-              </button>
+      <div className="pt-0 md:m-5 md:p-5 jobs-page">
+        <div className='jobs-header bg-white p-5 d-none d-md-grid'>
+            <div className='grid items-center justify-right'>
+                <div>
+                    <h1>Connecting people working in NGOs to Opportunities</h1>
+                    <p>Whatever you’re looking to do this year, Meetup can help. For 20 years, people have turned to Meetup to meet people, make friends, </p>
+                </div>
+            </div>
+            <div>
+                <img src={jobsBanner} alt="" />
+            </div>
+            <div className='grid items-center p-4 shadow-md w-75  text-gray-400'>
+                <div>
+                    <h4 className='mb-4 text-center'>Post Jobs</h4>
+                    <div className='grid justify-center'>
+                        <input className='my-2 p-2 bg-gray-100 border-0 shadow-inner rounded' type="text" name="position" placeholder='Postion' />
+                        <textarea className='my-2 p-2 bg-gray-100 border-0 shadow-inner rounded' rows={3} style={{resize: 'none'}}  type="text" name="jobDescription" placeholder='Job Description'  />
+                        <button className='btn my-2'>Post Jobs Free</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div className="flex items-center lg:bg-white all-events-categories md:mb-8">
+          {jobList.map((event) => {
+            return (
+              <div
+                key={event.id}
+                className={`category-item ${
+                  event.selected ? "selected font-bold" : "font-semibold"
+                }`}
+                onClick={() => handleCategoryChange(event.id)}
+              >
+                <p> {event.name} </p>
+              </div>
+            );
+          })}
+        </div>
+
+        <div>
+          <div className="grid grid-cols-1 lg:mx-5 lg:p-5 lg:grid-cols-2">
+            
+            <div className="col-span-1">
+              {jobs.map((job) => {
+                return (
+                  <div
+                    key={job.jobId}
+                    onClick={() => handleSelectedJob(job.jobId)}
+                    className={`flex p-4 lg:mb-4 lg:mr-4 shadow-sm cursor-pointer ${
+                      selectedJob.jobId === job.jobId
+                        ? "bg-gray-50"
+                        : "bg-white"
+                    }`}
+                  >
+                    <img src={EventCardImg} alt="" className="w-25 pb-5 pr-5" />
+                    <div className="w-full grid grid-cols-2 justify-between">
+                      <div className="event-card-content">
+                        <p className="event-title fw-bold mb-2 text-blue-600">{job.designation}</p>
+                        <p className="m-0">{job.companyName}</p>
+                        <p className="m-0">{job.location}</p>
+                        <p className="text-gray-500 text-sm m-0">{job.expiryLabel}</p>
+                        <small><u>Send me a job like this</u></small>
+                      </div>
+                      <div className="grid justify-end justify-items-end">
+                        <p className="text-blue-600 fw-bold">{job.jobCategory}</p>
+                        <div className="grid items-end">
+                          <img
+                            src={ShareIcon}
+                            style={{ width: "25px", height: "25px" }}
+                            className="hover:bg-gray-100 rounded-full p-1"
+                            onClick={() => setShareModalActive(true)}
+                            alt=""
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+            
+            <div className="d-none col-span-1 bg-white d-md-block " style={{paddingLeft: "45px"}}>
+              <h2 className="fw-bold">{selectedJob?.designation}</h2>
+              <p>{selectedJob.location} On-site 1 day ago 24 applicants</p>
+              <div className="text-gray-500">
+                <div className="my-3 flex">
+                  <img src={jobType} alt="" />
+                  <p className="m-0 pl-3">{selectedJob.jobType}</p>
+                </div>
+                <div className="my-3 flex">
+                  <img src={financialServices} alt="" />
+                  <p className="m-0 pl-3">₹ 10,001+ employees · Financial Services</p>
+                </div>
+                <div className="my-3 flex">
+                  <img src={alumni} alt="" />
+                  <p className="m-0 pl-3">1 company alumni </p>
+                </div>
+                <div className="my-3 flex">
+                  <img src={applicants} alt="" />
+                  <p className="m-0 pl-3">See how you compare to 24 applicants</p>
+                </div>
+                <div className="my-3 flex">
+                  <img src={skills} alt="" />
+                  <p className="m-0 pl-3">Skills: Spring Framework, Systems Analysis,</p>
+                </div>
+              </div>
+              <div className="flex gap-3 my-5">
+                <button className="btn w-24 fs-5 h-8 p-0 rounded-lg fw-lighter">Apply</button>
+                <button className="btn w-24 fs-5 h-8 p-0 rounded-lg bg-white" style={{border: "1px solid #0057A8", color: "#0057A8"}}>Save</button>
+              </div>
+              <div>
+                <h6 className="fw-bold my-3">Job Id: {selectedJob.jobId}</h6>
+                <p className="text-grey-800">
+                  The Applications Development Team Lead is an intermediate level position responsible for driving and delivering implementation of new or revised application systems and programs in coordination with the Technology team. The overall objective of this role is to contribute to applications systems analysis and project deliveries activities.
+                </p>
+                <h6 className="fw-bold my-4">Responsibilities:</h6>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="ml-0 list-group row">
-          <div className="flex items-center mb-6 all-events-categories md:mb-8">
-            {jobList.map((event) => {
-              return (
-                <div
-                  key={event.id}
-                  className={`category-item ${
-                    event.selected ? "selected font-bold" : "font-semibold"
-                  }`}
-                  onClick={() => handlJobChange(event.id)}
-                >
-                  <p> {event.name} </p>
-                </div>
-              );
-            })}
-          </div>
-          {/* <h3 className="mt-4 mb-4"> {getEventName()} </h3> */}
-          <div className="grid grid-cols-12 event-cards gap-y-4 md:gap-x-5">
-            {jobs.map((job, index) => {
-              return (
-                <div
-                  key={job.jobId}
-                  className="col-span-12 event-card md:col-span-4"
-                >
-                  <div className="flex">
-                    <img src={EventCardImg} className="event-img" />
-                  </div>
-                  <div className="event-card-content">
-                    <div className="flex items-center mb-0">
-                      <img
-                        src={job.jobCategoryImageUrl}
-                        className="event-icon"
-                      />
-                      <p className="event-title">{job.companyName}</p>
-                      <p className="event-fees">{`₹${job?.minSalary}`}</p>
-                    </div>
-
-                    <div className="flex justify-between event-footer">
-                      <p className="created-at"> {job.createdAtText} </p>
-                      <img
-                        src={ShareIcon}
-                        className="cursor-pointer"
-                        onClick={() => setShareModalActive(true)}
-                      />
-                    </div>
-                    <div className="flex justify-between">
-                      <p className="event-venue">{job.location}</p>
-                      <p className="organizer">
-                        organized by <span> {job.designation} </span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+        
         </div>
       </div>
 
@@ -184,6 +251,8 @@ const AllJobs = (props) => {
         show={shareModalActive}
         handleClose={() => setShareModalActive(false)}
       />
+
+      {/* <JobModal /> */}
     </>
   );
 };
