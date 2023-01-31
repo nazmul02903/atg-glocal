@@ -50,8 +50,8 @@ function JobModal(props) {
               <p className="m-0 pl-5">Skills: Spring Framework, Systems Analysis,</p>
             </div>
             <div className="flex justify-center my-3">
-              <button className="btn w-1/2 fs-5 mx-5 rounded-lg" style={{backgroundColor: '#E6E6E6'}}>Apply</button>
-              <button className="btn w-1/2 fs-5 mx-5 rounded-lg" style={{backgroundColor: '#E6E6E6'}}>Save</button>
+              <button className="btn w-1/2 fs-3 mx-5 rounded-lg" style={{backgroundColor: '#E6E6E6'}}>Apply</button>
+              <button className="btn w-1/2 fs-3 mx-5 rounded-lg" style={{backgroundColor: '#E6E6E6'}}>Save</button>
             </div>
           </div>
           <div>
