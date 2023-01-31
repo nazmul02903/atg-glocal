@@ -13,6 +13,7 @@ function JobModal(props) {
     <Modal
       {...props}
       size="lg"
+      className="fs-4"
     >
       <Modal.Header closeButton>
       </Modal.Header>
@@ -49,15 +50,15 @@ function JobModal(props) {
               <p className="m-0 pl-5">Skills: Spring Framework, Systems Analysis,</p>
             </div>
             <div className="flex justify-center my-3">
-              <button className="btn w-56 fs-5 mx-2 rounded-lg" style={{backgroundColor: '#E6E6E6'}}>Apply</button>
-              <button className="btn w-56 fs-5 mx-2 rounded-lg" style={{backgroundColor: '#E6E6E6'}}>Save</button>
+              <button className="btn w-1/2 fs-5 mx-5 rounded-lg" style={{backgroundColor: '#E6E6E6'}}>Apply</button>
+              <button className="btn w-1/2 fs-5 mx-5 rounded-lg" style={{backgroundColor: '#E6E6E6'}}>Save</button>
             </div>
           </div>
           <div>
-            <h5 className='fw-bold my-3'>Job Description</h5>
-            <h5 className='fw-bold my-3'>Job Summary</h5>
+            <h4 className='fw-bold my-3'>Job Description</h4>
+            <h4 className='fw-bold my-3'>Job Summary</h4>
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-            <h5 className='fw-bold my-3'>Duties and Responsibilities</h5>
+            <h4 className='fw-bold my-3'>Duties and Responsibilities</h4>
             <ol>
               <li>Lorem Ipsum is simply dummy text</li> 
               <li>Lorem Ipsum is simply dummy text</li> 
@@ -65,7 +66,7 @@ function JobModal(props) {
               <li>Lorem Ipsum is simply dummy text</li> 
               <li>Lorem Ipsum is simply dummy text</li>
             </ol>
-            <h5 className='fw-bold my-3'>About Company</h5>
+            <h4 className='fw-bold my-3'>About Company</h4>
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
           </div>
         </div>
