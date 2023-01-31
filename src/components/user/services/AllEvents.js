@@ -20,13 +20,13 @@ const tempeventList = [
     selected: true
   },
   {
-    id: 2,
-    name: 'Awards',
+    id: 3,
+    name: 'Exhibitions',
     selected: false
   },
   {
-    id: 3,
-    name: 'Exhibitions',
+    id: 2,
+    name: 'Awards',
     selected: false
   },
   {
