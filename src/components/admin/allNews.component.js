@@ -12,7 +12,7 @@ import { POLLING_INTERVAL } from "../../constants/variables";
 const AllNews = (props) => {
   const dispatch = useDispatch();
   const [news, setNews] = useState([]);
-  const [modalShow, setModalShow] = React.useState(false);
+  const [modalShow, setModalShow] = useState(false);
   const [selectedNews, setSelectedNews] = useState({});
 
   useInterval(async () => {

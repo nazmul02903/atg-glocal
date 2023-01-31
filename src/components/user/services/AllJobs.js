@@ -27,17 +27,17 @@ const tempJobList = [
   },
   {
     id: 2,
-    name: "Csr Jobs",
+    name: "CSR JOBS",
     selected: false,
   },
   {
     id: 3,
-    name: "Govt Jobs",
+    name: "GOVT JOBS",
     selected: false,
   },
   {
     id: 1,
-    name: "Ngo Jobs",
+    name: "NGO JOBS",
     selected: false,
   },
 ];
@@ -46,23 +46,19 @@ const AllJobs = (props) => {
   const dispatch = useDispatch();
   const { id } = props.match.params;
   const [jobs, setJobs] = useState([]);
-  // const [selectedEvent, setSelectedEvent] = useState({});
-  // const [modalShow, setModalShow] = React.useState(false);
-  // const [modalShowDelete, setModalShowDelete] = useState(false);
   const [jobList, setJobList] = useState(tempJobList);
   const [shareModalActive, setShareModalActive] = useState(false);
   const [selectedJob, setSelectedJob] = useState({});
+  const [jobModalActive, setJobModalActive] = useState(false);
 
-  //debuging ----------------------------------------------
-  // console.log(jobs);
 
-  useInterval(async () => {
-    // dispatch(setLoader());
-    // await AdminService.fetchEventsByCategory(id, 1).then((res) => {
-    //   dispatch(clearLoader());
-    //   setEvents(res.data.eventBeans);
-    // });
-  }, POLLING_INTERVAL);
+  // useInterval(async () => {
+  //   // dispatch(setLoader());
+  //   // await AdminService.fetchEventsByCategory(id, 1).then((res) => {
+  //   //   dispatch(clearLoader());
+  //   //   setEvents(res.data.eventBeans);
+  //   // });
+  // }, POLLING_INTERVAL);
 
   useEffect(() => {
     const job = jobList.find((job) => job.id === parseInt(id));
@@ -110,41 +106,38 @@ const AllJobs = (props) => {
   const handleSelectedJob = (id) => {
     const newSelection = jobs.find((job) => job.jobId === id);
     setSelectedJob(newSelection);
+    if (window.innerWidth < 768) {
+      setJobModalActive(true);
+    }
   };
 
   useEffect(() => {
     console.log(selectedJob);
   }, [selectedJob]);
 
-  // const getEventName = () => {
-  //   if (id === "1") return "Workshops & Trainings";
-  //   if (id === "2") return "Awards & Competitions";
-  //   if (id === "3") return "Exhibitions & Summits";
-  //   return "";
-  // };
   return (
     <>
       <div className="pt-0 md:m-5 md:p-5 jobs-page">
         <div className='jobs-header bg-white p-5 d-none d-md-grid'>
-            <div className='grid items-center justify-right'>
-                <div>
-                    <h1>Connecting people working in NGOs to Opportunities</h1>
-                    <p>Whatever you’re looking to do this year, Meetup can help. For 20 years, people have turned to Meetup to meet people, make friends, </p>
-                </div>
-            </div>
+          <div className='grid items-center justify-right'>
             <div>
-                <img src={jobsBanner} alt="" />
+              <h1>Connecting people working in NGOs to Opportunities</h1>
+              <p>Whatever you’re looking to do this year, Meetup can help. For 20 years, people have turned to Meetup to meet people, make friends, </p>
             </div>
-            <div className='grid items-center p-4 shadow-md w-75  text-gray-400'>
-                <div>
-                    <h4 className='mb-4 text-center'>Post Jobs</h4>
-                    <div className='grid justify-center'>
-                        <input className='my-2 p-2 bg-gray-100 border-0 shadow-inner rounded' type="text" name="position" placeholder='Postion' />
-                        <textarea className='my-2 p-2 bg-gray-100 border-0 shadow-inner rounded' rows={3} style={{resize: 'none'}}  type="text" name="jobDescription" placeholder='Job Description'  />
-                        <button className='btn my-2'>Post Jobs Free</button>
-                    </div>
-                </div>
+          </div>
+          <div>
+            <img src={jobsBanner} alt="" />
+          </div>
+          <div className='grid items-center p-4 shadow-md w-75  text-gray-400'>
+            <div>
+              <h4 className='mb-4 text-center'>Post Jobs</h4>
+              <div className='grid justify-center'>
+                <input className='my-2 p-2 bg-gray-100 border-0 shadow-inner rounded' type="text" name="position" placeholder='Postion' />
+                <textarea className='my-2 p-2 bg-gray-100 border-0 shadow-inner rounded' rows={3} style={{ resize: 'none' }} type="text" name="jobDescription" placeholder='Job Description' />
+                <button className='btn my-2'>Post Jobs Free</button>
+              </div>
             </div>
+          </div>
         </div>
 
         <div className="flex items-center lg:bg-white all-events-categories md:mb-8">
@@ -152,9 +145,8 @@ const AllJobs = (props) => {
             return (
               <div
                 key={event.id}
-                className={`category-item ${
-                  event.selected ? "selected font-bold" : "font-semibold"
-                }`}
+                className={`category-item fs-4 lg:fs-6 ${event.selected ? "selected font-bold" : "font-semibold"
+                  }`}
                 onClick={() => handleCategoryChange(event.id)}
               >
                 <p> {event.name} </p>
@@ -165,18 +157,17 @@ const AllJobs = (props) => {
 
         <div>
           <div className="grid grid-cols-1 lg:mx-5 lg:p-5 lg:grid-cols-2">
-            
+
             <div className="col-span-1">
               {jobs.map((job) => {
                 return (
                   <div
                     key={job.jobId}
-                    onClick={() => handleSelectedJob(job.jobId)}
-                    className={`flex p-4 lg:mb-4 lg:mr-4 shadow-sm cursor-pointer ${
-                      selectedJob.jobId === job.jobId
-                        ? "bg-gray-50"
+                    onClick={() => handleSelectedJob(job?.jobId)}
+                    className={`flex p-4 lg:mb-4 lg:mr-4 shadow-sm cursor-pointer fs-4 lg:fs-6 ${selectedJob?.jobId === job?.jobId
+                        ? "lg:bg-gray-50"
                         : "bg-white"
-                    }`}
+                      }`}
                   >
                     <img src={EventCardImg} alt="" className="w-25 pb-5 pr-5" />
                     <div className="w-full grid grid-cols-2 justify-between">
@@ -204,46 +195,52 @@ const AllJobs = (props) => {
                 );
               })}
             </div>
-            
-            <div className="d-none col-span-1 bg-white d-md-block " style={{paddingLeft: "45px"}}>
-              <h2 className="fw-bold">{selectedJob?.designation}</h2>
-              <p>{selectedJob.location} On-site 1 day ago 24 applicants</p>
-              <div className="text-gray-500">
-                <div className="my-3 flex">
-                  <img src={jobType} alt="" />
-                  <p className="m-0 pl-3">{selectedJob.jobType}</p>
-                </div>
-                <div className="my-3 flex">
-                  <img src={financialServices} alt="" />
-                  <p className="m-0 pl-3">₹ 10,001+ employees · Financial Services</p>
-                </div>
-                <div className="my-3 flex">
-                  <img src={alumni} alt="" />
-                  <p className="m-0 pl-3">1 company alumni </p>
-                </div>
-                <div className="my-3 flex">
-                  <img src={applicants} alt="" />
-                  <p className="m-0 pl-3">See how you compare to 24 applicants</p>
-                </div>
-                <div className="my-3 flex">
-                  <img src={skills} alt="" />
-                  <p className="m-0 pl-3">Skills: Spring Framework, Systems Analysis,</p>
-                </div>
-              </div>
-              <div className="flex gap-3 my-5">
-                <button className="btn w-24 fs-5 h-8 p-0 rounded-lg fw-lighter">Apply</button>
-                <button className="btn w-24 fs-5 h-8 p-0 rounded-lg bg-white" style={{border: "1px solid #0057A8", color: "#0057A8"}}>Save</button>
-              </div>
-              <div>
-                <h6 className="fw-bold my-3">Job Id: {selectedJob.jobId}</h6>
-                <p className="text-grey-800">
-                  The Applications Development Team Lead is an intermediate level position responsible for driving and delivering implementation of new or revised application systems and programs in coordination with the Technology team. The overall objective of this role is to contribute to applications systems analysis and project deliveries activities.
-                </p>
-                <h6 className="fw-bold my-4">Responsibilities:</h6>
-              </div>
+
+            <div className="d-none col-span-1 bg-white d-md-block " style={{ paddingLeft: "45px" }}>
+              {
+                selectedJob ?
+                  <>
+
+                    <h2 className="fw-bold">{selectedJob?.designation}</h2>
+                    <p>{selectedJob?.location} On-site 1 day ago 24 applicants</p>
+                    <div className="text-gray-500">
+                      <div className="my-3 flex">
+                        <img src={jobType} alt="" />
+                        <p className="m-0 pl-3">{selectedJob?.jobType}</p>
+                      </div>
+                      <div className="my-3 flex">
+                        <img src={financialServices} alt="" />
+                        <p className="m-0 pl-3">₹ 10,001+ employees · Financial Services</p>
+                      </div>
+                      <div className="my-3 flex">
+                        <img src={alumni} alt="" />
+                        <p className="m-0 pl-3">1 company alumni </p>
+                      </div>
+                      <div className="my-3 flex">
+                        <img src={applicants} alt="" />
+                        <p className="m-0 pl-3">See how you compare to 24 applicants</p>
+                      </div>
+                      <div className="my-3 flex">
+                        <img src={skills} alt="" />
+                        <p className="m-0 pl-3">Skills: Spring Framework, Systems Analysis,</p>
+                      </div>
+                    </div>
+                    <div className="flex gap-3 my-5">
+                      <button className="btn w-24 fs-5 h-8 p-0 rounded-lg fw-lighter">Apply</button>
+                      <button className="btn w-24 fs-5 h-8 p-0 rounded-lg bg-white" style={{ border: "1px solid #0057A8", color: "#0057A8" }}>Save</button>
+                    </div>
+                    <div>
+                      <h6 className="fw-bold my-3">Job Id: {selectedJob?.jobId}</h6>
+                      <p className="text-grey-800">
+                        The Applications Development Team Lead is an intermediate level position responsible for driving and delivering implementation of new or revised application systems and programs in coordination with the Technology team. The overall objective of this role is to contribute to applications systems analysis and project deliveries activities.
+                      </p>
+                      <h6 className="fw-bold my-4">Responsibilities:</h6>
+                    </div>
+                  </> : <></>
+              }
             </div>
           </div>
-        
+
         </div>
       </div>
 
@@ -252,7 +249,7 @@ const AllJobs = (props) => {
         handleClose={() => setShareModalActive(false)}
       />
 
-      {/* <JobModal /> */}
+      <JobModal onHide={() => setJobModalActive(false)} show={jobModalActive} selectedJob={selectedJob} />
     </>
   );
 };
