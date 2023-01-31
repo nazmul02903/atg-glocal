@@ -59,7 +59,7 @@ const Login = (props) => {
           </div>
           <p className="login-signup-redirect">
             New here ? <span onClick={handleSignup} className='font-semibold' > Signup </span> with  <span className='font-semibold  comp-logo'>
-              Glocalbodh
+              GlocalBodh
             </span>
           </p>
         </div>
