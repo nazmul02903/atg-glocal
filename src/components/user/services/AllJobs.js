@@ -27,17 +27,17 @@ const tempJobList = [
   },
   {
     id: 2,
-    name: "Csr Jobs",
+    name: "CSR JOBS",
     selected: false,
   },
   {
     id: 3,
-    name: "Govt Jobs",
+    name: "GOVT JOBS",
     selected: false,
   },
   {
     id: 1,
-    name: "Ngo Jobs",
+    name: "NGO JOBS",
     selected: false,
   },
 ];
@@ -46,23 +46,19 @@ const AllJobs = (props) => {
   const dispatch = useDispatch();
   const { id } = props.match.params;
   const [jobs, setJobs] = useState([]);
-  // const [selectedEvent, setSelectedEvent] = useState({});
-  // const [modalShow, setModalShow] = React.useState(false);
-  // const [modalShowDelete, setModalShowDelete] = useState(false);
   const [jobList, setJobList] = useState(tempJobList);
   const [shareModalActive, setShareModalActive] = useState(false);
   const [selectedJob, setSelectedJob] = useState({});
+  const [jobModalActive, setJobModalActive] = useState(false);
 
-  //debuging ----------------------------------------------
-  // console.log(jobs);
 
-  useInterval(async () => {
-    // dispatch(setLoader());
-    // await AdminService.fetchEventsByCategory(id, 1).then((res) => {
-    //   dispatch(clearLoader());
-    //   setEvents(res.data.eventBeans);
-    // });
-  }, POLLING_INTERVAL);
+  // useInterval(async () => {
+  //   // dispatch(setLoader());
+  //   // await AdminService.fetchEventsByCategory(id, 1).then((res) => {
+  //   //   dispatch(clearLoader());
+  //   //   setEvents(res.data.eventBeans);
+  //   // });
+  // }, POLLING_INTERVAL);
 
   useEffect(() => {
     const job = jobList.find((job) => job.id === parseInt(id));
@@ -110,18 +106,15 @@ const AllJobs = (props) => {
   const handleSelectedJob = (id) => {
     const newSelection = jobs.find((job) => job.jobId === id);
     setSelectedJob(newSelection);
+    if(window.innerWidth < 768){
+      setJobModalActive(true);
+    }
   };
 
   useEffect(() => {
     console.log(selectedJob);
   }, [selectedJob]);
 
-  // const getEventName = () => {
-  //   if (id === "1") return "Workshops & Trainings";
-  //   if (id === "2") return "Awards & Competitions";
-  //   if (id === "3") return "Exhibitions & Summits";
-  //   return "";
-  // };
   return (
     <>
       <div className="pt-0 md:m-5 md:p-5 jobs-page">
@@ -252,7 +245,7 @@ const AllJobs = (props) => {
         handleClose={() => setShareModalActive(false)}
       />
 
-      {/* <JobModal /> */}
+      <JobModal onHide={() => setJobModalActive(false)} show={jobModalActive} selectedJob={selectedJob} />
     </>
   );
 };
