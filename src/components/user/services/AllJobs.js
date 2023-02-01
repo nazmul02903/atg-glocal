@@ -26,6 +26,11 @@ const tempJobList = [
     selected: true,
   },
   {
+    id: 1,
+    name: "NGO JOBS",
+    selected: false,
+  },
+  {
     id: 2,
     name: "CSR JOBS",
     selected: false,
@@ -35,11 +40,7 @@ const tempJobList = [
     name: "GOVT JOBS",
     selected: false,
   },
-  {
-    id: 1,
-    name: "NGO JOBS",
-    selected: false,
-  },
+ 
 ];
 
 const AllJobs = (props) => {

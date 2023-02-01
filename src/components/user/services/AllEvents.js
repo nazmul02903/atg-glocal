@@ -20,18 +20,18 @@ const tempeventList = [
     selected: true
   },
   {
-    id: 3,
-    name: 'Exhibitions',
+    id: 1,
+    name: 'Workshops/Trainings',
     selected: false
   },
   {
     id: 2,
-    name: 'Awards',
+    name: 'Awards/Competitions',
     selected: false
   },
   {
-    id: 1,
-    name: 'Trade Shows',
+    id: 3,
+    name: 'Exhibitions/Summits',
     selected: false
   },
 ]

@@ -31,34 +31,34 @@ import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
 const clientId = process.env.REACT_APP_OAUTH_CLIENT_ID;
 
-const navObj = [
-  {
-    name: "Events",
-    icon: eventIcon,
-  },
-  {
-    name: "Jobs",
-    icon: jobsIcon,
-  },
-  {
-    name: "Fundings",
-    icon: fundIcon,
-  },
-  {
-    name: "Contact",
-    icon: mailIcon,
-  },
-  // {
-  //   name: "Eng",
-  //   icon: langIcon,
-  // },
-];
+
 
 const Header = (props) => {
   const location = useLocation();
   const dispatch = useDispatch();
+
   // const { user } = props;
   const history = useHistory();
+  const navObj = [
+    {
+      name: "Events",
+      icon: eventIcon,
+      onClick: () => history.push('/event/0')
+    },
+    {
+      name: "Jobs",
+      icon: jobsIcon,
+      onClick: ()=> history.push('/jobs/0')
+    },
+    {
+      name: "Fundings",
+      icon: fundIcon,
+    },
+    {
+      name: "Contact",
+      icon: mailIcon,
+    },
+  ];
   const { isLoggedIn } = useSelector(state => state.auth)
   const [loginActive, setLoginActive] = useState(false)
   const [language, setLanguage] = useState('Eng')
@@ -69,16 +69,16 @@ const Header = (props) => {
 
   function handleClick(lang) {
     let languageToSet = lang
-    if(lang === 'Eng'){
+    if (lang === 'Eng') {
       languageToSet = 'en'
-    } else if(lang === 'Mar'){
+    } else if (lang === 'Mar') {
       languageToSet = 'mr'
-    } if(lang === 'Hin'){
+    } if (lang === 'Hin') {
       languageToSet = 'hi'
     }
     i18next.changeLanguage(languageToSet)
   }
-  
+
   const handleLogout = () => {
     dispatch(setLoader());
     signOut();
@@ -132,7 +132,7 @@ const Header = (props) => {
         <>
           <div className="flex justify-end items-center flex-1 mr-3 gap-x-6 md:gap-x-8">
             {navObj.map((nav, i) => (
-              <div className="navbar-item">
+              <div className="navbar-item" onClick={()=> nav.onClick && nav.onClick() } >
                 <img src={nav.icon} alt="" />
                 <span> {t(`${nav?.name}.1`)} </span>
               </div>
@@ -168,12 +168,12 @@ const Header = (props) => {
             {/* <div className="lang action">English</div> */}
             <div className="link-tags">
               <div className="logIn action text-lg underline" onClick={openLoginModal} >
-              {t('Login.1')}
+                {t('Login.1')}
               </div>
             </div>
             <div className="link-tags-signup">
               <div className="logIn action text-lg underline"
-               onClick={() => setSignUpActive(true)} >
+                onClick={() => setSignUpActive(true)} >
                 {t('Signup.1')}
               </div>
             </div>
