@@ -137,7 +137,9 @@ const AllEvents = (props) => {
           <div className='event-cards grid grid-cols-12 gap-y-4 md:gap-x-5 md:gap-x-5'>
             {events.map((event, index) => {
               return (
-                <div key={event.id} className='event-card col-span-12 md:col-span-4'>
+
+                <div key={event.id} className='event-card col-span-12 md:col-span-4'
+                  onClick={() => window.open(`${process.env.REACT_APP_URL}/event/${event.eventCategoryText}/${event.id}/${event.eventId}`)}>
                   <div className="flex">
                     <img src={EventCardImg} className='event-img' />
                   </div>
@@ -154,7 +156,7 @@ const AllEvents = (props) => {
 
                     <div className="flex justify-between event-footer">
                       <p className="created-at"> {event.createdAtText} </p>
-                      <img src={ShareIcon} className='cursor-pointer' onClick={()=>setShareModalActive(true)} />
+                      <img src={ShareIcon} className='cursor-pointer' onClick={() => setShareModalActive(true)} />
                     </div>
                     <div className="flex justify-between">
                       <p className="event-venue">
@@ -172,10 +174,10 @@ const AllEvents = (props) => {
         </div>
 
       </div>
-    
-        <ShareEventModal show={shareModalActive}
-         handleClose={()=>setShareModalActive(false)} />
-      
+
+      <ShareEventModal show={shareModalActive}
+        handleClose={() => setShareModalActive(false)} />
+
     </>
   );
 };
