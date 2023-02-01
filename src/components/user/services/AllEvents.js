@@ -26,7 +26,7 @@ const tempeventList = [
   },
   {
     id: 2,
-    name: 'Awards/Competitions',
+    name: 'Awards/Contests',
     selected: false
   },
   {
