@@ -48,7 +48,7 @@ const Header = (props) => {
     {
       name: "Jobs",
       icon: jobsIcon,
-      onClick: ()=> history.push('/jobs/0')
+      onClick: () => history.push('/jobs/0')
     },
     {
       name: "Fundings",
@@ -57,6 +57,7 @@ const Header = (props) => {
     {
       name: "Contact",
       icon: mailIcon,
+      onClick: () => window.open('mailto:inquiry@glocalbodh.com')
     },
   ];
   const { isLoggedIn } = useSelector(state => state.auth)
@@ -132,7 +133,7 @@ const Header = (props) => {
         <>
           <div className="flex justify-end items-center flex-1 mr-3 gap-x-6 md:gap-x-8">
             {navObj.map((nav, i) => (
-              <div className="navbar-item" onClick={()=> nav.onClick && nav.onClick() } >
+              <div className="navbar-item" onClick={() => nav.onClick && nav.onClick()} >
                 <img src={nav.icon} alt="" />
                 <span> {t(`${nav?.name}.1`)} </span>
               </div>
@@ -148,11 +149,11 @@ const Header = (props) => {
                 <Dropdown.Item onClick={() => setLanguage('Eng')} >
                   Eng
                 </Dropdown.Item>
-                <Dropdown.Item onClick={() => setLanguage('Mar')} >
-                  Mar
-                </Dropdown.Item>
                 <Dropdown.Item onClick={() => setLanguage('Hin')} >
                   Hin
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => setLanguage('Mar')} >
+                  Mar
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
