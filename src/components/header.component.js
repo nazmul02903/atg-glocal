@@ -147,20 +147,20 @@ const Header = (props) => {
               </Dropdown.Toggle>
               <Dropdown.Menu className="dropdown-menu-dark" variant="dark">
                 <Dropdown.Item onClick={() => setLanguage('Eng')} >
-                  Eng
+                  English
                 </Dropdown.Item>
                 <Dropdown.Item onClick={() => setLanguage('Hin')} >
-                  Hin
+                  Hindi
                 </Dropdown.Item>
                 <Dropdown.Item onClick={() => setLanguage('Mar')} >
-                  Mar
+                  Marathi
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </div>
-          <div className="nav-search-icon mx-4">
+          {/* <div className="nav-search-icon mx-4">
             <img src={searchIcon} alt="" />
-          </div>
+          </div> */}
         </>
         {/* } */}
         {!isLoggedIn ?
