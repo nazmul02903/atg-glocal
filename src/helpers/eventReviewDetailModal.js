@@ -61,7 +61,12 @@ const EventReviewDetailsModal = (props) => {
         {parse(data.title)}
         {parse(data.eventCategoryText)}
         {parse(data.description)}
-        {props.user.admin && (
+        <p>Client Name: {data?.organisedBy?.name}</p>
+        <p>Number: {data?.organisedBy?.contactNumber}</p>
+        <p>Email: {data?.organisedBy?.email}</p>
+        <p>Registration Fee: {data?.fees}</p>
+        <p>Total Seats: {data?.totalSeats}</p>
+        {props?.user?.admin && (
           <FormProvider {...methods}>
             <CustomForm onSubmit={onSubmit}>
               <Label label="Actions" />
