@@ -143,6 +143,7 @@ function WorkshopEventDetails(props) {
   useEffect(() => {
     UserService.getEventDetails(id, 1)
       .then((res) => {
+        console.log(res);
         setWorkshopDetails(res.data.eventBean);
       })
       .catch((error) => {
@@ -162,16 +163,16 @@ function WorkshopEventDetails(props) {
   } else {
     dispatch(clearLoader());
     return (
-      <div>
+      <div className="d-flex gap-3">
         {isSubmitSuccessful ? (
           <RegisterWorkshopEvent workshopDetails={workshopDetails} />
         ) : (
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="screen">
-              <div className="topBar">
+              {/* <div className="topBar">
                 <div className="shopping-cart">
                   <div className="logo50x50 left">
-                    <img src={Logo} className="logo50x50" alt="" />
+                    <img src={Logo} className="logo50x50" alt=""/>
                   </div>
                   <ul className="right tools">
                     <li className="language tool">
@@ -185,8 +186,9 @@ function WorkshopEventDetails(props) {
                     </li>
                   </ul>
                 </div>
-              </div>
+              </div> */}
               <div className="banner ">
+                <img src="" alt="" />
                 <div className="days_remaining">
                   <p className="days_remaining_text">
                     {workshopDetails.daysToExpiry}
@@ -223,7 +225,7 @@ function WorkshopEventDetails(props) {
                 </div>
               </div>
 
-              <div className="details_container">
+              <div className="details_container grid-details-container">
                 <div id="mainDetails" className="main_details">
                   <div className="frame8157 detailsCard">
                     <div className="frame8176">
@@ -350,6 +352,7 @@ function WorkshopEventDetails(props) {
                   </div>
                 </div>
                 <div id="summary" className="detailsCard">
+                  <h5 className="text-start mb-0">Event Details</h5>
                   {
                     (workshopDetails.description =
                       workshopDetails.description.replace(/<(.|\n)*?>/g, ""))
@@ -357,14 +360,18 @@ function WorkshopEventDetails(props) {
                 </div>
 
                 <div id="topics" className="topics detailsCard">
-                  Topics:{" "}
+                  <h5 className="mb-0">Topics:</h5>
                   {
                     (workshopDetails.topicsCovered =
                       workshopDetails.topicsCovered.replace(/<(.|\n)*?>/g, ""))
-                  }{" "}
+                  }
+                  <div id="other-desktop" className="other_deets detailsCard">
+                    Other details: {workshopDetails.speakers}{" "}
+                  </div>
                 </div>
                 <div id="other" className="other_deets detailsCard">
-                  Other details: {workshopDetails.speakers}{" "}
+                  <h5 className="mb-0">Other details:</h5>
+                  {workshopDetails.speakers}{" "}
                 </div>
               </div>
               <div className="footer-event">
@@ -435,6 +442,127 @@ function WorkshopEventDetails(props) {
             </div>
           </form>
         )}
+        <div id="mainDetails " className=" desk__details">
+          <div className="frame8157 detailsCard">
+            <div className="frame8176">
+              <div className="title_section">
+                <div className="event-icon">
+                  <img className="event-img" src={EventIcon} alt="" />
+                </div>
+                <div className="title_organisedBy">
+                  <div className="title">
+                    <p className="LongTitle">{workshopDetails.title} </p>
+                  </div>
+                  <div className="organisedBy">
+                    <div className="orgContainer">
+                      <p className="orgName">{workshopDetails.postedBy} </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <hr style={{ width: "315px" }} />
+              <div className="frame8175">
+                <div className="contents event_dates">
+                  <div className="calendarIcon tiny-icon">
+                    <img
+                      className="calanderIconImg tiny-iconImg"
+                      src={Calendar}
+                      alt=""
+                    />
+                  </div>
+                  {/* <div className="duration details_description ">
+                            <p className="start date details_description ">
+                              {workshopDetails.eventTime}{" "}
+                            </p>
+                            <p className="end date details_description">end</p>
+                          </div> */}
+                  <div className="timing details_description">
+                    On: {workshopDetails.eventTimeText}{" "}
+                  </div>
+                </div>
+                <div className="contents venue">
+                  <div className="pin-pointIcon tiny-icon">
+                    <img
+                      className="pin-pointIconImg tiny-iconImg"
+                      src={Location}
+                      alt=""
+                    />
+                  </div>
+                  <div className="location details_description value">
+                    {workshopDetails.venue}{" "}
+                  </div>
+                </div>
+                <div className="contents lastDayOfRegisteration">
+                  <div className="calendarIcon tiny-icon">
+                    <img
+                      className="calendarIconImg tiny-iconImg"
+                      src={Note}
+                      alt=""
+                    />
+                  </div>
+                  <div className="lastDate details_description key">
+                    Last Date: {workshopDetails.applicationDeadlineText}{" "}
+                  </div>
+                  {/* <div className="closingDate value">
+                            {workshopDetails.applicationDeadline}{" "}
+                          </div> */}
+                </div>
+                <div className="two-in-one">
+                  <div className="contents availableSeats">
+                    <div className="chairIcon tiny-icon">
+                      <img
+                        className="chairIconImg tiny-iconImg"
+                        src={Chair}
+                        alt=""
+                      />
+                    </div>
+                    <div className="seatsAvailable details_description key">
+                      Total Seats: {workshopDetails.totalSeats}{" "}
+                    </div>
+                    <div className="value seatsLeft"></div>
+                  </div>
+                  <div className="contents language">
+                    <div className="languageIcon tiny-icon">
+                      <img
+                        className="languageIconImg tiny-iconImg"
+                        src={Language}
+                        alt=""
+                      />
+                    </div>
+                    <div className="language details_description key">
+                      Language:
+                    </div>
+                    <div className="value modeOfLanguage"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="frame8172">
+              <div className="row-frame">
+                {workshopDetails.fees === 0 ? (
+                  <div className="price priceImg left">
+                    {/* <img className="rupee" src={Rupee} alt="" /> */}
+                    Free!
+                  </div>
+                ) : (
+                  <div className="price priceImg left">
+                    <img className="rupee" src={Rupee} alt="" />
+                    {workshopDetails.fees}{" "}
+                  </div>
+                )}
+
+                <div className="frame8173 right">
+                  <div className="frame3842">
+                    <div className="likedBy">Liked by</div>
+                    <div className="elipses">
+                      <img src="" alt="" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
