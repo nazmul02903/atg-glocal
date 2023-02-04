@@ -150,10 +150,10 @@ const Header = (props) => {
                   English
                 </Dropdown.Item>
                 <Dropdown.Item onClick={() => setLanguage('Hin')} >
-                  Hindi
+                  हिंदी
                 </Dropdown.Item>
                 <Dropdown.Item onClick={() => setLanguage('Mar')} >
-                  Marathi
+                  मराठी
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>

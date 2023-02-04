@@ -9,7 +9,7 @@ import { useInterval } from "../../../helpers/useInterval";
 import { POLLING_INTERVAL } from "../../../constants/variables";
 import CommunityImg from '../../../assets/Icons/community-full.svg'
 import EventCardImg from '../../../assets/event-card.png'
-import ShareIcon from '../../../assets/Icons/share.svg'
+import ShareIcon from '../../../assets/Icons/share-outline.svg'
 import ShareEventModal from "../../../helpers/shareEventModal";
 
 
@@ -21,17 +21,17 @@ const tempeventList = [
   },
   {
     id: 1,
-    name: 'Workshops/Trainings',
+    name: 'Workshops / Trainings',
     selected: false
   },
   {
     id: 2,
-    name: 'Awards/Contests',
+    name: 'Awards / Contests',
     selected: false
   },
   {
     id: 3,
-    name: 'Exhibitions/Summits',
+    name: 'Exhibitions / Summits',
     selected: false
   },
 ]
@@ -112,8 +112,8 @@ const AllEvents = (props) => {
           </div>
           <div className="col-span-12 md:col-span-4 all-events-form">
             <div className="px-4 py-4 flex flex-col justify-center all-events-form-wrapper md:ml-8">
-              <p className="mb-4  text-base">Post Your Event</p>
-              <input className="flex-1 mb-4" />
+              <p className="mb-4 text-center text-center text-[24px] text-[#8A8A8A]">Post Your Event</p>
+              <input className="flex1 mb-4" />
               <textarea className="flex-1 mb-4">
 
               </textarea>
@@ -150,7 +150,7 @@ const AllEvents = (props) => {
                         {event.title}
                       </p>
                       <p className="event-fees">
-                        {`₹${event.fees}`}
+                        {`${event.fees === 0 ? 'free' : `₹${event.fees}`}`}
                       </p>
                     </div>
 
@@ -163,7 +163,7 @@ const AllEvents = (props) => {
                         {event.venue}
                       </p>
                       <p className="organizer">
-                        organized by <span> {event.organisedBy.name} </span>
+                        organized by <span className="font-bold"> {event.organisedBy.name} </span>
                       </p>
                     </div>
                   </div>

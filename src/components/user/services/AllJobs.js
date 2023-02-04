@@ -27,20 +27,20 @@ const tempJobList = [
   },
   {
     id: 1,
-    name: "NGO JOBS",
+    name: "NGO Jobs",
     selected: false,
   },
   {
     id: 2,
-    name: "CSR JOBS",
+    name: "CSR Jobs",
     selected: false,
   },
   {
     id: 3,
-    name: "GOVT JOBS",
+    name: "Govt Jobs",
     selected: false,
   },
- 
+
 ];
 
 const AllJobs = (props) => {
@@ -118,8 +118,8 @@ const AllJobs = (props) => {
 
   return (
     <>
-      <div className="pt-0 md:m-5 md:p-5 jobs-page">
-        <div className='jobs-header bg-white p-5 d-none d-md-grid'>
+      <div className="pt-0 md:m-5 md:p-5 jobs-page contai">
+        <div className='jobs-header bg-white pt-0 p-5 d-none d-md-grid'>
           <div className='grid items-center justify-right'>
             <div>
               <h1>Connecting people working in NGOs to Opportunities</h1>
@@ -129,15 +129,16 @@ const AllJobs = (props) => {
           <div>
             <img src={jobsBanner} alt="" />
           </div>
-          <div className='grid items-center p-4 shadow-md w-75  text-gray-400'>
-            <div>
-              <h4 className='mb-4 text-center'>Post Jobs</h4>
-              <div className='grid justify-center'>
-                <input className='my-2 p-2 bg-gray-100 border-0 shadow-inner rounded' type="text" name="position" placeholder='Postion' />
-                <textarea className='my-2 p-2 bg-gray-100 border-0 shadow-inner rounded' rows={3} style={{ resize: 'none' }} type="text" name="jobDescription" placeholder='Job Description' />
-                <button className='btn my-2'>Post Jobs Free</button>
-              </div>
-            </div>
+
+          <div className="px-4 py-4 flex flex-col justify-around all-events-form-wrapper md:ml-8">
+            <p className="mb-4 text-center text-center text-[24px] text-[#8A8A8A]">Post Your Job</p>
+            <input className="flex- mb-4" />
+            <textarea className="flex-1 mb-4">
+
+            </textarea>
+            <button className="w-full bg-[#0058A9] text-white">
+              Post Job Free
+            </button>
           </div>
         </div>
 
@@ -166,11 +167,16 @@ const AllJobs = (props) => {
                     key={job.jobId}
                     onClick={() => handleSelectedJob(job?.jobId)}
                     className={`flex p-4 lg:mb-4 lg:mr-4 shadow-sm cursor-pointer fs-4 lg:fs-6 ${selectedJob?.jobId === job?.jobId
-                        ? "lg:bg-gray-50"
-                        : "bg-white"
+                      ? "lg:bg-gray-50"
+                      : "bg-white"
                       }`}
                   >
-                    <img src={EventCardImg} alt="" className="w-25 pb-5 pr-5" />
+                    <div className="job-img-container">
+                      <p>
+                        {job.designation.split('')[0]}
+                      </p>
+                      {/* <img src={EventCardImg} alt="" className="w-full h-full" /> */}
+                    </div>
                     <div className="w-full grid grid-cols-2 justify-between">
                       <div className="event-card-content">
                         <p className="event-title fw-bold mb-2 text-blue-600">{job.designation}</p>
@@ -207,7 +213,7 @@ const AllJobs = (props) => {
                     <div className="text-gray-500">
                       <div className="my-3 flex">
                         <img src={jobType} alt="" />
-                        <p className="m-0 pl-3">{selectedJob?.jobType}</p>
+                        <p className="mb-0 pl-3">{selectedJob?.jobType}</p>
                       </div>
                       <div className="my-3 flex">
                         <img src={financialServices} alt="" />
@@ -231,11 +237,19 @@ const AllJobs = (props) => {
                       <button className="btn w-24 fs-5 h-8 p-0 rounded-lg bg-white" style={{ border: "1px solid #0057A8", color: "#0057A8" }}>Save</button>
                     </div>
                     <div>
-                      <h6 className="fw-bold my-3">Job Id: {selectedJob?.jobId}</h6>
+                      {/* <h6 className="fw-bold my-3">Job Description </h6> */}
                       <p className="text-grey-800">
-                        The Applications Development Team Lead is an intermediate level position responsible for driving and delivering implementation of new or revised application systems and programs in coordination with the Technology team. The overall objective of this role is to contribute to applications systems analysis and project deliveries activities.
+                       <div dangerouslySetInnerHTML={{ __html: selectedJob?.jobDescription }} />
                       </p>
-                      <h6 className="fw-bold my-4">Responsibilities:</h6>
+
+                      <p className="text-grey-800 mt-4">
+                       <div dangerouslySetInnerHTML={{ __html: selectedJob?.requirement }} />
+                      </p>
+
+                      <p className="text-grey-800 mt-4">
+                       <div dangerouslySetInnerHTML={{ __html: selectedJob?.companyDetails }} />
+                      </p>
+                      {/* <h6 className="fw-bold my-4">Responsibilities:</h6> */}
                     </div>
                   </> : <></>
               }

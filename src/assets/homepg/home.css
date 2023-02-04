@@ -8,6 +8,14 @@
   justify-content: space-between;
   padding: 16px;
   height: auto;
+  
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: white;
+  z-index: 8000;
+
 }
 .nav-search-icon{
   width: 30px;
@@ -52,8 +60,8 @@
   gap: 30px;
 }
 .navbar-item {
-  font-weight: 500;
-  font-size: 18px;
+  font-weight: 600;
+  font-size: 21px;
   line-height: 120%;
 
   color: #0058a9;
