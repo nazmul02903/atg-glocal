@@ -145,7 +145,7 @@ const AllJobs = (props) => {
             return (
               <div
                 key={event.id}
-                className={`category-item fs-4 lg:fs-6 ${
+                className={`category-item ${
                   event.selected ? "selected font-bold" : "font-semibold"
                 }`}
                 onClick={() => handleCategoryChange(event.id)}
@@ -165,7 +165,7 @@ const AllJobs = (props) => {
                   <div
                     key={job.jobId}
                     onClick={() => handleSelectedJob(job.jobId)}
-                    className={`flex p-4 lg:mb-4 lg:mr-4 shadow-sm cursor-pointer fs-4 lg:fs-6 ${
+                    className={`flex p-4 lg:mb-4 lg:mr-4 shadow-sm cursor-pointer ${
                       selectedJob.jobId === job.jobId
                         ? "lg:bg-gray-50"
                         : "bg-white"

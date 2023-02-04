@@ -909,3 +909,15 @@ a:hover {
   background-color: #0057A8;
   color: #fff;
 }
+
+// Funding page
+
+.funding-header {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.funding-page button {
+  background-color: #0057A8;
+  color: #fff;
+}
