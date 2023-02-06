@@ -20,17 +20,17 @@ const tempeventList = [
   },
   {
     id: 1,
-    name: "Workshops/Trainings",
+    name: "Workshops / Trainings",
     selected: false,
   },
   {
     id: 2,
-    name: "Awards/Competitions",
+    name: "Awards / Competitions",
     selected: false,
   },
   {
     id: 3,
-    name: "Exhibitions/Summits",
+    name: "Exhibitions / Summits",
     selected: false,
   },
 ];
