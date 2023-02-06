@@ -23,6 +23,7 @@ const AllEvents = (props) => {
     await AdminService.fetchEventsByCategory(id, 1).then((res) => {
       dispatch(clearLoader());
       setEvents(res.data.eventBeans);
+      console.log(res.data.eventBeans);
     });
   }, POLLING_INTERVAL);
 
@@ -31,7 +32,7 @@ const AllEvents = (props) => {
     AdminService.fetchEventsByCategory(id, 1).then((res) => {
       dispatch(clearLoader());
       setEvents(res.data.eventBeans);
-      console.log(events);
+      console.log(res.data.eventBeans);
     });
   }, [id]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -40,7 +41,7 @@ const AllEvents = (props) => {
       {events.map((event, index) => {
         return (
           <div
-            className="list-group-item col-sm-8 align-items-start rounded mb-2 bg-light bg-gradient"
+            className="list-group-item col-sm-12 align-items-start rounded mb-2 bg-light bg-gradient"
             key={index}
           >
             <div className="d-flex w-100 justify-content-between">
