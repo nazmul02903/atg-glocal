@@ -188,7 +188,7 @@ function Home(props) {
           <div className="my-3 banner-slider">
             <Slider dots={true}>
               {banners.map((banner) => {
-                return <img src={banner.imageUrl} alt="" />;
+                return <img onClick={() => {window.location.href=banner.externalLink}} className="cursor-pointer" src={banner.imageUrl} alt="" />;
               })}
               {/* <img src={FirstSlider} alt="" />
               <img src={FirstSlider} alt="" />
@@ -216,12 +216,12 @@ function Home(props) {
                       <Link to={`/event/${idx + 1}`} className="services-link">
                         <div className="imgBox eventBox">
                           <div className="division-name-inside font-semibold">
-                            {t(`${event.name}.1`)}
+                            {t(`${event.name === 'Awards/Competitions' ? 'Awards/Contests' : event.name}`)}
                           </div>
                           <img src={event.imageUrl} className="icon" alt="" />
                         </div>
                         <div className="division-name font-semibold">
-                          {t(`${event.name}.1`)}
+                          {t(`${event.name === 'Awards/Competitions' ? 'Awards/Contests' : event.name}.1`)}
                         </div>
                       </Link>
                       {/* <div className="division-subtext">

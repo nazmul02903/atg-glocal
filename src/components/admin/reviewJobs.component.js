@@ -33,6 +33,10 @@ const ReviewJob = (props) => {
     });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  useEffect(() => {
+    console.log("jobs", jobs);
+  }, [jobs]);
+
   return (
     <div className='list-group row'>
       {jobs.map((job, index) => {
