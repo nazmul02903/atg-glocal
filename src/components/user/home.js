@@ -216,7 +216,7 @@ function Home(props) {
                       <Link to={`/event/${idx + 1}`} className="services-link">
                         <div className="imgBox eventBox">
                           <div className="division-name-inside font-semibold">
-                            {t(`${event.name === 'Awards/Competitions' ? 'Awards/Contests' : event.name}`)}
+                            {t(`${event.name === 'Awards/Competitions' ? 'Awards/Contests' : event.name}.1`)}
                           </div>
                           <img src={event.imageUrl} className="icon" alt="" />
                         </div>
