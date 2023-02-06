@@ -51,6 +51,7 @@ const Header = (props) => {
     {
       name: "Fundings",
       icon: fundIcon,
+      onClick: () => history.push("/fundingUpdates/1"),
     },
     {
       name: "Contact",
