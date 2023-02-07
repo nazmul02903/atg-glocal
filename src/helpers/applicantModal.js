@@ -47,6 +47,7 @@ const ApplicantDetails = ({ applicants }) => {
             style={{ color: "#E74E54", backgroundColor: "#FDD8D8" }}
           >
             {applicant.jobApplicationStatusText}
+            {applicant.paymentDone ? "Paid" : "Unpaid"}
           </span>
         </div>
         <div className='mt-2'>
@@ -81,25 +82,31 @@ const ApplicantDetails = ({ applicants }) => {
         </div> */}
 
         <div className='mt-3'>
-          <button
-            onClick={() =>
-              handleDownload(
-                applicant.resumeLink,
-                `${applicant.name}_Resume.pdf`
-              )
-            }
-            className='btn btn-dark d-inline d-sm-none'
-          >
-            Download Resume
-          </button>
-          <a
-            href={applicant.resumeLink}
-            className='btn btn-dark d-none d-sm-inline rounded-pill'
-            target='_blank'
-            rel='noreferrer'
-          >
-            View Resume
-          </a>
+          { 
+            applicant.resumeLink &&
+              <button
+                onClick={() =>
+                  handleDownload(
+                    applicant.resumeLink,
+                    `${applicant.name}_Resume.pdf`
+                  )
+                }
+                className='btn btn-dark d-inline d-sm-none'
+              >
+                Download Resume
+              </button>
+          }
+          {
+            applicant.resumeLink &&
+              <a
+                href={applicant.resumeLink}
+                className='btn btn-dark d-none d-sm-inline rounded-pill'
+                target='_blank'
+                rel='noreferrer'
+              >
+                View Resume
+              </a>
+          }
           {applicant.showAccept && (
             <button
               className='btn btn-primary ms-2 rounded-pill'
@@ -137,7 +144,7 @@ const ApplicantModal = (props) => {
     >
       <Modal.Header>
         <Modal.Title id='contained-modal-title-vcenter'>
-          Applicant List
+          {data.eventRegistrationBeans ? "Registration Details" : "Applicant List"}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>

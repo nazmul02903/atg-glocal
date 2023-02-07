@@ -290,11 +290,11 @@ const MyEvents = (props) => {
                               setModalShowApplicant(true);
                             }}
                           >
-                            View Applicant Details
+                            View Registration Details
                           </button>
                         ) : (
                           <button className="btn btn-danger ms-1 lg-ms-3 rounded-pill btn-sm" disabled>
-                            No Applicants
+                            No Registrations
                           </button>
                         )
                       }
