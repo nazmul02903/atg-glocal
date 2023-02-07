@@ -107,7 +107,7 @@ const AllEvents = (props) => {
       <div className="pt-0 md:pt-10">
         <div className="grid grid-cols-12 md:grid-cols-12 mb-6 md:mb-10 hidden md:grid">
           <div className="col-span-12 md:col-span-8 mb-5 md:mb-0">
-            <img src={CommunityImg} className="w-full" />
+            <img src={CommunityImg} className="w-full" alt="" />
           </div>
           <div className="col-span-12 md:col-span-4 all-events-form">
             <div className="px-4 py-4 flex flex-col justify-center all-events-form-wrapper md:ml-8">
@@ -150,13 +150,14 @@ const AllEvents = (props) => {
                   }
                 >
                   <div className="flex">
-                    <img src={EventCardImg} className="event-img" />
+                    <img src={EventCardImg} className="event-img" alt="" />
                   </div>
                   <div className="event-card-content">
                     <div className="flex items-center mb-0">
                       <img
                         src={event.eventCategoryImageUrl}
                         className="event-icon"
+                        alt=""
                       />
                       <p className="event-title">{event.title}</p>
                       <p className="event-fees">{`₹${event.fees}`}</p>
@@ -168,6 +169,7 @@ const AllEvents = (props) => {
                         src={ShareIcon}
                         className="cursor-pointer"
                         onClick={() => setShareModalActive(true)}
+                        alt=""
                       />
                     </div>
                     <div className="flex justify-between">

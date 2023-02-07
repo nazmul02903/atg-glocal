@@ -45,10 +45,10 @@ const MyEvents = (props) => {
   const [events, setEvents] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [modalShow, setModalShow] = useState(false);
-  const [registrations, setregistrations] = useState([]);
+  const [registrations , setRegistrations] = useState([]);
   const [modalShowregistration, setModalShowregistration] = useState(false);
 
-console.log('events', events)
+// console.log('events', events)
 
   const [filterValue, setFilterValue] = useState("All");
   const handleFilter = (e) => {
@@ -71,6 +71,10 @@ console.log('events', events)
       setSelectedEvent(res.data.eventBeans[0]);
     });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    console.log(events);
+  }, [events]);
   
   return (
     <div className="row p-2" style={{ backgroundColor: "#F9F9FB" }}>
@@ -255,7 +259,7 @@ console.log('events', events)
                         );
                       })} */}
 
-                      {registrations.length ? (
+                      {event.eventRegistrationBeans.length > 0 ? (
                         <button
                           className="btn btn-danger ms-1 lg-ms-3 rounded-pill btn-sm"
                           onClick={() => {
