@@ -261,7 +261,7 @@ const MyEvents = (props) => {
                         );
                       })} */}
 
-                      {event.eventRegistrationBeans.length > 0 ? (
+                      {/* {event.eventRegistrationBeans.length > 0 ? (
                         <button
                           className="btn btn-danger ms-1 lg-ms-3 rounded-pill btn-sm"
                           onClick={() => {
@@ -279,7 +279,7 @@ const MyEvents = (props) => {
                         >
                           No registrations
                         </button>
-                      )}
+                      )} */}
 
                       {
                         event.eventRegistrationBeans.length > 0 ? (
