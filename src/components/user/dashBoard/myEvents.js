@@ -15,6 +15,7 @@ import parse from "html-react-parser";
 import Tooltip from "react-bootstrap/Tooltip";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import userService from "../../../services/user.service";
+import ApplicantModal from "../../../helpers/applicantModal";
 const HorizontalLine = () => {
   return (
     <div
@@ -47,6 +48,7 @@ const MyEvents = (props) => {
   const [modalShow, setModalShow] = useState(false);
   const [registrations , setRegistrations] = useState([]);
   const [modalShowregistration, setModalShowregistration] = useState(false);
+  const [modalShowApplicant, setModalShowApplicant] = useState(false);
 
 // console.log('events', events)
 
@@ -264,7 +266,7 @@ const MyEvents = (props) => {
                           className="btn btn-danger ms-1 lg-ms-3 rounded-pill btn-sm"
                           onClick={() => {
                             setSelectedEvent(event);
-
+                            
                             setModalShowregistration(true);
                           }}
                         >
@@ -278,6 +280,24 @@ const MyEvents = (props) => {
                           No registrations
                         </button>
                       )}
+
+                      {
+                        event.eventRegistrationBeans.length > 0 ? (
+                          <button
+                            className="btn btn-danger ms-1 lg-ms-3 rounded-pill btn-sm"
+                            onClick={() => {
+                              setSelectedEvent(event);
+                              setModalShowApplicant(true);
+                            }}
+                          >
+                            View Applicant Details
+                          </button>
+                        ) : (
+                          <button className="btn btn-danger ms-1 lg-ms-3 rounded-pill btn-sm" disabled>
+                            No Applicants
+                          </button>
+                        )
+                      }
                     </div>
                   </div>
                 );
@@ -287,6 +307,14 @@ const MyEvents = (props) => {
                 event={selectedEvent}
                 show={modalShow}
                 onHide={() => setModalShow(false)}
+              />
+            )}
+
+            {modalShowApplicant && (
+              <ApplicantModal
+                data={selectedEvent}
+                show={modalShowApplicant}
+                onHide={() => setModalShowApplicant(false)}
               />
             )}
 

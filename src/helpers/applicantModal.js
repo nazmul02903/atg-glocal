@@ -8,7 +8,7 @@ import { setLoader, clearLoader } from "../store/actions/loader";
 import { alert, alertCustom } from "./alerts";
 import fileDownload from "js-file-download";
 const ApplicantDetails = ({ applicants }) => {
-  //console.log(applicants);
+  console.log(applicants);
   const dispatch = useDispatch();
   const handleClick = (id, type) => {
     dispatch(setLoader());
@@ -125,6 +125,7 @@ const ApplicantDetails = ({ applicants }) => {
 };
 const ApplicantModal = (props) => {
   const { data } = props;
+  console.log(data);
 
   return (
     <Modal
@@ -141,7 +142,14 @@ const ApplicantModal = (props) => {
       </Modal.Header>
       <Modal.Body>
         <div className='list-group'>
-          <ApplicantDetails applicants={data.jobApplicationBeans} />
+          {
+            data.jobApplicationBeans &&
+            <ApplicantDetails applicants={data.jobApplicationBeans} />
+          }
+          {
+            data.eventRegistrationBeans &&
+            <ApplicantDetails applicants={data.eventRegistrationBeans} />
+          }
         </div>
       </Modal.Body>
       <Modal.Footer>
