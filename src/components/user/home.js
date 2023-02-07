@@ -189,7 +189,7 @@ function Home(props) {
           <div className="my-3 banner-slider">
             <Slider dots={true}>
               {banners.map((banner) => {
-                return <img onClick={() => {window.location.href=banner.externalLink}} className="cursor-pointer" src={banner.imageUrl} alt="" />;
+                return <img onClick={() => { window.location.href = banner.externalLink }} className="cursor-pointer" src={banner.imageUrl} alt="" />;
               })}
               {/* <img src={FirstSlider} alt="" />
               <img src={FirstSlider} alt="" />
@@ -279,7 +279,8 @@ function Home(props) {
             </div>
           </div>
 
-          <div className="csr-funding-homepage">
+          {/* csr */}
+          {/* <div className="csr-funding-homepage">
             <h1>
               {t('CSR Funding Eligibility Test.1')}
             </h1>
@@ -313,58 +314,9 @@ function Home(props) {
                 {t('TEST NOW.1')}
               </button>
             </div>
-          </div>
+          </div> */}
 
-          <div className="services-homepage">
-            <h1>
-              {t('Services We Offer.1')}
-            </h1>
-            <div className="service">
-              <img src={services1} alt="" srcset="" />
-              <div>
-                <h2>
 
-                  {t('Employee Engagement Activity.1')}
-                </h2>
-                <p>
-                  {t("Improve employee satisfaction and productivity with our customized engagement activities. From team building to professional development, we'll design a program tailored to your company's needs..1")}
-                </p>
-                <button>
-                  {t('KNOW MORE.1')}
-                </button>
-              </div>
-            </div>
-
-            <div className="service">
-              <div>
-                <h2>
-                  {t('Research.1')}
-                </h2>
-                <p>
-                  {t('Let our research expertise help your social organization make informed decisions and drive positive change. Contact us to discuss your research needs..1')}
-                </p>
-                <button>
-                  {t('KNOW MORE.1')}
-                </button>
-              </div>
-              <img src={services2} alt="" srcset="" />
-            </div>
-
-            <div className="service">
-              <img src={services3} alt="" srcset="" />
-              <div>
-                <h2>
-                  {t('Legal Services.1')}
-                </h2>
-                <p>
-                  {t('Need legal assistance for your social organization? We offer comprehensive legal services to help you navigate compliance and achieve your mission. Contact us today!.1')}
-                </p>
-                <button>
-                  {t('KNOW MORE.1')}
-                </button>
-              </div>
-            </div>
-          </div>
 
           {/* 
            <div className="sect-3">
@@ -413,7 +365,9 @@ function Home(props) {
               </div>
           </div> 
           */}
-          <div className="sect-4 home-row">
+
+          {/* Phone images */}
+          {/* <div className="sect-4 home-row">
             <div className="phone1">
               <img src={Phone1} alt="" />
             </div>
@@ -434,9 +388,9 @@ function Home(props) {
             <div className="phone2">
               <img src={Phone2} alt="" />
             </div>
-          </div>
+          </div> */}
 
-          <NgoCorporateService ngo={true}/>
+          <NgoCorporateService ngo={true} />
           <NgoCorporateService />
 
           <div className="sect-5 home-column">
