@@ -45,6 +45,7 @@ import "slick-carousel/slick/slick-theme.css";
 import NewsDetailModal from "../../helpers/newsDetail";
 import Footer from "../footer.component";
 import { useTranslation } from "react-i18next";
+import NgoCorporateService from "./ngoCorporate.component";
 
 const clientId = process.env.REACT_APP_OAUTH_CLIENT_ID;
 
@@ -112,7 +113,7 @@ function Home(props) {
   };
 
   const onFailure = () => {
-    alertCustom("error", "Somthing went wrong", "/home");
+    // alertCustom("error", "Somthing went wrong", "/home");
     //console.log("Handle failure cases");
   };
   const { signOut } = useGoogleLogout({
@@ -182,7 +183,7 @@ function Home(props) {
     dispatch(clearLoader());
     return (
       <>
-        <div className="home container">
+        <div className="container home">
           {/* nazmul hasan */}
 
           <div className="my-3 banner-slider">
@@ -203,7 +204,7 @@ function Home(props) {
             in-person events. It’s free to create an account.
           </div> */}
             <div className="divisions home-column">
-              <p className="home-category-title font-semibold">
+              <p className="font-semibold home-category-title">
                 {t('Social Sector Updates.1')}
               </p>
               <p className="home-category-subtitle">
@@ -215,12 +216,12 @@ function Home(props) {
                     <div className="division" key={idx}>
                       <Link to={`/event/${idx + 1}`} className="services-link">
                         <div className="imgBox eventBox">
-                          <div className="division-name-inside font-semibold">
+                          <div className="font-semibold division-name-inside">
                             {t(`${event.name === 'Awards/Competitions' ? 'Awards/Contests' : event.name}.1`)}
                           </div>
                           <img src={event.imageUrl} className="icon" alt="" />
                         </div>
-                        <div className="division-name font-semibold">
+                        <div className="font-semibold division-name">
                           {t(`${event.name === 'Awards/Competitions' ? 'Awards/Contests' : event.name}.1`)}
                         </div>
                       </Link>
@@ -247,7 +248,7 @@ function Home(props) {
                           </div>
                           <img src={event.imageUrl} className="icon" alt="" />
                         </div>
-                        <div className="division-name font-semibold">
+                        <div className="font-semibold division-name">
                           {t(`${event.name}.1`)}
                         </div>
                       </Link>
@@ -267,7 +268,7 @@ function Home(props) {
                           </div>
                           <img src={event.imageUrl} className="icon" alt="" />
                         </div>
-                        <div className="division-name font-semibold">
+                        <div className="font-semibold division-name">
                           {t(`${event.name}.1`)}
                         </div>
                       </Link>
@@ -434,6 +435,9 @@ function Home(props) {
               <img src={Phone2} alt="" />
             </div>
           </div>
+
+          <NgoCorporateService ngo={true}/>
+          <NgoCorporateService />
 
           <div className="sect-5 home-column">
             <div className="community-heading heading">

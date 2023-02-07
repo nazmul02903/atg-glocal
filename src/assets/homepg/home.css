@@ -882,3 +882,155 @@ hr {
     display: block;
   }
 }
+
+.ngo_service_wrap {
+  font-family: "Noto Sans";
+  font-style: normal;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+.service_big_font {
+  font-weight: 600;
+  font-size: 85.8463px;
+  line-height: 64px;
+  color: #4d4c4c;
+}
+
+.service_heading {
+  font-weight: 400;
+  font-size: 47px;
+  line-height: 134%;
+  margin-bottom: 16px;
+  color: #3a3a3a;
+}
+
+.service_pic_mid {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 134%;
+  /* or 21px */
+  
+  letter-spacing: 0.0015em;
+  
+  color: #4D4C4C;
+}
+.mobile_visible {
+  display: none;
+}
+
+.service_btn {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 19px;
+  /* identical to box height */
+  margin-top: 0;
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+  /* BrandBlue */
+cursor: pointer;
+  color: #0e559c;
+}
+
+.service_para {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.4px;
+
+  /* Mid Grey */
+
+  color: #666666;
+}
+.icon_title {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 134%;
+  /* identical to box height, or 27px */
+  margin-bottom: 0;
+  padding-bottom: 0;
+  letter-spacing: 0.0015em;
+  white-space: nowrap;
+
+  /* Dark Grey */
+
+  color: #3a3a3a;
+}
+.service_icon {
+  transform: scale(0.7);
+  height: 32px;
+}
+.service_card {
+  flex-basis: 1/4;
+  gap: 16px;
+}
+
+.service-wrapper {
+  gap: 40px;
+  text-align: start;
+}
+
+@media screen and (max-width: 624px) {
+  .ngo_service_wrap {
+    margin-top: 70px;
+    margin-bottom: 70px;
+  }
+  .service_heading {
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 134%;
+  }
+  .service_mid_text {
+    display: none;
+  }
+  .service_left_img {
+    display: none;
+  }
+  .service_right_img {
+    max-width: 269px;
+  }
+  .mobile_visible {
+    display: block;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 134%;
+    /* or 21px */
+
+    text-align: center;
+    letter-spacing: 0.0015em;
+
+    color: #4d4c4c;
+  }
+  .service_card {
+    flex-basis: 50%;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    padding: 17px;
+    gap: 12px;
+    box-sizing: border-box;
+  }
+  .service-wrapper {
+    gap: 0;
+    flex-wrap: wrap;
+    text-align: center;
+  }
+  .icon_title {
+    display: none;
+  }
+
+  .service_para {
+    width: 127px;
+  }
+
+  .service_icon {
+    transform: scale(1);
+    height: auto;
+  }
+  .service_card:nth-child(1), .service_card:nth-child(2){
+    border-bottom: 1px solid #bdb8b8;
+  }
+  .service_card:nth-child(2), .service_card:nth-child(4){
+    border-left: 1px solid #bdb8b8;
+  }
+}
