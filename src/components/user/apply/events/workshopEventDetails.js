@@ -187,6 +187,11 @@ function WorkshopEventDetails(props) {
                   </ul>
                 </div>
               </div> */}
+
+              <div className=" d-flex gap-2 flex-row mb-2">
+                <img className="event-img" src={EventIcon} alt="" />
+                <h2>{workshopDetails.title}</h2>
+              </div>
               <div className="banner ">
                 <img src="" alt="" />
                 <div className="days_remaining">
@@ -309,7 +314,7 @@ function WorkshopEventDetails(props) {
                             </div>
                             <div className="value seatsLeft"></div>
                           </div>
-                          <div className="contents language">
+                          {/* <div className="contents language">
                             <div className="languageIcon tiny-icon">
                               <img
                                 className="languageIconImg tiny-iconImg"
@@ -321,7 +326,7 @@ function WorkshopEventDetails(props) {
                               Language:
                             </div>
                             <div className="value modeOfLanguage"></div>
-                          </div>
+                          </div> */}
                         </div>
                       </div>
                     </div>
@@ -341,7 +346,6 @@ function WorkshopEventDetails(props) {
 
                         <div className="frame8173 right">
                           <div className="frame3842">
-                            <div className="likedBy">Liked by</div>
                             <div className="elipses">
                               <img src="" alt="" />
                             </div>
@@ -365,24 +369,30 @@ function WorkshopEventDetails(props) {
                     (workshopDetails.topicsCovered =
                       workshopDetails.topicsCovered.replace(/<(.|\n)*?>/g, ""))
                   }
-                  <div id="other-desktop" className="other_deets detailsCard">
+                  {/* <div id="other-desktop" className="other_deets detailsCard">
                     Other details: {workshopDetails.speakers}{" "}
-                  </div>
+                  </div> */}
                 </div>
-                <div id="other" className="other_deets detailsCard">
+                {/* <div id="other" className="other_deets detailsCard">
                   <h5 className="mb-0">Other details:</h5>
                   {workshopDetails.speakers}{" "}
-                </div>
+                </div> */}
               </div>
               <div className="footer-event">
-                <div className="btn-container">
+                <div
+                  className="btn-container"
+                  style={{ flexDirection: "row-reverse" }}
+                >
                   <div>
                     {" "}
                     <button className="register" type="submit">
                       Register
                     </button>
                   </div>{" "}
-                  <div className="container">
+                  <div
+                    className="container d-flex"
+                    style={{ justifyContent: "flex-end" }}
+                  >
                     <div
                       className="share-btn"
                       onClick={() => {
@@ -521,7 +531,7 @@ function WorkshopEventDetails(props) {
                     </div>
                     <div className="value seatsLeft"></div>
                   </div>
-                  <div className="contents language">
+                  {/* <div className="contents language">
                     <div className="languageIcon tiny-icon">
                       <img
                         className="languageIconImg tiny-iconImg"
@@ -533,7 +543,7 @@ function WorkshopEventDetails(props) {
                       Language:
                     </div>
                     <div className="value modeOfLanguage"></div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
@@ -553,7 +563,7 @@ function WorkshopEventDetails(props) {
 
                 <div className="frame8173 right">
                   <div className="frame3842">
-                    <div className="likedBy">Liked by</div>
+                    {/* <div className="likedBy">Liked by</div> */}
                     <div className="elipses">
                       <img src="" alt="" />
                     </div>
@@ -561,6 +571,9 @@ function WorkshopEventDetails(props) {
                 </div>
               </div>
             </div>
+          </div>
+          <div className="detailsCard mt-2">
+            <h5>Organized By</h5>
           </div>
         </div>
       </div>
