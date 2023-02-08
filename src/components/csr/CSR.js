@@ -7,23 +7,23 @@ import Header from "./Header";
 const CSR = ({ csrDetails, orgData }) => {
   const [progressBarValue, setProgressBarValue] = useState(12.5);
   const [csrValue, setCsrValue] = useState(new Map());
-  const [selectedSection, setSelectedSection] = useState(orgData.sections[0]);
+  const [selectedSection, setSelectedSection] = useState(orgData?.sections[0]);
   const [progressStep, setProgressStep] = React.useState(0);
 
   return (
     <div>
-      <div className='text-center mt-8 font-bold'>
+      <div className="text-center mt-8 font-bold">
         <h2>
           <strong>CSR Funding Eligibility Test</strong>
         </h2>
       </div>
-      <div className='text-center'>
+      <div className="text-center">
         <strong>
           All Questions are Compulsory. One cannot move forward without
           selecting any option.
         </strong>
       </div>
-      <div className='sm:max-w-xl sm:mx-auto custom-card mt-8'>
+      <div className="sm:max-w-xl sm:mx-auto custom-card mt-8">
         <Header
           progressBarValue={progressBarValue}
           selectedSection={selectedSection}

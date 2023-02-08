@@ -3,7 +3,7 @@ import { Button } from "baseui/button";
 
 import UserService from "../../services/user.service";
 import { alertCustom } from "../../helpers/alerts";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { clearLoader, setLoader } from "../../store/actions/loader";
 import BackArrow from "../../assets/Icons/back-arrow.svg";
 import NextArrow from "../../assets/Icons/next-arrow.svg";
@@ -1223,7 +1223,10 @@ const scrollToTop = () => {
 
 function Footer(props) {
   const dispatch = useDispatch();
-
+  const {
+    user: { name, contactNumber, email },
+  } = useSelector((state) => state.auth);
+  console.log(name, email, "user");
   const {
     selectedSection,
     setProgressBarValue,
@@ -1262,6 +1265,13 @@ function Footer(props) {
     const data = {
       organisationName: csrDetails.organisationName,
       thematicAreaList: csrDetails.thematicAreaList,
+      applicantName: name,
+      email: email,
+      contact: contactNumber,
+      designation: "designation",
+      district: "district",
+      state: "state",
+
       sections: DataMaster,
     };
 
@@ -1294,7 +1304,7 @@ function Footer(props) {
     }
   }
   return (
-    <div className='flex justify-around rounded pb-8'>
+    <div className="flex justify-around rounded pb-8">
       <Button
         disabled={
           selectedSection.identifier === "1ed03f58-2e99-4efa-9f66-c03d7fc507e5"
@@ -1316,9 +1326,9 @@ function Footer(props) {
             }),
           },
         }}
-        className='rounded  py-2 px-4'
+        className="rounded  py-2 px-4"
       >
-        <img src={BackArrow} width='10' alt='Back Arrow' />
+        <img src={BackArrow} width="10" alt="Back Arrow" />
       </Button>
 
       <Button
@@ -1333,7 +1343,7 @@ function Footer(props) {
             }),
           },
         }}
-        className='text-white font-bold py-2 px-4 rounded'
+        className="text-white font-bold py-2 px-4 rounded"
       >
         Submit
       </Button>
@@ -1361,10 +1371,10 @@ function Footer(props) {
             }),
           },
         }}
-        className='text-white font-bold py-2 px-4 rounded'
+        className="text-white font-bold py-2 px-4 rounded"
       >
         {" "}
-        <img src={NextArrow} width='10' alt='Next Arrow' />
+        <img src={NextArrow} width="10" alt="Next Arrow" />
       </Button>
     </div>
   );

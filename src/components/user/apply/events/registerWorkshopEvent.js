@@ -1,4 +1,7 @@
 import React from "react";
+
+import "bootstrap/dist/css/bootstrap.min.css";
+import Modal from "react-bootstrap/Modal";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import useRazorpay from "react-razorpay";
@@ -17,6 +20,7 @@ import {
 import GB_globe from "../../../../assets/globe-logo.png";
 
 const RegisterWorkshopEvent = (props) => {
+  const { setShowModal } = props;
   const [cities, getCities] = useState([]);
   const [states, getStates] = useState([]);
   const [selectedStateId, setSelectedStateId] = useState("Select City");
@@ -59,7 +63,7 @@ const RegisterWorkshopEvent = (props) => {
         alertCustom("error", message, "/home");
       });
   }, []);
-  
+
   const onSubmit = (values) => {
     props.dispatch(setLoader());
     const data = {
@@ -155,138 +159,169 @@ const RegisterWorkshopEvent = (props) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="form-floating">
-      <div className="register_screen">
-        <div className="topBar"></div>
-        <h1 className="heading">Register</h1>
-        <div className="reg-container">
-          <div className="fields">
-            <div className="field">
-              <label>Name </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                placeholder="Your Name"
-                {...register("name", { required: true })}
-                className={
-                  errors.buyer_name
-                    ? "form-control is-invalid input"
-                    : "form-control input"
-                }
-              />
-              {errors.buyer_name && errors.buyer_name.message ? (
-                <div className="invalid-feedback">
-                  {errors.buyer_name.message}
+    <Modal
+      show={true}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+      scrollable={true}
+    >
+      <Modal.Header>
+        <Modal.Title id="contained-modal-title-vcenter">
+          <h3>Event Details</h3>
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <form onSubmit={handleSubmit(onSubmit)} className="form-floating">
+          <div className="register_screen">
+            {/* <div className="topBar"></div> */}
+            <h1 className="heading">Register</h1>
+            <div className="reg-container">
+              <div className="fields">
+                <div className="field">
+                  <label>Name </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Your Name"
+                    {...register("name", { required: true })}
+                    className={
+                      errors.buyer_name
+                        ? "form-control is-invalid input"
+                        : "form-control input"
+                    }
+                  />
+                  {errors.buyer_name && errors.buyer_name.message ? (
+                    <div className="invalid-feedback">
+                      {errors.buyer_name.message}
+                    </div>
+                  ) : null}
                 </div>
-              ) : null}
-            </div>
-            <div className="field">
-              <label>Enter Phone Number: </label>
-              <input
-                type="tel"
-                id="phone"
-                name="phone"
-                placeholder="Contact Number"
-                pattern="[0-9]{10}"
-                {...register("contactNumber", { required: true })}
-                className={
-                  errors.contactNumber
-                    ? "form-control is-invalid input"
-                    : "form-control input"
-                }
-              />
-              {errors.contactNumber && errors.contactNumber.message ? (
-                <div className="invalid-feedback">
-                  {errors.contactNumber.message}
+                <div className="field">
+                  <label>Enter Phone Number: </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    placeholder="Contact Number"
+                    pattern="[0-9]{10}"
+                    {...register("contactNumber", { required: true })}
+                    className={
+                      errors.contactNumber
+                        ? "form-control is-invalid input"
+                        : "form-control input"
+                    }
+                  />
+                  {errors.contactNumber && errors.contactNumber.message ? (
+                    <div className="invalid-feedback">
+                      {errors.contactNumber.message}
+                    </div>
+                  ) : null}
                 </div>
-              ) : null}
-            </div>
-            <div className="field">
-              <label>Enter your email: </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Your Email id"
-                {...register("email", { required: true })}
-                className={
-                  errors.email
-                    ? "form-control is-invalid input"
-                    : "form-control input"
-                }
-              />
-              {errors.email && errors.email.message ? (
-                <div className="invalid-feedback">{errors.email.message}</div>
-              ) : null}
-            </div>
-            <div className="field">
-              <label>
-                Organization Name: <br />
-                <span className="text-danger">
-                  <em className="em">(put N/A if not from an organization)</em>
-                </span>
-              </label>
+                <div className="field">
+                  <label>Enter your email: </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Your Email id"
+                    {...register("email", { required: true })}
+                    className={
+                      errors.email
+                        ? "form-control is-invalid input"
+                        : "form-control input"
+                    }
+                  />
+                  {errors.email && errors.email.message ? (
+                    <div className="invalid-feedback">
+                      {errors.email.message}
+                    </div>
+                  ) : null}
+                </div>
+                <div className="field">
+                  <label>
+                    Organization Name: <br />
+                    <span className="text-danger">
+                      <em className="em">
+                        (put N/A if not from an organization)
+                      </em>
+                    </span>
+                  </label>
 
-              <input
-                type="text"
-                id="orgName"
-                name="orgName"
-                placeholder="Your Organization Name"
-                {...register("organizationName", { required: true })}
-                className={
-                  errors.orgName
-                    ? "form-control is-invalid input"
-                    : "form-control input"
-                }
-              />
-              {errors.orgName && errors.orgName.message ? (
-                <div className="invalid-feedback">{errors.orgName.message}</div>
-              ) : null}
-            </div>
-            <div className="field">
-              <label>You Are From?</label>
-              <div className="w-95 col-6 form-group">
-                <select
-                  onChange={onChangeState}
-                  // onClick={() => {
-                  //   setSelectedState(target.value);
-                  // }}
-                  className=" w-95 form-select"
-                >
-                  {renderStatesNew(states)}
-                </select>
-              </div>
-              <div className="w-95 col-6 form-group">
-                <select
-                  className={
-                    errors.cityId
-                      ? " w-95 form-select is-invalid"
-                      : " w-95 form-select"
-                  }
-                  {...register("cityId")}
-                >
-                  {renderCitiesName(cities)}
-                </select>
-                <small className="text-danger">
-                  {errors.cityId && errors.cityId.message}
-                </small>
+                  <input
+                    type="text"
+                    id="orgName"
+                    name="orgName"
+                    placeholder="Your Organization Name"
+                    {...register("organizationName", { required: true })}
+                    className={
+                      errors.orgName
+                        ? "form-control is-invalid input"
+                        : "form-control input"
+                    }
+                  />
+                  {errors.orgName && errors.orgName.message ? (
+                    <div className="invalid-feedback">
+                      {errors.orgName.message}
+                    </div>
+                  ) : null}
+                </div>
+                <div className="field">
+                  <label>You Are From?</label>
+                  <div className="w-95 col-6 form-group">
+                    <select
+                      onChange={onChangeState}
+                      // onClick={() => {
+                      //   setSelectedState(target.value);
+                      // }}
+                      className=" w-95 form-select"
+                    >
+                      {renderStatesNew(states)}
+                    </select>
+                  </div>
+                  <div className="w-95 col-6 form-group">
+                    <select
+                      className={
+                        errors.cityId
+                          ? " w-95 form-select is-invalid"
+                          : " w-95 form-select"
+                      }
+                      {...register("cityId")}
+                    >
+                      {renderCitiesName(cities)}
+                    </select>
+                    <small className="text-danger">
+                      {errors.cityId && errors.cityId.message}
+                    </small>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div className="bookNow">
+          <div className="">
+            <button
+              type="submit"
+              id="rzp-button1"
+              className="rzp-button1 book-btn btn-primary mt-2 btn-lg"
+              disabled={props.isLoading}
+            >
+              {props.isLoading ? "Please wait..." : "Book Now"}
+            </button>
+          </div>
+        </form>
+      </Modal.Body>
+      <Modal.Footer>
         <button
-          type="submit"
-          id="rzp-button1"
-          className="rzp-button1 book-btn btn-primary mt-2 btn-lg"
-          disabled={props.isLoading}
+          className="btn btn-primary"
+          onClick={() => {
+            setShowModal(false);
+          }}
         >
-          {props.isLoading ? "Please wait..." : "Book Now"}
+          Close
         </button>
-      </div>
-    </form>
+      </Modal.Footer>
+    </Modal>
   );
 };
 function mapStateToProps(state) {

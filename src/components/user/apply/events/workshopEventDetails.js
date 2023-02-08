@@ -35,6 +35,8 @@ function WorkshopEventDetails(props) {
   const [copied, setCopied] = useState(false);
   var el = document.createElement("a");
   el.href = window.location.href;
+
+  const [showModal, setShowModal] = useState(false);
   const shareButtonProps = [
     {
       url: el.href,
@@ -164,12 +166,16 @@ function WorkshopEventDetails(props) {
     dispatch(clearLoader());
     return (
       <div className="d-flex gap-3">
-        {isSubmitSuccessful ? (
-          <RegisterWorkshopEvent workshopDetails={workshopDetails} />
-        ) : (
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="screen">
-              {/* <div className="topBar">
+        {showModal && (
+          <RegisterWorkshopEvent
+            setShowModal={setShowModal}
+            workshopDetails={workshopDetails}
+          />
+        )}
+        {/* {!isSubmitSuccessful && ( */}
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="screen">
+            {/* <div className="topBar">
                 <div className="shopping-cart">
                   <div className="logo50x50 left">
                     <img src={Logo} className="logo50x50" alt=""/>
@@ -188,133 +194,131 @@ function WorkshopEventDetails(props) {
                 </div>
               </div> */}
 
-              <div className=" d-flex gap-2 flex-row mb-2">
-                <img className="event-img" src={EventIcon} alt="" />
-                <h2>{workshopDetails.title}</h2>
+            <div className=" d-flex gap-2 flex-row mb-2">
+              <img className="event-img" src={EventIcon} alt="" />
+              <h2>{workshopDetails.title}</h2>
+            </div>
+            <div className="banner ">
+              <img src="" alt="" />
+              <div className="days_remaining">
+                <p className="days_remaining_text">
+                  {workshopDetails.daysToExpiry}
+                </p>
               </div>
-              <div className="banner ">
-                <img src="" alt="" />
-                <div className="days_remaining">
-                  <p className="days_remaining_text">
-                    {workshopDetails.daysToExpiry}
-                  </p>
-                </div>
+            </div>
+            <div className="navBar">
+              <div
+                id="summaryLink"
+                onClick={addClassSummary}
+                className={summaryActive ? "link active" : "link"}
+              >
+                <a className="link_text" href="#summary">
+                  Summary
+                </a>
               </div>
-              <div className="navBar">
-                <div
-                  id="summaryLink"
-                  onClick={addClassSummary}
-                  className={summaryActive ? "link active" : "link"}
-                >
-                  <a className="link_text" href="#summary">
-                    Summary
-                  </a>
-                </div>
-                <div
-                  id="topicsLink"
-                  onClick={addClassTopics}
-                  className={topicsActive ? "link active" : "link"}
-                >
-                  <a className="link_text" href="#topics">
-                    Topics
-                  </a>
-                </div>
-                <div
-                  id="otherLink"
-                  onClick={addClassOther}
-                  className={otherActive ? "link active" : "link"}
-                >
-                  <a className="link_text" href="#other">
-                    Other Details
-                  </a>
-                </div>
+              <div
+                id="topicsLink"
+                onClick={addClassTopics}
+                className={topicsActive ? "link active" : "link"}
+              >
+                <a className="link_text" href="#topics">
+                  Topics
+                </a>
               </div>
+              <div
+                id="otherLink"
+                onClick={addClassOther}
+                className={otherActive ? "link active" : "link"}
+              >
+                <a className="link_text" href="#other">
+                  Other Details
+                </a>
+              </div>
+            </div>
 
-              <div className="details_container grid-details-container">
-                <div id="mainDetails" className="main_details">
-                  <div className="frame8157 detailsCard">
-                    <div className="frame8176">
-                      <div className="title_section">
-                        <div className="event-icon">
-                          <img className="event-img" src={EventIcon} alt="" />
+            <div className="details_container grid-details-container">
+              <div id="mainDetails" className="main_details">
+                <div className="frame8157 detailsCard">
+                  <div className="frame8176">
+                    <div className="title_section">
+                      <div className="event-icon">
+                        <img className="event-img" src={EventIcon} alt="" />
+                      </div>
+                      <div className="title_organisedBy">
+                        <div className="title">
+                          <p className="LongTitle">{workshopDetails.title} </p>
                         </div>
-                        <div className="title_organisedBy">
-                          <div className="title">
-                            <p className="LongTitle">
-                              {workshopDetails.title}{" "}
+                        <div className="organisedBy">
+                          <div className="orgContainer">
+                            <p className="orgName">
+                              {workshopDetails.postedBy}{" "}
                             </p>
-                          </div>
-                          <div className="organisedBy">
-                            <div className="orgContainer">
-                              <p className="orgName">
-                                {workshopDetails.postedBy}{" "}
-                              </p>
-                            </div>
                           </div>
                         </div>
                       </div>
-                      <hr style={{ width: "315px" }} />
-                      <div className="frame8175">
-                        <div className="contents event_dates">
-                          <div className="calendarIcon tiny-icon">
-                            <img
-                              className="calanderIconImg tiny-iconImg"
-                              src={Calendar}
-                              alt=""
-                            />
-                          </div>
-                          {/* <div className="duration details_description ">
+                    </div>
+                    <hr style={{ width: "315px" }} />
+                    <div className="frame8175">
+                      <div className="contents event_dates">
+                        <div className="calendarIcon tiny-icon">
+                          <img
+                            className="calanderIconImg tiny-iconImg"
+                            src={Calendar}
+                            alt=""
+                          />
+                        </div>
+                        {/* <div className="duration details_description ">
                             <p className="start date details_description ">
                               {workshopDetails.eventTime}{" "}
                             </p>
                             <p className="end date details_description">end</p>
                           </div> */}
-                          <div className="timing details_description">
-                            On: {workshopDetails.eventTimeText}{" "}
-                          </div>
+                        <div className="timing details_description">
+                          On: {workshopDetails.eventTimeText}{" "}
                         </div>
-                        <div className="contents venue">
-                          <div className="pin-pointIcon tiny-icon">
-                            <img
-                              className="pin-pointIconImg tiny-iconImg"
-                              src={Location}
-                              alt=""
-                            />
-                          </div>
-                          <div className="location details_description value">
-                            {workshopDetails.venue}{" "}
-                          </div>
+                      </div>
+                      <div className="contents venue">
+                        <div className="pin-pointIcon tiny-icon">
+                          <img
+                            className="pin-pointIconImg tiny-iconImg"
+                            src={Location}
+                            alt=""
+                          />
                         </div>
-                        <div className="contents lastDayOfRegisteration">
-                          <div className="calendarIcon tiny-icon">
-                            <img
-                              className="calendarIconImg tiny-iconImg"
-                              src={Note}
-                              alt=""
-                            />
-                          </div>
-                          <div className="lastDate details_description key">
-                            Last Date: {workshopDetails.applicationDeadlineText}{" "}
-                          </div>
-                          {/* <div className="closingDate value">
+                        <div className="location details_description value">
+                          {workshopDetails.venue}{" "}
+                        </div>
+                      </div>
+                      <div className="contents lastDayOfRegisteration">
+                        <div className="calendarIcon tiny-icon">
+                          <img
+                            className="calendarIconImg tiny-iconImg"
+                            src={Note}
+                            alt=""
+                          />
+                        </div>
+                        <div className="lastDate details_description key">
+                          Last Date: {workshopDetails.applicationDeadlineText}{" "}
+                        </div>
+                        {/* <div className="closingDate value">
                             {workshopDetails.applicationDeadline}{" "}
                           </div> */}
-                        </div>
-                        <div className="two-in-one">
-                          <div className="contents availableSeats">
-                            <div className="chairIcon tiny-icon">
-                              <img
-                                className="chairIconImg tiny-iconImg"
-                                src={Chair}
-                                alt=""
-                              />
-                            </div>
-                            <div className="seatsAvailable details_description key">
-                              Total Seats: {workshopDetails.totalSeats}{" "}
-                            </div>
-                            <div className="value seatsLeft"></div>
+                      </div>
+                      <div className="two-in-one">
+                        <div className="contents availableSeats">
+                          <div className="chairIcon tiny-icon">
+                            <img
+                              className="chairIconImg tiny-iconImg"
+                              src={Chair}
+                              alt=""
+                            />
                           </div>
-                          {/* <div className="contents language">
+                          <div className="seatsAvailable details_description key">
+                            Total Seats: {workshopDetails.totalSeats}{" "}
+                          </div>
+                          <div className="value seatsLeft"></div>
+                        </div>
+                        {/* <div className="contents language">
                             <div className="languageIcon tiny-icon">
                               <img
                                 className="languageIconImg tiny-iconImg"
@@ -327,131 +331,139 @@ function WorkshopEventDetails(props) {
                             </div>
                             <div className="value modeOfLanguage"></div>
                           </div> */}
-                        </div>
                       </div>
                     </div>
-                    <div className="frame8172">
-                      <div className="row-frame">
-                        {workshopDetails.fees === 0 ? (
-                          <div className="price priceImg left">
-                            {/* <img className="rupee" src={Rupee} alt="" /> */}
-                            Free!
-                          </div>
-                        ) : (
-                          <div className="price priceImg left">
-                            <img className="rupee" src={Rupee} alt="" />
-                            {workshopDetails.fees}{" "}
-                          </div>
-                        )}
+                  </div>
+                  <div className="frame8172">
+                    <div className="row-frame">
+                      {workshopDetails.fees === 0 ? (
+                        <div className="price priceImg left">
+                          {/* <img className="rupee" src={Rupee} alt="" /> */}
+                          Free!
+                        </div>
+                      ) : (
+                        <div className="price priceImg left">
+                          <img className="rupee" src={Rupee} alt="" />
+                          {workshopDetails.fees}{" "}
+                        </div>
+                      )}
 
-                        <div className="frame8173 right">
-                          <div className="frame3842">
-                            <div className="elipses">
-                              <img src="" alt="" />
-                            </div>
+                      <div className="frame8173 right">
+                        <div className="frame3842">
+                          <div className="elipses">
+                            <img src="" alt="" />
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div id="summary" className="detailsCard">
-                  <h5 className="text-start mb-0">Event Details</h5>
-                  {
-                    (workshopDetails.description =
-                      workshopDetails.description.replace(/<(.|\n)*?>/g, ""))
-                  }
-                </div>
+              </div>
+              <div id="summary" className="detailsCard">
+                <h5 className="text-start mb-0">Event Details</h5>
+                {
+                  (workshopDetails.description =
+                    workshopDetails.description.replace(/<(.|\n)*?>/g, ""))
+                }
+              </div>
 
-                <div id="topics" className="topics detailsCard">
-                  <h5 className="mb-0">Topics:</h5>
-                  {
-                    (workshopDetails.topicsCovered =
-                      workshopDetails.topicsCovered.replace(/<(.|\n)*?>/g, ""))
-                  }
-                  {/* <div id="other-desktop" className="other_deets detailsCard">
+              <div id="topics" className="topics detailsCard">
+                <h5 className="mb-0">Topics:</h5>
+                {
+                  (workshopDetails.topicsCovered =
+                    workshopDetails.topicsCovered.replace(/<(.|\n)*?>/g, ""))
+                }
+                {/* <div id="other-desktop" className="other_deets detailsCard">
                     Other details: {workshopDetails.speakers}{" "}
                   </div> */}
-                </div>
-                {/* <div id="other" className="other_deets detailsCard">
+              </div>
+              {/* <div id="other" className="other_deets detailsCard">
                   <h5 className="mb-0">Other details:</h5>
                   {workshopDetails.speakers}{" "}
                 </div> */}
-              </div>
-              <div className="footer-event">
-                <div
-                  className="btn-container"
-                  style={{ flexDirection: "row-reverse" }}
-                >
-                  <div>
-                    {" "}
-                    <button className="register" type="submit">
-                      Register
-                    </button>
-                  </div>{" "}
-                  <div
-                    className="container d-flex"
-                    style={{ justifyContent: "flex-end" }}
+            </div>
+            <div className="footer-event">
+              <div
+                className="btn-container"
+                style={{ flexDirection: "row-reverse" }}
+              >
+                <div>
+                  {" "}
+                  <button
+                    onClick={() => setShowModal(true)}
+                    className={`register ${
+                      workshopDetails.hasUserRegistered && "disable_btn"
+                    }`}
+                    disabled={workshopDetails.hasUserRegistered}
                   >
-                    <div
-                      className="share-btn"
-                      onClick={() => {
-                        shareToggle
-                          ? setShareToggle(false)
-                          : setShareToggle(true);
-                      }}
-                    ></div>
-                    <div
-                      className={
-                        shareToggle ? "share-options active" : "share-options"
-                      }
-                    >
-                      <p className="title">share</p>
-                      <div className="social-media?">
-                        <ShareButton
-                          {...shareButtonProps[0]}
-                          className="social-media-btn"
-                        >
-                          <FaFacebook />
-                        </ShareButton>
-                        <ShareButton
-                          {...shareButtonProps[1]}
-                          className="social-media-btn"
-                        >
-                          <FaEnvelope />
-                        </ShareButton>
-                        <ShareButton
-                          {...shareButtonProps[2]}
-                          className="social-media-btn"
-                        >
-                          <FaWhatsapp />
-                        </ShareButton>
-                        <ShareButton
-                          {...shareButtonProps[3]}
-                          className="social-media-btn"
-                        >
-                          <FaTwitter />
-                        </ShareButton>
-                        <ShareButton
-                          {...shareButtonProps[4]}
-                          className="social-media-btn"
-                        >
-                          <FaLinkedin />
-                        </ShareButton>
-                      </div>
-                      <div className="link-container">
-                        <p className="link">{el.href}</p>
-                        <h1 className="copy-btn" onClick={copy}>
-                          copy
-                        </h1>
-                      </div>
+                    {workshopDetails.hasUserRegistered
+                      ? "Already Registered"
+                      : "Register"}
+                  </button>
+                </div>{" "}
+                <div
+                  className="container d-flex"
+                  style={{ justifyContent: "flex-end" }}
+                >
+                  <div
+                    className="share-btn"
+                    onClick={() => {
+                      shareToggle
+                        ? setShareToggle(false)
+                        : setShareToggle(true);
+                    }}
+                  ></div>
+                  <div
+                    className={
+                      shareToggle ? "share-options active" : "share-options"
+                    }
+                  >
+                    <p className="title">share</p>
+                    <div className="social-media?">
+                      <ShareButton
+                        {...shareButtonProps[0]}
+                        className="social-media-btn"
+                      >
+                        <FaFacebook />
+                      </ShareButton>
+                      <ShareButton
+                        {...shareButtonProps[1]}
+                        className="social-media-btn"
+                      >
+                        <FaEnvelope />
+                      </ShareButton>
+                      <ShareButton
+                        {...shareButtonProps[2]}
+                        className="social-media-btn"
+                      >
+                        <FaWhatsapp />
+                      </ShareButton>
+                      <ShareButton
+                        {...shareButtonProps[3]}
+                        className="social-media-btn"
+                      >
+                        <FaTwitter />
+                      </ShareButton>
+                      <ShareButton
+                        {...shareButtonProps[4]}
+                        className="social-media-btn"
+                      >
+                        <FaLinkedin />
+                      </ShareButton>
+                    </div>
+                    <div className="link-container">
+                      <p className="link">{el.href}</p>
+                      <h1 className="copy-btn" onClick={copy}>
+                        copy
+                      </h1>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </form>
-        )}
+          </div>
+        </form>
+        {/* )} */}
         <div id="mainDetails " className=" desk__details">
           <div className="frame8157 detailsCard">
             <div className="frame8176">
