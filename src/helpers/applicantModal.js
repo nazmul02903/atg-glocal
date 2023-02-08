@@ -46,8 +46,7 @@ const ApplicantDetails = ({ applicants }) => {
             className='rounded-pill p-2 font-weight-bold'
             style={{ color: "#E74E54", backgroundColor: "#FDD8D8" }}
           >
-            {applicant.jobApplicationStatusText}
-            {applicant.paymentDone ? "Paid" : "Unpaid"}
+            {applicant.paymentDone ? 'Paid' : 'Unpaid'}
           </span>
         </div>
         <div className='mt-2'>

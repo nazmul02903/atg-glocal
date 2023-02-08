@@ -106,8 +106,7 @@ export const GET_PAID_MODULES =
   process.env.REACT_APP_API_ENDPOINT + "user/getUserSubModuleSubscriptions";
 
 export const SUBMIT_CSR_TEST =
-  process.env.REACT_APP_API_ENDPOINT +
-  "survey/submitCsrEligibilitySurveyForApp";
+  process.env.REACT_APP_API_ENDPOINT + "survey/submitCsrEligibilitySurvey";
 
 export const GET_KYC_LIST =
   process.env.REACT_APP_API_ENDPOINT + "kyc/getKycBriefList";
