@@ -38,6 +38,7 @@ import services2 from "../../assets/homepg/img/services2.svg"
 import services3 from "../../assets/homepg/img/services3.svg"
 import appstore from "../../assets/homepg/img/appstore.svg"
 import googleplay from "../../assets/homepg/img/googleplay.svg"
+import clients from "../../assets/homepg/img/clients.svg"
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -393,15 +394,47 @@ function Home(props) {
           <NgoCorporateService ngo={true} />
           <NgoCorporateService />
 
+          <div className="my-24">
+          <h2 className="service_heading text-center">
+              Our Clients
+          </h2>
+          <div className="d-flex justify-center">
+            <img className="w-100" src={clients} alt="" />
+            <img className="d-none d-lg-block" src={clients} alt="" />
+          </div>
+          </div>
+
           <div className="sect-5 home-column">
-            <div className="community-heading heading">
+            <div className="community-heading heading d-none d-lg-block">
               {" "}
               {t('GlocalBodh Communities.1')}
             </div>
-            <div className="community-subtext subtext">
+            <div className="community-heading heading d-lg-none">
+              {" "}
+              {t('Blogs')}
+            </div>
+            <div className="community-subtext subtext d-none d-lg-block">
               {t('People on Glocalboadh have fostered community, learned new skills, started businesses, and made life-long friends. Learn how..1')}
             </div>
-            <Slider dots={true} slidesToShow={3} slidesToScroll={3}  >
+            <Slider className="d-none d-lg-block" dots={true} slidesToShow={3} slidesToScroll={3}  >
+              {newsBeans.map((bean, i) => (
+                <div className="cursor-pointer community-card community-slider home-column" onClick={() => handleNewsClick(bean)}>
+                  <div className="function-img-container">
+                    <img src={bean.newsLink.slice(0, 5) === 'https' ? bean.newsLink : Function1}
+                      className="function-img" alt="" />
+                  </div>
+                  <div className="function-heading">{bean.title.slice(0, 50)}</div>
+                  <div className="function-description"
+                    dangerouslySetInnerHTML={{
+                      __html: bean.description.length > 100 ? `${bean.description.slice(3, 100)}...`
+                        : bean.description
+                    }}>
+
+                  </div>
+                </div>
+              ))}
+            </Slider>
+            <Slider className="d-lg-none" dots={true} slidesToShow={1} slidesToScroll={3}  >
               {newsBeans.map((bean, i) => (
                 <div className="cursor-pointer community-card community-slider home-column" onClick={() => handleNewsClick(bean)}>
                   <div className="function-img-container">
@@ -421,7 +454,7 @@ function Home(props) {
             </Slider>
           </div>
 
-          <div className="my-20 postReq-wrapper">
+          {/* <div className="my-20 postReq-wrapper">
             <div className="postReq-content">
               <h2>
                 {t('Post your requirements free.1')}!!
@@ -455,10 +488,10 @@ function Home(props) {
                 </h4>
               </div>
             </Slider>
-          </div>
+          </div> */}
 
           {/* Service we Provide section */}
-          <div className="service-provide">
+          {/* <div className="service-provide">
             <h4>
               {t('Services We Provide.1')}
             </h4>
@@ -479,7 +512,7 @@ function Home(props) {
                 </div>
               ))}
             </div>
-          </div>
+          </div> */}
 
           {/* <div className="footer-sm">
             <BottomBar />

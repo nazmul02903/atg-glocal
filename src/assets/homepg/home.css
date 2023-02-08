@@ -523,6 +523,24 @@ hr {
   padding: 3% 10% 5% 10%;
 }
 
+.sect-5-slider {
+  display: none;
+}
+
+.sect-5-slider-sm {
+  display: block;
+}
+
+@media screen and (min-width: 768px) {
+  .sect-5-slider {
+    display: block;
+  }
+
+  .sect-5-slider-sm {
+    display: none;
+  }
+}
+
 .community-cards {
   align-items: start;
   text-align: start;
@@ -824,8 +842,8 @@ hr {
 @media screen and (max-width: 768px) {
   .sect-1,
   .sect-3,
-  .sect-4,
-  .sect-5 {
+  .sect-4 
+  {
     display: none;
   }
 
