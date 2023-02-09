@@ -13,6 +13,8 @@ import Search from "../../../../assets/search.png";
 import Calendar from "../../../../assets/calendar.png";
 import Location from "../../../../assets/location.png";
 import EventIcon from "../../../../assets/event-icon.png";
+import verifyIcon from "../../../../assets/verify.svg";
+import Back from "../../../../assets/back.svg";
 import Logo from "../../../../assets/gb.png";
 import Chair from "../../../../assets/chair.png";
 import Note from "../../../../assets/event_note.png";
@@ -165,7 +167,7 @@ function WorkshopEventDetails(props) {
   } else {
     dispatch(clearLoader());
     return (
-      <div className="d-flex gap-3">
+      <div className="d-flex gap-3 align-items-start">
         {showModal && (
           <RegisterWorkshopEvent
             setShowModal={setShowModal}
@@ -173,7 +175,18 @@ function WorkshopEventDetails(props) {
           />
         )}
         {/* {!isSubmitSuccessful && ( */}
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          style={{
+            backgroundColor: "white",
+            position: "relative",
+          }}
+        >
+          <div className="back_btn">
+            <a href={`${process.env.REACT_APP_URL}/event/0}`}>
+              <img src={Back} alt="" />
+            </a>
+          </div>
           <div className="screen">
             {/* <div className="topBar">
                 <div className="shopping-cart">
@@ -193,18 +206,29 @@ function WorkshopEventDetails(props) {
                   </ul>
                 </div>
               </div> */}
-
-            <div className=" d-flex gap-2 flex-row mb-2">
-              <img className="event-img" src={EventIcon} alt="" />
-              <h2>{workshopDetails.title}</h2>
+            <div></div>
+            <div className="category_indication mb-2 mt-2">
+              <span className="ml-4">
+                event &gt; {workshopDetails.eventCategoryText} &gt;{" "}
+                <span style={{ color: "#3A3A3A" }}>
+                  {workshopDetails.title}
+                </span>{" "}
+              </span>
             </div>
-            <div className="banner ">
+            <div className=" d-flex gap-2 flex-row mb-2 ">
+              <img className="event-img" src={EventIcon} alt="" />
+              <h2 className="event_title">{workshopDetails.title}</h2>
+            </div>
+            <div
+              className="banner "
+              style={{ borderRadius: "5px", marginBottom: "45px" }}
+            >
               <img src="" alt="" />
-              <div className="days_remaining">
+              {/* <div className="days_remaining">
                 <p className="days_remaining_text">
                   {workshopDetails.daysToExpiry}
                 </p>
-              </div>
+              </div> */}
             </div>
             <div className="navBar">
               <div
@@ -225,7 +249,7 @@ function WorkshopEventDetails(props) {
                   Topics
                 </a>
               </div>
-              <div
+              {/* <div
                 id="otherLink"
                 onClick={addClassOther}
                 className={otherActive ? "link active" : "link"}
@@ -233,11 +257,11 @@ function WorkshopEventDetails(props) {
                 <a className="link_text" href="#other">
                   Other Details
                 </a>
-              </div>
+              </div> */}
             </div>
 
-            <div className="details_container grid-details-container">
-              <div id="mainDetails" className="main_details">
+            <div className="details_container details-flex">
+              <div id="mainDetails" className="main_details ">
                 <div className="frame8157 detailsCard">
                   <div className="frame8176">
                     <div className="title_section">
@@ -360,7 +384,7 @@ function WorkshopEventDetails(props) {
                 </div>
               </div>
               <div id="summary" className="detailsCard">
-                <h5 className="text-start mb-0">Event Details</h5>
+                <h5 className="text-start mb-0 card_title">Event Details</h5>
                 {
                   (workshopDetails.description =
                     workshopDetails.description.replace(/<(.|\n)*?>/g, ""))
@@ -368,7 +392,7 @@ function WorkshopEventDetails(props) {
               </div>
 
               <div id="topics" className="topics detailsCard">
-                <h5 className="mb-0">Topics:</h5>
+                <h5 className="mb-0 topic_title">Topics:</h5>
                 {
                   (workshopDetails.topicsCovered =
                     workshopDetails.topicsCovered.replace(/<(.|\n)*?>/g, ""))
@@ -382,81 +406,73 @@ function WorkshopEventDetails(props) {
                   {workshopDetails.speakers}{" "}
                 </div> */}
             </div>
-            <div className="footer-event">
-              <div
-                className="btn-container"
-                style={{ flexDirection: "row-reverse" }}
-              >
-                <div>
-                  {" "}
-                  <button
-                    onClick={() => setShowModal(true)}
-                    className={`register ${
-                      workshopDetails.hasUserRegistered && "disable_btn"
-                    }`}
-                    disabled={workshopDetails.hasUserRegistered}
-                  >
-                    {workshopDetails.hasUserRegistered
-                      ? "Already Registered"
-                      : "Register"}
-                  </button>
-                </div>{" "}
-                <div
-                  className="container d-flex"
-                  style={{ justifyContent: "flex-end" }}
+          </div>
+          <div className="footer-event">
+            <div className="btn-container">
+              <div>
+                {" "}
+                <button
+                  onClick={() => setShowModal(true)}
+                  className={`register ${
+                    workshopDetails.hasUserRegistered && "disable_btn"
+                  }`}
+                  disabled={workshopDetails.hasUserRegistered}
                 >
-                  <div
-                    className="share-btn"
-                    onClick={() => {
-                      shareToggle
-                        ? setShareToggle(false)
-                        : setShareToggle(true);
-                    }}
-                  ></div>
-                  <div
-                    className={
-                      shareToggle ? "share-options active" : "share-options"
-                    }
-                  >
-                    <p className="title">share</p>
-                    <div className="social-media?">
-                      <ShareButton
-                        {...shareButtonProps[0]}
-                        className="social-media-btn"
-                      >
-                        <FaFacebook />
-                      </ShareButton>
-                      <ShareButton
-                        {...shareButtonProps[1]}
-                        className="social-media-btn"
-                      >
-                        <FaEnvelope />
-                      </ShareButton>
-                      <ShareButton
-                        {...shareButtonProps[2]}
-                        className="social-media-btn"
-                      >
-                        <FaWhatsapp />
-                      </ShareButton>
-                      <ShareButton
-                        {...shareButtonProps[3]}
-                        className="social-media-btn"
-                      >
-                        <FaTwitter />
-                      </ShareButton>
-                      <ShareButton
-                        {...shareButtonProps[4]}
-                        className="social-media-btn"
-                      >
-                        <FaLinkedin />
-                      </ShareButton>
-                    </div>
-                    <div className="link-container">
-                      <p className="link">{el.href}</p>
-                      <h1 className="copy-btn" onClick={copy}>
-                        copy
-                      </h1>
-                    </div>
+                  {workshopDetails.hasUserRegistered
+                    ? "Already Registered"
+                    : "Register"}
+                </button>
+              </div>{" "}
+              <div className="pr-0 d-flex ">
+                <div
+                  className="share-btn"
+                  onClick={() => {
+                    shareToggle ? setShareToggle(false) : setShareToggle(true);
+                  }}
+                ></div>
+                <div
+                  className={
+                    shareToggle ? "share-options active" : "share-options"
+                  }
+                >
+                  <p className="title">share</p>
+                  <div className="social-media?">
+                    <ShareButton
+                      {...shareButtonProps[0]}
+                      className="social-media-btn"
+                    >
+                      <FaFacebook />
+                    </ShareButton>
+                    <ShareButton
+                      {...shareButtonProps[1]}
+                      className="social-media-btn"
+                    >
+                      <FaEnvelope />
+                    </ShareButton>
+                    <ShareButton
+                      {...shareButtonProps[2]}
+                      className="social-media-btn"
+                    >
+                      <FaWhatsapp />
+                    </ShareButton>
+                    <ShareButton
+                      {...shareButtonProps[3]}
+                      className="social-media-btn"
+                    >
+                      <FaTwitter />
+                    </ShareButton>
+                    <ShareButton
+                      {...shareButtonProps[4]}
+                      className="social-media-btn"
+                    >
+                      <FaLinkedin />
+                    </ShareButton>
+                  </div>
+                  <div className="link-container">
+                    <p className="link">{el.href}</p>
+                    <h1 className="copy-btn" onClick={copy}>
+                      copy
+                    </h1>
                   </div>
                 </div>
               </div>
@@ -464,10 +480,34 @@ function WorkshopEventDetails(props) {
           </div>
         </form>
         {/* )} */}
-        <div id="mainDetails " className=" desk__details">
+        <div
+          id="mainDetails "
+          className=" desk__details"
+          style={{ position: "sticky", top: 0 }}
+        >
+          <div className="detailsCard mb-2 p-4">
+            <h5 className="organized_by">Organized By</h5>
+            <div className="organized_author">
+              <img
+                src={workshopDetails.organisedBy.profilePicUrl}
+                alt=""
+                height={58}
+                width={58}
+              />
+              <div className="organized_author_data">
+                <div className="block">
+                  <span style={{ marginRight: "2px" }}>
+                    {workshopDetails.organisedBy.name}
+                  </span>
+                  <img src={verifyIcon} alt="" />
+                </div>
+                <button>connect</button>
+              </div>
+            </div>
+          </div>
           <div className="frame8157 detailsCard">
             <div className="frame8176">
-              <div className="title_section">
+              {/* <div className="title_section">
                 <div className="event-icon">
                   <img className="event-img" src={EventIcon} alt="" />
                 </div>
@@ -481,8 +521,8 @@ function WorkshopEventDetails(props) {
                     </div>
                   </div>
                 </div>
-              </div>
-              <hr style={{ width: "315px" }} />
+              </div> */}
+              {/* <hr style={{ width: "315px" }} /> */}
               <div className="frame8175">
                 <div className="contents event_dates">
                   <div className="calendarIcon tiny-icon">
@@ -584,8 +624,19 @@ function WorkshopEventDetails(props) {
               </div>
             </div>
           </div>
-          <div className="detailsCard mt-2">
-            <h5>Organized By</h5>
+          <div className="detailsCard mt-2" style={{ padding: "0 35px" }}>
+            <button
+              style={{ width: "100%", margin: "20px 0" }}
+              onClick={() => setShowModal(true)}
+              className={`register ${
+                workshopDetails.hasUserRegistered && "disable_btn"
+              }`}
+              disabled={workshopDetails.hasUserRegistered}
+            >
+              {workshopDetails.hasUserRegistered
+                ? "Already Registered"
+                : "Register"}
+            </button>
           </div>
         </div>
       </div>
