@@ -421,7 +421,7 @@ function Home(props) {
             </Slider>
           </div>
 
-          <div className="my-20 postReq-wrapper">
+          {/* <div className="my-20 postReq-wrapper">
             <div className="postReq-content">
               <h2>
                 {t('Post your requirements free.1')}!!
@@ -455,10 +455,10 @@ function Home(props) {
                 </h4>
               </div>
             </Slider>
-          </div>
+          </div> */}
 
           {/* Service we Provide section */}
-          <div className="service-provide">
+          {/* <div className="service-provide">
             <h4>
               {t('Services We Provide.1')}
             </h4>
@@ -479,7 +479,7 @@ function Home(props) {
                 </div>
               ))}
             </div>
-          </div>
+          </div> */}
 
           {/* <div className="footer-sm">
             <BottomBar />
