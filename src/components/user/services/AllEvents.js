@@ -105,16 +105,29 @@ const AllEvents = (props) => {
   return (
     <>
       <div className="pt-0 md:pt-10">
-        <div className="grid grid-cols-12 md:grid-cols-12 mb-6 md:mb-10 hidden md:grid">
+        <div className="grid-cols-12 md:grid-cols-12 mb-6 md:mb-10 hidden md:grid">
           <div className="col-span-12 md:col-span-8 mb-5 md:mb-0">
             <img src={CommunityImg} className="w-full" alt="" />
           </div>
           <div className="col-span-12 md:col-span-4 all-events-form">
             <div className="px-4 py-4 flex flex-col justify-center all-events-form-wrapper md:ml-8">
-              <p className="mb-4  text-base">Post Your Event</p>
-              <input className="flex-1 mb-4" />
-              <textarea className="flex-1 mb-4"></textarea>
-              <button className="w-full bg-[#0058A9] text-white">
+              <p className="mb-4 text-center text-base">Post Your Event</p>
+                <div className="grid gap-2 mb-4">
+                  <div className="form-check border p-4">
+                    <input className="form-check-input p-3 m-0" name="select-event" id="workshops_trainings" type="radio" />
+                    <label className="form-check-label m-1 text-blue-600" for="workshops_trainings"><span className="ms-3">Workshops/Trainings</span></label>
+                  </div>
+                  <div className="form-check border p-4">
+                    <input className="form-check-input p-3 m-0" name="select-event" id="awards_contests" type="radio" />
+                    <label className="form-check-label m-1 text-blue-600" for="awards_contests"><span className="ms-3">Awards/Contests</span></label>
+                  </div>
+                  <div className="form-check border p-4">
+                    <input className="form-check-input p-3 m-0" name="select-event" id="exhibitions_summit" type="radio" />
+                    <label className="form-check-label m-1 text-blue-600" for="exhibitions_summit"><span className="ms-3">Exhibitions/Summit</span></label>
+                  </div>
+                </div>
+              {/* <textarea className="flex-1 mb-4"></textarea> */}
+              <button className="w-full bg-[#0058A9] text-white fs-4 fw-light">
                 Post Event Free
               </button>
             </div>
