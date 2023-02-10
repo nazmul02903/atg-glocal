@@ -113,16 +113,16 @@ const AllEvents = (props) => {
             <div className="px-4 py-4 flex flex-col justify-center all-events-form-wrapper md:ml-8">
               <p className="mb-4 text-center text-base">Post Your Event</p>
                 <div className="grid gap-2 mb-4">
-                  <div className="form-check border p-4">
-                    <input className="form-check-input p-3 m-0" name="select-event" id="workshops_trainings" type="radio" />
+                  <div className="form-check border p-4 rounded">
+                    <input className="form-check-input p-3 m-0 shadow-radio" name="select-event" id="workshops_trainings" type="radio" />
                     <label className="form-check-label m-1 text-blue-600" for="workshops_trainings"><span className="ms-3">Workshops/Trainings</span></label>
                   </div>
-                  <div className="form-check border p-4">
-                    <input className="form-check-input p-3 m-0" name="select-event" id="awards_contests" type="radio" />
+                  <div className="form-check border p-4 rounded">
+                    <input className="form-check-input p-3 m-0 shadow-radio" name="select-event" id="awards_contests" type="radio" />
                     <label className="form-check-label m-1 text-blue-600" for="awards_contests"><span className="ms-3">Awards/Contests</span></label>
                   </div>
-                  <div className="form-check border p-4">
-                    <input className="form-check-input p-3 m-0" name="select-event" id="exhibitions_summit" type="radio" />
+                  <div className="form-check border p-4 rounded">
+                    <input className="form-check-input p-3 m-0 shadow-radio" name="select-event" id="exhibitions_summit" type="radio" />
                     <label className="form-check-label m-1 text-blue-600" for="exhibitions_summit"><span className="ms-3">Exhibitions/Summit</span></label>
                   </div>
                 </div>

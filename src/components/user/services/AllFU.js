@@ -183,16 +183,16 @@ const AllFundingUpdate = (props) => {
                   <h4 className='mb-4 text-center'>Looking for Funds?</h4>
                   <div className='grid justify-center w-96'>
                   <div className="grid gap-2 mb-4 w-80">
-                    <div className="form-check border p-4">
-                      <input className="form-check-input p-3 m-0" name="select-event" id="govt_funds" type="radio" />
+                    <div className="form-check border p-4 rounded">
+                      <input className="form-check-input p-3 m-0 shadow-radio" name="select-event" id="govt_funds" type="radio" />
                       <label className="form-check-label m-1 text-blue-600" for="govt_funds"><span className="ms-3">Govt Funds</span></label>
                     </div>
-                    <div className="form-check border p-4">
-                      <input className="form-check-input p-3 m-0" name="select-event" id="foreign_funds" type="radio" />
+                    <div className="form-check border p-4 rounded">
+                      <input className="form-check-input p-3 m-0 shadow-radio" name="select-event" id="foreign_funds" type="radio" />
                       <label className="form-check-label m-1 text-blue-600" for="foreign_funds"><span className="ms-3">Foreign Funds</span></label>
                     </div>
-                    <div className="form-check border p-4">
-                      <input className="form-check-input p-3 m-0" name="select-event" id="csr_funds" type="radio" />
+                    <div className="form-check border p-4 rounded">
+                      <input className="form-check-input p-3 m-0 shadow-radio" name="select-event" id="csr_funds" type="radio" />
                       <label className="form-check-label m-1 text-blue-600" for="csr_funds"><span className="ms-3">CSR Funds</span></label>
                     </div>
                   </div>

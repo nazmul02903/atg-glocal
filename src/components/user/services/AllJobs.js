@@ -134,16 +134,16 @@ const AllJobs = (props) => {
               <h4 className='mb-4 text-center'>Post Jobs</h4>
               <div className='grid justify-center'>
                 <div className="grid gap-2 mb-4 w-80">
-                  <div className="form-check border p-4">
-                    <input className="form-check-input p-3 m-0" name="select-event" id="ngo_jobs" type="radio" />
+                  <div className="form-check border p-4 rounded">
+                    <input className="form-check-input p-3 m-0 shadow-radio" name="select-event" id="ngo_jobs" type="radio" />
                     <label className="form-check-label m-1 text-blue-600" for="ngo_jobs"><span className="ms-3">NGO Jobs</span></label>
                   </div>
-                  <div className="form-check border p-4">
-                    <input className="form-check-input p-3 m-0" name="select-event" id="csr_jobs" type="radio" />
+                  <div className="form-check border p-4 rounded">
+                    <input className="form-check-input p-3 m-0 shadow-radio" name="select-event" id="csr_jobs" type="radio" />
                     <label className="form-check-label m-1 text-blue-600" for="csr_jobs"><span className="ms-3">CSR Jobs</span></label>
                   </div>
-                  <div className="form-check border p-4">
-                    <input className="form-check-input p-3 m-0" name="select-event" id="govt_jobs" type="radio" />
+                  <div className="form-check border p-4 rounded">
+                    <input className="form-check-input p-3 m-0 shadow-radio" name="select-event" id="govt_jobs" type="radio" />
                     <label className="form-check-label m-1 text-blue-600" for="govt_jobs"><span className="ms-3">Govt Jobs</span></label>
                   </div>
                 </div>
