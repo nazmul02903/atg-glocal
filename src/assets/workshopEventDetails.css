@@ -710,7 +710,9 @@
   border: 0;
   position: sticky;
   left: 0;
-  bottom: 42px;
+  bottom: 0;
+  z-index: 8000;
+  background-color: white;
 }
 .btn-container {
   display: flex;
