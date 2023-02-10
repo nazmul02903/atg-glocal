@@ -9,6 +9,7 @@ import advertise from "../../assets/ngocorporate/advertise.svg";
 import network from "../../assets/ngocorporate/network.svg";
 import search from "../../assets/ngocorporate/search.svg";
 import { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 
 const corporates = [
   {
@@ -48,6 +49,7 @@ const ngos = [
     iconTitle: "Post Jobs",
     paragraph: "Reach out to Relevant Candidates through Free Posting",
     btn: "Post Jobs",
+    linkTo: '/user/create/job'
   },
   {
     id: 2,
@@ -55,6 +57,7 @@ const ngos = [
     iconTitle: "CSR Test",
     paragraph: "Take a Quick test to know CSR Funding Eligibility",
     btn: "Give Test",
+    linkTo: '/csrForm'
   },
 
   {
@@ -63,6 +66,7 @@ const ngos = [
     iconTitle: "Post Events",
     paragraph: "Reach out to Relevant Candidates through Free Posting",
     btn: "KNOW MORE",
+    linkTo: '/posting'
   },
   {
     id: 4,
@@ -73,14 +77,16 @@ const ngos = [
   },
 ];
 
-const NgoCorporateService = ({ngo}) => {
+const NgoCorporateService = ({ ngo }) => {
   const [data, setData] = useState([]);
+  const history = useHistory()
+
   useEffect(() => {
     setData(ngo ? ngos : corporates)
-  },[])
+  }, [])
   return (
     <div className="text-center ngo_service_wrap">
-      <h2 className="service_heading">Services For {ngo ?"NGO’s": "Corporates" } </h2>
+      <h2 className="service_heading">Services For {ngo ? "NGO’s" : "Corporates"} </h2>
       <div className="gap-10 justify-center align-items-end d-flex">
         <img className="service_left_img" src={ngo ? left : employee} alt="left" />
         <div className="service_mid_text">
@@ -93,7 +99,7 @@ const NgoCorporateService = ({ngo}) => {
             {
               ngo ? (<>100 + <br /> NGOs</>) : "50 +"
             }
-            
+
           </h2>
           <p className="service_pic_mid">{ngo ? "on a single Platform" : "through CSR Initiatives"}</p>
         </div>
@@ -101,14 +107,14 @@ const NgoCorporateService = ({ngo}) => {
       </div>
       {
         ngo ? (
-          
-          <p className="my-4 mobile_visible"><span style={{fontWeight:700}}>100 +</span>  NGOs On a single Platform</p>
+
+          <p className="my-4 mobile_visible"><span style={{ fontWeight: 700 }}>100 +</span>  NGOs On a single Platform</p>
         ) : (
-          <p className="my-4 mobile_visible"> Facilitated <span style={{fontWeight:700}}>50 + projects</span> through <span style={{fontWeight:700}}>CSR Initiatives</span> </p>
+          <p className="my-4 mobile_visible"> Facilitated <span style={{ fontWeight: 700 }}>50 + projects</span> through <span style={{ fontWeight: 700 }}>CSR Initiatives</span> </p>
         )
       }
       <div className="mt-16 d-flex service-wrapper">
-      {data.map((each) => (
+        {data.map((each) => (
           <div className="d-flex flex-column service_card">
             <div className="gap-1 align-items-center d-flex">
               <img className="service_icon" src={each.icon} alt="" />
@@ -117,9 +123,9 @@ const NgoCorporateService = ({ngo}) => {
             <p className="mb-0 service_para">
               {each.paragraph}
             </p>
-            <span className="service_btn">{each.btn}</span>
+            <span className="service_btn" onClick={() => each.linkTo && history.push(each.linkTo) } >{each.btn}</span>
           </div>
-      ))}
+        ))}
       </div>
     </div>
   );
