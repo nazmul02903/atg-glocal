@@ -119,8 +119,7 @@ export const validationSchemaAwardEvent = Yup.object().shape({
 
   //totalSeats: Yup.number().typeError("you must specify a number"),
   applicationDeadline: Yup.string().required("Please select Deadline Date"),
-  eventLink: Yup.string()
-    .max(255, "Must be 255 characters or less"),
+  eventLink: Yup.string().max(255, "Must be 255 characters or less"),
   terms: Yup.bool().oneOf([true], "Accept Terms & Conditions is required"),
   postedBy: Yup.string()
     .max(255, "Must be 255 characters or less")
@@ -154,8 +153,7 @@ export const validationSchemaExhibitionEvent = Yup.object().shape({
     .typeError("You must specify a Number. If No Fees Enter 0 in field"),
 
   applicationDeadline: Yup.string().required("Please select Deadline Date"),
-  eventLink: Yup.string()
-    .max(255, "Must be 255 characters or less"),
+  eventLink: Yup.string().max(255, "Must be 255 characters or less"),
   terms: Yup.bool().oneOf([true], "Accept Terms & Conditions is required"),
   postedBy: Yup.string()
     .max(255, "Must be 255 characters or less")
@@ -218,8 +216,7 @@ export const validationSchemaWorkshopEvent = Yup.object().shape({
     .typeError("You must specify a Number. If No Seats Enter 0 in field"),
 
   applicationDeadline: Yup.string().required("Please select Deadline Date"),
-  eventLink: Yup.string()
-    .max(255, "Must be 255 characters or less"),
+  eventLink: Yup.string().max(255, "Must be 255 characters or less"),
   terms: Yup.bool().oneOf([true], "Accept Terms & Conditions is required"),
   postedBy: Yup.string()
     .max(255, "Must be 255 characters or less")
@@ -236,10 +233,10 @@ export const validationSchemaWorkshopEvent = Yup.object().shape({
 
 export const validationSchemaWorkshopRegister = Yup.object().shape({
   name: Yup.string().required("Name of the buyer is required"),
-  contactNumber: Yup.number().required("This is Required"),
+  contactNumber: Yup.string().max(11).required("This is Required"),
   email: Yup.string().required("email is required"),
-  organizationName: Yup.string().required("Name is required"),
-  cityId: Yup.string().required("This is required"),
+  organizationName: Yup.string(),
+  cityId: Yup.string(),
 });
 
 export const validationSchemaJob = Yup.object().shape({

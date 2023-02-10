@@ -204,8 +204,9 @@ const RegisterWorkshopEvent = (props) => {
                     type="tel"
                     id="phone"
                     name="phone"
+                    maxLength={11}
                     placeholder="Contact Number"
-                    pattern="[0-9]{10}"
+                    defaultValue={"+91"}
                     {...register("contactNumber", { required: true })}
                     className={
                       errors.contactNumber
