@@ -602,7 +602,7 @@ hr {
 
 @media only screen and (max-width: 768px) {
   .sect-2 {
-    padding: 10px 6px;
+    padding: 0px 6px;
     margin: 0px;
   }
 
@@ -806,7 +806,7 @@ hr {
 @media screen and (min-width: 768px) {
   .sect-2 {
     margin-bottom: 3rem;
-    padding-top: 10px;
+    padding-top: 0px;
   }
   .imgBox {
     margin-bottom: 10px;
@@ -845,10 +845,6 @@ hr {
   .sect-4 
   {
     display: none;
-  }
-
-  .sect-2 {
-    margin-top: 4rem;
   }
 
   .home-column {

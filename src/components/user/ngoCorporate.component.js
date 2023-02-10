@@ -51,7 +51,7 @@ const ngos = [
   },
   {
     id: 2,
-    icon: csr,
+    icon: event,
     iconTitle: "CSR Test",
     paragraph: "Take a Quick test to know CSR Funding Eligibility",
     btn: "Give Test",
@@ -59,10 +59,10 @@ const ngos = [
 
   {
     id: 3,
-    icon: event,
+    icon: csr,
     iconTitle: "Post Events",
     paragraph: "Reach out to Relevant Candidates through Free Posting",
-    btn: "KNOW MORE",
+    btn: "POST EVENT",
   },
   {
     id: 4,

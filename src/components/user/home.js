@@ -187,8 +187,8 @@ function Home(props) {
         <div className="container home">
           {/* nazmul hasan */}
 
-          <div className="my-3 banner-slider">
-            <Slider dots={true}>
+          <div className="mb-1 banner-slider">
+            <Slider autoplay={true} speed={3000} dots={true}>
               {banners.map((banner) => {
                 return <img onClick={() => { window.location.href = banner.externalLink }} className="cursor-pointer" src={banner.imageUrl} alt="" />;
               })}
