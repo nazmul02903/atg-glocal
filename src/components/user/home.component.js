@@ -255,7 +255,7 @@ const Home = (props) => {
             </CardBody>
           </Card>
         </Col>
-        <Col xs={12} sm={3}>
+        {/* <Col xs={12} sm={3}>
           <Card
             className="custom-card"
           // className={
@@ -290,7 +290,8 @@ const Home = (props) => {
               </Button>
             </CardBody>
           </Card>
-        </Col>
+        </Col> */}
+
         <Col xs={12} sm={3}>
           <Card
             className="custom-card"
