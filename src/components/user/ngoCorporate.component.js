@@ -18,29 +18,34 @@ const corporates = [
     iconTitle: "Post CSR Jobs",
     paragraph: "Reach out to  Relevant  Candidates through Free Posting",
     btn: "POST CSR JOBS",
+    linkTo: "/user/create/job",
   },
   {
     id: 2,
     icon: csr,
     iconTitle: "CSR Events",
-    paragraph: "Connect with Beneficiaries for your Events within Social Sector",
+    paragraph:
+      "Connect with Beneficiaries for your Events within Social Sector",
     btn: "PARTICIPATE",
+    linkTo: "/posting",
   },
   {
     id: 3,
     icon: search,
     iconTitle: "NGO Search",
-    paragraph: "Connect with Beneficiaries for your Events within Social Sector",
+    paragraph:
+      "Connect with Beneficiaries for your Events within Social Sector",
     btn: "START SEARCH",
   },
   {
     id: 4,
     icon: network,
     iconTitle: "Employee Engagement",
-    paragraph: "Connect with Beneficiaries for your Events within Social Sector",
+    paragraph:
+      "Connect with Beneficiaries for your Events within Social Sector",
     btn: "KNOW MORE",
   },
-]
+];
 
 const ngos = [
   {
@@ -49,7 +54,7 @@ const ngos = [
     iconTitle: "Post Jobs",
     paragraph: "Reach out to Relevant Candidates through Free Posting",
     btn: "Post Jobs",
-    linkTo: '/user/create/job'
+    linkTo: "/user/create/job",
   },
   {
     id: 2,
@@ -57,7 +62,7 @@ const ngos = [
     iconTitle: "CSR Test",
     paragraph: "Take a Quick test to know CSR Funding Eligibility",
     btn: "Give Test",
-    linkTo: '/csrForm'
+    linkTo: "/csrForm",
   },
 
   {
@@ -66,7 +71,7 @@ const ngos = [
     iconTitle: "Post Events",
     paragraph: "Reach out to Relevant Candidates through Free Posting",
     btn: "POST EVENT",
-    linkTo: '/posting'
+    linkTo: "/posting",
   },
   {
     id: 4,
@@ -79,40 +84,57 @@ const ngos = [
 
 const NgoCorporateService = ({ ngo }) => {
   const [data, setData] = useState([]);
-  const history = useHistory()
+  const history = useHistory();
 
   useEffect(() => {
-    setData(ngo ? ngos : corporates)
-  }, [])
+    setData(ngo ? ngos : corporates);
+  }, []);
   return (
     <div className="text-center ngo_service_wrap">
-      <h2 className="service_heading">Services For {ngo ? "NGO’s" : "Corporates"} </h2>
+      <h2 className="service_heading">
+        Services For {ngo ? "NGO’s" : "Corporates"}{" "}
+      </h2>
       <div className="gap-10 justify-center align-items-end d-flex">
-        <img className="service_left_img" src={ngo ? left : employee} alt="left" />
+        <img
+          className="service_left_img"
+          src={ngo ? left : employee}
+          alt="left"
+        />
         <div className="service_mid_text">
-          {
-            !ngo && (
-              <p className="service_pic_mid">Facilitated Projects</p>
-            )
-          }
+          {!ngo && <p className="service_pic_mid">Facilitated Projects</p>}
           <h2 className="text-left service_big_font">
-            {
-              ngo ? (<>100 + <br /> NGOs</>) : "50 +"
-            }
-
+            {ngo ? (
+              <>
+                100 + <br /> NGOs
+              </>
+            ) : (
+              "50 +"
+            )}
           </h2>
-          <p className="service_pic_mid">{ngo ? "on a single Platform" : "through CSR Initiatives"}</p>
+          <p className="service_pic_mid">
+            {ngo ? "on a single Platform" : "through CSR Initiatives"}
+          </p>
         </div>
-        <img className="service_right_img" src={ngo ? right : Characters} alt="left" />
+        <img
+          className="service_right_img"
+          src={ngo ? right : Characters}
+          alt="left"
+        />
       </div>
-      {
-        ngo ? (
-
-          <p className="my-4 mobile_visible"><span style={{ fontWeight: 700 }}>100 +</span>  NGOs On a single Platform</p>
-        ) : (
-          <p className="my-4 mobile_visible"> Facilitated <span style={{ fontWeight: 700 }}>50 + projects</span> through <span style={{ fontWeight: 700 }}>CSR Initiatives</span> </p>
-        )
-      }
+      {ngo ? (
+        <p className="my-4 mobile_visible">
+          <span style={{ fontWeight: 700 }}>100 +</span> NGOs On a single
+          Platform
+        </p>
+      ) : (
+        <p className="my-4 mobile_visible">
+          {" "}
+          Facilitated <span style={{ fontWeight: 700 }}>
+            50 + projects
+          </span>{" "}
+          through <span style={{ fontWeight: 700 }}>CSR Initiatives</span>{" "}
+        </p>
+      )}
       <div className="mt-16 d-flex service-wrapper">
         {data.map((each) => (
           <div className="d-flex flex-column service_card">
@@ -120,10 +142,13 @@ const NgoCorporateService = ({ ngo }) => {
               <img className="service_icon" src={each.icon} alt="" />
               <h4 className="icon_title">{each.iconTitle}</h4>
             </div>
-            <p className="mb-0 service_para">
-              {each.paragraph}
-            </p>
-            <span className="service_btn" onClick={() => each.linkTo && history.push(each.linkTo) } >{each.btn}</span>
+            <p className="mb-0 service_para">{each.paragraph}</p>
+            <span
+              className="service_btn"
+              onClick={() => each.linkTo && history.push(each.linkTo)}
+            >
+              {each.btn}
+            </span>
           </div>
         ))}
       </div>
