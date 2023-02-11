@@ -38,9 +38,9 @@ const Navbar = () => {
           <span>{nav?.name}</span>
         </div>
       ))}
-      <div className="nav-search-icon">
+      {/* <div className="nav-search-icon">
         <img src={searchIcon} alt=""  height={40} width={40}/>
-      </div>
+      </div> */}
       <button className="login-button"> Login</button>
     </>
   );
