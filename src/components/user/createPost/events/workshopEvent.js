@@ -3,7 +3,7 @@ import { useForm, Controller } from "react-hook-form";
 import { useLocation } from "react-router-dom";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import { validationSchemaWorkshopEvent } from "../../../../constants/schema";
@@ -36,7 +36,7 @@ const WorkshopEvent = (props) => {
       eventPeopleType: 1,
     },
   ]);
-
+  const { user } = useSelector((state) => state.auth);
   const [eventType, setEventType] = useState("");
 
   const eventTypeFieldRegister = register("eventType", { required: true });
@@ -355,19 +355,20 @@ const WorkshopEvent = (props) => {
           <div className="invalid-feedback">{errors.totalSeats.message}</div>
         ) : null}
       </div>
-
-      {/* <div className="form-group">
-        <label htmlFor="eventLink">Link to web-page</label>
-        <input
-          {...register("eventLink")}
-          className={
-            errors.eventLink ? "form-control is-invalid" : "form-control"
-          }
-        />
-        {errors.eventLink && errors.eventLink.message ? (
-          <div className="invalid-feedback">{errors.eventLink.message}</div>
-        ) : null}
-      </div> */}
+      {
+        user && user.admin &&
+        <div className="form-group">
+          <label htmlFor="eventLink">Link to web-page</label>
+          <input
+            {...register("eventLink")}
+            className={
+              errors.eventLink ? "form-control is-invalid" : "form-control"
+            }
+          />
+          {errors.eventLink && errors.eventLink.message ? (
+            <div className="invalid-feedback">{errors.eventLink.message}</div>
+          ) : null}
+        </div>}
       <div className="form-group">
         <label htmlFor="postedBy">
           {" "}

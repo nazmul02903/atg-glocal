@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import { validationSchemaFundingUpdate } from "../../../constants/schema";
@@ -92,6 +92,7 @@ const FundingUpdateNew = (props) => {
   const [gender, setGender] = useState([]);
   const [size, setSize] = useState(false);
   const [prev, setPrev] = useState(false);
+  const { user } = useSelector((state) => state.auth);
 
   const {
     register,

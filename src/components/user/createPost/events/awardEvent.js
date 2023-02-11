@@ -18,6 +18,7 @@ import { alertCustom } from "../../../../helpers/alerts";
 import { useLocation } from "react-router-dom";
 import { S3_CONFIG_AWARDS } from "../../../../constants/variables";
 import S3FileUpload from "react-s3";
+import { useSelector } from "react-redux";
 
 const AwardEvent = (props) => {
   const [cities, getCities] = useState([]);
@@ -98,6 +99,7 @@ const AwardEvent = (props) => {
     }
   };
   const location = useLocation();
+  const { user } = useSelector((state) => state.auth);
 
   const onChangeState = (e) => {
     onChangeStates(e.target.value).then((res) => {
@@ -435,18 +437,21 @@ const AwardEvent = (props) => {
           </div>
         </div>
       )}
-      {/* <div className='form-group'>
-        <label htmlFor='eventLink'>Link to web-page</label>
-        <input
-          {...register("eventLink")}
-          className={
-            errors.eventLink ? "form-control is-invalid" : "form-control"
-          }
-        />
-        {errors.eventLink && errors.eventLink.message ? (
-          <div className='invalid-feedback'>{errors.eventLink.message}</div>
-        ) : null}
-      </div> */}
+      {
+        user && user.admin &&
+        <div className='form-group'>
+          <label htmlFor='eventLink'>Link to web-page</label>
+          <input
+            {...register("eventLink")}
+            className={
+              errors.eventLink ? "form-control is-invalid" : "form-control"
+            }
+          />
+          {errors.eventLink && errors.eventLink.message ? (
+            <div className='invalid-feedback'>{errors.eventLink.message}</div>
+          ) : null}
+        </div>
+      }
       <div className='form-group'>
         <label htmlFor='postedBy'>
           Posted By

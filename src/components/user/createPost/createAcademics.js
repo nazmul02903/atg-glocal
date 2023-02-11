@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import { validationSchemaAcademics } from "../../../constants/schema";
@@ -19,6 +19,7 @@ import { alertCustom } from "../../../helpers/alerts";
 const Academics = (props) => {
   const [cities, getCities] = useState([]);
   const location = useLocation();
+  const { user } = useSelector((state) => state.auth);
 
   const {
     register,

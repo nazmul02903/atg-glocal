@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 
@@ -24,6 +24,7 @@ import S3FileUpload from "react-s3";
 const ExhibitionEvent = (props) => {
   const [cities, getCities] = useState([]);
   const [posterLink, setPosterLink] = useState("");
+  const { user } = useSelector((state) => state.auth);
 
   const {
     register,
@@ -236,18 +237,22 @@ const ExhibitionEvent = (props) => {
         ) : null}
       </div>
 
-      {/* <div className='form-group'>
-        <label htmlFor='eventLink'>Link to web-page</label>
-        <input
-          {...register("eventLink")}
-          className={
-            errors.eventLink ? "form-control is-invalid" : "form-control"
-          }
-        />
-        {errors.eventLink && errors.eventLink.message ? (
-          <div className='invalid-feedback'>{errors.eventLink.message}</div>
-        ) : null}
-      </div> */}
+      {
+        user && user.admin &&
+
+        <div className='form-group'>
+          <label htmlFor='eventLink'>Link to web-page</label>
+          <input
+            {...register("eventLink")}
+            className={
+              errors.eventLink ? "form-control is-invalid" : "form-control"
+            }
+          />
+          {errors.eventLink && errors.eventLink.message ? (
+            <div className='invalid-feedback'>{errors.eventLink.message}</div>
+          ) : null}
+        </div>
+      }
       <div className='form-group'>
         <label htmlFor='postedBy'>
           {" "}

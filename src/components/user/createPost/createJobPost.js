@@ -12,7 +12,7 @@ import {
   InputGroup,
 } from "reactstrap";
 
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useLocation } from "react-router-dom";
 import { validationSchemaJob } from "../../../constants/schema";
@@ -30,7 +30,8 @@ import { alertCustom } from "../../../helpers/alerts";
 const CreateJobPost = (props) => {
   const [cities, getCities] = useState([]);
   const [salaryType, setSalaryType] = useState("");
-
+  const { user } = useSelector((state) => state.auth);
+  console.log(user);
   const {
     register,
     handleSubmit,
@@ -361,15 +362,18 @@ const CreateJobPost = (props) => {
           </small>
         </Col>
       </FormGroup>
-      {/* <FormGroup row>
-        <Col sm={6}>
-          <label>External Link</label>
-          <Input type="text" {...register("externalLink")} defaultValue="" />
-          <small className="text-danger">
-            {errors.externalLink && errors.externalLink.message}
-          </small>
-        </Col>
-      </FormGroup> */}
+      {
+        user && user.admin &&
+        <FormGroup row>
+          <Col sm={6}>
+            <label>External Link</label>
+            <Input type="text" {...register("externalLink")} defaultValue="" />
+            <small className="text-danger">
+              {errors.externalLink && errors.externalLink.message}
+            </small>
+          </Col>
+        </FormGroup>
+      }
 
       <FormGroup row>
         <Col sm={6}>
