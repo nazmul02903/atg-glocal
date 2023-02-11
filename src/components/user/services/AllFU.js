@@ -168,21 +168,21 @@ const AllFundingUpdate = (props) => {
     //   })}
     // </div>
     <div className="pt-0 md:m-5 md:p-5 funding-page">
-      <div className='funding-header  bg-white p-5 d-none d-md-grid'>
-          <div className='grid items-center justify-right'>
+      <div className='funding-header grid grid-cols-12 bg-white p-5 d-none d-md-grid'>
+          <div className='cols-span-4 grid items-center justify-right'>
               <div>
                   <h1>Connecting people working in NGOs to Opportunities</h1>
                   <p>Whatever you’re looking to do this year, Meetup can help. For 20 years, people have turned to Meetup to meet people, make friends, </p>
               </div>
           </div>
-          <div>
+          <div className="cols-span-4 ">
               <img src={fundingBanner} alt="" />
           </div>
-          <div className='grid items-center p-4 shadow-md w-96 justify-center text-gray-400'>
-              <div className="w-96">
-                  <h4 className='mb-4 text-center'>Looking for Funds?</h4>
-                  <div className='grid justify-center w-96'>
-                  <div className="grid gap-2 mb-4 w-80">
+          <div className='cols-span-4 grid items-center p-4 shadow-md justify-center text-gray-400'>
+              <div>
+                  <h4 className='mb-4 text-center fw-normal'>Looking for Funds?</h4>
+                  <div className='grid justify-center'>
+                  <div className="grid gap-2 mb-4 w-96">
                     <div className="form-check border p-4 rounded">
                       <input className="form-check-input p-3 m-0 shadow-radio" name="select-event" id="govt_funds" type="radio" />
                       <label className="form-check-label m-1 text-blue-600" for="govt_funds"><span className="ms-3">Govt Funds</span></label>

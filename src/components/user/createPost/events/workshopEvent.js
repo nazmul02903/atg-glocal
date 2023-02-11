@@ -131,10 +131,10 @@ const WorkshopEvent = (props) => {
         <h1>
           Create Workshop & Training Event{" "}
           <span className="ms-2 expire-text-box p-2">
-            {location.state.expiryText}
+            {location?.state?.expiryText}
           </span>
           <span className="ms-2 in-review p-2">
-            {location.state.package ? " Premium " : "Standard"}
+            {location?.state?.package ? " Premium " : "Standard"}
           </span>
         </h1>
       </div>

@@ -119,17 +119,17 @@ const AllJobs = (props) => {
   return (
     <>
       <div className="pt-0 md:mx-5 md:px-5 jobs-page">
-        <div className='jobs-header bg-white p-5 d-none d-md-grid'>
-          <div className='grid items-center justify-right'>
+        <div className='jobs-header grid grid-cols-12 bg-white p-5 d-none d-md-grid'>
+          <div className='cols-span-4 grid items-center justify-right'>
             <div>
               <h1>Connecting people working in NGOs to Opportunities</h1>
               <p>Whatever you’re looking to do this year, Meetup can help. For 20 years, people have turned to Meetup to meet people, make friends, </p>
             </div>
           </div>
-          <div className="-mt-5">
+          <div className="cols-span-4 -mt-5">
             <img className="-mt-5" src={jobsBanner} alt="" />
           </div>
-          <div className='grid items-center p-4 shadow-md w-75  text-gray-400'>
+          <div className='cols-span-4 p-4 shadow-md text-gray-400 fw-lighter'>
             <div>
               <h4 className='mb-4 text-center'>Post Jobs</h4>
               <div className='grid justify-center'>
