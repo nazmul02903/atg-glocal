@@ -178,13 +178,25 @@ const AllFundingUpdate = (props) => {
           <div>
               <img src={fundingBanner} alt="" />
           </div>
-          <div className='grid items-center p-4 shadow-md w-75  text-gray-400'>
-              <div>
-                  <h4 className='mb-4 text-center'>Funding Company</h4>
-                  <div className='grid justify-center'>
-                      <input className='my-2 p-2 bg-gray-100 border-0 shadow-inner rounded' type="text" name="position" placeholder='Company' />
-                      <textarea className='my-2 p-2 bg-gray-100 border-0 shadow-inner rounded' rows={3} style={{resize: 'none'}}  type="text" name="jobDescription" placeholder='Description'  />
-                      <button className='btn my-2'>Search</button>
+          <div className='grid items-center p-4 shadow-md w-96 justify-center text-gray-400'>
+              <div className="w-96">
+                  <h4 className='mb-4 text-center'>Looking for Funds?</h4>
+                  <div className='grid justify-center w-96'>
+                  <div className="grid gap-2 mb-4 w-80">
+                    <div className="form-check border p-4 rounded">
+                      <input className="form-check-input p-3 m-0 shadow-radio" name="select-event" id="govt_funds" type="radio" />
+                      <label className="form-check-label m-1 text-blue-600" for="govt_funds"><span className="ms-3">Govt Funds</span></label>
+                    </div>
+                    <div className="form-check border p-4 rounded">
+                      <input className="form-check-input p-3 m-0 shadow-radio" name="select-event" id="foreign_funds" type="radio" />
+                      <label className="form-check-label m-1 text-blue-600" for="foreign_funds"><span className="ms-3">Foreign Funds</span></label>
+                    </div>
+                    <div className="form-check border p-4 rounded">
+                      <input className="form-check-input p-3 m-0 shadow-radio" name="select-event" id="csr_funds" type="radio" />
+                      <label className="form-check-label m-1 text-blue-600" for="csr_funds"><span className="ms-3">CSR Funds</span></label>
+                    </div>
+                  </div>
+                      <button className='btn my-2 fs-4'>Search</button>
                   </div>
               </div>
           </div>

@@ -373,7 +373,7 @@ const Home = (props) => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img class="youtube-icon" src={YouTube} />
+              <img class="youtube-icon" src={YouTube} alt="" />
             </a>
             <a
               href="https://youtu.be/ADqFKQGAP-U"

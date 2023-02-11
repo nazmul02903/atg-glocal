@@ -118,7 +118,7 @@ const AllJobs = (props) => {
 
   return (
     <>
-      <div className="pt-0 md:m-5 md:p-5 jobs-page">
+      <div className="pt-0 md:mx-5 md:px-5 jobs-page">
         <div className='jobs-header bg-white p-5 d-none d-md-grid'>
           <div className='grid items-center justify-right'>
             <div>
@@ -126,16 +126,28 @@ const AllJobs = (props) => {
               <p>Whatever you’re looking to do this year, Meetup can help. For 20 years, people have turned to Meetup to meet people, make friends, </p>
             </div>
           </div>
-          <div>
-            <img src={jobsBanner} alt="" />
+          <div className="-mt-5">
+            <img className="-mt-5" src={jobsBanner} alt="" />
           </div>
           <div className='grid items-center p-4 shadow-md w-75  text-gray-400'>
             <div>
               <h4 className='mb-4 text-center'>Post Jobs</h4>
               <div className='grid justify-center'>
-                <input className='my-2 p-2 bg-gray-100 border-0 shadow-inner rounded' type="text" name="position" placeholder='Postion' />
-                <textarea className='my-2 p-2 bg-gray-100 border-0 shadow-inner rounded' rows={3} style={{ resize: 'none' }} type="text" name="jobDescription" placeholder='Job Description' />
-                <button className='btn my-2'>Post Jobs Free</button>
+                <div className="grid gap-2 mb-4 w-80">
+                  <div className="form-check border p-4 rounded">
+                    <input className="form-check-input p-3 m-0 shadow-radio" name="select-event" id="ngo_jobs" type="radio" />
+                    <label className="form-check-label m-1 text-blue-600" for="ngo_jobs"><span className="ms-3">NGO Jobs</span></label>
+                  </div>
+                  <div className="form-check border p-4 rounded">
+                    <input className="form-check-input p-3 m-0 shadow-radio" name="select-event" id="csr_jobs" type="radio" />
+                    <label className="form-check-label m-1 text-blue-600" for="csr_jobs"><span className="ms-3">CSR Jobs</span></label>
+                  </div>
+                  <div className="form-check border p-4 rounded">
+                    <input className="form-check-input p-3 m-0 shadow-radio" name="select-event" id="govt_jobs" type="radio" />
+                    <label className="form-check-label m-1 text-blue-600" for="govt_jobs"><span className="ms-3">Govt Jobs</span></label>
+                  </div>
+                </div>
+                <button className='btn my-2 fs-5'>Post Jobs Free</button>
               </div>
             </div>
           </div>
