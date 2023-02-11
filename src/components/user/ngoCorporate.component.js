@@ -36,6 +36,7 @@ const corporates = [
     paragraph:
       "Connect with Beneficiaries for your Events within Social Sector",
     btn: "START SEARCH",
+    linkTo: '/user/create/fundingUpdate'
   },
   {
     id: 4,
@@ -145,7 +146,7 @@ const NgoCorporateService = ({ ngo }) => {
             <p className="mb-0 service_para">{each.paragraph}</p>
             <span
               className="service_btn"
-              onClick={() => each.linkTo && history.push(each.linkTo)}
+              onClick={() =>{ each.linkTo && history.push(each.linkTo); window.scrollTo(0,0)}}
             >
               {each.btn}
             </span>

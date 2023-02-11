@@ -94,7 +94,7 @@ const Home = (props) => {
       packageMode: "",
     };
   }
-
+ 
   return (
     <Container>
       <Row>
