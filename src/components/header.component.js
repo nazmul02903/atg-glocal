@@ -164,9 +164,9 @@ const Header = (props) => {
               </Dropdown.Menu>
             </Dropdown>
           </div>
-          <div className="nav-search-icon mx-4">
+          {/* <div className="nav-search-icon mx-4">
             <img src={searchIcon} alt="" />
-          </div>
+          </div> */}
         </>
         {/* } */}
         {!isLoggedIn ? (
