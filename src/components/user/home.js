@@ -407,7 +407,7 @@ function Home(props) {
           <div className="sect-5 home-column">
             <div className="community-heading heading d-none d-lg-block">
               {" "}
-              {t('GlocalBodh Communities.1')}
+              {t('Blogs')}
             </div>
             <div className="community-heading heading d-lg-none">
               {" "}
