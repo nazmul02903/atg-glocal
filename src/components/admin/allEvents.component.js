@@ -10,6 +10,7 @@ import { setLoader, clearLoader } from "../../store/actions/loader";
 import ConfirmationModal from "../../helpers/confirmationModal";
 import { useInterval } from "../../helpers/useInterval";
 import { POLLING_INTERVAL } from "../../constants/variables";
+import ApplicantModal from "../../helpers/applicantModal";
 
 const AllEvents = (props) => {
   const dispatch = useDispatch();
@@ -18,6 +19,7 @@ const AllEvents = (props) => {
   const [selectedEvent, setSelectedEvent] = useState({});
   const [modalShow, setModalShow] = React.useState(false);
   const [modalShowDelete, setModalShowDelete] = useState(false);
+  const [modalShowApplicant, setModalShowApplicant] = useState(false);
   useInterval(async () => {
     dispatch(setLoader());
     await AdminService.fetchEventsByCategory(id, 1).then((res) => {
@@ -111,6 +113,23 @@ const AllEvents = (props) => {
               >
                 Go To Link
               </a>
+              {
+                event?.eventRegistrationBeans?.length > 0 ? (
+                  <button
+                    className="btn btn-danger ms-1 lg-ms-3 rounded-pill btn-sm"
+                    onClick={() => {
+                      setSelectedEvent(event);
+                      setModalShowApplicant(true);
+                    }}
+                  >
+                    View Registration Details
+                  </button>
+                ) : (
+                  <button className="btn btn-danger ms-1 lg-ms-3 rounded-pill btn-sm" disabled>
+                    No Registrations
+                  </button>
+                )
+              }
             </div>
           </div>
         );
@@ -120,6 +139,14 @@ const AllEvents = (props) => {
           event={selectedEvent}
           show={modalShow}
           onHide={() => setModalShow(false)}
+        />
+      )}
+
+      {modalShowApplicant && (
+        <ApplicantModal
+          data={selectedEvent}
+          show={modalShowApplicant}
+          onHide={() => setModalShowApplicant(false)}
         />
       )}
 
