@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import AdminService from "../../../services/admin.service";
+import { useHistory } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import EventDetailModal from "../../../helpers/eventDetailModal";
 import { setLoader, clearLoader } from "../../../store/actions/loader";
 import ConfirmationModal from "../../../helpers/confirmationModal";
 import { useInterval } from "../../../helpers/useInterval";
 import { POLLING_INTERVAL } from "../../../constants/variables";
-import CommunityImg from "../../../assets/Icons/community-full.svg";
+import allEvents from "../../../assets/Icons/all-events.svg";
 import EventCardImg from "../../../assets/event-card.png";
 import ShareIcon from "../../../assets/Icons/share.svg";
 import ShareEventModal from "../../../helpers/shareEventModal";
@@ -44,6 +45,8 @@ const AllEvents = (props) => {
   const [modalShowDelete, setModalShowDelete] = useState(false);
   const [eventList, setEventList] = useState(tempeventList);
   const [shareModalActive, setShareModalActive] = useState(false);
+  const history = useHistory();
+  const [selectedEventType, setSelectedEventType] = useState(null);
 
   useInterval(async () => {
     // dispatch(setLoader());
@@ -102,34 +105,45 @@ const AllEvents = (props) => {
     if (id === "3") return "Exhibitions & Summits";
     return "";
   };
+  const handleSelection = (e) => {
+    console.log(e.target.id);
+    setSelectedEventType(e.target.id);
+  };
+  const handleSubmit = () => {
+    history.push(`/user/create/event/${selectedEventType}`)
+  }
   return (
     <>
-      <div className="pt-0 md:pt-10">
-        <div className="grid-cols-12 md:grid-cols-12 mb-6 md:mb-10 hidden md:grid">
-          <div className="col-span-12 md:col-span-8 mb-5 md:mb-0">
-            <img src={CommunityImg} className="w-full" alt="" />
+      <div className="pt-0 md:pt-10 md:p-5 md:m-5">
+        <div className="grid-cols-12 md:grid-cols-12 items-center md:m-5 md:p-5 mb-6 md:mb-10 hidden md:grid">
+          <div className="md:col-span-4 md:ml-24">
+              <h1>Connecting people working in NGOs to Opportunities</h1>
+              <p>Whatever you’re looking to do this year, Meetup can help. For 20 years, people have turned to Meetup to meet people, make friends, </p>
+          </div>
+          <div className="col-span-12 md:col-span-4 mb-5 md:mb-0">
+            <img src={allEvents} className="w-full" alt="" />
           </div>
           <div className="col-span-12 md:col-span-4 all-events-form">
             <div className="px-4 py-4 flex flex-col justify-center all-events-form-wrapper md:ml-8">
-              <p className="mb-4 text-center text-base">Post Your Event</p>
-                <div className="grid gap-2 mb-4">
+              <p className="mb-4 text-center text-gray-400 fs-4">Post Your Event</p>
+                <form onSubmit={handleSubmit} className="grid gap-2 mb-4">
                   <div className="form-check border p-4 rounded">
-                    <input className="form-check-input p-3 m-0 shadow-radio" name="select-event" id="workshops_trainings" type="radio" />
-                    <label className="form-check-label m-1 text-blue-600" for="workshops_trainings"><span className="ms-3">Workshops/Trainings</span></label>
+                    <input className="form-check-input p-3 m-0 shadow-radio" onChange={handleSelection} name="select-event" id="workshopEvent" type="radio" />
+                    <label className="form-check-label m-1 text-blue-600" for="workshopEvent"><span className="ms-3">Workshops/Trainings</span></label>
                   </div>
                   <div className="form-check border p-4 rounded">
-                    <input className="form-check-input p-3 m-0 shadow-radio" name="select-event" id="awards_contests" type="radio" />
-                    <label className="form-check-label m-1 text-blue-600" for="awards_contests"><span className="ms-3">Awards/Contests</span></label>
+                    <input className="form-check-input p-3 m-0 shadow-radio" onChange={handleSelection} name="select-event" id="awardEvent" type="radio" />
+                    <label className="form-check-label m-1 text-blue-600" for="awardEvent"><span className="ms-3">Awards/Contests</span></label>
                   </div>
                   <div className="form-check border p-4 rounded">
-                    <input className="form-check-input p-3 m-0 shadow-radio" name="select-event" id="exhibitions_summit" type="radio" />
-                    <label className="form-check-label m-1 text-blue-600" for="exhibitions_summit"><span className="ms-3">Exhibitions/Summit</span></label>
+                    <input className="form-check-input p-3 m-0 shadow-radio" onChange={handleSelection} name="select-event" id="exhibitionEvent" type="radio" />
+                    <label className="form-check-label m-1 text-blue-600" for="exhibitionEvent"><span className="ms-3">Exhibitions/Summit</span></label>
                   </div>
-                </div>
-              {/* <textarea className="flex-1 mb-4"></textarea> */}
-              <button className="w-full bg-[#0058A9] text-white fs-4 fw-light">
+              <button type="submit" className="w-full bg-[#0058A9] text-white fs-4 fw-light">
                 Post Event Free
               </button>
+                </form>
+              {/* <textarea className="flex-1 mb-4"></textarea> */}
             </div>
           </div>
         </div>
@@ -150,7 +164,7 @@ const AllEvents = (props) => {
             })}
           </div>
           {/* <h3 className="mt-4 mb-4"> {getEventName()} </h3> */}
-          <div className="event-cards grid grid-cols-12 gap-y-4 md:gap-x-5 md:gap-x-5">
+          <div className="event-cards grid grid-cols-12 gap-y-4 md:gap-x-5">
             {events.map((event, index) => {
               return (
                 <div

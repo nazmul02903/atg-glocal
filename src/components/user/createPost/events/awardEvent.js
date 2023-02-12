@@ -166,10 +166,10 @@ const AwardEvent = (props) => {
         <h1>
           Create Awards and Competitions{" "}
           <span className='ms-2 expire-text-box p-2'>
-            {location.state.expiryText}
+            {location?.state?.expiryText}
           </span>
           <span className='ms-2 in-review p-2'>
-            {location.state.package ? " Premium " : "Standard"}
+            {location?.state?.package ? " Premium " : "Standard"}
           </span>
         </h1>
       </div>
