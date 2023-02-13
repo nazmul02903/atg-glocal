@@ -202,10 +202,10 @@ const FundingUpdateNew = (props) => {
         <h1>
           Create Funding Proposal{" "}
           <span className="ms-2 expire-text-box p-2">
-            {location.state.expiryText}
+            {location?.state?.expiryText}
           </span>
           <span className="ms-2 in-review p-2">
-            {location.state.package ? " Premium " : "Standard"}
+            {location?.state?.package ? " Premium " : "Standard"}
           </span>
         </h1>
       </div>

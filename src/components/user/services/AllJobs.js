@@ -18,6 +18,7 @@ import alumni from "../../../assets/Icons/alumni.svg";
 import applicants from "../../../assets/Icons/applicants.svg";
 import skills from "../../../assets/Icons/skills.svg";
 import JobModal from "../../../helpers/jobModal";
+import { useHistory } from "react-router-dom";
 
 const tempJobList = [
   {
@@ -51,7 +52,8 @@ const AllJobs = (props) => {
   const [shareModalActive, setShareModalActive] = useState(false);
   const [selectedJob, setSelectedJob] = useState({});
   const [jobModalActive, setJobModalActive] = useState(false);
-
+  const history = useHistory();
+  const [selectedJobType, setSelectedJobType] = useState(null);
 
   // useInterval(async () => {
   //   // dispatch(setLoader());
@@ -116,6 +118,15 @@ const AllJobs = (props) => {
     console.log(selectedJob);
   }, [selectedJob]);
 
+  const handleSelection = (e) => {
+    console.log(e.target.id);
+    setSelectedJobType(e.target.id);
+  };
+
+  const handleSubmit = () => {
+    selectedJobType && history.push(`/user/create/job`)
+  }
+
   return (
     <>
       <div className="pt-0 md:mx-5 md:px-5 jobs-page">
@@ -135,19 +146,19 @@ const AllJobs = (props) => {
               <div className='grid justify-center'>
                 <div className="grid gap-2 mb-4 w-80">
                   <div className="form-check border p-4 rounded">
-                    <input className="form-check-input p-3 m-0 shadow-radio" name="select-event" id="ngo_jobs" type="radio" />
-                    <label className="form-check-label m-1 text-blue-600" for="ngo_jobs"><span className="ms-3">NGO Jobs</span></label>
+                    <input className="form-check-input p-3 m-0 shadow-radio" onChange={handleSelection} name="select-event" id="ngo_jobs" type="radio" />
+                    <label className="form-check-label m-1 text-blue-600 fw-bolder" for="ngo_jobs"><span className="ms-3">NGO Jobs</span></label>
                   </div>
                   <div className="form-check border p-4 rounded">
-                    <input className="form-check-input p-3 m-0 shadow-radio" name="select-event" id="csr_jobs" type="radio" />
-                    <label className="form-check-label m-1 text-blue-600" for="csr_jobs"><span className="ms-3">CSR Jobs</span></label>
+                    <input className="form-check-input p-3 m-0 shadow-radio" onChange={handleSelection} name="select-event" id="csr_jobs" type="radio" />
+                    <label className="form-check-label m-1 text-blue-600 fw-bolder" for="csr_jobs"><span className="ms-3">CSR Jobs</span></label>
                   </div>
                   <div className="form-check border p-4 rounded">
-                    <input className="form-check-input p-3 m-0 shadow-radio" name="select-event" id="govt_jobs" type="radio" />
-                    <label className="form-check-label m-1 text-blue-600" for="govt_jobs"><span className="ms-3">Govt Jobs</span></label>
+                    <input className="form-check-input p-3 m-0 shadow-radio" onChange={handleSelection} name="select-event" id="govt_jobs" type="radio" />
+                    <label className="form-check-label m-1 text-blue-600 fw-bolder" for="govt_jobs"><span className="ms-3">Govt Jobs</span></label>
                   </div>
                 </div>
-                <button className='btn my-2 fs-5'>Post Jobs Free</button>
+                <button onClick={handleSubmit} className='btn my-2 fs-5'>Post Jobs Free</button>
               </div>
             </div>
           </div>

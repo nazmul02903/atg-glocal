@@ -10,6 +10,7 @@ import { POLLING_INTERVAL } from "../../../constants/variables";
 import fundingBanner from "./../../../assets/fundpg/fundingBanner.svg";
 import example from "./../../../assets/fundpg/example.svg";
 import ShareIcon from "../../../assets/Icons/share.svg";
+import { useHistory } from "react-router-dom";
 
 
 const tempJobList = [
@@ -77,6 +78,8 @@ const AllFundingUpdate = (props) => {
   // const [selectedFU, setSelectedFU] = useState({});
   // const [modalShowDelete, setModalShowDelete] = useState(false);
   const { id } = props.match.params;
+  const history = useHistory();
+  const [selectedFundType, setSelectedFundType] = useState(null);
 
   // useInterval(async () => {
   //   dispatch(setLoader());
@@ -124,6 +127,15 @@ const AllFundingUpdate = (props) => {
   useEffect(() => {
     console.log("fus: ", fus);
   }, [fus]);
+
+  const handleSelection = (e) => {
+    console.log(e.target.id);
+    setSelectedFundType(e.target.id);
+  };
+
+  const handleSubmit = () => {
+    selectedFundType && history.push(`/user/create/fundingUpdate`)
+  }
 
   return (
     // <div className="list-group row">
@@ -180,23 +192,23 @@ const AllFundingUpdate = (props) => {
           </div>
           <div className='cols-span-4 grid items-center p-4 shadow-md justify-center text-gray-400'>
               <div>
-                  <h4 className='mb-4 text-center fw-normal'>Looking for Funds?</h4>
+                  <h4 className='mb-4 text-center fw-normal'>Looking for Implementation Partner?</h4>
                   <div className='grid justify-center'>
                   <div className="grid gap-2 mb-4 w-96">
                     <div className="form-check border p-4 rounded">
-                      <input className="form-check-input p-3 m-0 shadow-radio" name="select-event" id="govt_funds" type="radio" />
+                      <input className="form-check-input p-3 m-0 shadow-radio" onChange={handleSelection} name="select-event" id="govt_funds" type="radio" />
                       <label className="form-check-label m-1 text-blue-600" for="govt_funds"><span className="ms-3">Govt Funds</span></label>
                     </div>
                     <div className="form-check border p-4 rounded">
-                      <input className="form-check-input p-3 m-0 shadow-radio" name="select-event" id="foreign_funds" type="radio" />
+                      <input className="form-check-input p-3 m-0 shadow-radio" onChange={handleSelection} name="select-event" id="foreign_funds" type="radio" />
                       <label className="form-check-label m-1 text-blue-600" for="foreign_funds"><span className="ms-3">Foreign Funds</span></label>
                     </div>
                     <div className="form-check border p-4 rounded">
-                      <input className="form-check-input p-3 m-0 shadow-radio" name="select-event" id="csr_funds" type="radio" />
+                      <input className="form-check-input p-3 m-0 shadow-radio" onChange={handleSelection} name="select-event" id="csr_funds" type="radio" />
                       <label className="form-check-label m-1 text-blue-600" for="csr_funds"><span className="ms-3">CSR Funds</span></label>
                     </div>
                   </div>
-                      <button className='btn my-2 fs-4'>Search</button>
+                      <button onClick={handleSubmit} className='btn my-2 fs-4'>Search</button>
                   </div>
               </div>
           </div>
