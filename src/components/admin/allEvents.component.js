@@ -47,7 +47,7 @@ const AllEvents = (props) => {
             key={index}
           >
             <div className="d-flex w-100 justify-content-between">
-              <h5 className="mb-1">{event.postedBy}</h5>
+              <h5 className="mb-1">{event.title}</h5>
               <span
                 className="rounded-pill p-2 font-weight-bold"
                 style={{ color: "#E74E54", backgroundColor: "#FDD8D8" }}
@@ -106,7 +106,7 @@ const AllEvents = (props) => {
               </button>
               <a
                 className="btn btn-primary ms-2"
-                href={`${process.env.REACT_APP_URL}/event/${event.eventCategoryText}/${event.id}`}
+                href={`${process.env.REACT_APP_URL}/event/${event.eventCategoryText}/${event.id}/${event.eventId}`}
                 role="button"
                 target="_blank"
                 rel="noreferrer noopener"

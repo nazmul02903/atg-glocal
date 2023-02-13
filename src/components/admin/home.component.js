@@ -434,7 +434,7 @@ const HomeAdmin = (props) => {
               <Button className="mt-2" color="primary">
                 <Link
                   to={{
-                    pathname: "/user/create/fundingUpdate",
+                    pathname: "/user/create/fundingUpdateAdmin",
                     state: {
                       expiryText: getPaidModule("8").expiryDate,
                       package: getPaidModule("8").packageMode,

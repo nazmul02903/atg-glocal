@@ -1236,6 +1236,7 @@ function Footer(props) {
     csrValue,
     csrDetails,
     sections,
+    orgName
   } = props;
 
   function handeleSubmit() {
@@ -1263,7 +1264,8 @@ function Footer(props) {
 
     console.log(DataMaster);
     const data = {
-      organisationName: csrDetails.organisationName,
+      // organisationName: csrDetails.organisationName,
+      organisationName: orgName,
       thematicAreaList: csrDetails.thematicAreaList,
       applicantName: name,
       email: email,

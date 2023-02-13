@@ -143,11 +143,18 @@ function WorkshopEventDetails(props) {
   const onSubmit = () => {
     window.scrollTo(0, 0);
   };
-  const { id } = props.match.params;
+  const { id, category } = props.match.params;
+
   useEffect(() => {
-    UserService.getEventDetails(id, 1)
+    let categoryId = 1
+    if (category === "Awards & Competitions") {
+      categoryId = 2
+    } else if (category === "Exhibitions & Summits") {
+      categoryId = 3
+    }
+    UserService.getEventDetails(id, categoryId)
       .then((res) => {
-        console.log(res);
+        console.log('res', res);
         setWorkshopDetails(res.data.eventBean);
       })
       .catch((error) => {
@@ -159,7 +166,7 @@ function WorkshopEventDetails(props) {
           error.toString();
         alertCustom("error", message, "/home");
       });
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [category]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (!workshopDetails) {
     dispatch(setLoader());
@@ -395,7 +402,7 @@ function WorkshopEventDetails(props) {
                 <h5 className="mb-0 topic_title">Topics:</h5>
                 {
                   (workshopDetails.topicsCovered =
-                    workshopDetails.topicsCovered.replace(/<(.|\n)*?>/g, ""))
+                    workshopDetails.topicsCovered?.replace(/<(.|\n)*?>/g, ""))
                 }
                 {/* <div id="other-desktop" className="other_deets detailsCard">
                     Other details: {workshopDetails.speakers}{" "}
@@ -413,9 +420,8 @@ function WorkshopEventDetails(props) {
                 {" "}
                 <button
                   onClick={() => setShowModal(true)}
-                  className={`register ${
-                    workshopDetails.hasUserRegistered && "disable_btn"
-                  }`}
+                  className={`register ${workshopDetails.hasUserRegistered && "disable_btn"
+                    }`}
                   disabled={workshopDetails.hasUserRegistered}
                 >
                   {workshopDetails.hasUserRegistered
@@ -628,9 +634,8 @@ function WorkshopEventDetails(props) {
             <button
               style={{ width: "100%", margin: "20px 0" }}
               onClick={() => setShowModal(true)}
-              className={`register ${
-                workshopDetails.hasUserRegistered && "disable_btn"
-              }`}
+              className={`register ${workshopDetails.hasUserRegistered && "disable_btn"
+                }`}
               disabled={workshopDetails.hasUserRegistered}
             >
               {workshopDetails.hasUserRegistered

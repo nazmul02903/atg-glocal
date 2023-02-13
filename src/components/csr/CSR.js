@@ -4,7 +4,7 @@ import Body from "./Body";
 import Footer from "./Footer";
 import Header from "./Header";
 
-const CSR = ({ csrDetails, orgData }) => {
+const CSR = ({ csrDetails, orgData, orgName }) => {
   const [progressBarValue, setProgressBarValue] = useState(12.5);
   const [csrValue, setCsrValue] = useState(new Map());
   const [selectedSection, setSelectedSection] = useState(orgData?.sections[0]);
@@ -46,6 +46,7 @@ const CSR = ({ csrDetails, orgData }) => {
           csrValue={csrValue}
           csrDetails={csrDetails}
           sections={orgData.sections}
+          orgName={orgName}
         />
       </div>
     </div>

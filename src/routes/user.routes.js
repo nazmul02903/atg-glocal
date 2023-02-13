@@ -22,6 +22,7 @@ import AllEvents from "../components/user/services/AllEvents";
 import AllFundingUpdates from "../components/user/services/AllFU";
 import allJobsComponent from "../components/user/services/AllJobs";
 import MyEvents from "../components/user/dashBoard/myEvents";
+import createFundingUpdateAdmin from "../components/user/createPost/createFundingUpdateAdmin";
 
 const UserRoutes = () => {
   return (
@@ -50,6 +51,11 @@ const UserRoutes = () => {
           exact
           path="/user/create/fundingUpdate"
           component={FundingUpdateNew}
+        />
+        <ProtectedRoute
+          exact
+          path="/user/create/fundingUpdateAdmin"
+          component={createFundingUpdateAdmin}
         />
         {/* <ProtectedRoute
           exact

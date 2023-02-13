@@ -63,7 +63,7 @@ const RegisterWorkshopEvent = (props) => {
         alertCustom("error", message, "/home");
       });
   }, []);
-
+// console.log(pathArray);
   const onSubmit = (values) => {
     props.dispatch(setLoader());
     const data = {

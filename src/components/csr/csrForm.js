@@ -14,11 +14,13 @@ const CSRForm = (props) => {
   const [csrDetails, setCsrDetails] = useState({});
   const [thematicArea, setThematicArea] = useState([]);
   const [orgData, setOrgData] = useState();
+  const [orgName, setOrgName] = useState('');
 
   useEffect(() => {
     UserService.getCsrData()
       .then((res) => {
         setOrgData(res.data);
+        console.log(res.data);
       })
       .catch((error) => {
         const message =
@@ -52,7 +54,7 @@ const CSRForm = (props) => {
   return (
     <div>
       {isSubmitSuccessful ? (
-        <CSR csrDetails={csrDetails} orgData={orgData} />
+        <CSR csrDetails={csrDetails} orgData={orgData} orgName={orgName} />
       ) : (
         <div>
           <div className="text-center">
@@ -74,6 +76,8 @@ const CSRForm = (props) => {
                         className=" form-control"
                         defaultValue={orgData.organizationName}
                         type="text"
+                        value={orgName}
+                        onChange={e => setOrgName(e.target.value)}
                       />
                     </div>
                   </div>

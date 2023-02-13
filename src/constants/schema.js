@@ -167,6 +167,7 @@ export const validationSchemaExhibitionEvent = Yup.object().shape({
     }
   }),
 });
+
 export const validationSchemaFundingUpdate = Yup.object().shape({
   fuTitle: Yup.string()
     .max(80, "Must be 80 characters or less")
@@ -190,6 +191,23 @@ export const validationSchemaFundingUpdate = Yup.object().shape({
     .required("This is required")
     .typeError("You must specify a Number"),
 });
+export const validationSchemaFundingUpdateAdmin = Yup.object().shape({
+  fuTitle: Yup.string()
+    .max(80, "Must be 80 characters or less")
+    .required("Event Title is required"),
+  description: Yup.string()
+    .max(5000, "Must be 5000 characters or less")
+    .required("About Event is required"),
+  applicationDeadline: Yup.string().required("Please select Deadline Date"),
+  terms: Yup.bool().oneOf([true], "Accept Terms & Conditions is required"),
+  postedBy: Yup.string()
+    .max(255, "Must be 255 characters or less")
+    .required("This is required"),
+  externalLink: Yup.string()
+    .max(255, "Must be 255 characters or less")
+  // .required("This is required"),
+});
+
 export const validationSchemaWorkshopEvent = Yup.object().shape({
   eventTitle: Yup.string()
     .max(160, "Must be 160 characters or less")
