@@ -116,18 +116,18 @@ const AllEvents = (props) => {
     <>
       <div className="pt-0 md:pt-10 md:p-5 md:m-5">
         <div className="grid-cols-12 md:grid-cols-12 items-center md:m-5 md:p-5 mb-6 md:mb-10 hidden md:grid">
-          <div className="md:col-span-4 md:ml-24">
+          <div className="md:col-span-4">
               <h1>Connecting people working in NGOs to Opportunities</h1>
               <p>Whatever you’re looking to do this year, Meetup can help. For 20 years, people have turned to Meetup to meet people, make friends, </p>
           </div>
-          <div className="col-span-12 md:col-span-4 mb-5 md:mb-0">
+          <div className="col-span-4 mb-5 md:mb-0">
             <img src={allEvents} className="w-full" alt="" />
           </div>
-          <div className="col-span-12 md:col-span-4 all-events-form">
-            <div className="px-4 py-4 flex flex-col justify-center all-events-form-wrapper md:ml-8">
+          <div className="col-span-4 all-events-form">
+            <div className="p-4 flex flex-col justify-center all-events-form-wrapper">
               <p className="mb-4 text-center text-gray-400 fs-4">Post Your Event</p>
                 <form onSubmit={handleSubmit} className="grid gap-2 mb-4">
-                  <div className="form-check border p-4 rounded">
+                  <div className="form-check border lg:p-4 rounded d-flex">
                     <input className="form-check-input p-3 m-0 shadow-radio" onChange={handleSelection} name="select-event" id="workshopEvent" type="radio" />
                     <label className="form-check-label m-1 text-blue-600" for="workshopEvent"><span className="ms-3">Workshops/Trainings</span></label>
                   </div>
