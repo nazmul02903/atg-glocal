@@ -171,6 +171,7 @@ function WorkshopEventDetails(props) {
       });
   }, [category]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  console.log(workshopDetails)
   if (!workshopDetails) {
     dispatch(setLoader());
     return null;
