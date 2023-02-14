@@ -45,13 +45,13 @@ const bottomBarItems = [
         linkTo: "/jobs/0",
         pathname: '/jobs'
     },
-    {
-        id: 5,
-        icon: menuBB,
-        activeIcon: menuBBActive,
-        name: 'Menu',
-        pathname: '/menu'
-    }
+    // {
+    //     id: 5,
+    //     icon: menuBB,
+    //     activeIcon: menuBBActive,
+    //     name: 'Menu',
+    //     pathname: '/menu'
+    // }
 ];
 
 const BottomBar = () => {
