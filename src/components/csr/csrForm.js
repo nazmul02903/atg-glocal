@@ -2,19 +2,20 @@ import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 
 import Multiselect from "multiselect-react-dropdown";
 import { alertCustom } from "../../helpers/alerts";
 import UserService from "../../services/user.service";
 
 import CSR from "./CSR";
+import { useHistory } from "react-router-dom";
 
 const CSRForm = (props) => {
   const [csrDetails, setCsrDetails] = useState({});
   const [thematicArea, setThematicArea] = useState([]);
   const [orgData, setOrgData] = useState();
-  const [orgName, setOrgName] = useState('');
+  const [orgName, setOrgName] = useState("");
 
   useEffect(() => {
     UserService.getCsrData()
@@ -38,10 +39,18 @@ const CSRForm = (props) => {
     formState: { isSubmitSuccessful },
   } = useForm({});
 
+  const { user } = useSelector((state) => state.auth);
+
+  const history = useHistory;
+
   const onSubmit = (data) => {
-    data["thematicAreaList"] = thematicArea;
-    window.scrollTo(0, 0);
-    setCsrDetails(data);
+    if (!user) {
+      history.push("/login");
+    } else {
+      data["thematicAreaList"] = thematicArea;
+      window.scrollTo(0, 0);
+      setCsrDetails(data);
+    }
   };
 
   const handleThematicArea = (e) => {
@@ -51,10 +60,15 @@ const CSRForm = (props) => {
     });
     setThematicArea(temp);
   };
+
   return (
     <div>
       {isSubmitSuccessful ? (
-        <CSR csrDetails={csrDetails} orgData={orgData} orgName={orgName} />
+        <>
+          {user && (
+            <CSR csrDetails={csrDetails} orgData={orgData} orgName={orgName} />
+          )}
+        </>
       ) : (
         <div>
           <div className="text-center">
@@ -77,7 +91,7 @@ const CSRForm = (props) => {
                         defaultValue={orgData.organizationName}
                         type="text"
                         value={orgName}
-                        onChange={e => setOrgName(e.target.value)}
+                        onChange={(e) => setOrgName(e.target.value)}
                       />
                     </div>
                   </div>

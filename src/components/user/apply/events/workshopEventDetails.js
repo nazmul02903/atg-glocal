@@ -35,7 +35,7 @@ function WorkshopEventDetails(props) {
   const [topicsActive, setTopicsActive] = useState(false);
   const [otherActive, setOtherActive] = useState(false);
   const [copied, setCopied] = useState(false);
-  const [categoryId, setCategoryId] = useState(1)
+  const [categoryId, setCategoryId] = useState(1);
   var el = document.createElement("a");
   el.href = window.location.href;
 
@@ -147,17 +147,17 @@ function WorkshopEventDetails(props) {
   const { id, category } = props.match.params;
 
   useEffect(() => {
-    let categoryId = 1
+    let categoryId = 1;
     if (category === "Awards & Competitions") {
-      categoryId = 2
-      setCategoryId(2)
+      categoryId = 2;
+      setCategoryId(2);
     } else if (category === "Exhibitions & Summits") {
-      categoryId = 3
-      setCategoryId(3)
+      categoryId = 3;
+      setCategoryId(3);
     }
     UserService.getEventDetails(id, categoryId)
       .then((res) => {
-        console.log('res', res);
+        console.log("res", res);
         setWorkshopDetails(res.data.eventBean);
       })
       .catch((error) => {
@@ -251,15 +251,17 @@ function WorkshopEventDetails(props) {
                   Summary
                 </a>
               </div>
-              <div
-                id="topicsLink"
-                onClick={addClassTopics}
-                className={topicsActive ? "link active" : "link"}
-              >
-                <a className="link_text" href="#topics">
-                  Topics
-                </a>
-              </div>
+              {categoryId !== 3 && (
+                <div
+                  id="topicsLink"
+                  onClick={addClassTopics}
+                  className={topicsActive ? "link active" : "link"}
+                >
+                  <a className="link_text" href="#topics">
+                    {categoryId === 2 ? "Eligibility" : "Topics"}
+                  </a>
+                </div>
+              )}
               {/* <div
                 id="otherLink"
                 onClick={addClassOther}
@@ -401,17 +403,20 @@ function WorkshopEventDetails(props) {
                     workshopDetails.description.replace(/<(.|\n)*?>/g, ""))
                 }
               </div>
-
-              <div id="topics" className="topics detailsCard">
-                <h5 className="mb-0 topic_title">Topics:</h5>
-                {
-                  (workshopDetails.topicsCovered =
-                    workshopDetails.topicsCovered?.replace(/<(.|\n)*?>/g, ""))
-                }
-                {/* <div id="other-desktop" className="other_deets detailsCard">
+              {categoryId !== 3 && (
+                <div id="topics" className="topics detailsCard">
+                  <h5 className="mb-0 topic_title">
+                    {categoryId === 2 ? "Eligibility Criteria:" : "Topics:"}
+                  </h5>
+                  {
+                    (workshopDetails.topicsCovered =
+                      workshopDetails.topicsCovered?.replace(/<(.|\n)*?>/g, ""))
+                  }
+                  {/* <div id="other-desktop" className="other_deets detailsCard">
                     Other details: {workshopDetails.speakers}{" "}
                   </div> */}
-              </div>
+                </div>
+              )}
               {/* <div id="other" className="other_deets detailsCard">
                   <h5 className="mb-0">Other details:</h5>
                   {workshopDetails.speakers}{" "}
@@ -424,8 +429,9 @@ function WorkshopEventDetails(props) {
                 {" "}
                 <button
                   onClick={() => setShowModal(true)}
-                  className={`register ${workshopDetails.hasUserRegistered && "disable_btn"
-                    }`}
+                  className={`register ${
+                    workshopDetails.hasUserRegistered && "disable_btn"
+                  }`}
                   disabled={workshopDetails.hasUserRegistered}
                 >
                   {workshopDetails.hasUserRegistered
@@ -638,8 +644,9 @@ function WorkshopEventDetails(props) {
             <button
               style={{ width: "100%", margin: "20px 0" }}
               onClick={() => setShowModal(true)}
-              className={`register ${workshopDetails.hasUserRegistered && "disable_btn"
-                }`}
+              className={`register ${
+                workshopDetails.hasUserRegistered && "disable_btn"
+              }`}
               disabled={workshopDetails.hasUserRegistered}
             >
               {workshopDetails.hasUserRegistered
