@@ -77,7 +77,7 @@ const MyEvents = (props) => {
   useEffect(() => {
     console.log(events);
   }, [events]);
-  console.log('selectedEvent', selectedEvent);
+  // console.log('selectedEvent', selectedEvent);
   
   return (
     <div className="row p-2" style={{ backgroundColor: "#F9F9FB" }}>
@@ -415,7 +415,7 @@ const MyEvents = (props) => {
                   </div>
                   <a
                     className="btn btn-primary ms-2"
-                    href={`${process.env.REACT_APP_URL}/event/workshop/${selectedEvent.id}/${selectedEvent.eventId}`}
+                    href={`${process.env.REACT_APP_URL}/event/${selectedEvent.eventCategoryText}/${selectedEvent.id}/${selectedEvent.eventId}`}
                     role="button"
                     target="_blank"
                     rel="noreferrer noopener"
