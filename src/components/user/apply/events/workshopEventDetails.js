@@ -35,6 +35,7 @@ function WorkshopEventDetails(props) {
   const [topicsActive, setTopicsActive] = useState(false);
   const [otherActive, setOtherActive] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [categoryId, setCategoryId] = useState(1)
   var el = document.createElement("a");
   el.href = window.location.href;
 
@@ -149,8 +150,10 @@ function WorkshopEventDetails(props) {
     let categoryId = 1
     if (category === "Awards & Competitions") {
       categoryId = 2
+      setCategoryId(2)
     } else if (category === "Exhibitions & Summits") {
       categoryId = 3
+      setCategoryId(3)
     }
     UserService.getEventDetails(id, categoryId)
       .then((res) => {
