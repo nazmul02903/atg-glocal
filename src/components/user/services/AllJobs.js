@@ -222,7 +222,7 @@ const AllJobs = (props) => {
               })}
             </div>
 
-            <div className="d-none col-span-1 bg-white d-md-block " style={{ paddingLeft: "45px" }}>
+            <div className="d-none col-span-1 bg-white d-md-block pt-4 ps-4">
               {
                 selectedJob ?
                   <>
