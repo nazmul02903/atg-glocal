@@ -11,6 +11,7 @@ import fundingBanner from "./../../../assets/fundpg/fundingBanner.svg";
 import example from "./../../../assets/fundpg/example.svg";
 import ShareIcon from "../../../assets/Icons/share.svg";
 import { useHistory } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 
 const tempJobList = [
@@ -21,17 +22,17 @@ const tempJobList = [
   },
   {
     id: 2,
-    name: "CSR Fund",
+    name: "CSR Funds",
     selected: false,
   },
   {
     id: 3,
-    name: "GOVT Fund",
+    name: "Govt. Funds",
     selected: false,
   },
   {
     id: 1,
-    name: "NGO Fund",
+    name: "NGO Funds",
     selected: false,
   },
 ];
@@ -80,6 +81,7 @@ const AllFundingUpdate = (props) => {
   const { id } = props.match.params;
   const history = useHistory();
   const [selectedFundType, setSelectedFundType] = useState(null);
+  const { t } = useTranslation();
 
   // useInterval(async () => {
   //   dispatch(setLoader());
@@ -181,37 +183,43 @@ const AllFundingUpdate = (props) => {
     // </div>
     <div className="pt-0 md:m-5 md:p-5 funding-page">
       <div className='funding-header grid grid-cols-12 bg-white p-5 d-none d-md-grid'>
-          <div className='cols-span-4 grid items-center justify-right'>
-              <div>
-                  <h1>Connecting people working in NGOs to Opportunities</h1>
-                  <p>Whatever you’re looking to do this year, Meetup can help. For 20 years, people have turned to Meetup to meet people, make friends, </p>
+        <div className='cols-span-4 grid items-center justify-right'>
+          <div>
+            <h1>Connecting people working in NGOs to Opportunities</h1>
+            <p>Whatever you’re looking to do this year, Meetup can help. For 20 years, people have turned to Meetup to meet people, make friends, </p>
+          </div>
+        </div>
+        <div className="cols-span-4 ">
+          <img src={fundingBanner} alt="" />
+        </div>
+        <div className='cols-span-4 grid items-center p-4 shadow-md justify-center text-gray-400'>
+          <div>
+            <h4 className='mb-4 text-center fw-normal'>Looking for Implementation Partner?</h4>
+            <div className='grid justify-center'>
+              <div className="grid gap-2 mb-4 w-96">
+                <div className="form-check border p-4 rounded">
+                  <input className="form-check-input p-3 m-0 shadow-radio" onChange={handleSelection} name="select-event" id="govt_funds" type="radio" />
+                  <label className="form-check-label m-1 text-blue-600" for="govt_funds"><span className="ms-3">
+                    {t("Govt. Funds.1")}
+                  </span></label>
+                </div>
+                <div className="form-check border p-4 rounded">
+                  <input className="form-check-input p-3 m-0 shadow-radio" onChange={handleSelection} name="select-event" id="foreign_funds" type="radio" />
+                  <label className="form-check-label m-1 text-blue-600" for="foreign_funds"><span className="ms-3">
+                    {t("Foreign Funds.1")}
+                  </span></label>
+                </div>
+                <div className="form-check border p-4 rounded">
+                  <input className="form-check-input p-3 m-0 shadow-radio" onChange={handleSelection} name="select-event" id="csr_funds" type="radio" />
+                  <label className="form-check-label m-1 text-blue-600" for="csr_funds"><span className="ms-3">
+                    {t("CSR Funds.1")}
+                  </span></label>
+                </div>
               </div>
+              <button onClick={handleSubmit} className='btn my-2 fs-4'>Search</button>
+            </div>
           </div>
-          <div className="cols-span-4 ">
-              <img src={fundingBanner} alt="" />
-          </div>
-          <div className='cols-span-4 grid items-center p-4 shadow-md justify-center text-gray-400'>
-              <div>
-                  <h4 className='mb-4 text-center fw-normal'>Looking for Implementation Partner?</h4>
-                  <div className='grid justify-center'>
-                  <div className="grid gap-2 mb-4 w-96">
-                    <div className="form-check border p-4 rounded">
-                      <input className="form-check-input p-3 m-0 shadow-radio" onChange={handleSelection} name="select-event" id="govt_funds" type="radio" />
-                      <label className="form-check-label m-1 text-blue-600" for="govt_funds"><span className="ms-3">Govt Funds</span></label>
-                    </div>
-                    <div className="form-check border p-4 rounded">
-                      <input className="form-check-input p-3 m-0 shadow-radio" onChange={handleSelection} name="select-event" id="foreign_funds" type="radio" />
-                      <label className="form-check-label m-1 text-blue-600" for="foreign_funds"><span className="ms-3">Foreign Funds</span></label>
-                    </div>
-                    <div className="form-check border p-4 rounded">
-                      <input className="form-check-input p-3 m-0 shadow-radio" onChange={handleSelection} name="select-event" id="csr_funds" type="radio" />
-                      <label className="form-check-label m-1 text-blue-600" for="csr_funds"><span className="ms-3">CSR Funds</span></label>
-                    </div>
-                  </div>
-                      <button onClick={handleSubmit} className='btn my-2 fs-4'>Search</button>
-                  </div>
-              </div>
-          </div>
+        </div>
       </div>
 
       <div className="flex items-center lg:bg-white all-events-categories md:px-24 md:mb-8">
@@ -219,12 +227,11 @@ const AllFundingUpdate = (props) => {
           return (
             <div
               key={event.id}
-              className={`category-item ${
-                event.selected ? "selected font-bold" : "font-semibold"
-              }`}
+              className={`category-item ${event.selected ? "selected font-bold" : "font-semibold"
+                }`}
               onClick={() => handleCategoryChange(event.id)}
             >
-              <p> {event.name} </p>
+              <p>    {t(`${event.name}.1`)}</p>
             </div>
           );
         })}
@@ -236,12 +243,12 @@ const AllFundingUpdate = (props) => {
             <div
               key={funding.fundingId}
               // onClick={() => handleSelectedJob(job.jobId)}
-              className={`flex bg-white p-4 mb-4 lg:mr-4 shadow-sm cursor-pointer`} 
-              // ${
-              //   selectedJob.jobId === job.jobId
-              //     ? "lg:bg-gray-50"
-              //     : "bg-white"
-              // }`}
+              className={`flex bg-white p-4 mb-4 lg:mr-4 shadow-sm cursor-pointer`}
+            // ${
+            //   selectedJob.jobId === job.jobId
+            //     ? "lg:bg-gray-50"
+            //     : "bg-white"
+            // }`}
             >
               <img src={example} alt="" className="w-25 pb-5 pr-5" />
               <div className="w-full grid grid-cols-2 justify-between">

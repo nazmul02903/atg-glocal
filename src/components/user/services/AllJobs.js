@@ -19,6 +19,7 @@ import applicants from "../../../assets/Icons/applicants.svg";
 import skills from "../../../assets/Icons/skills.svg";
 import JobModal from "../../../helpers/jobModal";
 import { useHistory } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const tempJobList = [
   {
@@ -28,20 +29,20 @@ const tempJobList = [
   },
   {
     id: 1,
-    name: "NGO JOBS",
+    name: "NGO Jobs",
     selected: false,
   },
   {
     id: 2,
-    name: "CSR JOBS",
+    name: "CSR Jobs",
     selected: false,
   },
   {
     id: 3,
-    name: "GOVT JOBS",
+    name: "Govt. Jobs",
     selected: false,
   },
- 
+
 ];
 
 const AllJobs = (props) => {
@@ -54,6 +55,7 @@ const AllJobs = (props) => {
   const [jobModalActive, setJobModalActive] = useState(false);
   const history = useHistory();
   const [selectedJobType, setSelectedJobType] = useState(null);
+  const { t } = useTranslation();
 
   // useInterval(async () => {
   //   // dispatch(setLoader());
@@ -147,15 +149,21 @@ const AllJobs = (props) => {
                 <div className="grid gap-2 mb-4 w-80">
                   <div className="form-check border p-4 rounded">
                     <input className="form-check-input p-3 m-0 shadow-radio" onChange={handleSelection} name="select-event" id="ngo_jobs" type="radio" />
-                    <label className="form-check-label m-1 text-blue-600 fw-bolder" for="ngo_jobs"><span className="ms-3">NGO Jobs</span></label>
+                    <label className="form-check-label m-1 text-blue-600 fw-bolder" for="ngo_jobs"><span className="ms-3">
+                      {t("NGO Jobs.1")}
+                    </span></label>
                   </div>
                   <div className="form-check border p-4 rounded">
                     <input className="form-check-input p-3 m-0 shadow-radio" onChange={handleSelection} name="select-event" id="csr_jobs" type="radio" />
-                    <label className="form-check-label m-1 text-blue-600 fw-bolder" for="csr_jobs"><span className="ms-3">CSR Jobs</span></label>
+                    <label className="form-check-label m-1 text-blue-600 fw-bolder" for="csr_jobs"><span className="ms-3">
+                      {t("CSR Jobs.1")}
+                    </span></label>
                   </div>
                   <div className="form-check border p-4 rounded">
                     <input className="form-check-input p-3 m-0 shadow-radio" onChange={handleSelection} name="select-event" id="govt_jobs" type="radio" />
-                    <label className="form-check-label m-1 text-blue-600 fw-bolder" for="govt_jobs"><span className="ms-3">Govt Jobs</span></label>
+                    <label className="form-check-label m-1 text-blue-600 fw-bolder" for="govt_jobs"><span className="ms-3">
+                      {t("Govt. Jobs.1")}
+                    </span></label>
                   </div>
                 </div>
                 <button onClick={handleSubmit} className='btn my-2 fs-5'>Post Jobs Free</button>
@@ -169,12 +177,13 @@ const AllJobs = (props) => {
             return (
               <div
                 key={event.id}
-                className={`category-item ${
-                  event.selected ? "selected font-bold" : "font-semibold"
-                }`}
+                className={`category-item ${event.selected ? "selected font-bold" : "font-semibold"
+                  }`}
                 onClick={() => handleCategoryChange(event.id)}
               >
-                <p> {event.name} </p>
+                <p>
+                  {t(`${event.name}.1`)}
+                </p>
               </div>
             );
           })}
@@ -189,10 +198,9 @@ const AllJobs = (props) => {
                   <div
                     key={job.jobId}
                     onClick={() => handleSelectedJob(job.jobId)}
-                    className={`flex p-4 lg:mb-4 lg:mr-4 shadow-sm cursor-pointer ${
-                      selectedJob.jobId === job.jobId
-                        ? "lg:bg-gray-50"
-                        : "bg-white"
+                    className={`flex p-4 lg:mb-4 lg:mr-4 shadow-sm cursor-pointer ${selectedJob.jobId === job.jobId
+                      ? "lg:bg-gray-50"
+                      : "bg-white"
                       }`}
                   >
                     <img src={EventCardImg} alt="" className="w-25 pb-5 pr-5" />

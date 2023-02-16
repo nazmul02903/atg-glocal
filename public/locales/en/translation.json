@@ -1,4 +1,7 @@
 {
+    "All": {
+        "1": "All"
+    },
     "Events": {
         "1": "Events"
     },
@@ -24,19 +27,25 @@
         "1": "Get latest news & updates from the social sector"
     },
     "Awards & Competitions": {
-        "1": "Awards / Contests"
+        "1": "Awards / Contests",
+        "2": "Awards/Contests"
     },
     "Workshops & Trainings": {
-        "1": "Workshops / Trainings"
+        "1": "Workshops / Trainings",
+        "2": "Workshops/Trainings"
     },
     "Exhibitions & Summits": {
-        "1": "Exhibitions / Summits"
+        "1": "Exhibitions / Summits",
+        "2": "Exhibitions/Summits"
     },
     "Govt. Funds": {
         "1": "Govt. Funds"
     },
     "Foreign Funds": {
         "1": "Foreign Funds"
+    },
+    "NGO Funds": {
+        "1": "NGO Funds"
     },
     "CSR Funds": {
         "1": "CSR Funds"
@@ -133,5 +142,50 @@
     },
     "Get your NGO verified by our experts": {
         "1": "Get your NGO verified by our experts"
+    },
+    "Services for NGOs": {
+        "1": "Services for NGOs"
+    },
+    "Post CSR Jobs": {
+        "1": "Post CSR Jobs"
+    },
+    "Reach out to relevant candidates through free posting": {
+        "1": "Reach out to relevant candidates through free posting"
+    },
+    "Post Job": {
+        "1": "Post Job"
+    },
+    "Take a quick test to know CSR funding eligibility": {
+        "1": "Take a quick test to know CSR funding eligibility"
+    },
+    "C.S.R. Test": {
+        "1": "C.S.R. Test"
+    },
+    "Post your event with us for Free* and get relevant audience": {
+        "1": "Post your event with us for Free* and get relevant audience"
+    },
+    "Post Event": {
+        "1": "Post Event"
+    },
+    "Promote your initiative with us !! Learn How...": {
+        "1": "Promote your initiative with us !! Learn How..."
+    },
+    "Services for Corporates": {
+        "1": "Services for Corporates"
+    },
+    "CSR Job": {
+        "1": "CSR Job"
+    },
+    "Post your funding proposal to get Appropriate NGO Partner": {
+        "1": "Post your funding proposal to get Appropriate NGO Partner"
+    },
+    "NGO search": {
+        "1": "NGO search"
+    },
+    "Explore our Exclusive Employee Engagement Services. Connect Now": {
+        "1": "Explore our Exclusive Employee Engagement Services. Connect Now"
+    },
+    "Blogs":{
+        "1": "Blogs"
     }
 }

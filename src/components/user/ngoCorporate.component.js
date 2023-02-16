@@ -10,82 +10,84 @@ import network from "../../assets/ngocorporate/network.svg";
 import search from "../../assets/ngocorporate/search.svg";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-
-const corporates = [
-  {
-    id: 1,
-    icon: job,
-    iconTitle: "Post CSR Jobs",
-    paragraph: "Reach out to  Relevant  Candidates through Free Posting",
-    btn: "POST CSR JOBS",
-    linkTo: "/user/create/job",
-  },
-  {
-    id: 2,
-    icon: csr,
-    iconTitle: "CSR Events",
-    paragraph:
-      "Connect with Beneficiaries for your Events within Social Sector",
-    btn: "PARTICIPATE",
-    linkTo: "/posting",
-  },
-  {
-    id: 3,
-    icon: search,
-    iconTitle: "NGO Search",
-    paragraph:
-      "Connect with Beneficiaries for your Events within Social Sector",
-    btn: "START SEARCH",
-    linkTo: '/user/create/fundingUpdate'
-  },
-  {
-    id: 4,
-    icon: network,
-    iconTitle: "Employee Engagement",
-    paragraph:
-      "Connect with Beneficiaries for your Events within Social Sector",
-    btn: "KNOW MORE",
-  },
-];
-
-const ngos = [
-  {
-    id: 1,
-    icon: job,
-    iconTitle: "Post Jobs",
-    paragraph: "Reach out to Relevant Candidates through Free Posting",
-    btn: "Post Jobs",
-    linkTo: "/user/create/job",
-  },
-  {
-    id: 2,
-    icon: event,
-    iconTitle: "CSR Test",
-    paragraph: "Take a Quick test to know CSR Funding Eligibility",
-    btn: "Give Test",
-    linkTo: "/csrForm",
-  },
-
-  {
-    id: 3,
-    icon: csr,
-    iconTitle: "Post Events",
-    paragraph: "Reach out to Relevant Candidates through Free Posting",
-    btn: "POST EVENT",
-    linkTo: "/posting",
-  },
-  {
-    id: 4,
-    icon: advertise,
-    iconTitle: "Advertise",
-    paragraph: "Reach out to Relevant Candidates through Free Posting",
-    btn: "KNOW MORE",
-  },
-];
+import { useTranslation } from "react-i18next";
 
 const NgoCorporateService = ({ ngo }) => {
   const [data, setData] = useState([]);
   const history = useHistory();
+  const { t } = useTranslation();
+
+  const corporates = [
+    {
+      id: 1,
+      icon: job,
+      iconTitle: 'Post CSR Jobs',
+      // paragraph: "Reach out to  Relevant  Candidates through Free Posting",
+      paragraph: "Reach out to relevant candidates through free posting",
+      btn: "POST CSR JOBS",
+      linkTo: "/user/create/job",
+    },
+    {
+      id: 2,
+      icon: csr,
+      iconTitle: "CSR Events",
+      paragraph: "Connect with Beneficiaries for your Events within Social Sector",
+
+      btn: "PARTICIPATE",
+      linkTo: "/posting",
+    },
+    {
+      id: 3,
+      icon: search,
+      iconTitle: "NGO search",
+      paragraph: "Connect with Beneficiaries for your Events within Social Sector",
+      btn: "START SEARCH",
+      linkTo: '/user/create/fundingUpdate'
+    },
+    {
+      id: 4,
+      icon: network,
+      iconTitle: "Employee Engagement",
+      paragraph:
+        "Connect with Beneficiaries for your Events within Social Sector",
+      btn: "KNOW MORE",
+    },
+  ];
+
+  const ngos = [
+    {
+      id: 1,
+      icon: job,
+      iconTitle: "Post Job",
+      paragraph: "Reach out to relevant candidates through free posting",
+      btn: "Post Job",
+      linkTo: "/user/create/job",
+    },
+    {
+      id: 2,
+      icon: event,
+      iconTitle: "C.S.R. Test",
+      paragraph: "Take a quick test to know CSR funding eligibility",
+      btn: "Give Test",
+      linkTo: "/csrForm",
+    },
+
+    {
+      id: 3,
+      icon: csr,
+      iconTitle: "Post Event",
+      paragraph: "Reach out to relevant candidates through free posting",
+      btn: "POST EVENT",
+      linkTo: "/posting",
+    },
+    {
+      id: 4,
+      icon: advertise,
+      iconTitle: "Advertise",
+      paragraph: "Reach out to relevant candidates through free posting",
+      btn: "KNOW MORE",
+    },
+  ];
 
   useEffect(() => {
     setData(ngo ? ngos : corporates);
@@ -93,7 +95,10 @@ const NgoCorporateService = ({ ngo }) => {
   return (
     <div className="text-center ngo_service_wrap">
       <h2 className="service_heading">
-        Services For {ngo ? "NGO’s" : "Corporates"}{" "}
+        {
+          ngo ? t("Services for NGOs.1") : t("Services for Corporates.1")
+        }
+        {/* Services For {ngo ? "NGO’s" : "Corporates"}{" "} */}
       </h2>
       <div className="gap-10 justify-center align-items-end d-flex">
         <img
@@ -141,12 +146,16 @@ const NgoCorporateService = ({ ngo }) => {
           <div className="d-flex flex-column service_card">
             <div className="gap-1 align-items-center d-flex">
               <img className="service_icon" src={each.icon} alt="" />
-              <h4 className="icon_title">{each.iconTitle}</h4>
+              <h4 className="icon_title">
+                {t(`${each.iconTitle}.1`)}
+              </h4>
             </div>
-            <p className="mb-0 service_para">{each.paragraph}</p>
+            <p className="mb-0 service_para">
+              {t(`${each.paragraph}.1`)}
+            </p>
             <span
               className="service_btn"
-              onClick={() =>{ each.linkTo && history.push(each.linkTo); window.scrollTo(0,0)}}
+              onClick={() => { each.linkTo && history.push(each.linkTo); window.scrollTo(0, 0) }}
             >
               {each.btn}
             </span>

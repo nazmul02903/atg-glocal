@@ -12,6 +12,7 @@ import allEvents from "../../../assets/Icons/all-events.svg";
 import EventCardImg from "../../../assets/event-card.png";
 import ShareIcon from "../../../assets/Icons/share.svg";
 import ShareEventModal from "../../../helpers/shareEventModal";
+import { useTranslation } from "react-i18next";
 
 const tempeventList = [
   {
@@ -21,17 +22,17 @@ const tempeventList = [
   },
   {
     id: 1,
-    name: "Workshops / Trainings",
+    name: "Workshops & Trainings",
     selected: false,
   },
   {
     id: 2,
-    name: "Awards / Competitions",
+    name: "Awards & Competitions",
     selected: false,
   },
   {
     id: 3,
-    name: "Exhibitions / Summits",
+    name: "Exhibitions & Summits",
     selected: false,
   },
 ];
@@ -47,6 +48,7 @@ const AllEvents = (props) => {
   const [shareModalActive, setShareModalActive] = useState(false);
   const history = useHistory();
   const [selectedEventType, setSelectedEventType] = useState(null);
+  const { t } = useTranslation();
 
   useInterval(async () => {
     // dispatch(setLoader());
@@ -118,8 +120,8 @@ const AllEvents = (props) => {
         <div className="md:bg-white md:m-5 md:pt-5 mb-6 md:mb-10">
           <div className="grid-cols-12 md:grid-cols-12 p-5 items-center hidden md:grid">
             <div className="md:col-span-4">
-                <h1>Connecting people working in NGOs to Opportunities</h1>
-                <p>Whatever you’re looking to do this year, Meetup can help. For 20 years, people have turned to Meetup to meet people, make friends, </p>
+              <h1>Connecting people working in NGOs to Opportunities</h1>
+              <p>Whatever you’re looking to do this year, Meetup can help. For 20 years, people have turned to Meetup to meet people, make friends, </p>
             </div>
             <div className="col-span-4 mb-5 md:mb-0">
               <img src={allEvents} className="w-full" alt="" />
@@ -127,23 +129,29 @@ const AllEvents = (props) => {
             <div className="col-span-4 all-events-form">
               <div className="p-4 flex flex-col justify-center all-events-form-wrapper">
                 <p className="mb-4 text-center text-gray-400 fs-4">Post Your Event</p>
-                  <form onSubmit={handleSubmit} className="grid gap-2 mb-4">
-                    <div className="form-check border lg:p-4 rounded d-flex">
-                      <input className="form-check-input p-3 m-0 shadow-radio" onChange={handleSelection} name="select-event" id="workshopEvent" type="radio" />
-                      <label className="form-check-label m-1 text-blue-600" for="workshopEvent"><span className="ms-3">Workshops/Trainings</span></label>
-                    </div>
-                    <div className="form-check border p-4 rounded">
-                      <input className="form-check-input p-3 m-0 shadow-radio" onChange={handleSelection} name="select-event" id="awardEvent" type="radio" />
-                      <label className="form-check-label m-1 text-blue-600" for="awardEvent"><span className="ms-3">Awards/Contests</span></label>
-                    </div>
-                    <div className="form-check border p-4 rounded">
-                      <input className="form-check-input p-3 m-0 shadow-radio" onChange={handleSelection} name="select-event" id="exhibitionEvent" type="radio" />
-                      <label className="form-check-label m-1 text-blue-600" for="exhibitionEvent"><span className="ms-3">Exhibitions/Summit</span></label>
-                    </div>
-                <button type="submit" className="w-full bg-[#0058A9] text-white fs-4 fw-light">
-                  Post Event Free
-                </button>
-                  </form>
+                <form onSubmit={handleSubmit} className="grid gap-2 mb-4">
+                  <div className="form-check border lg:p-4 rounded d-flex">
+                    <input className="form-check-input p-3 m-0 shadow-radio" onChange={handleSelection} name="select-event" id="workshopEvent" type="radio" />
+                    <label className="form-check-label m-1 text-blue-600 whitespac-nowrap" for="workshopEvent"><span className="ms-3">
+                      {t("Workshops & Trainings.2")}
+                    </span></label>
+                  </div>
+                  <div className="form-check border p-4 rounded">
+                    <input className="form-check-input p-3 m-0 shadow-radio" onChange={handleSelection} name="select-event" id="awardEvent" type="radio" />
+                    <label className="form-check-label m-1 text-blue-600 whitespac-nowrap" for="awardEvent"><span className="ms-3">
+                      {t("Awards & Competitions.2")}
+                    </span></label>
+                  </div>
+                  <div className="form-check border p-4 rounded">
+                    <input className="form-check-input p-3 m-0 shadow-radio" onChange={handleSelection} name="select-event" id="exhibitionEvent" type="radio" />
+                    <label className="form-check-label m-1 text-blue-600 whitespac-nowrap" for="exhibitionEvent"><span className="ms-3">
+                      {t("Exhibitions & Summits.2")}
+                    </span></label>
+                  </div>
+                  <button type="submit" className="w-full bg-[#0058A9] text-white fs-4 fw-light">
+                    Post Event Free
+                  </button>
+                </form>
                 {/* <textarea className="flex-1 mb-4"></textarea> */}
               </div>
             </div>
@@ -153,12 +161,13 @@ const AllEvents = (props) => {
               return (
                 <div
                   key={event.id}
-                  className={`category-item ${
-                    event.selected ? "selected font-bold" : "font-semibold"
-                  }`}
+                  className={`category-item ${event.selected ? "selected font-bold" : "font-semibold"
+                    }`}
                   onClick={() => handlEventChange(event.id)}
                 >
-                  <p className="md:w-64"> {event.name} </p>
+                  <p className="md:w-64">
+                    {t(`${event.name}.1`)}
+                  </p>
                 </div>
               );
             })}
