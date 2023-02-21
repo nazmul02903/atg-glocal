@@ -12,6 +12,78 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
+const corporates = [
+  {
+    id: 1,
+    icon: job,
+    iconTitle: "Post CSR Jobs",
+    paragraph: "Reach out to  Relevant  Candidates through Free Posting",
+    btn: "POST JOBS",
+    linkTo: "/user/create/job",
+  },
+  {
+    id: 2,
+    icon: csr,
+    iconTitle: "CSR Events",
+    paragraph:
+      "Connect with Beneficiaries for your Events within Social Sector",
+    btn: "PARTICIPATE",
+    linkTo: "/posting",
+  },
+  {
+    id: 3,
+    icon: search,
+    iconTitle: "NGO Search",
+    paragraph:
+      "Connect with Beneficiaries for your Events within Social Sector",
+    btn: "NGO SEARCH",
+    linkTo: '/user/create/fundingUpdate'
+  },
+  {
+    id: 4,
+    icon: network,
+    iconTitle: "Employee Engagement",
+    paragraph:
+      "Connect with Beneficiaries for your Events within Social Sector",
+    btn: "VOLUNTEERING",
+  },
+];
+
+const ngos = [
+  {
+    id: 1,
+    icon: job,
+    iconTitle: "Post Jobs",
+    paragraph: "Reach out to Relevant Candidates through Free Posting",
+    btn: "Post Jobs",
+    linkTo: "/user/create/job",
+  },
+  {
+    id: 2,
+    icon: event,
+    iconTitle: "CSR Test",
+    paragraph: "Take a Quick test to know CSR Funding Eligibility",
+    btn: "Give Test",
+    linkTo: "/csrForm",
+  },
+
+  {
+    id: 3,
+    icon: csr,
+    iconTitle: "Post Events",
+    paragraph: "Reach out to Relevant Candidates through Free Posting",
+    btn: "POST EVENT",
+    linkTo: "/posting",
+  },
+  {
+    id: 4,
+    icon: advertise,
+    iconTitle: "Advertise",
+    paragraph: "Reach out to Relevant Candidates through Free Posting",
+    btn: "KNOW MORE",
+  },
+];
+
 const NgoCorporateService = ({ ngo }) => {
   const [data, setData] = useState([]);
   const history = useHistory();
