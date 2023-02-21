@@ -19,6 +19,9 @@ import Logo from "../../../../assets/gb.png";
 import Chair from "../../../../assets/chair.png";
 import Note from "../../../../assets/event_note.png";
 import Rupee from "../../../../assets/currency_rupee.png";
+import exhibition from "../../../../assets/event_exhibition.svg";
+import award from "../../../../assets/event_awards.svg";
+import workshop from "../../../../assets/event_workshop.svg";
 import "reactjs-popup/dist/index.css";
 import { ShareButton } from "react-custom-share";
 import {
@@ -171,7 +174,7 @@ function WorkshopEventDetails(props) {
       });
   }, [category]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  console.log(workshopDetails)
+  console.log(workshopDetails);
   if (!workshopDetails) {
     dispatch(setLoader());
     return null;
@@ -226,8 +229,16 @@ function WorkshopEventDetails(props) {
                 </span>{" "}
               </span>
             </div>
-            <div className=" d-flex gap-2 flex-row mb-2 ">
-              <img className="event-img" src={EventIcon} alt="" />
+            <div className=" d-flex gap-2 flex-row mb-2 align-items-center">
+              {workshopDetails.eventCategoryId === "1" && (
+                <img className="event-img" src={workshop} alt="" />
+              )}
+              {workshopDetails.eventCategoryId === "2" && (
+                <img className="event-img" src={award} alt="" />
+              )}
+              {workshopDetails.eventCategoryId === "3" && (
+                <img className="event-img" src={exhibition} alt="" />
+              )}
               <h2 className="event_title">{workshopDetails.title}</h2>
             </div>
             <div

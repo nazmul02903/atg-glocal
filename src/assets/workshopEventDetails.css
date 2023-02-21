@@ -1756,6 +1756,7 @@ form {
     height: 423px;
     background-size: cover;
     background-repeat: no-repeat;
+    width: 100%;
   }
   .card_title {
     font-size: 27.2836px;
