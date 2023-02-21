@@ -17,7 +17,7 @@ const corporates = [
     icon: job,
     iconTitle: "Post CSR Jobs",
     paragraph: "Reach out to  Relevant  Candidates through Free Posting",
-    btn: "POST CSR JOBS",
+    btn: "POST JOBS",
     linkTo: "/user/create/job",
   },
   {
@@ -35,7 +35,7 @@ const corporates = [
     iconTitle: "NGO Search",
     paragraph:
       "Connect with Beneficiaries for your Events within Social Sector",
-    btn: "START SEARCH",
+    btn: "NGO SEARCH",
     linkTo: '/user/create/fundingUpdate'
   },
   {
@@ -44,7 +44,7 @@ const corporates = [
     iconTitle: "Employee Engagement",
     paragraph:
       "Connect with Beneficiaries for your Events within Social Sector",
-    btn: "KNOW MORE",
+    btn: "VOLUNTEERING",
   },
 ];
 

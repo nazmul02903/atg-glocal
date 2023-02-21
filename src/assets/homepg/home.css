@@ -842,8 +842,7 @@ hr {
 @media screen and (max-width: 768px) {
   .sect-1,
   .sect-3,
-  .sect-4 
-  {
+  .sect-4 {
     display: none;
   }
 
@@ -924,10 +923,10 @@ hr {
   font-size: 16px;
   line-height: 134%;
   /* or 21px */
-  
+
   letter-spacing: 0.0015em;
-  
-  color: #4D4C4C;
+
+  color: #4d4c4c;
 }
 .mobile_visible {
   display: none;
@@ -942,7 +941,7 @@ hr {
   letter-spacing: 1.25px;
   text-transform: uppercase;
   /* BrandBlue */
-cursor: pointer;
+  cursor: pointer;
   color: #0e559c;
 }
 
@@ -1020,7 +1019,7 @@ cursor: pointer;
     text-align: center;
     align-items: center;
     justify-content: center;
-    padding: 17px;
+    padding: 17px 0;
     gap: 12px;
     box-sizing: border-box;
   }
@@ -1041,10 +1040,28 @@ cursor: pointer;
     transform: scale(1);
     height: auto;
   }
-  .service_card:nth-child(1), .service_card:nth-child(2){
+  .service_card:nth-child(1),
+  .service_card:nth-child(2) {
     border-bottom: 1px solid #bdb8b8;
   }
-  .service_card:nth-child(2), .service_card:nth-child(4){
+  .service_card:nth-child(2),
+  .service_card:nth-child(4) {
     border-left: 1px solid #bdb8b8;
+  }
+  .service_btn {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 19px;
+    /* identical to box height */
+
+    letter-spacing: 1.25px;
+    text-transform: uppercase;
+
+    /* BrandBlue */
+
+    color: #0e559c;
+    border: 1px solid #0e559c;
+    border-radius: 4px;
+    padding: 8px 16px;
   }
 }
