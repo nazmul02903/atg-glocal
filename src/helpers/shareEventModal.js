@@ -87,7 +87,7 @@ const ShareEventModal = (props) => {
             </div>
          </div>
          <div className="modal-close-icon">
-            <img src={Cross} onClick={handleClose ? handleClose : () => { }} />
+            <img src={Cross} onClick={handleClose ? handleClose : () => { }} alt="" />
          </div>
 
 

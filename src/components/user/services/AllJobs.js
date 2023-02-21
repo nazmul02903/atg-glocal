@@ -20,6 +20,7 @@ import skills from "../../../assets/Icons/skills.svg";
 import JobModal from "../../../helpers/jobModal";
 import { useHistory } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import parse from "html-react-parser";
 
 const tempJobList = [
   {
@@ -265,10 +266,18 @@ const AllJobs = (props) => {
                     </div>
                     <div>
                       <h6 className="fw-bold my-3">Job Id: {selectedJob?.jobId}</h6>
-                      <p className="text-grey-800">
+                      {/* <p className="text-grey-800 fs-6">
                         The Applications Development Team Lead is an intermediate level position responsible for driving and delivering implementation of new or revised application systems and programs in coordination with the Technology team. The overall objective of this role is to contribute to applications systems analysis and project deliveries activities.
-                      </p>
-                      <h6 className="fw-bold my-4">Responsibilities:</h6>
+                      </p> */}
+                      {
+                        selectedJob?.companyDetails && parse(selectedJob?.companyDetails)
+                      }
+                      {/* <h6 className="fw-bold my-4">Responsibilities:</h6> */}
+                      <div className="mt-3">
+                        {
+                          selectedJob?.jobDescription && parse(selectedJob?.jobDescription)
+                        }
+                      </div>
                     </div>
                   </> : <></>
               }
@@ -281,6 +290,7 @@ const AllJobs = (props) => {
       <ShareEventModal
         show={shareModalActive}
         handleClose={() => setShareModalActive(false)}
+        selectedJob={selectedJob}
       />
 
       <JobModal onHide={() => setJobModalActive(false)} show={jobModalActive} selectedJob={selectedJob} />
