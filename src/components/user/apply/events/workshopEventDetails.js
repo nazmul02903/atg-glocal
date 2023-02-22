@@ -289,8 +289,19 @@ function WorkshopEventDetails(props) {
                 <div className="frame8157 detailsCard">
                   <div className="frame8176">
                     <div className="title_section">
-                      <div className="event-icon">
+                      {/* <div className="event-icon">
                         <img className="event-img" src={EventIcon} alt="" />
+                      </div> */}
+                      <div className=" event-icon">
+                        {workshopDetails.eventCategoryId === "1" && (
+                          <img className="event-img" src={workshop} alt="" />
+                        )}
+                        {workshopDetails.eventCategoryId === "2" && (
+                          <img className="event-img" src={award} alt="" />
+                        )}
+                        {workshopDetails.eventCategoryId === "3" && (
+                          <img className="event-img" src={exhibition} alt="" />
+                        )}
                       </div>
                       <div className="title_organisedBy">
                         <div className="title">
