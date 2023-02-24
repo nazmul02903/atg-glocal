@@ -837,6 +837,17 @@ hr {
     max-height: 400px;
     object-fit: contain;
   }
+
+  .service_card {
+    padding: 10px;
+    border: 1px solid #cccccc;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+  }
+  .service_card p {
+    margin-top: 14px;
+    margin-bottom: 8px;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -975,7 +986,6 @@ hr {
 }
 .service_card {
   flex-basis: 1/4;
-  gap: 16px;
 }
 
 .service-wrapper {
@@ -1018,7 +1028,7 @@ hr {
     flex-basis: 50%;
     text-align: center;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
     padding: 17px 0;
     gap: 12px;
     box-sizing: border-box;
