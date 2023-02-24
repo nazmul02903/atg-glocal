@@ -181,7 +181,7 @@ function WorkshopEventDetails(props) {
   } else {
     dispatch(clearLoader());
     return (
-      <div className="d-flex gap-3 align-items-start form-wrapper">
+      <div className="gap-3 d-flex align-items-start form-wrapper">
         {showModal && (
           <RegisterWorkshopEvent
             setShowModal={setShowModal}
@@ -221,7 +221,7 @@ function WorkshopEventDetails(props) {
                 </div>
               </div> */}
             <div></div>
-            <div className="category_indication mb-2 mt-2">
+            <div className="mt-2 mb-2 category_indication">
               <span className="ml-4">
                 event &gt; {workshopDetails.eventCategoryText} &gt;{" "}
                 <span style={{ color: "#3A3A3A" }}>
@@ -229,7 +229,7 @@ function WorkshopEventDetails(props) {
                 </span>{" "}
               </span>
             </div>
-            <div className=" d-flex gap-2 flex-row mb-2 align-items-center">
+            <div className="flex-row gap-2 mb-2  d-flex align-items-center">
               {workshopDetails.eventCategoryId === "1" && (
                 <img className="event-img" src={workshop} alt="" />
               )}
@@ -419,7 +419,7 @@ function WorkshopEventDetails(props) {
                 </div>
               </div>
               <div id="summary" className="detailsCard">
-                <h5 className="text-start mb-0 card_title">Event Details</h5>
+                <h5 className="mb-0 text-start card_title">Event Details</h5>
                 {
                   (workshopDetails.description =
                     workshopDetails.description.replace(/<(.|\n)*?>/g, ""))
@@ -445,77 +445,81 @@ function WorkshopEventDetails(props) {
                 </div> */}
             </div>
           </div>
-          <div className="footer-event">
-            <div className="btn-container">
-              <div>
-                {" "}
-                <button
-                  onClick={() => setShowModal(true)}
-                  className={`register ${
-                    workshopDetails.hasUserRegistered && "disable_btn"
-                  }`}
-                  disabled={workshopDetails.hasUserRegistered}
-                >
-                  {workshopDetails.hasUserRegistered
-                    ? "Already Registered"
-                    : "Register"}
-                </button>
-              </div>{" "}
-              <div className="pr-0 d-flex ">
-                <div
-                  className="share-btn"
-                  onClick={() => {
-                    shareToggle ? setShareToggle(false) : setShareToggle(true);
-                  }}
-                ></div>
-                <div
-                  className={
-                    shareToggle ? "share-options active" : "share-options"
-                  }
-                >
-                  <p className="title">share</p>
-                  <div className="social-media?">
-                    <ShareButton
-                      {...shareButtonProps[0]}
-                      className="social-media-btn"
-                    >
-                      <FaFacebook />
-                    </ShareButton>
-                    <ShareButton
-                      {...shareButtonProps[1]}
-                      className="social-media-btn"
-                    >
-                      <FaEnvelope />
-                    </ShareButton>
-                    <ShareButton
-                      {...shareButtonProps[2]}
-                      className="social-media-btn"
-                    >
-                      <FaWhatsapp />
-                    </ShareButton>
-                    <ShareButton
-                      {...shareButtonProps[3]}
-                      className="social-media-btn"
-                    >
-                      <FaTwitter />
-                    </ShareButton>
-                    <ShareButton
-                      {...shareButtonProps[4]}
-                      className="social-media-btn"
-                    >
-                      <FaLinkedin />
-                    </ShareButton>
-                  </div>
-                  <div className="link-container">
-                    <p className="link">{el.href}</p>
-                    <h1 className="copy-btn" onClick={copy}>
-                      copy
-                    </h1>
+          {!showModal && (
+            <div className="footer-event">
+              <div className="btn-container">
+                <div>
+                  {" "}
+                  <button
+                    onClick={() => setShowModal(true)}
+                    className={`register ${
+                      workshopDetails.hasUserRegistered && "disable_btn"
+                    }`}
+                    disabled={workshopDetails.hasUserRegistered}
+                  >
+                    {workshopDetails.hasUserRegistered
+                      ? "Already Registered"
+                      : "Register"}
+                  </button>
+                </div>{" "}
+                <div className="pr-0 d-flex ">
+                  <div
+                    className="share-btn"
+                    onClick={() => {
+                      shareToggle
+                        ? setShareToggle(false)
+                        : setShareToggle(true);
+                    }}
+                  ></div>
+                  <div
+                    className={
+                      shareToggle ? "share-options active" : "share-options"
+                    }
+                  >
+                    <p className="title">share</p>
+                    <div className="social-media?">
+                      <ShareButton
+                        {...shareButtonProps[0]}
+                        className="social-media-btn"
+                      >
+                        <FaFacebook />
+                      </ShareButton>
+                      <ShareButton
+                        {...shareButtonProps[1]}
+                        className="social-media-btn"
+                      >
+                        <FaEnvelope />
+                      </ShareButton>
+                      <ShareButton
+                        {...shareButtonProps[2]}
+                        className="social-media-btn"
+                      >
+                        <FaWhatsapp />
+                      </ShareButton>
+                      <ShareButton
+                        {...shareButtonProps[3]}
+                        className="social-media-btn"
+                      >
+                        <FaTwitter />
+                      </ShareButton>
+                      <ShareButton
+                        {...shareButtonProps[4]}
+                        className="social-media-btn"
+                      >
+                        <FaLinkedin />
+                      </ShareButton>
+                    </div>
+                    <div className="link-container">
+                      <p className="link">{el.href}</p>
+                      <h1 className="copy-btn" onClick={copy}>
+                        copy
+                      </h1>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          )}
         </form>
         {/* )} */}
         <div
@@ -523,7 +527,7 @@ function WorkshopEventDetails(props) {
           className=" desk__details"
           style={{ position: "sticky", top: 0 }}
         >
-          <div className="detailsCard mb-2 p-4">
+          <div className="p-4 mb-2 detailsCard">
             <h5 className="organized_by">Organized By</h5>
             <div className="organized_author">
               <img
@@ -662,7 +666,7 @@ function WorkshopEventDetails(props) {
               </div>
             </div>
           </div>
-          <div className="detailsCard mt-2" style={{ padding: "0 35px" }}>
+          <div className="mt-2 detailsCard" style={{ padding: "0 35px" }}>
             <button
               style={{ width: "100%", margin: "20px 0" }}
               onClick={() => setShowModal(true)}
