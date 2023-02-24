@@ -24,7 +24,6 @@ const corporates = [
       "Connect with Beneficiaries for your Events within Social Sector",
     btn: "VOLUNTEERING",
   },
-
   {
     id: 2,
     icon: csr,
@@ -95,6 +94,14 @@ const NgoCorporateService = ({ ngo }) => {
 
   const corporates = [
     {
+      id: 4,
+      icon: network,
+      iconTitle: "Employee Engagement",
+      paragraph:
+        "Connect with Beneficiaries for your Events within Social Sector",
+      btn: "KNOW MORE",
+    },
+    {
       id: 1,
       icon: job,
       iconTitle: 'Post CSR Jobs',
@@ -120,14 +127,7 @@ const NgoCorporateService = ({ ngo }) => {
       btn: "START SEARCH",
       linkTo: '/user/create/fundingUpdate'
     },
-    {
-      id: 4,
-      icon: network,
-      iconTitle: "Employee Engagement",
-      paragraph:
-        "Connect with Beneficiaries for your Events within Social Sector",
-      btn: "KNOW MORE",
-    },
+
   ];
 
   const ngos = [
