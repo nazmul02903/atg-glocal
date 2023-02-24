@@ -407,11 +407,13 @@ function Home(props) {
           <div className="sect-5 home-column">
             <div className="community-heading heading d-none d-lg-block">
               {" "}
-              {t('Blogs.1')}
+              {/* {t('Blogs.1')} */}
+              GB Highlights
             </div>
             <div className="community-heading heading d-lg-none">
               {" "}
-              {t('Blogs.1')}
+              {/* {t('Blogs.1')} */}
+              GB Highlights
             </div>
             <div className="community-subtext subtext d-none d-lg-block">
               {t('People on Glocalboadh have fostered community, learned new skills, started businesses, and made life-long friends. Learn how..1')}
