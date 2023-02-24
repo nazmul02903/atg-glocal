@@ -181,7 +181,7 @@ function WorkshopEventDetails(props) {
   } else {
     dispatch(clearLoader());
     return (
-      <div className="d-flex gap-3 align-items-start">
+      <div className="d-flex gap-3 align-items-start form-wrapper">
         {showModal && (
           <RegisterWorkshopEvent
             setShowModal={setShowModal}
