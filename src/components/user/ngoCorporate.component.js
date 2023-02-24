@@ -188,7 +188,8 @@ const NgoCorporateService = ({ ngo }) => {
       <div className="text-center ngo_service_wrap">
         <h2 className="service_heading">
           {
-            ngo ? t("Services for NGOs.1") : t("Services for Corporates.1")
+            // ngo ? t("Services for NGOs/Govt.1") : t("Services for Corporates/Institutions.1")
+            ngo ? "Services for NGOs/Govt" : "Services for Corporates/Institutions"
           }
         </h2>
         <div className="gap-10 justify-center align-items-end d-flex">
