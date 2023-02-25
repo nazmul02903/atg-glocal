@@ -150,7 +150,7 @@ const NgoCorporateService = ({ ngo }) => {
         </div>
         {ngo ? (
           <p className="my-4 mobile_visible">
-            <span style={{ fontWeight: 700 }}>100 +</span> NGOs On a single
+            <span style={{ fontWeight: 700 }}>4000 +</span> NGOs On a single
             Platform
           </p>
         ) : (
