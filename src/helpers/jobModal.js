@@ -9,7 +9,7 @@ import parse from "html-react-parser";
 function JobModal(props) {
   const { selectedJob } = props;
   console.log(selectedJob)
-  const date = new Date(selectedJob.createdDate);
+  const date = new Date(selectedJob?.createdDate);
   const day = date.getDate();
 
   if (!selectedJob) return <></>

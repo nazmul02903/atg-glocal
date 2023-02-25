@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import AdminService from "../../../services/admin.service";
 import "bootstrap/dist/css/bootstrap.min.css";
-import EventDetailModal from "../../../helpers/eventDetailModal";
+// import EventDetailModal from "../../../helpers/eventDetailModal";
 import { setLoader, clearLoader } from "../../../store/actions/loader";
-import ConfirmationModal from "../../../helpers/confirmationModal";
-import { useInterval } from "../../../helpers/useInterval";
-import { POLLING_INTERVAL } from "../../../constants/variables";
-import CommunityImg from "../../../assets/Icons/community-full.svg";
+// import ConfirmationModal from "../../../helpers/confirmationModal";
+// import { useInterval } from "../../../helpers/useInterval";
+// import { POLLING_INTERVAL } from "../../../constants/variables";
+// import CommunityImg from "../../../assets/Icons/community-full.svg";
 import EventCardImg from "../../../assets/event-card.png";
 import ShareIcon from "../../../assets/Icons/share.svg";
 import ShareEventModal from "../../../helpers/shareEventModal";
@@ -85,16 +85,17 @@ const AllJobs = (props) => {
     if (id === 0) {
       AdminService.fetchAllJobs(1).then((res) => {
         dispatch(clearLoader());
-        setJobs(res.data.jobDetailsBeans);
+        setJobs(res?.data?.jobDetailsBeans);
+        setSelectedJob(res?.data?.jobDetailsBeans[0]);
       });
     } else {
       AdminService.fetchJobsByCategory(id, 1).then((res) => {
         dispatch(clearLoader());
-        setJobs(res.data.jobDetailsBeans);
-        setSelectedJob(res.data.jobDetailsBeans[0]);
+        setJobs(res?.data?.jobDetailsBeans);
+        setSelectedJob(res?.data?.jobDetailsBeans[0]);
       });
     }
-  }, [jobList]);
+  }, [jobList, dispatch]);
 
   const handleCategoryChange = (id) => {
     let tempjob = jobList.map((ev) => {
@@ -127,6 +128,11 @@ const AllJobs = (props) => {
   const handleSubmit = () => {
     selectedJobType && history.push(`/user/create/job`)
   }
+
+  const handleApplyJobForm = (id) => {
+    console.log(id);
+    history.push({pathname: '/user/apply/applyJobForm', state: {id}});
+  };
 
   return (
     <>
@@ -189,9 +195,9 @@ const AllJobs = (props) => {
                 return (
                   <div
                     key={job.jobId}
-                    onClick={() => handleSelectedJob(job.jobId)}
+                    onClick={() => handleSelectedJob(job?.jobId)}
                     className={`flex p-4 lg:mb-4 lg:mr-4 shadow-sm cursor-pointer ${
-                      selectedJob.jobId === job.jobId
+                      selectedJob?.jobId === job?.jobId
                         ? "lg:bg-gray-50"
                         : "bg-white"
                       }`}
@@ -253,7 +259,7 @@ const AllJobs = (props) => {
                       </div>
                     </div>
                     <div className="flex gap-3 my-5">
-                      <button className="btn w-24 fs-5 h-8 p-0 rounded-lg fw-lighter">Apply</button>
+                      <button onClick={()=>handleApplyJobForm(selectedJob?.jobId)} className="btn w-24 fs-5 h-8 p-0 rounded-lg fw-lighter">Apply</button>
                       <button className="btn w-24 fs-5 h-8 p-0 rounded-lg bg-white" style={{ border: "1px solid #0057A8", color: "#0057A8" }}>Save</button>
                     </div>
                     <div>

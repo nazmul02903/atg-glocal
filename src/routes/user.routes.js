@@ -23,6 +23,7 @@ import AllFundingUpdates from "../components/user/services/AllFU";
 import allJobsComponent from "../components/user/services/AllJobs";
 import MyEvents from "../components/user/dashBoard/myEvents";
 import createFundingUpdateAdmin from "../components/user/createPost/createFundingUpdateAdmin";
+import ApplyJobForm from "../components/user/apply/job/applyJobForm";
 
 const UserRoutes = () => {
   return (
@@ -107,6 +108,11 @@ const UserRoutes = () => {
           exact
           path="/event/:category/:id/:eventId"
           component={exhibitionsEventDetails}
+        />
+        <ProtectedRoute
+          exact
+          path="/user/apply/applyJobForm"
+          component={ApplyJobForm}
         />
       </Switch>
     </div>

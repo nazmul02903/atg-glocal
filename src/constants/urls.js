@@ -167,3 +167,5 @@ export const API_FETCH_HOME_ASSETS =
   process.env.REACT_APP_API_ENDPOINT + "home/getHomeAssets";
 export const API_ALL_STATES =
   process.env.REACT_APP_API_ENDPOINT + "state/fetchAll/";
+export const API_APPLY_FOR_JOB =
+  process.env.REACT_APP_API_ENDPOINT + "job/applyForJob";
