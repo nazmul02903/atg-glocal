@@ -20,7 +20,7 @@ import {
 import GB_globe from "../../../../assets/globe-logo.png";
 
 const RegisterWorkshopEvent = (props) => {
-  const { setShowModal } = props;
+  const { setShowModal, categoryId } = props;
   const [cities, getCities] = useState([]);
   const [states, getStates] = useState([]);
   const [selectedStateId, setSelectedStateId] = useState("Select City");
@@ -73,7 +73,7 @@ const RegisterWorkshopEvent = (props) => {
       organizationName: values.organizationName,
       cityId: values.cityId,
       eventId: pathArray[4],
-      eventCategoryId: "1",
+      eventCategoryId: categoryId,
     };
     UserService.registerForWorkshop(data)
       .then((res) => {

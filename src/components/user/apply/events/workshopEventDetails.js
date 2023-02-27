@@ -186,6 +186,7 @@ function WorkshopEventDetails(props) {
           <RegisterWorkshopEvent
             setShowModal={setShowModal}
             workshopDetails={workshopDetails}
+            categoryId={categoryId}
           />
         )}
         {/* {!isSubmitSuccessful && ( */}
