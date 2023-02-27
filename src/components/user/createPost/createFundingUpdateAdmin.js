@@ -123,6 +123,7 @@ const FundingUpdateAdmin = (props) => {
       termsAndConditions: "true",
       location: "",
       thematicAreaList: thematicArea,
+      fundingUpdateCategory: 1,
       externalLink: values.externalLink,
       postedBy: values.postedBy,
       cities: selectedCities,
