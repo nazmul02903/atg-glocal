@@ -63,7 +63,7 @@ const RegisterWorkshopEvent = (props) => {
         alertCustom("error", message, "/home");
       });
   }, []);
-// console.log(pathArray);
+  // console.log(pathArray);
   const onSubmit = (values) => {
     props.dispatch(setLoader());
     const data = {
@@ -71,9 +71,9 @@ const RegisterWorkshopEvent = (props) => {
       contactNumber: values.contactNumber,
       email: values.email,
       organizationName: values.organizationName,
-      cityId: values.cityId,
+      cityId: selectedStateId,
       eventId: pathArray[3],
-      eventCategoryId: categoryId,
+      eventCategoryId: categoryId.toString(),
     };
     UserService.registerForWorkshop(data)
       .then((res) => {

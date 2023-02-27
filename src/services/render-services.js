@@ -68,6 +68,7 @@ export const renderCities = (cities) => {
   );
 };
 export const renderCitiesName = (cities) => {
+  console.log(cities);
   return (
     cities &&
     cities.length > 0 &&
