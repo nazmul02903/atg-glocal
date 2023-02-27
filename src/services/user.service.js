@@ -31,6 +31,7 @@ import {
   API_FETCH_HOME,
   API_ALL_STATES,
   API_FETCH_HOME_ASSETS,
+  API_APPLY_FOR_JOB,
 } from "../constants/urls";
 
 import AuthHeader from "./auth-header";
@@ -264,6 +265,11 @@ class UserService {
     return axios.post(
       API_ALL_STATES,
       { user_id: user },
+      { headers: AuthHeader() }
+    );
+  }
+  applyForJob(data) {
+    return axios.post(API_APPLY_FOR_JOB, data, 
       { headers: AuthHeader() }
     );
   }
