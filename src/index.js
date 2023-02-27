@@ -11,7 +11,7 @@ import Theme from "./theme";
 import './i18n';
 
 const engine = new Styletron();
-//SET NODE_OPTIONS=--openssl-legacy-provider && 
+//SET NODE _OPTIONS=--openssl-legacy-provider && 
 ReactDOM.render(
   <Provider store={store}>
     <StyletronProvider value={engine}>
