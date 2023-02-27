@@ -615,13 +615,21 @@ hr {
     height: 115px;
     flex: 1;
   }
+  .home-row .imgBox img {
+    max-width: 60px;
+  }
 
   .division-name {
-    display: none;
+    display: block;
+    font-weight: 400;
+    font-size: 9.11629px;
+    line-height: 13px;
+    width: auto;
+    margin-top: 6px;
   }
 
   .division-name-inside {
-    display: block;
+    display: hidden;
     font-family: "Noto Sans", sans-serif;
     font-style: normal;
     font-weight: 400;
