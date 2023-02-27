@@ -128,6 +128,8 @@ const FundingUpdateNew = (props) => {
       cities: selectedCities,
       csrEligibilitySectionBean: csrSections,
       genderList: gender,
+      fundingUpdateCategory: 1,
+      // fundingUpdateStatus : 1,
       fundingUpdateTargetAudienceBean: {
         beneficiaries: values.category,
         minAge: values.minAge,
@@ -160,7 +162,7 @@ const FundingUpdateNew = (props) => {
         alertCustom("error", message, "/home");
       });
   };
-
+console.log('gg');
   const handleThematicArea = (e) => {
     let temp = [];
     e.forEach((item) => {

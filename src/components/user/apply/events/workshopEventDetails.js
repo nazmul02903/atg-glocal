@@ -41,6 +41,7 @@ function WorkshopEventDetails(props) {
   const [categoryId, setCategoryId] = useState(1);
   var el = document.createElement("a");
   el.href = window.location.href;
+  const [hasUserRegistered, setHasUserRegistered] = useState(false)
 
   const [showModal, setShowModal] = useState(false);
   const shareButtonProps = [
@@ -158,9 +159,10 @@ function WorkshopEventDetails(props) {
       categoryId = 3;
       setCategoryId(3);
     }
-    UserService.getEventDetails(id, categoryId)
+    UserService.getEventDetails(id , categoryId.toString())
       .then((res) => {
         console.log("res", res);
+        setHasUserRegistered(res.data.hasUserRegistered)
         setWorkshopDetails(res.data.eventBean);
       })
       .catch((error) => {
@@ -454,11 +456,11 @@ function WorkshopEventDetails(props) {
                   <button
                     onClick={() => setShowModal(true)}
                     className={`register ${
-                      workshopDetails.hasUserRegistered && "disable_btn"
+                      hasUserRegistered && "disable_btn"
                     }`}
-                    disabled={workshopDetails.hasUserRegistered}
+                    disabled={hasUserRegistered}
                   >
-                    {workshopDetails.hasUserRegistered
+                    {hasUserRegistered
                       ? "Already Registered"
                       : "Register"}
                   </button>
@@ -672,11 +674,11 @@ function WorkshopEventDetails(props) {
               style={{ width: "100%", margin: "20px 0" }}
               onClick={() => setShowModal(true)}
               className={`register ${
-                workshopDetails.hasUserRegistered && "disable_btn"
+                hasUserRegistered && "disable_btn"
               }`}
-              disabled={workshopDetails.hasUserRegistered}
+              disabled={hasUserRegistered}
             >
-              {workshopDetails.hasUserRegistered
+              {hasUserRegistered
                 ? "Already Registered"
                 : "Register"}
             </button>

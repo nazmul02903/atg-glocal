@@ -25,6 +25,7 @@ const RegisterWorkshopEvent = (props) => {
   const [cities, getCities] = useState([]);
   const [states, getStates] = useState([]);
   const [selectedStateId, setSelectedStateId] = useState("Select City");
+
   const history = useHistory()
   var key, orderId, amount;
   const {
