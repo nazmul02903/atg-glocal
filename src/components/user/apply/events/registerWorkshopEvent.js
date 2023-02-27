@@ -18,12 +18,14 @@ import {
   renderStatesNew,
 } from "../../../../services/render-services";
 import GB_globe from "../../../../assets/globe-logo.png";
+import { useHistory } from "react-router-dom";
 
 const RegisterWorkshopEvent = (props) => {
   const { setShowModal, categoryId } = props;
   const [cities, getCities] = useState([]);
   const [states, getStates] = useState([]);
   const [selectedStateId, setSelectedStateId] = useState("Select City");
+  const history = useHistory()
   var key, orderId, amount;
   const {
     register,
@@ -77,21 +79,23 @@ const RegisterWorkshopEvent = (props) => {
     };
     UserService.registerForWorkshop(data)
       .then((res) => {
+        console.log('success', res);
         props.dispatch(clearLoader());
-        var free = {
-          handler: function (response) {
-            // alert(response.razorpay_payment_id);
-            // alert(response.razorpay_order_id);
-            // alert(response.razorpay_signature);
-            UserService.paymentValidation(response.razorpay_order_id).then(
-              () => {
-                console.log(response.razorpay_order_id);
-              }
-            );
-          },
-        };
+        var free = function (response) {
+          // alert(response.razorpay_payment_id);
+          // alert(response.razorpay_order_id);
+          // alert(response.razorpay_signature);
+          UserService.paymentValidation(response.razorpay_order_id).then(
+            () => {
+              console.log(response.razorpay_order_id);
+            }
+          );
+        }
         if (res.data.amount === 0) {
-          free();
+          history.push('/home')
+          alert('Registered Successfully!')
+          return
+          // free();
         }
         if (res.data.status === 1) {
           amount = res.data.amount;
