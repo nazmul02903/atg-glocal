@@ -25,10 +25,10 @@ const NgoCorporateService = ({ ngo }) => {
     {
       id: 4,
       icon: network,
-      iconTitle: "Employee Engagement",
+      iconTitle: "Employee Volunteering",
       paragraph:
         "Connect with Beneficiaries for your Events within Social Sector",
-      btn: "KNOW MORE",
+      btn: "Volunteering",
     },
     {
       id: 1,

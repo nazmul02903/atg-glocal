@@ -857,6 +857,7 @@ hr {
     box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
     border-radius: 4px;
     flex-basis: calc(100%/4);
+    width: 25%;
   }
   .service_card p {
     margin-top: 14px;
@@ -982,7 +983,7 @@ hr {
 }
 .icon_title {
   font-weight: 500;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 134%;
   /* identical to box height, or 27px */
   margin-bottom: 0;
