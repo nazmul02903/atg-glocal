@@ -221,7 +221,7 @@ function Home(props) {
                 {t("Get latest news & updates from the social sector.1")}
               </p>
               <div className="mb-3 d-flex">
-                <div style={{ flexBasis: "33%" }}>
+                <div style={{ flexBasis: "33%" }}  className='lg:hidden' >
                   <h4 style={{color: "#0058a9", width: "160px", margin: "auto" }}>Events</h4>
                 </div>
               </div>
@@ -261,7 +261,7 @@ function Home(props) {
                 })}
               </div>
               <div className="mb-3 d-flex">
-                <div style={{ flexBasis: "33%" }}>
+                <div style={{ flexBasis: "33%" }}  className='lg:hidden' >
                   <h4 style={{color: "#0058a9", width: "160px", margin: "auto" }}>Fundings</h4>
                 </div>
               </div>
@@ -288,7 +288,7 @@ function Home(props) {
                 })}
               </div>
               <div className="mb-3 d-flex">
-                <div style={{ flexBasis: "33%" }}>
+                <div style={{ flexBasis: "33%" }} className='lg:hidden' >
                   <h4 style={{color: "#0058a9", width: "160px", margin: "auto" }}>Jobs</h4>
                 </div>
               </div>
