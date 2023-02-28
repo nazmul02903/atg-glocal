@@ -16,6 +16,9 @@ import RFPPolicy from "../utils/rfpPolicy";
 import JobsPolicy from "../utils/jobsPolicy";
 import csrForm from "../components/csr/csrForm";
 import EventsPolicy from "../utils/eventsPolicy";
+import AllFundingUpdates from "../components/user/services/AllFU";
+import allJobsComponent from "../components/user/services/AllJobs";
+import AllEvents from "../components/user/services/AllEvents";
 
 const UserRoutes = () => {
   return (
@@ -32,6 +35,9 @@ const UserRoutes = () => {
         <Route exact path="/jobsPolicy" component={JobsPolicy} />
         <Route exact path="/eventsPolicy" component={EventsPolicy} />
         <Route exact path="/csrForm" component={CSRForm} />
+        <Route exact path="/jobs/:id" component={allJobsComponent} />
+        <Route exact path="/fundingUpdates/:id" component={AllFundingUpdates} />
+        <Route exact path="/event/:id" component={AllEvents} />
       </Switch>
     </div>
   );

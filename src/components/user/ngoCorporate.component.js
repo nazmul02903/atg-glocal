@@ -15,7 +15,6 @@ import LoginComponent from "../auth/login.component";
 import RegisterComponent from "../auth/registermodal.component";
 import { useSelector } from "react-redux";
 
-
 const NgoCorporateService = ({ ngo }) => {
   const [data, setData] = useState([]);
   const history = useHistory();
@@ -25,49 +24,56 @@ const NgoCorporateService = ({ ngo }) => {
     {
       id: 4,
       icon: network,
-      iconTitle: "Employee Volunteering",
+      iconTitle: "Employee Engagement",
       paragraph:
         "Connect with Beneficiaries for your Events within Social Sector",
       btn: "Volunteering",
     },
     {
-      id: 1,
-      icon: job,
-      iconTitle: 'Post CSR Jobs',
-      // paragraph: "Reach out to  Relevant  Candidates through Free Posting",
-      paragraph: "Reach out to relevant candidates through free posting",
-      btn: "POST CSR JOBS",
-      linkTo: "/user/create/job",
-    },
-    {
       id: 2,
       icon: csr,
-      iconTitle: "CSR Events",
-      paragraph: "Connect with Beneficiaries for your Events within Social Sector",
+      iconTitle: "Post CSR Events",
+      paragraph:
+        "Connect with Beneficiaries for your Events within Social Sector",
 
       btn: "PARTICIPATE",
       linkTo: "/posting",
+      isFree: true
     },
     {
       id: 3,
       icon: search,
       iconTitle: "NGO search",
-      paragraph: "Connect with Beneficiaries for your Events within Social Sector",
+      paragraph:
+        "Connect with Beneficiaries for your Events within Social Sector",
       btn: "START SEARCH",
-      linkTo: '/user/create/fundingUpdate'
+      linkTo: "/user/create/fundingUpdate",
     },
-
+    {
+      id: 1,
+      icon: job,
+      iconTitle: "Post CSR Jobs",
+      // paragraph: "Reach out to  Relevant  Candidates through Free Posting",
+      paragraph: "Reach out to relevant candidates through free posting",
+      btn: "POST CSR JOBS",
+      linkTo: "/user/create/job",
+      isFree: true
+    },
+   
+   
   ];
 
   const ngos = [
     {
-      id: 1,
-      icon: job,
-      iconTitle: "Post Job",
+      id: 3,
+      icon: csr,
+      iconTitle: "Post Event",
       paragraph: "Reach out to relevant candidates through free posting",
-      btn: "Post Job",
-      linkTo: "/user/create/job",
+      btn: "POST EVENT",
+      linkTo: "/posting",
+      isFree: true,
     },
+
     {
       id: 2,
       icon: event,
@@ -78,19 +84,20 @@ const NgoCorporateService = ({ ngo }) => {
     },
 
     {
-      id: 3,
-      icon: csr,
-      iconTitle: "Post Event",
-      paragraph: "Reach out to relevant candidates through free posting",
-      btn: "POST EVENT",
-      linkTo: "/posting",
-    },
-    {
       id: 4,
       icon: advertise,
       iconTitle: "Advertise",
       paragraph: "Reach out to relevant candidates through free posting",
       btn: "KNOW MORE",
+    },
+    {
+      id: 1,
+      icon: job,
+      iconTitle: "Post Job",
+      paragraph: "Reach out to relevant candidates through free posting",
+      btn: "Post Job",
+      linkTo: "/user/create/job",
+      isFree: true,
     },
   ];
   const [loginActive, setLoginActive] = useState(false);
@@ -118,7 +125,9 @@ const NgoCorporateService = ({ ngo }) => {
         <h2 className="service_heading">
           {
             // ngo ? t("Services for NGOs/Govt.1") : t("Services for Corporates/Institutions.1")
-            ngo ? "Services for NGOs/Govt" : "Services for Corporates/Institutions"
+            ngo
+              ? "Services for NGOs/Govt"
+              : "Services for Corporates/Institutions"
           }
         </h2>
         <div className="gap-10 justify-center align-items-end d-flex">
@@ -165,15 +174,12 @@ const NgoCorporateService = ({ ngo }) => {
         <div className="mt-16 d-flex service-wrapper">
           {data.map((each) => (
             <div className="d-flex flex-column service_card">
+              {each.isFree && <span className="free_tag">Free</span>}
               <div className="gap-1 align-items-center d-flex">
                 <img className="service_icon" src={each.icon} alt="" />
-                <h4 className="icon_title">
-                  {t(`${each.iconTitle}.1`)}
-                </h4>
+                <h4 className="icon_title">{t(`${each.iconTitle}.1`)}</h4>
               </div>
-              <p className="service_para">
-                {t(`${each.paragraph}.1`)}
-              </p>
+              <p className="service_para">{t(`${each.paragraph}.1`)}</p>
               <span
                 className="service_btn"
                 onClick={() => {
