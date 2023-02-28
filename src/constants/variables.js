@@ -30,7 +30,13 @@ export const S3_CONFIG_EXHIBITION = {
   accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
   secretAccessKey: process.env.REACT_APP_AWS_SECRET_KEY,
 };
-
+export const S3_CONFIG_RESUME = {
+  bucketName: "resumes-glocalbodh",
+  dirName: "" /* optional */,
+  region: "ap-south-1",
+  accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.REACT_APP_AWS_SECRET_KEY,
+};
 export const THEMATIC_AREA = [
   "Aged/Elderly",
   "Agriculture Management",
