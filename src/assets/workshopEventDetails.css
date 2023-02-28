@@ -33,7 +33,7 @@
 .banner {
   background: url("./bg.png");
   height: 180px;
-  width: 360px;
+  width: 350px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -734,7 +734,7 @@
   gap: 8.4px;
 }
 .register {
-  width: 285px;
+  width: 265px;
   height: 48px;
   background: #0058a9;
   border-radius: 4px;
@@ -919,7 +919,7 @@
   .banner {
     background: url("./bg.png");
     height: 180px;
-    width: 360px;
+    width: 350px;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -1628,7 +1628,7 @@
     cursor: pointer;
   }
   .register {
-    width: 285px;
+    width: 265px;
     height: 48px;
     background: #0058a9;
     border-radius: 4px;
