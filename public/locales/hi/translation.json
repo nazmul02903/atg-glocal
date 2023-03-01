@@ -86,6 +86,12 @@
     "Employee Engagement Activity": {
         "1": "कर्मचारी सगाई गतिविधि"
     },
+    "Employee Engagement": {
+        "1": "कर्मचारी को काम पर लगाना"
+    },
+    "Advertise": {
+        "1": "विज्ञापित"
+    },
     "Improve employee satisfaction and productivity with our customized engagement activities. From team building to professional development, we'll design a program tailored to your company's needs.": {
         "1": "हमारी अनुकूलित संलग्नता गतिविधियों के साथ कर्मचारी संतुष्टि और उत्पादकता में सुधार करें। टीम निर्माण से लेकर व्यावसायिक विकास तक, हम आपकी कंपनी की आवश्यकताओं के अनुरूप एक कार्यक्रम तैयार करेंगे।"
     },
@@ -182,7 +188,7 @@
     "Explore our Exclusive Employee Engagement Services. Connect Now": {
         "1": "हमारी विशिष्ट एम्प्लॉइ एंगेजमेंट सेवाओं को जानें, अभी कनेक्ट करें.."
     },
-    "Blogs":{
+    "Blogs": {
         "1": "ब्लॉग"
     }
 }

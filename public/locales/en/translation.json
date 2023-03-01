@@ -89,6 +89,12 @@
     "Employee Engagement Activity": {
         "1": "Employee Engagement Activity"
     },
+    "Employee Engagement": {
+        "1": "Employee Engagement"
+    },
+    "Advertise": {
+        "1": "Advertise"
+    },
     "Improve employee satisfaction and productivity with our customized engagement activities. From team building to professional development, we'll design a program tailored to your company's needs.": {
         "1": "Improve employee satisfaction and productivity with our customized engagement activities. From team building to professional development, we'll design a program tailored to your company's needs."
     },
@@ -148,6 +154,9 @@
     },
     "Post CSR Jobs": {
         "1": "Post CSR Jobs"
+    },
+    "Post CSR Events": {
+        "1": "Post CSR Events"
     },
     "Reach out to relevant candidates through free posting": {
         "1": "Reach out to relevant candidates through free posting"
