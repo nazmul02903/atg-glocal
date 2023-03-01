@@ -7,7 +7,7 @@ import skills from "./../assets/Icons/skills.svg";
 import parse from "html-react-parser";
 
 function JobModal(props) {
-  const { selectedJob } = props;
+  const { selectedJob, handleApplyJobForm } = props;
   console.log(selectedJob)
   const date = new Date(selectedJob?.createdDate);
   const day = date.getDate();
@@ -31,7 +31,7 @@ function JobModal(props) {
               <p>{selectedJob.location}</p>
             </div>
           </div>
-          <p>Posted: {day} day{day>1 && 's'} ago</p>
+          <p>Posted: {day} day{day > 1 && 's'} ago</p>
           <div className="text-gray-500 border-bottom">
             {/* <div className="m-3 flex">
               <img src={jobType} alt="" />
@@ -60,6 +60,10 @@ function JobModal(props) {
             {
               selectedJob?.requirement && parse(selectedJob.requirement)
             }
+            <div className='px-1 mb-3 mt-3'>
+              <button onClick={() => handleApplyJobForm(selectedJob?.jobId)} className="btn px-4 py-2 bg-[#0057A8]  fs-5  rounded-lg fw-lighter text-white" style={{background: '#0057A8'}} >Apply</button>
+
+            </div>
           </div>
           <div className='mt-5'>
             {/* <h4 className='fw-bold my-3'>Job Description</h4>

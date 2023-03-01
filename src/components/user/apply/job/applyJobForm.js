@@ -58,7 +58,7 @@ const ApplyJobForm = (job) => {
 
   }
   return (
-    <form className='grid gap-4 apply-job-form' onSubmit={handleSubmit}>
+    <form className='grid gap-4 apply-job-form px-3' onSubmit={handleSubmit}>
       <div className='mx-auto'>
         <h3 className='text-center'>
           Apply for job

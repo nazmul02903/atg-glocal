@@ -300,7 +300,7 @@ const AllJobs = (props) => {
         selectedJob={selectedJob}
       />
 
-      <JobModal onHide={() => setJobModalActive(false)} show={jobModalActive} selectedJob={selectedJob} />
+      <JobModal handleApplyJobForm={handleApplyJobForm} onHide={() => setJobModalActive(false)} show={jobModalActive} selectedJob={selectedJob} />
     </>
   );
 };
