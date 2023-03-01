@@ -865,11 +865,13 @@ hr {
 
   .banner-slider {
     display: block;
-    padding: 1rem 3rem 2rem;
+    padding: 1rem 0rem 2rem;
   }
   .banner-slider img {
     max-height: 400px;
     object-fit: contain;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .service_card {

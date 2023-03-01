@@ -188,7 +188,7 @@ function Home(props) {
           {/* nazmul hasan */}
 
           <div className="mb-1 banner-slider">
-          <Slider autoplay={true} speed={3000} dots={true} slidesToShow={3}>
+          <Slider autoplay={true} speed={3000} arrows={true} dots={true} slidesToShow={1} >
               {banners.map((banner) => {
                 return (
                   <div className="px-2">
