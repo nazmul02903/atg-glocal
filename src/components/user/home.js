@@ -188,17 +188,21 @@ function Home(props) {
           {/* nazmul hasan */}
 
           <div className="mb-1 banner-slider">
-            <Slider autoplay={true} speed={3000} dots={true}>
+          <Slider autoplay={true} speed={3000} dots={true} slidesToShow={3}>
               {banners.map((banner) => {
                 return (
-                  <img
-                    onClick={() => {
-                      window.location.href = banner.externalLink;
-                    }}
-                    className="cursor-pointer"
-                    src={banner.imageUrl}
-                    alt=""
-                  />
+                  <div className="px-2">
+                    
+                    <img
+                      onClick={() => {
+                        window.location.href = banner.externalLink;
+                      }}
+                      style={{maxWidth:"100%"}}
+                      className="cursor-pointer"
+                      src={banner.imageUrl}
+                      alt=""
+                    />
+                  </div>
                 );
               })}
               {/* <img src={FirstSlider} alt="" />
