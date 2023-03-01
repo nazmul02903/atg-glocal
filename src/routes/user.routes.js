@@ -80,20 +80,20 @@ const UserRoutes = () => {
           path="/user/dashboard/myJobs"
           component={MyJobs}
         />
-
-        <ProtectedRoute exact path="/jobs/:id" component={allJobsComponent} />
+ {/* <ProtectedRoute exact path="/event/:id" component={AllEvents} /> */}
+        {/* <ProtectedRoute exact path="/jobs/:id" component={allJobsComponent} />
         <ProtectedRoute
           exact
           path="/fundingUpdates/:id"
           component={AllFundingUpdates}
-        />
+        /> */}
         <ProtectedRoute
           exact
           path="/fundingUpdate/ngo/:id"
           component={NgoFundingUpdate}
         />
 
-        <ProtectedRoute exact path="/event/:id" component={AllEvents} />
+       
         <ProtectedRoute
           exact
           path="/event/:category/:id/:eventId"

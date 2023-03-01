@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Modal from "react-bootstrap/Modal";
 import parse from "html-react-parser";
 import { connect } from "react-redux";
 
-import { CustomForm, Radio, Label, TextArea } from "../utils/inputs";
+import { CustomForm, Radio, Label, TextArea, Input } from "../utils/inputs";
 import { validationSchemaReviewJob } from "../constants/schema";
 import AdminService from "../services/admin.service";
 import { alert, alertCustom } from "./alerts";
@@ -15,7 +15,6 @@ const EventReviewDetailsModal = (props) => {
   const methods = useForm({ resolver: yupResolver(validationSchemaReviewJob) });
 
   const { data } = props;
-  console.log(data);
 
   const { watch } = methods;
   const status = watch("approve", "");
@@ -23,6 +22,8 @@ const EventReviewDetailsModal = (props) => {
   const onSubmit = (values) => {
     values.eventId = data.id;
     values.eventStatus = 2;
+    // console.log(posterImg);
+    // values.posterImageLink = posterImg;
 
     if (status === "disapprove") {
       values.eventStatus = 3;
@@ -69,6 +70,7 @@ const EventReviewDetailsModal = (props) => {
         {props?.user?.admin && (
           <FormProvider {...methods}>
             <CustomForm onSubmit={onSubmit}>
+              <Input name={"posterImageLink"} label="Poster Image" />
               <Label label="Actions" />
               <Radio
                 name="approve"
