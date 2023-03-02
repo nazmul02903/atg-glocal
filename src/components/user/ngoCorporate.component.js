@@ -59,9 +59,35 @@ const NgoCorporateService = ({ ngo }) => {
       linkTo: "/user/create/job",
       isFree: true
     },
-   
-   
+
+
   ];
+
+  const handleFreshchat = () => {
+    console.log('fdfd');
+    // initFreshChat()
+  }
+  // function initFreshChat() {
+  //   window.fcWidget.init({
+  //     token: "73cc42dc-c11a-4ee0-a3ef-97ae8c7a7393",
+  //     host: "https://glocalbodh.freshchat.com"
+  //   });
+  // }
+  // function initialize(i, t) {
+  //   var e;
+  //   return i.getElementById(t) ?
+  //     initFreshChat() : ((e = i.createElement("script")).id = t, e.async = !0,
+  //       e.src = "https://glocalbodh.freshchat.com/js/widget.js", e.onload = initFreshChat, i.head.appendChild(e))
+  // }
+
+  // function initiateCall() {
+  //   initialize(document, "Freshchat-js-sdk")
+  // }
+
+  // useEffect(() => {
+  //   window.addEventListener("load", initiateCall, !1)
+  //   // window.attachEvent("load", initiateCall, !1);
+  // }, [])
 
   const ngos = [
     {
@@ -89,6 +115,7 @@ const NgoCorporateService = ({ ngo }) => {
       iconTitle: "Advertise",
       paragraph: "Reach out to relevant candidates through free posting",
       btn: "KNOW MORE",
+      onClick: handleFreshchat
     },
     {
       id: 1,
@@ -183,6 +210,7 @@ const NgoCorporateService = ({ ngo }) => {
               <span
                 className="service_btn"
                 onClick={() => {
+                  each.onClick && each.onClick()
                   if (isLoggedIn) {
                     each.linkTo && history.push(each.linkTo);
                     window.scrollTo(0, 0);
