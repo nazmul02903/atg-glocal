@@ -119,7 +119,7 @@ class AdminService {
     return axios.post(
       API_FETCH_EVENTS_BY_CATEGORY,
       { eventCategoryId: category, dataType: dataType },
-      { headers: AuthHeader() }
+      // { headers: AuthHeader() }
     );
   }
   
@@ -127,7 +127,7 @@ class AdminService {
     return axios.post(
       API_FETCH_ALL_EVENTS,
       { dataType: dataType },
-      { headers: AuthHeader() }
+      // { headers: AuthHeader() }
     );
   }
 

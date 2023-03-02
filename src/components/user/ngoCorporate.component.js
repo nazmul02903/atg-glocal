@@ -20,55 +20,12 @@ const NgoCorporateService = ({ ngo }) => {
   const history = useHistory();
   const { t } = useTranslation();
 
-  const corporates = [
-    {
-      id: 4,
-      icon: network,
-      iconTitle: "Employee Engagement",
-      paragraph:
-        "Connect with Beneficiaries for your Events within Social Sector",
-      btn: "Volunteering",
-    },
-    {
-      id: 2,
-      icon: csr,
-      iconTitle: "Post CSR Events",
-      paragraph:
-        "Connect with Beneficiaries for your Events within Social Sector",
-
-      btn: "PARTICIPATE",
-      linkTo: "/posting",
-      isFree: true
-    },
-    {
-      id: 3,
-      icon: search,
-      iconTitle: "NGO search",
-      paragraph:
-        "Connect with Beneficiaries for your Events within Social Sector",
-      btn: "START SEARCH",
-      linkTo: "/user/create/fundingUpdate",
-    },
-    {
-      id: 1,
-      icon: job,
-      iconTitle: "Post CSR Jobs",
-      // paragraph: "Reach out to  Relevant  Candidates through Free Posting",
-      paragraph: "Reach out to relevant candidates through free posting",
-      btn: "POST CSR JOBS",
-      linkTo: "/user/create/job",
-      isFree: true
-    },
-   
-   
-  ];
-
   const ngos = [
     {
       id: 3,
       icon: csr,
       iconTitle: "Post Event",
-      paragraph: "Reach out to relevant candidates through free posting",
+      paragraph: "Post your Events with us for Free* & Get Relevant Audience!",
       btn: "POST EVENT",
       linkTo: "/posting",
       isFree: true,
@@ -78,7 +35,7 @@ const NgoCorporateService = ({ ngo }) => {
       id: 2,
       icon: event,
       iconTitle: "C.S.R. Test",
-      paragraph: "Take a quick test to know CSR funding eligibility",
+      paragraph: "Take a Quick test to know CSR Funding Eligibility",
       btn: "Give Test",
       linkTo: "/csrForm",
     },
@@ -87,7 +44,7 @@ const NgoCorporateService = ({ ngo }) => {
       id: 4,
       icon: advertise,
       iconTitle: "Advertise",
-      paragraph: "Reach out to relevant candidates through free posting",
+      paragraph: "Promote your invitation with us! Learn how...",
       btn: "KNOW MORE",
     },
     {
@@ -100,6 +57,44 @@ const NgoCorporateService = ({ ngo }) => {
       isFree: true,
     },
   ];
+
+  const corporates = [
+    {
+      id: 4,
+      icon: network,
+      iconTitle: "Employee Engagement",
+      paragraph: "Reach out to relevant candidates through free posting",
+      btn: "Volunteering",
+    },
+    {
+      id: 2,
+      icon: csr,
+      iconTitle: "Post CSR Events",
+      paragraph: "Reach out to relevant candidates through free posting",
+
+      btn: "PARTICIPATE",
+      linkTo: "/posting",
+      isFree: true,
+    },
+    {
+      id: 3,
+      icon: search,
+      iconTitle: "NGO search",
+      paragraph: "Reach out to relevant candidates through free posting",
+      btn: "START SEARCH",
+      linkTo: "/user/create/fundingUpdate",
+    },
+    {
+      id: 1,
+      icon: job,
+      iconTitle: "Post CSR Jobs",
+      paragraph: "Reach out to relevant candidates through free posting",
+      btn: "POST CSR JOBS",
+      linkTo: "/user/create/job",
+      isFree: true,
+    },
+  ];
+
   const [loginActive, setLoginActive] = useState(false);
   const [signUpActive, setSignUpActive] = useState(false);
 
@@ -179,7 +174,7 @@ const NgoCorporateService = ({ ngo }) => {
                 <img className="service_icon" src={each.icon} alt="" />
                 <h4 className="icon_title">{t(`${each.iconTitle}.1`)}</h4>
               </div>
-              <p className="service_para">{t(`${each.paragraph}.1`)}</p>
+              <p style={{textTransform: "capitalize"}} className="service_para">{t(`${each.paragraph}.1`)}</p>
               <span
                 className="service_btn"
                 onClick={() => {
