@@ -20,6 +20,71 @@ const NgoCorporateService = ({ ngo }) => {
   const history = useHistory();
   const { t } = useTranslation();
 
+  const handleFreshchat = () => {
+    console.log('fdfd');
+    // initFreshChat()
+  }
+  // function initFreshChat() {
+  //   window.fcWidget.init({
+  //     token: "73cc42dc-c11a-4ee0-a3ef-97ae8c7a7393",
+  //     host: "https://glocalbodh.freshchat.com"
+  //   });
+  // }
+  // function initialize(i, t) {
+  //   var e;
+  //   return i.getElementById(t) ?
+  //     initFreshChat() : ((e = i.createElement("script")).id = t, e.async = !0,
+  //       e.src = "https://glocalbodh.freshchat.com/js/widget.js", e.onload = initFreshChat, i.head.appendChild(e))
+  // }
+
+  // function initiateCall() {
+  //   initialize(document, "Freshchat-js-sdk")
+  // }
+
+  // useEffect(() => {
+  //   window.addEventListener("load", initiateCall, !1)
+  //   // window.attachEvent("load", initiateCall, !1);
+  // }, [])
+
+  const ngos = [
+    {
+      id: 3,
+      icon: csr,
+      iconTitle: "Post Event",
+      paragraph: "Post your Events with us for Free* & Get Relevant Audience!",
+      btn: "POST EVENT",
+      linkTo: "/posting",
+      isFree: true,
+    },
+
+    {
+      id: 2,
+      icon: event,
+      iconTitle: "C.S.R. Test",
+      paragraph: "Take a Quick test to know CSR Funding Eligibility",
+      btn: "Give Test",
+      linkTo: "/csrForm",
+    },
+
+    {
+      id: 4,
+      icon: advertise,
+      iconTitle: "Advertise",
+      paragraph: "Promote your invitation with us! Learn how...",
+      btn: "KNOW MORE",
+      onClick: handleFreshchat
+    },
+    {
+      id: 1,
+      icon: job,
+      iconTitle: "Post Job",
+      paragraph: "Reach out to relevant candidates through free posting",
+      btn: "Post Job",
+      linkTo: "/user/create/job",
+      isFree: true,
+    },
+  ];
+
   const corporates = [
     {
       id: 4,
@@ -63,70 +128,6 @@ const NgoCorporateService = ({ ngo }) => {
 
   ];
 
-  const handleFreshchat = () => {
-    console.log('fdfd');
-    // initFreshChat()
-  }
-  // function initFreshChat() {
-  //   window.fcWidget.init({
-  //     token: "73cc42dc-c11a-4ee0-a3ef-97ae8c7a7393",
-  //     host: "https://glocalbodh.freshchat.com"
-  //   });
-  // }
-  // function initialize(i, t) {
-  //   var e;
-  //   return i.getElementById(t) ?
-  //     initFreshChat() : ((e = i.createElement("script")).id = t, e.async = !0,
-  //       e.src = "https://glocalbodh.freshchat.com/js/widget.js", e.onload = initFreshChat, i.head.appendChild(e))
-  // }
-
-  // function initiateCall() {
-  //   initialize(document, "Freshchat-js-sdk")
-  // }
-
-  // useEffect(() => {
-  //   window.addEventListener("load", initiateCall, !1)
-  //   // window.attachEvent("load", initiateCall, !1);
-  // }, [])
-
-  const ngos = [
-    {
-      id: 3,
-      icon: csr,
-      iconTitle: "Post Event",
-      paragraph: "Reach out to relevant candidates through free posting",
-      btn: "POST EVENT",
-      linkTo: "/posting",
-      isFree: true,
-    },
-
-    {
-      id: 2,
-      icon: event,
-      iconTitle: "C.S.R. Test",
-      paragraph: "Take a quick test to know CSR funding eligibility",
-      btn: "Give Test",
-      linkTo: "/csrForm",
-    },
-
-    {
-      id: 4,
-      icon: advertise,
-      iconTitle: "Advertise",
-      paragraph: "Reach out to relevant candidates through free posting",
-      btn: "KNOW MORE",
-      onClick: handleFreshchat
-    },
-    {
-      id: 1,
-      icon: job,
-      iconTitle: "Post Job",
-      paragraph: "Reach out to relevant candidates through free posting",
-      btn: "Post Job",
-      linkTo: "/user/create/job",
-      isFree: true,
-    },
-  ];
   const [loginActive, setLoginActive] = useState(false);
   const [signUpActive, setSignUpActive] = useState(false);
 
@@ -206,7 +207,7 @@ const NgoCorporateService = ({ ngo }) => {
                 <img className="service_icon" src={each.icon} alt="" />
                 <h4 className="icon_title">{t(`${each.iconTitle}.1`)}</h4>
               </div>
-              <p className="service_para">{t(`${each.paragraph}.1`)}</p>
+              <p style={{textTransform: "capitalize"}} className="service_para">{t(`${each.paragraph}.1`)}</p>
               <span
                 className="service_btn"
                 onClick={() => {

@@ -89,13 +89,13 @@ const AllJobs = (props) => {
         dispatch(clearLoader());
         setJobs(res?.data?.jobDetailsBeans);
         setSelectedJob(res?.data?.jobDetailsBeans[0]);
-      });
+      }).catch(() => dispatch(clearLoader()));
     } else {
       AdminService.fetchJobsByCategory(id, 1).then((res) => {
         dispatch(clearLoader());
         setJobs(res?.data?.jobDetailsBeans);
         setSelectedJob(res?.data?.jobDetailsBeans[0]);
-      });
+      }).catch(() => dispatch(clearLoader()));
     }
   }, [jobList, dispatch]);
 
@@ -139,41 +139,41 @@ const AllJobs = (props) => {
   return (
     <>
       <div className="pt-0 md:mx-5 md:px-5 jobs-page">
-        <div className='jobs-header grid grid-cols-12 bg-white p-5 d-none d-md-grid'>
-          <div className='cols-span-4 grid items-center justify-right'>
+        <div className='grid grid-cols-12 p-5 bg-white jobs-header d-none d-md-grid'>
+          <div className='grid items-center cols-span-4 justify-right'>
             <div>
               <h1>Connecting people working in NGOs to Opportunities</h1>
               <p>Whatever you’re looking to do this year, Meetup can help. For 20 years, people have turned to Meetup to meet people, make friends, </p>
             </div>
           </div>
-          <div className="cols-span-4 -mt-5">
+          <div className="-mt-5 cols-span-4">
             <img className="-mt-5" src={jobsBanner} alt="" />
           </div>
-          <div className='cols-span-4 p-4 shadow-md text-gray-400 fw-lighter'>
+          <div className='p-4 text-gray-400 shadow-md cols-span-4 fw-lighter'>
             <div>
               <h4 className='mb-4 text-center'>Post Jobs</h4>
               <div className='grid justify-center'>
                 <div className="grid gap-2 mb-4 w-80">
-                  <div className="form-check border p-4 rounded">
-                    <input className="form-check-input p-3 m-0 shadow-radio" onChange={handleSelection} name="select-event" id="ngo_jobs" type="radio" />
-                    <label className="form-check-label m-1 text-blue-600 fw-bolder" for="ngo_jobs"><span className="ms-3">
+                  <div className="p-4 rounded border form-check">
+                    <input className="p-3 m-0 form-check-input shadow-radio" onChange={handleSelection} name="select-event" id="ngo_jobs" type="radio" />
+                    <label className="m-1 text-blue-600 form-check-label fw-bolder" for="ngo_jobs"><span className="ms-3">
                       {t("NGO Jobs.1")}
                     </span></label>
                   </div>
-                  <div className="form-check border p-4 rounded">
-                    <input className="form-check-input p-3 m-0 shadow-radio" onChange={handleSelection} name="select-event" id="csr_jobs" type="radio" />
-                    <label className="form-check-label m-1 text-blue-600 fw-bolder" for="csr_jobs"><span className="ms-3">
+                  <div className="p-4 rounded border form-check">
+                    <input className="p-3 m-0 form-check-input shadow-radio" onChange={handleSelection} name="select-event" id="csr_jobs" type="radio" />
+                    <label className="m-1 text-blue-600 form-check-label fw-bolder" for="csr_jobs"><span className="ms-3">
                       {t("CSR Jobs.1")}
                     </span></label>
                   </div>
-                  <div className="form-check border p-4 rounded">
-                    <input className="form-check-input p-3 m-0 shadow-radio" onChange={handleSelection} name="select-event" id="govt_jobs" type="radio" />
-                    <label className="form-check-label m-1 text-blue-600 fw-bolder" for="govt_jobs"><span className="ms-3">
+                  <div className="p-4 rounded border form-check">
+                    <input className="p-3 m-0 form-check-input shadow-radio" onChange={handleSelection} name="select-event" id="govt_jobs" type="radio" />
+                    <label className="m-1 text-blue-600 form-check-label fw-bolder" for="govt_jobs"><span className="ms-3">
                       {t("Govt. Jobs.1")}
                     </span></label>
                   </div>
                 </div>
-                <button onClick={handleSubmit} className='btn my-2 fs-5'>Post Jobs Free</button>
+                <button onClick={handleSubmit} className='my-2 btn fs-5'>Post Jobs Free</button>
               </div>
             </div>
           </div>
@@ -211,13 +211,13 @@ const AllJobs = (props) => {
                         : "bg-white"
                       }`}
                   >
-                    <img src={EventCardImg} alt="" className="w-25 pb-5 pr-5" />
-                    <div className="w-full grid grid-cols-2 justify-between">
+                    <img src={EventCardImg} alt="" className="pr-5 pb-5 w-25" />
+                    <div className="grid grid-cols-2 justify-between w-full">
                       <div className="event-card-content">
-                        <p className="event-title fw-bold mb-2 text-blue-600">{job.designation}</p>
+                        <p className="mb-2 text-blue-600 event-title fw-bold">{job.designation}</p>
                         <p className="m-0">{job.companyName}</p>
                         <p className="m-0">{job.location}</p>
-                        <p className="text-gray-500 text-sm m-0">{job.expiryLabel}</p>
+                        <p className="m-0 text-sm text-gray-500">{job.expiryLabel}</p>
                         <small><u>Send me a job like this</u></small>
                       </div>
                       <div className="grid justify-end justify-items-end">
@@ -226,7 +226,7 @@ const AllJobs = (props) => {
                           <img
                             src={ShareIcon}
                             style={{ width: "25px", height: "25px" }}
-                            className="hover:bg-gray-100 rounded-full p-1"
+                            className="p-1 rounded-full hover:bg-gray-100"
                             onClick={() => setShareModalActive(true)}
                             alt=""
                           />
@@ -238,7 +238,7 @@ const AllJobs = (props) => {
               })}
             </div>
 
-            <div className="d-none col-span-1 bg-white d-md-block pt-4 ps-4">
+            <div className="col-span-1 pt-4 bg-white d-none d-md-block ps-4">
               {
                 selectedJob ?
                   <>
@@ -246,40 +246,40 @@ const AllJobs = (props) => {
                     <h2 className="fw-bold">{selectedJob?.designation}</h2>
                     <p>{selectedJob?.location} On-site 1 day ago 24 applicants</p>
                     <div className="text-gray-500">
-                      <div className="my-3 flex">
+                      <div className="flex my-3">
                         <img src={jobType} alt="" />
-                        <p className="m-0 pl-3">{selectedJob?.jobType}</p>
+                        <p className="pl-3 m-0">{selectedJob?.jobType}</p>
                       </div>
-                      <div className="my-3 flex">
+                      <div className="flex my-3">
                         <img src={financialServices} alt="" />
-                        <p className="m-0 pl-3">₹ 10,001+ employees · Financial Services</p>
+                        <p className="pl-3 m-0">₹ 10,001+ employees · Financial Services</p>
                       </div>
-                      <div className="my-3 flex">
+                      <div className="flex my-3">
                         <img src={alumni} alt="" />
-                        <p className="m-0 pl-3">1 company alumni </p>
+                        <p className="pl-3 m-0">1 company alumni </p>
                       </div>
-                      <div className="my-3 flex">
+                      <div className="flex my-3">
                         <img src={applicants} alt="" />
-                        <p className="m-0 pl-3">See how you compare to 24 applicants</p>
+                        <p className="pl-3 m-0">See how you compare to 24 applicants</p>
                       </div>
-                      <div className="my-3 flex">
+                      <div className="flex my-3">
                         <img src={skills} alt="" />
-                        <p className="m-0 pl-3">Skills: Spring Framework, Systems Analysis,</p>
+                        <p className="pl-3 m-0">Skills: Spring Framework, Systems Analysis,</p>
                       </div>
                     </div>
                     <div className="flex gap-3 my-5">
-                      <button onClick={()=>handleApplyJobForm(selectedJob?.jobId)} className="btn w-24 fs-5 h-8 p-0 rounded-lg fw-lighter">Apply</button>
-                      <button className="btn w-24 fs-5 h-8 p-0 rounded-lg bg-white" style={{ border: "1px solid #0057A8", color: "#0057A8" }}>Save</button>
+                      <button onClick={()=>handleApplyJobForm(selectedJob?.jobId)} className="p-0 w-24 h-8 rounded-lg btn fs-5 fw-lighter">Apply</button>
+                      <button className="p-0 w-24 h-8 bg-white rounded-lg btn fs-5" style={{ border: "1px solid #0057A8", color: "#0057A8" }}>Save</button>
                     </div>
                     <div>
-                      <h6 className="fw-bold my-3">Job Id: {selectedJob?.jobId}</h6>
+                      <h6 className="my-3 fw-bold">Job Id: {selectedJob?.jobId}</h6>
                       {/* <p className="text-grey-800 fs-6">
                         The Applications Development Team Lead is an intermediate level position responsible for driving and delivering implementation of new or revised application systems and programs in coordination with the Technology team. The overall objective of this role is to contribute to applications systems analysis and project deliveries activities.
                       </p> */}
                       {
                         selectedJob?.companyDetails && parse(selectedJob?.companyDetails)
                       }
-                      {/* <h6 className="fw-bold my-4">Responsibilities:</h6> */}
+                      {/* <h6 className="my-4 fw-bold">Responsibilities:</h6> */}
                       <div className="mt-3">
                         {
                           selectedJob?.jobDescription && parse(selectedJob?.jobDescription)

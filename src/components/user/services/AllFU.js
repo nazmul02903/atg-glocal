@@ -112,7 +112,7 @@ const AllFundingUpdate = (props) => {
     AdminService.fetchFundingUpdateByCategory(id, 1).then((res) => {
       dispatch(clearLoader());
       setFus(res.data.fundingUpdateBeans);
-    });
+    }).catch(() => dispatch(clearLoader()));;
   }, [id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleCategoryChange = (id) => {
@@ -144,15 +144,15 @@ const AllFundingUpdate = (props) => {
     //   {fus.map((fu, index) => {
     //     return (
     //       <div
-    //         className="list-group-item col-sm-8 align-items-start rounded mb-2 bg-light bg-gradient custom-card"
+    //         className="mb-2 rounded list-group-item col-sm-8 align-items-start bg-light bg-gradient custom-card"
     //         key={index}
     //       >
-    //         <div className="flex ">
+    //         <div className="flex">
     //           <div className="w-75">
     //             <h5 className="mb-1">{fu.title}</h5>
     //           </div>
 
-    //           <div className="expire-text-box p-2 self-center">
+    //           <div className="self-center p-2 expire-text-box">
     //             {fu.applicationDeadlineText}
     //           </div>
     //         </div>
@@ -182,41 +182,41 @@ const AllFundingUpdate = (props) => {
     //   })}
     // </div>
     <div className="pt-0 md:m-5 md:p-5 funding-page">
-      <div className='funding-header grid grid-cols-12 bg-white p-5 d-none d-md-grid'>
-        <div className='cols-span-4 grid items-center justify-right'>
+      <div className='grid grid-cols-12 p-5 bg-white funding-header d-none d-md-grid'>
+        <div className='grid items-center cols-span-4 justify-right'>
           <div>
             <h1>Connecting people working in NGOs to Opportunities</h1>
             <p>Whatever you’re looking to do this year, Meetup can help. For 20 years, people have turned to Meetup to meet people, make friends, </p>
           </div>
         </div>
-        <div className="cols-span-4 ">
+        <div className="cols-span-4">
           <img src={fundingBanner} alt="" />
         </div>
-        <div className='cols-span-4 grid items-center p-4 shadow-md justify-center text-gray-400'>
+        <div className='grid justify-center items-center p-4 text-gray-400 shadow-md cols-span-4'>
           <div>
             <h4 className='mb-4 text-center fw-normal'>Looking for Implementation Partner?</h4>
             <div className='grid justify-center'>
               <div className="grid gap-2 mb-4 w-96">
-                <div className="form-check border p-4 rounded">
-                  <input className="form-check-input p-3 m-0 shadow-radio" onChange={handleSelection} name="select-event" id="govt_funds" type="radio" />
-                  <label className="form-check-label m-1 text-blue-600" for="govt_funds"><span className="ms-3">
+                <div className="p-4 rounded border form-check">
+                  <input className="p-3 m-0 form-check-input shadow-radio" onChange={handleSelection} name="select-event" id="govt_funds" type="radio" />
+                  <label className="m-1 text-blue-600 form-check-label" for="govt_funds"><span className="ms-3">
                     {t("Govt. Funds.1")}
                   </span></label>
                 </div>
-                <div className="form-check border p-4 rounded">
-                  <input className="form-check-input p-3 m-0 shadow-radio" onChange={handleSelection} name="select-event" id="foreign_funds" type="radio" />
-                  <label className="form-check-label m-1 text-blue-600" for="foreign_funds"><span className="ms-3">
+                <div className="p-4 rounded border form-check">
+                  <input className="p-3 m-0 form-check-input shadow-radio" onChange={handleSelection} name="select-event" id="foreign_funds" type="radio" />
+                  <label className="m-1 text-blue-600 form-check-label" for="foreign_funds"><span className="ms-3">
                     {t("Foreign Funds.1")}
                   </span></label>
                 </div>
-                <div className="form-check border p-4 rounded">
-                  <input className="form-check-input p-3 m-0 shadow-radio" onChange={handleSelection} name="select-event" id="csr_funds" type="radio" />
-                  <label className="form-check-label m-1 text-blue-600" for="csr_funds"><span className="ms-3">
+                <div className="p-4 rounded border form-check">
+                  <input className="p-3 m-0 form-check-input shadow-radio" onChange={handleSelection} name="select-event" id="csr_funds" type="radio" />
+                  <label className="m-1 text-blue-600 form-check-label" for="csr_funds"><span className="ms-3">
                     {t("CSR Funds.1")}
                   </span></label>
                 </div>
               </div>
-              <button onClick={handleSubmit} className='btn my-2 fs-4'>Search</button>
+              <button onClick={handleSubmit} className='my-2 btn fs-4'>Search</button>
             </div>
           </div>
         </div>
@@ -243,20 +243,20 @@ const AllFundingUpdate = (props) => {
             <div
               key={funding.fundingId}
               // onClick={() => handleSelectedJob(job.jobId)}
-              className={`flex bg-white p-4 mb-4 lg:mr-4 shadow-sm cursor-pointer`}
+              className={`flex p-4 mb-4 bg-white shadow-sm cursor-pointer lg:mr-4`}
             // ${
             //   selectedJob.jobId === job.jobId
             //     ? "lg:bg-gray-50"
             //     : "bg-white"
             // }`}
             >
-              <img src={example} alt="" className="w-25 pb-5 pr-5" />
-              <div className="w-full grid grid-cols-2 justify-between">
+              <img src={example} alt="" className="pr-5 pb-5 w-25" />
+              <div className="grid grid-cols-2 justify-between w-full">
                 <div className="event-card-content">
-                  <p className="event-title fw-bold mb-2 text-blue-600">{funding.designation}</p>
+                  <p className="mb-2 text-blue-600 event-title fw-bold">{funding.designation}</p>
                   <p className="m-0">{funding.issue}</p>
                   <p className="m-0">{funding.location}</p>
-                  <p className="text-gray-500 text-sm m-0">{funding.expiryLabel}</p>
+                  <p className="m-0 text-sm text-gray-500">{funding.expiryLabel}</p>
                   {/* <small><u>Send me a job like this</u></small> */}
                 </div>
                 <div className="grid justify-end justify-items-end">
@@ -265,7 +265,7 @@ const AllFundingUpdate = (props) => {
                     <img
                       src={ShareIcon}
                       style={{ width: "25px", height: "25px" }}
-                      className="hover:bg-gray-100 rounded-full p-1"
+                      className="p-1 rounded-full hover:bg-gray-100"
                       // onClick={() => setShareModalActive(true)}
                       alt=""
                     />

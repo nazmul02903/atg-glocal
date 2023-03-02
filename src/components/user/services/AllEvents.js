@@ -50,13 +50,13 @@ const AllEvents = (props) => {
   const [selectedEventType, setSelectedEventType] = useState(null);
   const { t } = useTranslation();
 
-  useInterval(async () => {
-    // dispatch(setLoader());
-    // await AdminService.fetchEventsByCategory(id, 1).then((res) => {
-    //   dispatch(clearLoader());
-    //   setEvents(res.data.eventBeans);
-    // });
-  }, POLLING_INTERVAL);
+  // useInterval(async () => {
+  //   dispatch(setLoader());
+  //   await AdminService.fetchEventsByCategory(id, 1).then((res) => {
+  //     dispatch(clearLoader());
+  //     setEvents(res.data.eventBeans);
+  //   });
+  // }, POLLING_INTERVAL);
 
   useEffect(() => {
     const event = eventList.find((event) => event.id === parseInt(id));
@@ -81,13 +81,13 @@ const AllEvents = (props) => {
         dispatch(clearLoader());
         console.log("data", res.data.eventBeans);
         setEvents(res.data.eventBeans);
-      });
+      }).catch(() => dispatch(clearLoader()))
     } else {
       AdminService.fetchEventsByCategory(id, 1).then((res) => {
         dispatch(clearLoader());
         console.log("data", res.data.eventBeans);
         setEvents(res.data.eventBeans);
-      });
+      }).catch(() => dispatch(clearLoader()));
     }
   }, [eventList]);
 
@@ -117,8 +117,8 @@ const AllEvents = (props) => {
   return (
     <>
       <div className="pt-0 md:pt-10 md:p-5 md:m-5">
-        <div className="md:bg-white md:m-5 md:pt-5 mb-6 md:mb-10">
-          <div className="grid-cols-12 md:grid-cols-12 p-5 items-center hidden md:grid">
+        <div className="mb-6 md:bg-white md:m-5 md:pt-5 md:mb-10">
+          <div className="hidden grid-cols-12 items-center p-5 md:grid-cols-12 md:grid">
             <div className="md:col-span-4">
               <h1>Connecting people working in NGOs to Opportunities</h1>
               <p>Whatever you’re looking to do this year, Meetup can help. For 20 years, people have turned to Meetup to meet people, make friends, </p>
@@ -127,24 +127,24 @@ const AllEvents = (props) => {
               <img src={allEvents} className="w-full" alt="" />
             </div>
             <div className="col-span-4 all-events-form">
-              <div className="p-4 flex flex-col justify-center all-events-form-wrapper">
+              <div className="flex flex-col justify-center p-4 all-events-form-wrapper">
                 <p className="mb-4 text-center text-gray-400 fs-4">Post Your Event</p>
                 <form onSubmit={handleSubmit} className="grid gap-2 mb-4">
-                  <div className="form-check border lg:p-4 rounded d-flex">
-                    <input className="form-check-input p-3 m-0 shadow-radio" onChange={handleSelection} name="select-event" id="workshopEvent" type="radio" />
-                    <label className="form-check-label m-1 text-blue-600 whitespac-nowrap" for="workshopEvent"><span className="ms-3">
+                  <div className="rounded border form-check lg:p-4 d-flex">
+                    <input className="p-3 m-0 form-check-input shadow-radio" onChange={handleSelection} name="select-event" id="workshopEvent" type="radio" />
+                    <label className="m-1 text-blue-600 form-check-label whitespac-nowrap" for="workshopEvent"><span className="ms-3">
                       {t("Workshops & Trainings.2")}
                     </span></label>
                   </div>
-                  <div className="form-check border p-4 rounded">
-                    <input className="form-check-input p-3 m-0 shadow-radio" onChange={handleSelection} name="select-event" id="awardEvent" type="radio" />
-                    <label className="form-check-label m-1 text-blue-600 whitespac-nowrap" for="awardEvent"><span className="ms-3">
+                  <div className="p-4 rounded border form-check">
+                    <input className="p-3 m-0 form-check-input shadow-radio" onChange={handleSelection} name="select-event" id="awardEvent" type="radio" />
+                    <label className="m-1 text-blue-600 form-check-label whitespac-nowrap" for="awardEvent"><span className="ms-3">
                       {t("Awards & Competitions.2")}
                     </span></label>
                   </div>
-                  <div className="form-check border p-4 rounded">
-                    <input className="form-check-input p-3 m-0 shadow-radio" onChange={handleSelection} name="select-event" id="exhibitionEvent" type="radio" />
-                    <label className="form-check-label m-1 text-blue-600 whitespac-nowrap" for="exhibitionEvent"><span className="ms-3">
+                  <div className="p-4 rounded border form-check">
+                    <input className="p-3 m-0 form-check-input shadow-radio" onChange={handleSelection} name="select-event" id="exhibitionEvent" type="radio" />
+                    <label className="m-1 text-blue-600 form-check-label whitespac-nowrap" for="exhibitionEvent"><span className="ms-3">
                       {t("Exhibitions & Summits.2")}
                     </span></label>
                   </div>
@@ -156,7 +156,7 @@ const AllEvents = (props) => {
               </div>
             </div>
           </div>
-          <div className="all-events-categories flex items-center">
+          <div className="flex items-center all-events-categories">
             {eventList.map((event) => {
               return (
                 <div
@@ -173,14 +173,14 @@ const AllEvents = (props) => {
             })}
           </div>
         </div>
-        <div className="list-group row ml-0 w-full">
+        <div className="ml-0 w-full list-group row">
           {/* <h3 className="mt-4 mb-4"> {getEventName()} </h3> */}
-          <div className="event-cards grid grid-cols-12 md:mx-6 gap-y-4 md:gap-x-5">
+          <div className="grid grid-cols-12 gap-y-4 event-cards md:mx-6 md:gap-x-5">
             {events.map((event, index) => {
               return (
                 <div
                   key={event.id}
-                  className="event-card col-span-12 md:col-span-4"
+                  className="col-span-12 event-card md:col-span-4"
                   onClick={() =>
                     window.open(
                       `${process.env.REACT_APP_URL}/event/${event.eventCategoryText}/${event.id}/${event.eventId}`
@@ -188,7 +188,7 @@ const AllEvents = (props) => {
                   }
                 >
                   <div className="flex">
-                    <img src={EventCardImg} className="event-img" alt="" />
+                    <img src={event.posterImageLink ? event.posterImageLink : EventCardImg} className="event-img" alt="" />
                   </div>
                   <div className="event-card-content">
                     <div className="flex items-center mb-0">
