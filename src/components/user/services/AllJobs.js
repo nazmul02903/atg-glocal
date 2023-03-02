@@ -128,9 +128,9 @@ const AllJobs = (props) => {
       .then(res => {
         console.log('res', res);
         if (res?.data?.jobApplicationStatus === null) {
-          setJobApplied(true)
-        } else {
           setJobApplied(false)
+        } else {
+          setJobApplied(true)
         }
       })
       .catch(err => {
