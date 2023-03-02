@@ -21,6 +21,7 @@ import JobModal from "../../../helpers/jobModal";
 import { useHistory } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import parse from "html-react-parser";
+import { API_FETCH_SINGLE_JOB_USER } from "../../../constants/urls";
 
 const tempJobList = [
   {
@@ -57,7 +58,7 @@ const AllJobs = (props) => {
   const history = useHistory();
   const [selectedJobType, setSelectedJobType] = useState(null);
   const { t } = useTranslation();
-
+  const [jobApplied, setJobApplied] = useState(false)
   // useInterval(async () => {
   //   // dispatch(setLoader());
   //   // await AdminService.fetchEventsByCategory(id, 1).then((res) => {
@@ -119,7 +120,23 @@ const AllJobs = (props) => {
   };
 
   useEffect(() => {
-    console.log(selectedJob);
+    console.log(selectedJob?.jobId);
+    setJobApplied(false)
+    if (!selectedJob?.jobId) return
+    console.log('fetching..');
+    AdminService.fetchSingleJob(selectedJob.jobId)
+      .then(res => {
+        console.log('res', res);
+        if (res?.data?.jobApplicationStatus === null) {
+          setJobApplied(true)
+        } else {
+          setJobApplied(false)
+        }
+      })
+      .catch(err => {
+        setJobApplied(false)
+        console.log('err', err);
+      })
   }, [selectedJob]);
 
   const handleSelection = (e) => {
@@ -133,8 +150,9 @@ const AllJobs = (props) => {
 
   const handleApplyJobForm = (id) => {
     console.log(id);
-    history.push({pathname: '/user/apply/applyJobForm', state: {id}});
+    history.push({ pathname: '/user/apply/applyJobForm', state: { id } });
   };
+  console.log(jobApplied);
 
   return (
     <>
@@ -205,10 +223,9 @@ const AllJobs = (props) => {
                   <div
                     key={job.jobId}
                     onClick={() => handleSelectedJob(job?.jobId)}
-                    className={`flex p-4 lg:mb-4 lg:mr-4 shadow-sm cursor-pointer ${
-                      selectedJob?.jobId === job?.jobId
-                        ? "lg:bg-gray-50"
-                        : "bg-white"
+                    className={`flex p-4 lg:mb-4 lg:mr-4 shadow-sm cursor-pointer ${selectedJob?.jobId === job?.jobId
+                      ? "lg:bg-gray-50"
+                      : "bg-white"
                       }`}
                   >
                     <img src={EventCardImg} alt="" className="pr-5 pb-5 w-25" />
@@ -268,7 +285,16 @@ const AllJobs = (props) => {
                       </div>
                     </div>
                     <div className="flex gap-3 my-5">
-                      <button onClick={()=>handleApplyJobForm(selectedJob?.jobId)} className="p-0 w-24 h-8 rounded-lg btn fs-5 fw-lighter">Apply</button>
+                      {
+                        jobApplied ?
+                          <button className="p-0 px-2 h-8 rounded-lg btn fs-5 fw-lighter">
+                            Already Applied
+                          </button> :
+                          <button onClick={() => handleApplyJobForm(selectedJob?.jobId)} className="p-0 w-24 h-8 rounded-lg btn fs-5 fw-lighter">
+                            Apply
+                          </button>
+                      }
+
                       <button className="p-0 w-24 h-8 bg-white rounded-lg btn fs-5" style={{ border: "1px solid #0057A8", color: "#0057A8" }}>Save</button>
                     </div>
                     <div>
@@ -300,7 +326,7 @@ const AllJobs = (props) => {
         selectedJob={selectedJob}
       />
 
-      <JobModal handleApplyJobForm={handleApplyJobForm} onHide={() => setJobModalActive(false)} show={jobModalActive} selectedJob={selectedJob} />
+      <JobModal jobApplied={jobApplied} handleApplyJobForm={handleApplyJobForm} onHide={() => setJobModalActive(false)} show={jobModalActive} selectedJob={selectedJob} />
     </>
   );
 };

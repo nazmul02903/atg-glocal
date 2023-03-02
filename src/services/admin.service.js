@@ -29,6 +29,7 @@ import {
   API_FETCH_FUNDING_UPDATE_TO_REVIEW,
   API_REVIEW_EVENT,
   API_FETCH_ALL_EVENTS,
+  API_FETCH_SINGLE_JOB_USER,
 } from "../constants/urls";
 
 import AuthHeader from "./auth-header";
@@ -80,6 +81,15 @@ class AdminService {
     return axios.post(
       API_FETCH_JOBS_USER,
       { dataType: 1 },
+      {
+        headers: AuthHeader(),
+      }
+    );
+  }
+  fetchSingleJob(id) {
+    return axios.post(
+      API_FETCH_SINGLE_JOB_USER,
+      { dataType: 1, id },
       {
         headers: AuthHeader(),
       }

@@ -30,6 +30,9 @@ export const API_REVIEW_JOB =
 export const API_FETCH_JOBS_USER =
   process.env.REACT_APP_API_ENDPOINT + "job/fetchJobs/";
 
+export const API_FETCH_SINGLE_JOB_USER =
+  process.env.REACT_APP_API_ENDPOINT + "job/getJobDetails/";
+
 export const API_FETCH_EVENT_REGISTRATION =
   process.env.REACT_APP_API_ENDPOINT + "eventRegistration/fetchByEventId";
 
