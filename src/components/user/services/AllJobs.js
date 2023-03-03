@@ -61,10 +61,11 @@ const AllJobs = (props) => {
   const [jobApplied, setJobApplied] = useState(false)
   const query = props?.location?.search.split('=')[1];
   const screen = window.screen;
+  const [shareUrl, setShareUrl] = useState('')
 
   useEffect(() => {
-    if(jobs.length === undefined) return
-    if(jobs.length === 0) return
+    if (jobs.length === undefined) return
+    if (jobs.length === 0) return
     setSelectedJob(jobs.find(job => job.jobId === query));
     // console.log(screen.width);
     if (screen.width < 768) {
@@ -171,8 +172,9 @@ const AllJobs = (props) => {
     console.log(id);
     //copy job id in clipboard
     // navigator.clipboard.writeText(`https://glocal-bodh-test.netlify.app/jobs/0?jobid=${id}`);
-    navigator.clipboard.writeText(`http://localhost:3000/jobs/0?jobid=${id}`);
+    navigator.clipboard.writeText(`https://glocal-bodh-test.netlify.app/jobs/0?jobid=${id}`);
     setShareModalActive(true);
+    setShareUrl(`https://glocal-bodh-test.netlify.app/jobs/0?jobid=${id}`)
   };
 
   return (
@@ -265,7 +267,7 @@ const AllJobs = (props) => {
                             src={ShareIcon}
                             style={{ width: "25px", height: "25px" }}
                             className="hover:bg-gray-100 rounded-full p-1"
-                            onClick={() => handleShare(job.jobId)}
+                            onClick={(e) => {e.stopPropagation(); handleShare(job.jobId)}}
                             alt=""
                           />
                         </div>
@@ -346,6 +348,9 @@ const AllJobs = (props) => {
         show={shareModalActive}
         handleClose={() => setShareModalActive(false)}
         selectedJob={selectedJob}
+        shareUrl={shareUrl}
+        shareText='Checkout this job'
+        isJob={true}
       />
 
       <JobModal jobApplied={jobApplied} handleApplyJobForm={handleApplyJobForm} onHide={() => setJobModalActive(false)} show={jobModalActive} selectedJob={selectedJob} />

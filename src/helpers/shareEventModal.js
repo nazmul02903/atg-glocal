@@ -14,43 +14,43 @@ import {
 } from "react-icons/fa";
 
 const ShareEventModal = (props) => {
-   const { show, handleClose, newsDetail } = props
+   const { show, handleClose, newsDetail, shareUrl, shareText } = props
    var el = document.createElement("a");
    el.href = window.location.href;
 
    const shareButtonProps = [
       {
-         url: el.href,
+         url: shareUrl ? shareUrl : el.href,
          network: "Facebook",
-         text: "checkout this event",
+         text: shareText ? shareText : "checkout this event",
          longtext: "Don't miss out on the opportunity!",
          Comp: FaFacebook
       },
       {
-         url: el.href,
+         url: shareUrl ? shareUrl : el.href,
          network: "Email",
-         text: "checkout this event",
+         text: shareText ? shareText : "checkout this event",
          longtext: "Don't miss out on the opportunity!",
          Comp: FaEnvelope
       },
+      // {
+      //    url: shareUrl ? shareUrl : el.href,
+      //    network: "WhatsApp",
+      //    text: shareText ? shareText : "checkout this event",
+      //    longtext: "Don't miss out on the opportunity!",
+      //    Comp: FaWhatsapp
+      // },
       {
-         url: el.href,
-         network: "WhatsApp",
-         text: "checkout this event",
-         longtext: "Don't miss out on the opportunity!",
-         Comp: FaWhatsapp
-      },
-      {
-         url: el.href,
+         url: shareUrl ? shareUrl : el.href,
          network: "Twitter",
-         text: "checkout this event",
+         text: shareText ? shareText : "checkout this event",
          longtext: "Don't miss out on the opportunity!",
          Comp: FaTwitter
       },
       {
-         url: el.href,
+         url: shareUrl ? shareUrl : el.href,
          network: "Linkedin",
-         text: "checkout this event",
+         text: shareText ? shareText : "checkout this event",
          longtext: "Don't miss out on the opportunity!",
          Comp: FaLinkedin
       },
@@ -79,6 +79,15 @@ const ShareEventModal = (props) => {
                      </ShareButton>
                   })
                }
+               <button
+                  className="social-media-btn flex justify-center items-center share-event-button"
+                  style={{ backgroundColor: 'rgb(61 218 25)' }}
+                  onClick={() => {
+                     window.open(`https://wa.me?text=${shareUrl}`)
+                  }}
+               >
+                  <FaWhatsapp />
+               </button>
                {/* <ShareButton
                   {...shareButtonProps[0]}
                   className="social-media-btn">
