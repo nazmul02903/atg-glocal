@@ -59,6 +59,19 @@ const AllJobs = (props) => {
   const [selectedJobType, setSelectedJobType] = useState(null);
   const { t } = useTranslation();
   const [jobApplied, setJobApplied] = useState(false)
+  const query = props?.location?.search.split('=')[1];
+  const screen = window.screen;
+
+  useEffect(() => {
+    if(jobs.length === undefined) return
+    if(jobs.length === 0) return
+    setSelectedJob(jobs.find(job => job.jobId === query));
+    // console.log(screen.width);
+    if (screen.width < 768) {
+      setJobModalActive(true);
+    }
+  }, [query, jobs, screen.width]);
+
   // useInterval(async () => {
   //   // dispatch(setLoader());
   //   // await AdminService.fetchEventsByCategory(id, 1).then((res) => {
@@ -120,10 +133,10 @@ const AllJobs = (props) => {
   };
 
   useEffect(() => {
-    console.log(selectedJob?.jobId);
+    // console.log(selectedJob?.jobId);
     setJobApplied(false)
     if (!selectedJob?.jobId) return
-    console.log('fetching..');
+    // console.log('fetching..');
     AdminService.fetchSingleJob(selectedJob.jobId)
       .then(res => {
         console.log('res', res);
@@ -149,10 +162,18 @@ const AllJobs = (props) => {
   }
 
   const handleApplyJobForm = (id) => {
-    console.log(id);
+    // console.log(id);
     history.push({ pathname: '/user/apply/applyJobForm', state: { id } });
   };
-  console.log(jobApplied);
+  // console.log(jobApplied);
+
+  const handleShare = (id) => {
+    console.log(id);
+    //copy job id in clipboard
+    // navigator.clipboard.writeText(`https://glocal-bodh-test.netlify.app/jobs/0?jobid=${id}`);
+    navigator.clipboard.writeText(`http://localhost:3000/jobs/0?jobid=${id}`);
+    setShareModalActive(true);
+  };
 
   return (
     <>
@@ -243,8 +264,8 @@ const AllJobs = (props) => {
                           <img
                             src={ShareIcon}
                             style={{ width: "25px", height: "25px" }}
-                            className="p-1 rounded-full hover:bg-gray-100"
-                            onClick={() => setShareModalActive(true)}
+                            className="hover:bg-gray-100 rounded-full p-1"
+                            onClick={() => handleShare(job.jobId)}
                             alt=""
                           />
                         </div>
@@ -320,6 +341,7 @@ const AllJobs = (props) => {
         </div>
       </div>
 
+      {/* <JobModal onHide={() => setJobModalActive(false)} show={jobModalActive} selectedJob={selectedJob} /> */}
       <ShareEventModal
         show={shareModalActive}
         handleClose={() => setShareModalActive(false)}
