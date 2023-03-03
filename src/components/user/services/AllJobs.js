@@ -55,6 +55,16 @@ const AllJobs = (props) => {
   const [jobModalActive, setJobModalActive] = useState(false);
   const history = useHistory();
   const [selectedJobType, setSelectedJobType] = useState(null);
+  const query = props?.location?.search.split('=')[1];
+  const screen = window.screen;
+
+  useEffect(() => {
+    console.log('q', query);
+    query && setSelectedJob(jobs.find(job => job.jobId === query));
+    if(screen.width < 768) {
+      query && setJobModalActive(true);
+    }
+  }, [query, jobs]);
 
   // useInterval(async () => {
   //   // dispatch(setLoader());
@@ -132,6 +142,14 @@ const AllJobs = (props) => {
   const handleApplyJobForm = (id) => {
     console.log(id);
     history.push({pathname: '/user/apply/applyJobForm', state: {id}});
+  };
+
+  const handleShare = (id) => {
+    console.log(id);
+    //copy job id in clipboard
+    // navigator.clipboard.writeText(`https://glocal-bodh-test.netlify.app/jobs/0?jobid=${id}`);
+    navigator.clipboard.writeText(`http://localhost:3000/jobs/0?jobid=${id}`);
+    setShareModalActive(true);
   };
 
   return (
@@ -218,7 +236,7 @@ const AllJobs = (props) => {
                             src={ShareIcon}
                             style={{ width: "25px", height: "25px" }}
                             className="hover:bg-gray-100 rounded-full p-1"
-                            onClick={() => setShareModalActive(true)}
+                            onClick={() => handleShare(job.jobId)}
                             alt=""
                           />
                         </div>
@@ -285,13 +303,13 @@ const AllJobs = (props) => {
         </div>
       </div>
 
+      <JobModal onHide={() => setJobModalActive(false)} show={jobModalActive} selectedJob={selectedJob} />
       <ShareEventModal
         show={shareModalActive}
         handleClose={() => setShareModalActive(false)}
         selectedJob={selectedJob}
       />
 
-      <JobModal onHide={() => setJobModalActive(false)} show={jobModalActive} selectedJob={selectedJob} />
     </>
   );
 };
