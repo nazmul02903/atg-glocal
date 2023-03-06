@@ -41,7 +41,7 @@ function WorkshopEventDetails(props) {
   const [categoryId, setCategoryId] = useState(1);
   var el = document.createElement("a");
   el.href = window.location.href;
-  const [hasUserRegistered, setHasUserRegistered] = useState(false)
+  const [hasUserRegistered, setHasUserRegistered] = useState(false);
 
   const [showModal, setShowModal] = useState(false);
   const shareButtonProps = [
@@ -159,10 +159,10 @@ function WorkshopEventDetails(props) {
       categoryId = 3;
       setCategoryId(3);
     }
-    UserService.getEventDetails(id , categoryId.toString())
+    UserService.getEventDetails(id, categoryId.toString())
       .then((res) => {
         console.log("res", res);
-        setHasUserRegistered(res.data.hasUserRegistered)
+        setHasUserRegistered(res.data.hasUserRegistered);
         setWorkshopDetails(res.data.eventBean);
       })
       .catch((error) => {
@@ -248,7 +248,15 @@ function WorkshopEventDetails(props) {
               className="banner "
               style={{ borderRadius: "5px", marginBottom: "45px" }}
             >
-              <img src="" alt="" />
+              <img
+                src={workshopDetails.posterImageLink}
+                alt=""
+                style={{
+                  maxHeight: "100%",
+                  objectFit: "cover",
+                  width: "100%",
+                }}
+              />
               {/* <div className="days_remaining">
                 <p className="days_remaining_text">
                   {workshopDetails.daysToExpiry}
@@ -455,14 +463,10 @@ function WorkshopEventDetails(props) {
                   {" "}
                   <button
                     onClick={() => setShowModal(true)}
-                    className={`register ${
-                      hasUserRegistered && "disable_btn"
-                    }`}
+                    className={`register ${hasUserRegistered && "disable_btn"}`}
                     disabled={hasUserRegistered}
                   >
-                    {hasUserRegistered
-                      ? "Already Registered"
-                      : "Register"}
+                    {hasUserRegistered ? "Already Registered" : "Register"}
                   </button>
                 </div>{" "}
                 <div className="pr-0 d-flex ">
@@ -673,14 +677,10 @@ function WorkshopEventDetails(props) {
             <button
               style={{ width: "100%", margin: "20px 0" }}
               onClick={() => setShowModal(true)}
-              className={`register ${
-                hasUserRegistered && "disable_btn"
-              }`}
+              className={`register ${hasUserRegistered && "disable_btn"}`}
               disabled={hasUserRegistered}
             >
-              {hasUserRegistered
-                ? "Already Registered"
-                : "Register"}
+              {hasUserRegistered ? "Already Registered" : "Register"}
             </button>
           </div>
         </div>

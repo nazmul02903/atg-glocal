@@ -77,17 +77,21 @@ const AllEvents = (props) => {
     if (!selectedEvent) return;
     const id = selectedEvent.id;
     if (id === 0) {
-      AdminService.fetchAllEvents(1).then((res) => {
-        dispatch(clearLoader());
-        console.log("data", res.data.eventBeans);
-        setEvents(res.data.eventBeans);
-      }).catch(() => dispatch(clearLoader()))
+      AdminService.fetchAllEvents(1)
+        .then((res) => {
+          dispatch(clearLoader());
+          console.log("data", res.data.eventBeans);
+          setEvents(res.data.eventBeans);
+        })
+        .catch(() => dispatch(clearLoader()));
     } else {
-      AdminService.fetchEventsByCategory(id, 1).then((res) => {
-        dispatch(clearLoader());
-        console.log("data", res.data.eventBeans);
-        setEvents(res.data.eventBeans);
-      }).catch(() => dispatch(clearLoader()));
+      AdminService.fetchEventsByCategory(id, 1)
+        .then((res) => {
+          dispatch(clearLoader());
+          console.log("data", res.data.eventBeans);
+          setEvents(res.data.eventBeans);
+        })
+        .catch(() => dispatch(clearLoader()));
     }
   }, [eventList]);
 
@@ -112,8 +116,8 @@ const AllEvents = (props) => {
     setSelectedEventType(e.target.id);
   };
   const handleSubmit = () => {
-    history.push(`/user/create/event/${selectedEventType}`)
-  }
+    history.push(`/user/create/event/${selectedEventType}`);
+  };
   return (
     <>
       <div className="pt-0 md:pt-10 md:p-5 md:m-5">
@@ -121,34 +125,76 @@ const AllEvents = (props) => {
           <div className="hidden grid-cols-12 items-center p-5 md:grid-cols-12 md:grid">
             <div className="md:col-span-4">
               <h1>Connecting people working in NGOs to Opportunities</h1>
-              <p>Whatever you’re looking to do this year, Meetup can help. For 20 years, people have turned to Meetup to meet people, make friends, </p>
+              <p>
+                Whatever you’re looking to do this year, Meetup can help. For 20
+                years, people have turned to Meetup to meet people, make
+                friends,{" "}
+              </p>
             </div>
             <div className="col-span-4 mb-5 md:mb-0">
               <img src={allEvents} className="w-full" alt="" />
             </div>
             <div className="col-span-4 all-events-form">
               <div className="flex flex-col justify-center p-4 all-events-form-wrapper">
-                <p className="mb-4 text-center text-gray-400 fs-4">Post Your Event</p>
+                <p className="mb-4 text-center text-gray-400 fs-4">
+                  Post Your Event
+                </p>
                 <form onSubmit={handleSubmit} className="grid gap-2 mb-4">
                   <div className="rounded border form-check lg:p-4 d-flex">
-                    <input className="p-3 m-0 form-check-input shadow-radio" onChange={handleSelection} name="select-event" id="workshopEvent" type="radio" />
-                    <label className="m-1 text-blue-600 form-check-label whitespac-nowrap" for="workshopEvent"><span className="ms-3">
-                      {t("Workshops & Trainings.2")}
-                    </span></label>
+                    <input
+                      className="p-3 m-0 form-check-input shadow-radio"
+                      onChange={handleSelection}
+                      name="select-event"
+                      id="workshopEvent"
+                      type="radio"
+                    />
+                    <label
+                      className="m-1 text-blue-600 form-check-label whitespac-nowrap"
+                      for="workshopEvent"
+                    >
+                      <span className="ms-3">
+                        {t("Workshops & Trainings.2")}
+                      </span>
+                    </label>
                   </div>
                   <div className="p-4 rounded border form-check">
-                    <input className="p-3 m-0 form-check-input shadow-radio" onChange={handleSelection} name="select-event" id="awardEvent" type="radio" />
-                    <label className="m-1 text-blue-600 form-check-label whitespac-nowrap" for="awardEvent"><span className="ms-3">
-                      {t("Awards & Competitions.2")}
-                    </span></label>
+                    <input
+                      className="p-3 m-0 form-check-input shadow-radio"
+                      onChange={handleSelection}
+                      name="select-event"
+                      id="awardEvent"
+                      type="radio"
+                    />
+                    <label
+                      className="m-1 text-blue-600 form-check-label whitespac-nowrap"
+                      for="awardEvent"
+                    >
+                      <span className="ms-3">
+                        {t("Awards & Competitions.2")}
+                      </span>
+                    </label>
                   </div>
                   <div className="p-4 rounded border form-check">
-                    <input className="p-3 m-0 form-check-input shadow-radio" onChange={handleSelection} name="select-event" id="exhibitionEvent" type="radio" />
-                    <label className="m-1 text-blue-600 form-check-label whitespac-nowrap" for="exhibitionEvent"><span className="ms-3">
-                      {t("Exhibitions & Summits.2")}
-                    </span></label>
+                    <input
+                      className="p-3 m-0 form-check-input shadow-radio"
+                      onChange={handleSelection}
+                      name="select-event"
+                      id="exhibitionEvent"
+                      type="radio"
+                    />
+                    <label
+                      className="m-1 text-blue-600 form-check-label whitespac-nowrap"
+                      for="exhibitionEvent"
+                    >
+                      <span className="ms-3">
+                        {t("Exhibitions & Summits.2")}
+                      </span>
+                    </label>
                   </div>
-                  <button type="submit" className="w-full bg-[#0058A9] text-white fs-4 fw-light">
+                  <button
+                    type="submit"
+                    className="w-full bg-[#0058A9] text-white fs-4 fw-light"
+                  >
                     Post Event Free
                   </button>
                 </form>
@@ -161,13 +207,12 @@ const AllEvents = (props) => {
               return (
                 <div
                   key={event.id}
-                  className={`category-item ${event.selected ? "selected font-bold" : "font-semibold"
-                    }`}
+                  className={`category-item ${
+                    event.selected ? "selected font-bold" : "font-semibold"
+                  }`}
                   onClick={() => handlEventChange(event.id)}
                 >
-                  <p className="md:w-64">
-                    {t(`${event.name}.1`)}
-                  </p>
+                  <p className="md:w-64">{t(`${event.name}.1`)}</p>
                 </div>
               );
             })}
@@ -188,7 +233,16 @@ const AllEvents = (props) => {
                   }
                 >
                   <div className="flex">
-                    <img src={event.posterImageLink ? event.posterImageLink : EventCardImg} className="event-img" alt="" />
+                    <img
+                      style={{ objectFit: "cover" }}
+                      src={
+                        event.posterImageLink
+                          ? event.posterImageLink
+                          : EventCardImg
+                      }
+                      className="event-img"
+                      alt=""
+                    />
                   </div>
                   <div className="event-card-content">
                     <div className="flex items-center mb-0">

@@ -31,7 +31,7 @@
   /* height: 32px; */
 }
 .banner {
-  background: url("./bg.png");
+  /* background: url("./bg.png"); */
   height: 180px;
   width: 350px;
   background-position: center;
@@ -917,7 +917,7 @@
     height: 32px;
   }
   .banner {
-    background: url("./bg.png");
+    /* background: url("./bg.png"); */
     height: 180px;
     width: 350px;
     background-position: center;

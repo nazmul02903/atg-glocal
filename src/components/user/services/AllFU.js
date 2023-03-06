@@ -13,7 +13,6 @@ import ShareIcon from "../../../assets/Icons/share.svg";
 import { useHistory } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-
 const tempJobList = [
   {
     id: 0,
@@ -69,8 +68,8 @@ const fundings = [
     location: "Location",
     expiryLabel: "2 days left",
     fundingCategory: "CSR Fund",
-  }
-]
+  },
+];
 
 const AllFundingUpdate = (props) => {
   const dispatch = useDispatch();
@@ -109,10 +108,12 @@ const AllFundingUpdate = (props) => {
 
   useEffect(() => {
     dispatch(setLoader());
-    AdminService.fetchFundingUpdateByCategory(id, 1).then((res) => {
-      dispatch(clearLoader());
-      setFus(res.data.fundingUpdateBeans);
-    }).catch(() => dispatch(clearLoader()));;
+    AdminService.fetchFundingUpdateByCategory(id, 1)
+      .then((res) => {
+        dispatch(clearLoader());
+        setFus(res.data.fundingUpdateBeans);
+      })
+      .catch(() => dispatch(clearLoader()));
   }, [id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleCategoryChange = (id) => {
@@ -136,8 +137,8 @@ const AllFundingUpdate = (props) => {
   };
 
   const handleSubmit = () => {
-    selectedFundType && history.push(`/user/create/fundingUpdate`)
-  }
+    selectedFundType && history.push(`/user/create/fundingUpdate`);
+  };
 
   return (
     // <div className="list-group row">
@@ -182,41 +183,75 @@ const AllFundingUpdate = (props) => {
     //   })}
     // </div>
     <div className="pt-0 md:m-5 md:p-5 funding-page">
-      <div className='grid grid-cols-12 p-5 bg-white funding-header d-none d-md-grid'>
-        <div className='grid items-center cols-span-4 justify-right'>
+      <div className="grid grid-cols-12 p-5 bg-white funding-header d-none d-md-grid">
+        <div className="grid items-center cols-span-4 justify-right">
           <div>
             <h1>Connecting people working in NGOs to Opportunities</h1>
-            <p>Whatever you’re looking to do this year, Meetup can help. For 20 years, people have turned to Meetup to meet people, make friends, </p>
+            <p>
+              Whatever you’re looking to do this year, Meetup can help. For 20
+              years, people have turned to Meetup to meet people, make friends,{" "}
+            </p>
           </div>
         </div>
         <div className="cols-span-4">
           <img src={fundingBanner} alt="" />
         </div>
-        <div className='grid justify-center items-center p-4 text-gray-400 shadow-md cols-span-4'>
+        <div className="grid justify-center items-center p-4 text-gray-400 shadow-md cols-span-4">
           <div>
-            <h4 className='mb-4 text-center fw-normal'>Looking for Implementation Partner?</h4>
-            <div className='grid justify-center'>
+            <h4 className="mb-4 text-center fw-normal">
+              Looking for Implementation Partner?
+            </h4>
+            <div className="grid justify-center">
               <div className="grid gap-2 mb-4 w-96">
                 <div className="p-4 rounded border form-check">
-                  <input className="p-3 m-0 form-check-input shadow-radio" onChange={handleSelection} name="select-event" id="govt_funds" type="radio" />
-                  <label className="m-1 text-blue-600 form-check-label" for="govt_funds"><span className="ms-3">
-                    {t("Govt. Funds.1")}
-                  </span></label>
+                  <input
+                    className="p-3 m-0 form-check-input shadow-radio"
+                    onChange={handleSelection}
+                    name="select-event"
+                    id="govt_funds"
+                    type="radio"
+                  />
+                  <label
+                    className="m-1 text-blue-600 form-check-label"
+                    for="govt_funds"
+                  >
+                    <span className="ms-3">{t("Govt. Funds.1")}</span>
+                  </label>
                 </div>
                 <div className="p-4 rounded border form-check">
-                  <input className="p-3 m-0 form-check-input shadow-radio" onChange={handleSelection} name="select-event" id="foreign_funds" type="radio" />
-                  <label className="m-1 text-blue-600 form-check-label" for="foreign_funds"><span className="ms-3">
-                    {t("Foreign Funds.1")}
-                  </span></label>
+                  <input
+                    className="p-3 m-0 form-check-input shadow-radio"
+                    onChange={handleSelection}
+                    name="select-event"
+                    id="foreign_funds"
+                    type="radio"
+                  />
+                  <label
+                    className="m-1 text-blue-600 form-check-label"
+                    for="foreign_funds"
+                  >
+                    <span className="ms-3">{t("Foreign Funds.1")}</span>
+                  </label>
                 </div>
                 <div className="p-4 rounded border form-check">
-                  <input className="p-3 m-0 form-check-input shadow-radio" onChange={handleSelection} name="select-event" id="csr_funds" type="radio" />
-                  <label className="m-1 text-blue-600 form-check-label" for="csr_funds"><span className="ms-3">
-                    {t("CSR Funds.1")}
-                  </span></label>
+                  <input
+                    className="p-3 m-0 form-check-input shadow-radio"
+                    onChange={handleSelection}
+                    name="select-event"
+                    id="csr_funds"
+                    type="radio"
+                  />
+                  <label
+                    className="m-1 text-blue-600 form-check-label"
+                    for="csr_funds"
+                  >
+                    <span className="ms-3">{t("CSR Funds.1")}</span>
+                  </label>
                 </div>
               </div>
-              <button onClick={handleSubmit} className='my-2 btn fs-4'>Search</button>
+              <button onClick={handleSubmit} className="my-2 btn fs-4">
+                Search
+              </button>
             </div>
           </div>
         </div>
@@ -227,40 +262,47 @@ const AllFundingUpdate = (props) => {
           return (
             <div
               key={event.id}
-              className={`category-item ${event.selected ? "selected font-bold" : "font-semibold"
-                }`}
+              className={`category-item ${
+                event.selected ? "selected font-bold" : "font-semibold"
+              }`}
               onClick={() => handleCategoryChange(event.id)}
             >
-              <p>    {t(`${event.name}.1`)}</p>
+              <p> {t(`${event.name}.1`)}</p>
             </div>
           );
         })}
       </div>
 
       <div className="grid md:grid-cols-2 md:mx-24">
-        {fundings.map((funding) => {
+        {fus?.map((funding) => {
           return (
             <div
-              key={funding.fundingId}
+              key={funding.id}
               // onClick={() => handleSelectedJob(job.jobId)}
               className={`flex p-4 mb-4 bg-white shadow-sm cursor-pointer lg:mr-4`}
-            // ${
-            //   selectedJob.jobId === job.jobId
-            //     ? "lg:bg-gray-50"
-            //     : "bg-white"
-            // }`}
+              // ${
+              //   selectedJob.jobId === job.jobId
+              //     ? "lg:bg-gray-50"
+              //     : "bg-white"
+              // }`}
             >
               <img src={example} alt="" className="pr-5 pb-5 w-25" />
               <div className="grid grid-cols-2 justify-between w-full">
                 <div className="event-card-content">
-                  <p className="mb-2 text-blue-600 event-title fw-bold">{funding.designation}</p>
-                  <p className="m-0">{funding.issue}</p>
+                  <p className="mb-2 text-blue-600 event-title fw-bold">
+                    {funding?.title}
+                  </p>
+                  <p className="m-0">{funding.createdAtText}</p>
                   <p className="m-0">{funding.location}</p>
-                  <p className="m-0 text-sm text-gray-500">{funding.expiryLabel}</p>
+                  <p className="m-0 text-sm text-gray-500">
+                    {funding.expiryLabel}
+                  </p>
                   {/* <small><u>Send me a job like this</u></small> */}
                 </div>
                 <div className="grid justify-end justify-items-end">
-                  <p className="text-blue-600 fw-bold">{funding.fundingCategory}</p>
+                  <p className="text-blue-600 fw-bold">
+                    {funding.fundingUpdateCategory}
+                  </p>
                   <div className="grid items-end">
                     <img
                       src={ShareIcon}
@@ -276,7 +318,6 @@ const AllFundingUpdate = (props) => {
           );
         })}
       </div>
-
     </div>
   );
 };
