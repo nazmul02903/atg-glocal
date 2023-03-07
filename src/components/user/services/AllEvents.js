@@ -40,6 +40,7 @@ const tempeventList = [
 const AllEvents = (props) => {
   const dispatch = useDispatch();
   const { id } = props.match.params;
+  const [allEvents, setAllEvents] = useState([]);
   const [events, setEvents] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState({});
   const [modalShow, setModalShow] = React.useState(false);
@@ -81,6 +82,7 @@ const AllEvents = (props) => {
         .then((res) => {
           dispatch(clearLoader());
           console.log("data", res.data.eventBeans);
+          setAllEvents(res.data.eventBeans);
           setEvents(res.data.eventBeans);
         })
         .catch(() => dispatch(clearLoader()));
@@ -104,6 +106,11 @@ const AllEvents = (props) => {
       }
     });
     setEventList(tempevent);
+    if(id !== 0){
+      const tempEvents = allEvents.filter((event) => parseInt(event.eventCategoryId) === id);
+      console.log("tempEvents", tempEvents);
+      setEvents(tempEvents);
+    }
   };
   const getEventName = () => {
     if (id === "1") return "Workshops & Trainings";
