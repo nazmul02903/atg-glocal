@@ -318,7 +318,7 @@ const AllJobs = (props) => {
                           </button>
                       }
 
-                      <button className="p-0 w-24 h-8 bg-white rounded-lg btn fs-5" style={{ border: "1px solid #0057A8", color: "#0057A8" }}>Save</button>
+                      <button onClick={(e) => {e.stopPropagation(); handleShare(selectedJob.jobId)}} className="p-0 w-24 h-8 bg-white rounded-lg btn fs-5" style={{ border: "1px solid #0057A8", color: "#0057A8" }}>Share</button>
                     </div>
                     <div>
                       <h6 className="my-3 fw-bold">Job Id: {selectedJob?.jobId}</h6>
@@ -353,7 +353,7 @@ const AllJobs = (props) => {
         isJob={true}
       />
 
-      <JobModal jobApplied={jobApplied} handleApplyJobForm={handleApplyJobForm} onHide={() => setJobModalActive(false)} show={jobModalActive} selectedJob={selectedJob} />
+      <JobModal jobApplied={jobApplied} handleShare={handleShare} handleApplyJobForm={handleApplyJobForm} onHide={() => setJobModalActive(false)} show={jobModalActive} selectedJob={selectedJob} />
     </>
   );
 };

@@ -7,7 +7,7 @@ import skills from "./../assets/Icons/skills.svg";
 import parse from "html-react-parser";
 
 function JobModal(props) {
-  const { selectedJob, handleApplyJobForm, jobApplied } = props;
+  const { selectedJob, handleApplyJobForm, jobApplied, handleShare } = props;
   // console.log(selectedJob)
   const date = new Date(selectedJob?.createdDate);
   const day = date.getDate();
@@ -70,6 +70,7 @@ function JobModal(props) {
                     Apply
                   </button>
               }
+              <button onClick={(e) => {e.stopPropagation(); handleShare(selectedJob.jobId)}} className="p-0 w-24 h-12 ml-5 bg-white rounded-lg btn fs-5" style={{ border: "1px solid #0057A8", color: "#0057A8" }}>Share</button>
             </div>
           </div>
           <div className='mt-5'>
