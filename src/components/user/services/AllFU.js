@@ -20,18 +20,18 @@ const tempJobList = [
     selected: true,
   },
   {
-    id: 2,
-    name: "CSR Funds",
-    selected: false,
-  },
-  {
-    id: 3,
+    id: 1,
     name: "Govt. Funds",
     selected: false,
   },
   {
-    id: 1,
-    name: "NGO Funds",
+    id: 2,
+    name: "Foreign Funds",
+    selected: false,
+  },
+  {
+    id: 3,
+    name: "CSR Funds",
     selected: false,
   },
 ];
@@ -74,7 +74,7 @@ const fundings = [
 const AllFundingUpdate = (props) => {
   const dispatch = useDispatch();
   const [fus, setFus] = useState([]);
-  const [filteredFus, setFilteredFus] = useState([])
+  const [filteredFus, setFilteredFus] = useState([]);
   const [jobList, setJobList] = useState(tempJobList);
   // const [selectedFU, setSelectedFU] = useState({});
   // const [modalShowDelete, setModalShowDelete] = useState(false);
@@ -126,27 +126,26 @@ const AllFundingUpdate = (props) => {
       }
     });
     setJobList(tempjob);
-    const cat = getCategoryName(id)
+    const cat = getCategoryName(id);
     console.log(cat);
-    if(cat === 'All'){
-      return  setFilteredFus(fus)
+    if (cat === "All") {
+      return setFilteredFus(fus);
     }
-    let filtered = fus.filter(item => item.fundingUpdateCategory === cat)
-    setFilteredFus(filtered)
+    let filtered = fus.filter((item) => item.fundingUpdateCategory === cat);
+    setFilteredFus(filtered);
   };
 
-  const getCategoryName = id =>{
-    if(id === 0) return 'All'
+  const getCategoryName = (id) => {
+    if (id === 0) return "All";
 
-    if(id === 1){
-      return 'NGO Funds'
-    }else if(id === 2){
-      return 'CSR Funds'
-    }else if(id === 3){
-      return 'Govt. Funds'
+    if (id === 1) {
+      return "NGO Funds";
+    } else if (id === 2) {
+      return "CSR Funds";
+    } else if (id === 3) {
+      return "Govt. Funds";
     }
-
-  }
+  };
 
   useEffect(() => {
     console.log("fus: ", fus);
