@@ -74,6 +74,7 @@ const fundings = [
 const AllFundingUpdate = (props) => {
   const dispatch = useDispatch();
   const [fus, setFus] = useState([]);
+  const [filteredFus, setFilteredFus] = useState([])
   const [jobList, setJobList] = useState(tempJobList);
   // const [selectedFU, setSelectedFU] = useState({});
   // const [modalShowDelete, setModalShowDelete] = useState(false);
@@ -125,7 +126,27 @@ const AllFundingUpdate = (props) => {
       }
     });
     setJobList(tempjob);
+    const cat = getCategoryName(id)
+    console.log(cat);
+    if(cat === 'All'){
+      return  setFilteredFus(fus)
+    }
+    let filtered = fus.filter(item => item.fundingUpdateCategory === cat)
+    setFilteredFus(filtered)
   };
+
+  const getCategoryName = id =>{
+    if(id === 0) return 'All'
+
+    if(id === 1){
+      return 'NGO Funds'
+    }else if(id === 2){
+      return 'CSR Funds'
+    }else if(id === 3){
+      return 'Govt. Funds'
+    }
+
+  }
 
   useEffect(() => {
     console.log("fus: ", fus);
@@ -274,7 +295,7 @@ const AllFundingUpdate = (props) => {
       </div>
 
       <div className="grid md:grid-cols-2 md:mx-24">
-        {fus?.map((funding) => {
+        {filteredFus?.map((funding) => {
           return (
             <div
               key={funding.id}
