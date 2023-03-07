@@ -89,6 +89,7 @@ const FundingUpdateAdmin = (props) => {
   const [cities, setCities] = useState();
   const [thematicArea, setThematicArea] = useState([]);
   const [selectedCities, setSelectedCities] = useState([]);
+  const [fuType, setFuType] = useState(1);
   const [gender, setGender] = useState([]);
   const [size, setSize] = useState(false);
   const [prev, setPrev] = useState(false);
@@ -123,7 +124,7 @@ const FundingUpdateAdmin = (props) => {
       termsAndConditions: "true",
       location: "",
       thematicAreaList: thematicArea,
-      fundingUpdateCategory: 1,
+      fundingUpdateCategory: fuType,
       externalLink: values.externalLink,
       postedBy: values.postedBy,
       cities: selectedCities,
@@ -181,7 +182,19 @@ const FundingUpdateAdmin = (props) => {
   const handlePrevious = (e) => {
     setPrev(e.target.checked);
   };
-  const [fuType, setFuType] = useState("");
+
+  const handleSelection = (e) => {
+    console.log(e.target.id);
+    if(e.target.id === 'ngo_funds'){
+      setFuType(1);
+    }
+    else if(e.target.id === 'csr_funds'){
+      setFuType(2);
+    }
+    else if(e.target.id === 'govt_funds'){
+      setFuType(3);
+    }
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -233,6 +246,55 @@ const FundingUpdateAdmin = (props) => {
               <small className="text-danger">
                 {errors.description && errors.description.message}
               </small>
+            </div>
+
+            <div className="flex gap-3 my-1 align-middle">
+              <div className="form-group flex align-middle my-1">
+                <input
+                  className=""
+                  onChange={handleSelection}
+                  name="select-event"
+                  id="ngo_funds"
+                  type="radio"
+                  defaultChecked
+                />
+                <label
+                  className="mt-0 ml-2"
+                  for="ngo_funds"
+                >
+                  <span className="">NGO Funds</span>
+                </label>
+              </div>
+              <div className="form-group flex align-middle my-1">
+                <input
+                  className=""
+                  onChange={handleSelection}
+                  name="select-event"
+                  id="csr_funds"
+                  type="radio"
+                />
+                <label
+                  className="mt-0 ml-2"
+                  for="csr_funds"
+                >
+                  <span className="">CSR Funds</span>
+                </label>
+              </div>
+              <div className="form-group flex align-middle my-1">
+                <input
+                  className=""
+                  onChange={handleSelection}
+                  name="select-event"
+                  id="govt_funds"
+                  type="radio"
+                />
+                <label
+                  className="mt-0 ml-2"
+                  for="govt_funds"
+                >
+                  <span className="">Govt Funds</span>
+                </label>
+              </div>
             </div>
 
             <div className="form-group">
