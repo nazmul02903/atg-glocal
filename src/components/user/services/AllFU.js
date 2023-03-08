@@ -128,21 +128,21 @@ const AllFundingUpdate = (props) => {
     setJobList(tempjob);
     const cat = getCategoryName(id)
     console.log(cat);
-    if(cat === 'All'){
-      return  setFilteredFus(fus)
+    if (cat === 'All') {
+      return setFilteredFus(fus)
     }
     let filtered = fus.filter(item => item.fundingUpdateCategory === cat)
     setFilteredFus(filtered)
   };
 
-  const getCategoryName = id =>{
-    if(id === 0) return 'All'
+  const getCategoryName = id => {
+    if (id === 0) return 'All'
 
-    if(id === 1){
+    if (id === 1) {
       return 'NGO Funds'
-    }else if(id === 2){
+    } else if (id === 2) {
       return 'CSR Funds'
-    }else if(id === 3){
+    } else if (id === 3) {
       return 'Govt. Funds'
     }
 
@@ -160,6 +160,11 @@ const AllFundingUpdate = (props) => {
   const handleSubmit = () => {
     selectedFundType && history.push(`/user/create/fundingUpdate`);
   };
+
+  const handleNavigate = url => {
+    if (url === null || url === undefined || !url) return
+    window.open(url)
+  }
 
   return (
     // <div className="list-group row">
@@ -283,9 +288,8 @@ const AllFundingUpdate = (props) => {
           return (
             <div
               key={event.id}
-              className={`category-item ${
-                event.selected ? "selected font-bold" : "font-semibold"
-              }`}
+              className={`category-item ${event.selected ? "selected font-bold" : "font-semibold"
+                }`}
               onClick={() => handleCategoryChange(event.id)}
             >
               <p> {t(`${event.name}.1`)}</p>
@@ -301,11 +305,12 @@ const AllFundingUpdate = (props) => {
               key={funding.id}
               // onClick={() => handleSelectedJob(job.jobId)}
               className={`flex p-4 mb-4 bg-white shadow-sm cursor-pointer lg:mr-4`}
-              // ${
-              //   selectedJob.jobId === job.jobId
-              //     ? "lg:bg-gray-50"
-              //     : "bg-white"
-              // }`}
+              onClick={() => handleNavigate(funding.externalLink)}
+            // ${
+            //   selectedJob.jobId === job.jobId
+            //     ? "lg:bg-gray-50"
+            //     : "bg-white"
+            // }`}
             >
               <img src={example} alt="" className="pr-5 pb-5 w-25" />
               <div className="grid grid-cols-2 justify-between w-full">
