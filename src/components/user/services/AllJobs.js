@@ -172,7 +172,7 @@ const AllJobs = (props) => {
     console.log(id);
     //copy job id in clipboard
     // navigator.clipboard.writeText(`https://glocal-bodh-test.netlify.app/jobs/0?jobid=${id}`);
-    navigator.clipboard.writeText(`https://glocal-bodh-test.netlify.app/jobs/0?jobid=${id}`);
+    // navigator.clipboard.writeText(`https://glocal-bodh-test.netlify.app/jobs/0?jobid=${id}`);
     setShareModalActive(true);
     setShareUrl(`https://glocal-bodh-test.netlify.app/jobs/0?jobid=${id}`)
   };
