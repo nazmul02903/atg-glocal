@@ -12,7 +12,7 @@ import EventReviewDetailModal from "../../helpers/eventReviewDetailModal";
 
 const ReviewFund = (props) => {
   const [events, setEvents] = useState([]);
-  const [funding, setFunding] = useState([])
+  const [funding, setFunding] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState({});
   const [modalShow, setModalShow] = React.useState(false);
   const [modalShowApplicant, setModalShowApplicant] = useState(false);
@@ -23,7 +23,7 @@ const ReviewFund = (props) => {
     //console.log("Checking for data updates");
     await AdminService.fetchFundingUpdates().then((res) => {
       props.dispatch(clearLoader());
-    //   setEvents(res.data.eventBeans);
+      setEvents(res.data.fundingUpdateBeans);
     });
   }, POLLING_INTERVAL);
 
@@ -32,14 +32,13 @@ const ReviewFund = (props) => {
     AdminService.fetchFundingUpdates().then((res) => {
       props.dispatch(clearLoader());
       console.log(res);
-    //   setEvents(res.data.eventBeans);
+      setEvents(res.data.fundingUpdateBeans);
     });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="list-group row">
-        ad
-      {/* {events.map((event, index) => {
+      {events.map((event, index) => {
         return (
           <div
             className="list-group-item  col-sm-6 align-items-start rounded mb-2 bg-light bg-gradient"
@@ -48,7 +47,7 @@ const ReviewFund = (props) => {
             <div className="d-flex w-100 justify-content-between">
               <h5 className="mb-1">{event.title}</h5>
               <p className="mt-1">
-                <span
+                {/* <span
                   className="rounded-pill p-2 "
                   style={{
                     color: "#F9F9F9",
@@ -59,7 +58,7 @@ const ReviewFund = (props) => {
                   }}
                 >
                   {event.topicsCovered === "Reviewed" ? "Live" : "In Review"}
-                </span>
+                </span> */}
                 <span
                   className="rounded-pill p-2 font-weight-bold ms-2"
                   style={{ color: "#E74E54", backgroundColor: "#FDD8D8" }}
@@ -73,28 +72,28 @@ const ReviewFund = (props) => {
                 className="rounded-pill p-2"
                 style={{ color: "#3B7FBD", backgroundColor: "#E1F0F7" }}
               >
-                {event.eventCategoryText}
+                {event.fundingUpdateCategory}
               </span>
 
-              <span
+              {/* <span
                 className="rounded-pill p-2 ms-3"
                 style={{ backgroundColor: "#FFF9E6" }}
               >
                 {`₹${event.fees}`}
-              </span>
+              </span> */}
             </div>
             <div className="mt-4">
               <span
                 className="rounded-pill p-2"
                 style={{ color: "#F9F9F9", backgroundColor: "#F2643F" }}
               >
-                {event.postedBy}
+                {event.createdBy}
               </span>
             </div>
             <div className="mt-3">
               <span className="py-2 text-muted">
                 <img src={LocationImg} height="25" alt="" />
-                {event.venue}
+                {event.location}
               </span>
             </div>
             <div className="mt-2">
@@ -102,13 +101,13 @@ const ReviewFund = (props) => {
                 type="button"
                 className="btn btn-primary"
                 onClick={(e) => {
-                  setSelectedEvent(event);
-                  setModalShow(true);
+                  // setSelectedEvent(event);
+                  // setModalShow(true);
                 }}
               >
                 View Event details
               </button>
-              {event.eventQueryBeans ? (
+              {/* {event.eventQueryBeans ? (
                 <button
                   className="btn btn-danger ms-3"
                   onClick={() => {
@@ -122,11 +121,11 @@ const ReviewFund = (props) => {
                 <button className="btn btn-danger ms-1" disabled>
                   No Applicants
                 </button>
-              )}
+              )} */}
             </div>
           </div>
         );
-      })} */}
+      })}
       {modalShow && (
         <EventReviewDetailModal
           data={selectedEvent}
