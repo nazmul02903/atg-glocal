@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Modal from "react-bootstrap/Modal";
 import { ShareButton } from "react-custom-share";
@@ -19,6 +19,21 @@ const ShareEventModal = (props) => {
    const { show, handleClose, newsDetail, shareUrl, shareText } = props
    var el = document.createElement("a");
    el.href = window.location.href;
+
+   const [messageVisible, setMessageVisible] = useState(false)
+
+   let timeoutId = null
+   const handleclick = () => {
+      navigator.clipboard.writeText(shareUrl);
+      setMessageVisible(true)
+      timeoutId = setTimeout(() => {
+         setMessageVisible(false)
+         clearTimeout(timeoutId)
+      }, 5000);
+   }
+   useEffect(() => {
+      return () => clearTimeout(timeoutId)
+   }, [])
 
    const shareButtonProps = [
       {
@@ -73,11 +88,7 @@ const ShareEventModal = (props) => {
                <button
                   className="social-media-btn flex justify-center items-center share-event-button"
                   style={{ backgroundColor: 'rgb(149 149 149)' }}
-                  onClick={() => {
-                     navigator.clipboard.writeText(shareUrl);
-                     alert("Link copied to clipboard")
-                     // window.open(`https://wa.me?text=${shareUrl}`)
-                  }}
+                  onClick={handleclick}
                >
                   <FaCopy />
                </button>
@@ -106,6 +117,9 @@ const ShareEventModal = (props) => {
                   className="social-media-btn">
                   <FaFacebook />
                </ShareButton>*/}
+            </div>
+            <div className={`text-left ${messageVisible ? 'opacity-100' : 'opacity-0'} transition `}>
+               Message copied to clipboard
             </div>
          </div>
          <div className="modal-close-icon">
