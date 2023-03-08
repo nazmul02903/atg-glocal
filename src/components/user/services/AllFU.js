@@ -94,22 +94,22 @@ const AllFundingUpdate = (props) => {
   //   );
   // }, POLLING_INTERVAL);
 
-  useEffect(() => {
-    const job = jobList.find((job) => job.id === parseInt(id));
-    if (!job) return;
-    let tempjob = jobList.map((ev) => {
-      if (ev.id === parseInt(id)) {
-        return { ...ev, selected: true };
-      } else {
-        return { ...ev, selected: false };
-      }
-    });
-    setJobList(tempjob);
-  }, [id]); // eslint-disable-line react-hooks/exhaustive-deps
+  // useEffect(() => {
+  //   const job = jobList.find((job) => job.id === parseInt(id));
+  //   if (!job) return;
+  //   let tempjob = jobList.map((ev) => {
+  //     if (ev.id === parseInt(id)) {
+  //       return { ...ev, selected: true };
+  //     } else {
+  //       return { ...ev, selected: false };
+  //     }
+  //   });
+  //   setJobList(tempjob);
+  // }, [id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     dispatch(setLoader());
-    AdminService.fetchFundingUpdateByCategory(id, 1)
+    AdminService.fetchFundingUpdateByCategory(0, 1)
       .then((res) => {
         dispatch(clearLoader());
         setFus(res.data.fundingUpdateBeans);
@@ -126,14 +126,21 @@ const AllFundingUpdate = (props) => {
       }
     });
     setJobList(tempjob);
-    const cat = getCategoryName(id)
-    console.log(cat);
+  };
+  
+  useEffect(() => {
+
+    const selected = jobList.find(item => item.selected === true)
+    if(selected === undefined) return
+    // console.log(selected);
+    const cat = getCategoryName(selected.id)
+    // console.log(cat);
     if (cat === 'All') {
       return setFilteredFus(fus)
     }
     let filtered = fus.filter(item => item.fundingUpdateCategory === cat)
     setFilteredFus(filtered)
-  };
+  }, [jobList, fus])
 
   const getCategoryName = id => {
     if (id === 0) return 'All'
@@ -162,7 +169,10 @@ const AllFundingUpdate = (props) => {
   };
 
   const handleNavigate = url => {
-    if (url === null || url === undefined || !url) return
+    if (url === null || url === undefined || !url) {
+      history.push('/user/create/fundingUpdate')
+      return
+    }
     window.open(url)
   }
 
