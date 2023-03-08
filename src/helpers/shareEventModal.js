@@ -11,6 +11,8 @@ import {
    FaLinkedin,
    FaTwitter,
    FaWhatsapp,
+   FaClipboard,
+   FaCopy
 } from "react-icons/fa";
 
 const ShareEventModal = (props) => {
@@ -68,6 +70,17 @@ const ShareEventModal = (props) => {
          <div className='col-12 justify-content-center py-6 flex flex-col items-center'>
             <p className="share-event-head"> Share the event ! </p>
             <div className="social-media? flex flex-col md:flex-row">
+               <button
+                  className="social-media-btn flex justify-center items-center share-event-button"
+                  style={{ backgroundColor: 'rgb(149 149 149)' }}
+                  onClick={() => {
+                     navigator.clipboard.writeText(shareUrl);
+                     alert("Link copied to clipboard")
+                     // window.open(`https://wa.me?text=${shareUrl}`)
+                  }}
+               >
+                  <FaCopy />
+               </button>
                {
                   shareButtonProps.map(btn => {
                      const { Comp } = btn
