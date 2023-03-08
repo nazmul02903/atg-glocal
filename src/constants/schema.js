@@ -43,6 +43,7 @@ export const validationSchemaReviewJob = Yup.object().shape({
     }
   }),
 });
+
 export const validationSchemaReset = Yup.object().shape({
   newPassword: Yup.string()
     .min(6, "Must be 6 characters or more")
@@ -203,8 +204,7 @@ export const validationSchemaFundingUpdateAdmin = Yup.object().shape({
   postedBy: Yup.string()
     .max(255, "Must be 255 characters or less")
     .required("This is required"),
-  externalLink: Yup.string()
-    .max(255, "Must be 255 characters or less")
+  externalLink: Yup.string().max(255, "Must be 255 characters or less"),
   // .required("This is required"),
 });
 

@@ -89,6 +89,9 @@ export const API_FETCH_FUNDING_UPDATE_TO_REVIEW =
 export const API_FETCH_FUNDING_UPDATE =
   process.env.REACT_APP_API_ENDPOINT + "fundingUpdate/fetchFundingUpdates/";
 
+export const REVIEW_FUNDING_UPDATE =
+  process.env.REACT_APP_API_ENDPOINT + "fundingUpdate/reviewFundingUpdate";
+
 export const API_FETCH_RFP =
   process.env.REACT_APP_API_ENDPOINT +
   "requestForProposal/fetchRequestForProposals/";

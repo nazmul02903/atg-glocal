@@ -9,6 +9,7 @@ import ApplicantModal from "../../helpers/applicantModal";
 import { useInterval } from "../../helpers/useInterval";
 import { POLLING_INTERVAL } from "../../constants/variables";
 import EventReviewDetailModal from "../../helpers/eventReviewDetailModal";
+import FundingReviewModal from "../../helpers/fundingReviewModal";
 
 const ReviewFund = (props) => {
   const [events, setEvents] = useState([]);
@@ -101,8 +102,8 @@ const ReviewFund = (props) => {
                 type="button"
                 className="btn btn-primary"
                 onClick={(e) => {
-                  // setSelectedEvent(event);
-                  // setModalShow(true);
+                  setSelectedEvent(event);
+                  setModalShow(true);
                 }}
               >
                 View Event details
@@ -127,19 +128,19 @@ const ReviewFund = (props) => {
         );
       })}
       {modalShow && (
-        <EventReviewDetailModal
+        <FundingReviewModal
           data={selectedEvent}
           show={modalShow}
           onHide={() => setModalShow(false)}
         />
       )}
-      {modalShowApplicant && (
+      {/* {modalShowApplicant && (
         <ApplicantModal
           data={selectedEvent}
           show={modalShowApplicant}
           onHide={() => setModalShowApplicant(false)}
         />
-      )}
+      )} */}
     </div>
   );
 };

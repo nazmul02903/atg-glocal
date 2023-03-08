@@ -30,6 +30,7 @@ import {
   API_REVIEW_EVENT,
   API_FETCH_ALL_EVENTS,
   API_FETCH_SINGLE_JOB_USER,
+  REVIEW_FUNDING_UPDATE,
 } from "../constants/urls";
 
 import AuthHeader from "./auth-header";
@@ -108,6 +109,12 @@ class AdminService {
     return axios.post(API_FETCH_EVENT_TO_REVIEW, {}, { headers: AuthHeader() });
   }
 
+  reviewFundingUpdate(data) {
+    return axios.post(REVIEW_FUNDING_UPDATE, data, {
+      headers: AuthHeader(),
+    });
+  }
+
   reviewEvent(data) {
     return axios.post(API_REVIEW_EVENT, data, {
       headers: AuthHeader(),
@@ -128,11 +135,11 @@ class AdminService {
   fetchEventsByCategory(category, dataType) {
     return axios.post(
       API_FETCH_EVENTS_BY_CATEGORY,
-      { eventCategoryId: category, dataType: dataType },
+      { eventCategoryId: category, dataType: dataType }
       // { headers: AuthHeader() }
     );
   }
-  
+
   fetchAllEvents(dataType) {
     return axios.post(
       API_FETCH_ALL_EVENTS,
