@@ -124,8 +124,6 @@ const NgoCorporateService = ({ ngo }) => {
       linkTo: "/user/create/job",
       isFree: true
     },
-
-
   ];
 
   const [loginActive, setLoginActive] = useState(false);
