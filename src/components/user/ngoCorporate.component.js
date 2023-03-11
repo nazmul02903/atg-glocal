@@ -207,7 +207,9 @@ const NgoCorporateService = ({ ngo }) => {
                 <img className="service_icon" src={each.icon} alt="" />
                 <h4 className="icon_title">{t(`${each.iconTitle}.1`)}</h4>
               </div>
-              <p style={{textTransform: "capitalize"}} className="service_para">{t(`${each.paragraph}.1`)}</p>
+              <p style={{ textTransform: "capitalize" }} className="service_para">
+                {t(`${each.paragraph}.1`)}
+              </p>
               <span
                 className="service_btn"
                 onClick={() => {

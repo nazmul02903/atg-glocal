@@ -188,16 +188,16 @@ function Home(props) {
           {/* nazmul hasan */}
 
           <div className="mb-1 banner-slider">
-          <Slider autoplay={true} speed={3000} arrows={true} dots={true} slidesToShow={1} >
+            <Slider autoplay={true} speed={3000} arrows={true} dots={true} slidesToShow={1} >
               {banners.map((banner) => {
                 return (
                   <div className="px-2">
-                    
+
                     <img
                       onClick={() => {
                         window.location.href = banner.externalLink;
                       }}
-                      style={{maxWidth:"100%"}}
+                      style={{ maxWidth: "100%" }}
                       className="cursor-pointer"
                       src={banner.imageUrl}
                       alt=""
@@ -225,8 +225,10 @@ function Home(props) {
                 {t("Get latest news & updates from the social sector.1")}
               </p>
               <div className="mb-3 d-flex">
-                <div style={{ flexBasis: "33%" }}  className='lg:hidden' >
-                  <h4 style={{color: "#0058a9", width: "160px", margin: "auto" }}>Events</h4>
+                <div style={{ flexBasis: "33%" }} className='lg:hidden' >
+                  <h4 style={{ color: "#0058a9", width: "160px", margin: "auto" }}>
+                    {t(`Events.1`)}
+                  </h4>
                 </div>
               </div>
               <div className="home-row divisions-row">
@@ -237,10 +239,9 @@ function Home(props) {
                         <div className="imgBox eventBox">
                           <div className="font-semibold division-name-inside">
                             {t(
-                              `${
-                                event.name === "Awards/Competitions"
-                                  ? "Awards/Contests"
-                                  : event.name
+                              `${event.name === "Awards/Competitions"
+                                ? "Awards/Contests"
+                                : event.name
                               }.1`
                             )}
                           </div>
@@ -248,10 +249,9 @@ function Home(props) {
                         </div>
                         <div className="font-semibold division-name">
                           {t(
-                            `${
-                              event.name === "Awards/Competitions"
-                                ? "Awards/Contests"
-                                : event.name
+                            `${event.name === "Awards/Competitions"
+                              ? "Awards/Contests"
+                              : event.name
                             }.1`
                           )}
                         </div>
@@ -265,8 +265,10 @@ function Home(props) {
                 })}
               </div>
               <div className="mb-3 d-flex">
-                <div style={{ flexBasis: "33%" }}  className='lg:hidden' >
-                  <h4 style={{color: "#0058a9", width: "160px", margin: "auto" }}>Fundings</h4>
+                <div style={{ flexBasis: "33%" }} className='lg:hidden' >
+                  <h4 style={{ color: "#0058a9", width: "160px", margin: "auto" }}>
+                    {t(`Fundings.1`)}
+                  </h4>
                 </div>
               </div>
               <div className="home-row divisions-row">
@@ -293,7 +295,9 @@ function Home(props) {
               </div>
               <div className="mb-3 d-flex">
                 <div style={{ flexBasis: "33%" }} className='lg:hidden' >
-                  <h4 style={{color: "#0058a9", width: "160px", margin: "auto" }}>Jobs</h4>
+                  <h4 style={{ color: "#0058a9", width: "160px", margin: "auto" }}>
+                    {t(`Jobs.1`)}
+                  </h4>
                 </div>
               </div>
               <div className="home-row divisions-row">
