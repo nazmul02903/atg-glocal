@@ -8,7 +8,7 @@ import { setLoader, clearLoader } from "../../../store/actions/loader";
 import ConfirmationModal from "../../../helpers/confirmationModal";
 import { useInterval } from "../../../helpers/useInterval";
 import { POLLING_INTERVAL } from "../../../constants/variables";
-import allEvents from "../../../assets/Icons/all-events.svg";
+import allEventsImg from "../../../assets/Icons/allEvents.svg";
 import EventCardImg from "../../../assets/event-card.png";
 import ShareIcon from "../../../assets/Icons/share.svg";
 import ShareEventModal from "../../../helpers/shareEventModal";
@@ -139,7 +139,7 @@ const AllEvents = (props) => {
               </p>
             </div>
             <div className="col-span-4 mb-5 md:mb-0">
-              <img src={allEvents} className="w-full" alt="" />
+              <img src={allEventsImg} className="w-full" alt="" />
             </div>
             <div className="col-span-4 all-events-form">
               <div className="flex flex-col justify-center p-4 all-events-form-wrapper">
@@ -156,7 +156,7 @@ const AllEvents = (props) => {
                       type="radio"
                     />
                     <label
-                      className="m-1 text-blue-600 form-check-label whitespac-nowrap"
+                      className="m-1 text-blue-600 form-check-label whitespace-nowrap"
                       for="workshopEvent"
                     >
                       <span className="ms-3">
@@ -173,7 +173,7 @@ const AllEvents = (props) => {
                       type="radio"
                     />
                     <label
-                      className="m-1 text-blue-600 form-check-label whitespac-nowrap"
+                      className="m-1 text-blue-600 form-check-label whitespace-nowrap"
                       for="awardEvent"
                     >
                       <span className="ms-3">
@@ -190,7 +190,7 @@ const AllEvents = (props) => {
                       type="radio"
                     />
                     <label
-                      className="m-1 text-blue-600 form-check-label whitespac-nowrap"
+                      className="m-1 text-blue-600 form-check-label whitespace-nowrap"
                       for="exhibitionEvent"
                     >
                       <span className="ms-3">
