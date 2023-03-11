@@ -61,7 +61,8 @@ const AllJobs = (props) => {
   const [jobApplied, setJobApplied] = useState(false)
   const query = props?.location?.search.split('=')[1];
   const screen = window.screen;
-  const [shareUrl, setShareUrl] = useState('')
+  const [shareUrl, setShareUrl] = useState('');
+  const user = JSON.parse(localStorage.getItem("user")); 
 
   useEffect(() => {
     if (jobs.length === undefined) return
@@ -280,7 +281,7 @@ const AllJobs = (props) => {
 
             <div className="col-span-1 pt-4 bg-white d-none d-md-block ps-4">
               {
-                selectedJob ?
+                selectedJob && user ?
                   <>
 
                     <h2 className="fw-bold">{selectedJob?.designation}</h2>
@@ -290,10 +291,10 @@ const AllJobs = (props) => {
                         <img src={jobType} alt="" />
                         <p className="pl-3 m-0">{selectedJob?.jobType}</p>
                       </div>
-                      <div className="flex my-3">
+                      {/* <div className="flex my-3">
                         <img src={financialServices} alt="" />
                         <p className="pl-3 m-0">₹ 10,001+ employees · Financial Services</p>
-                      </div>
+                      </div> */}
                       <div className="flex my-3">
                         <img src={alumni} alt="" />
                         <p className="pl-3 m-0">1 company alumni </p>
@@ -302,10 +303,10 @@ const AllJobs = (props) => {
                         <img src={applicants} alt="" />
                         <p className="pl-3 m-0">See how you compare to 24 applicants</p>
                       </div>
-                      <div className="flex my-3">
+                      {/* <div className="flex my-3">
                         <img src={skills} alt="" />
                         <p className="pl-3 m-0">Skills: Spring Framework, Systems Analysis,</p>
-                      </div>
+                      </div> */}
                     </div>
                     <div className="flex gap-3 my-5">
                       {
@@ -331,7 +332,7 @@ const AllJobs = (props) => {
                       {/* <h6 className="my-4 fw-bold">Responsibilities:</h6> */}
                       <div className="mt-3">
                         {
-                          selectedJob?.jobDescription && parse(selectedJob?.jobDescription)
+                          // selectedJob?.jobDescription && parse(selectedJob?.jobDescription)
                         }
                       </div>
                     </div>

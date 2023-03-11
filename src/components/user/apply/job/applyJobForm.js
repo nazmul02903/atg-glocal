@@ -10,7 +10,8 @@ import { useHistory } from 'react-router-dom';
 
 const ApplyJobForm = (job) => {
   const [showText, setShowText] = useState(false);
-  // const { user } = useSelector((state) => state.auth);
+  const user = useSelector((state) => state.auth);
+  console.log('user', user);
   console.log('job', job);
   const [resume, setResume] = useState(null)
   const history = useHistory()
@@ -70,6 +71,7 @@ const ApplyJobForm = (job) => {
           className="border-0 focus:border-opacity-0"
           type='text'
           name='name'
+          defaultValue={user.user.name}
         />
       </div>
       <div className='form-group form-control'>
@@ -78,6 +80,7 @@ const ApplyJobForm = (job) => {
           className="border-0 phone-number focus:border-opacity-0"
           type='number'
           name='contactNumber'
+          defaultValue={user.user.contactNumber}
         />
       </div>
       <div className='form-group form-control'>
@@ -86,6 +89,7 @@ const ApplyJobForm = (job) => {
           className="border-0 focus:border-opacity-0"
           type='text'
           name='email'
+          defaultValue={user.user.email}
         />
       </div>
       <div className='form-group form-control'>
