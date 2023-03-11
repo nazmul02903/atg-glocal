@@ -42,7 +42,7 @@ const ReviewFund = (props) => {
       {events.map((event, index) => {
         return (
           <div
-            className="list-group-item  col-sm-6 align-items-start rounded mb-2 bg-light bg-gradient"
+            className="list-group-item  col-sm-12 align-items-start rounded mb-2 bg-light bg-gradient"
             key={index}
           >
             <div className="d-flex w-100 justify-content-between">

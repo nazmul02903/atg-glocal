@@ -28,9 +28,10 @@ const FundingReviewModal = (props) => {
     if (status === "disapprove") {
       values.fundingUpdateStatus = 3;
     }
-    console.log(values);
-
-    AdminService.reviewFundingUpdate(values)
+    console.log('values', values);
+    let body = { ...values }
+    delete body['approve']
+    AdminService.reviewFundingUpdate(body)
       .then((res) => {
         console.log(res);
         // return

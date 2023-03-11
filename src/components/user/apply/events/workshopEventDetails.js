@@ -550,7 +550,7 @@ function WorkshopEventDetails(props) {
                   </span>
                   <img src={verifyIcon} alt="" />
                 </div>
-                <button>connect</button>
+                {/* <button>connect</button> */}
               </div>
             </div>
           </div>

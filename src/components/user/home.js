@@ -454,9 +454,9 @@ function Home(props) {
               GB Highlights
             </div>
             <div className="community-subtext subtext d-none d-lg-block">
-              {t(
+              {/* {t(
                 "People on Glocalboadh have fostered community, learned new skills, started businesses, and made life-long friends. Learn how..1"
-              )}
+              )} */}
             </div>
             <Slider
               className="d-none d-lg-block"

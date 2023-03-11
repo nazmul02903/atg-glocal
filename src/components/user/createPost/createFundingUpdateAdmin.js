@@ -185,13 +185,13 @@ const FundingUpdateAdmin = (props) => {
 
   const handleSelection = (e) => {
     console.log(e.target.id);
-    if(e.target.id === 'ngo_funds'){
+    if(e.target.id === 'govt_funds'){
       setFuType(1);
     }
-    else if(e.target.id === 'csr_funds'){
+    else if(e.target.id === 'foreign_funds'){
       setFuType(2);
     }
-    else if(e.target.id === 'govt_funds'){
+    else if(e.target.id === 'csr_funds'){
       setFuType(3);
     }
   };
@@ -254,15 +254,30 @@ const FundingUpdateAdmin = (props) => {
                   className=""
                   onChange={handleSelection}
                   name="select-event"
-                  id="ngo_funds"
+                  id="govt_funds"
                   type="radio"
                   defaultChecked
                 />
                 <label
                   className="mt-0 ml-2"
-                  for="ngo_funds"
+                  for="govt_funds"
                 >
-                  <span className="">NGO Funds</span>
+                  <span className="">Govt. Funds</span>
+                </label>
+              </div>
+              <div className="form-group flex align-middle my-1">
+                <input
+                  className=""
+                  onChange={handleSelection}
+                  name="select-event"
+                  id="foreign_funds"
+                  type="radio"
+                />
+                <label
+                  className="mt-0 ml-2"
+                  for="foreign_funds"
+                >
+                  <span className="">Foreign Funds</span>
                 </label>
               </div>
               <div className="form-group flex align-middle my-1">
@@ -278,21 +293,6 @@ const FundingUpdateAdmin = (props) => {
                   for="csr_funds"
                 >
                   <span className="">CSR Funds</span>
-                </label>
-              </div>
-              <div className="form-group flex align-middle my-1">
-                <input
-                  className=""
-                  onChange={handleSelection}
-                  name="select-event"
-                  id="govt_funds"
-                  type="radio"
-                />
-                <label
-                  className="mt-0 ml-2"
-                  for="govt_funds"
-                >
-                  <span className="">Govt Funds</span>
                 </label>
               </div>
             </div>

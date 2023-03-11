@@ -233,11 +233,12 @@ const AllEvents = (props) => {
                 <div
                   key={event.id}
                   className="col-span-12 event-card md:col-span-4"
-                  onClick={() =>
+                  onClick={(e) =>{
+                    e.stopPropagation();
                     window.open(
                       `${process.env.REACT_APP_URL}/event/${event.eventCategoryText}/${event.id}/${event.eventId}`
                     )
-                  }
+                  }}
                 >
                   <div className="flex">
                     <img
