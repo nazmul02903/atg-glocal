@@ -10,7 +10,7 @@ import { useInterval } from "../../../helpers/useInterval";
 import { POLLING_INTERVAL } from "../../../constants/variables";
 import allEventsImg from "../../../assets/Icons/allEvents.svg";
 import EventCardImg from "../../../assets/event-card.png";
-import ShareIcon from "../../../assets/Icons/share.svg";
+import ShareIcon from "../../../assets/Icons/share-outlined.svg";
 import ShareEventModal from "../../../helpers/shareEventModal";
 import { useTranslation } from "react-i18next";
 
@@ -268,7 +268,7 @@ const AllEvents = (props) => {
                       <img
                         src={ShareIcon}
                         className="cursor-pointer"
-                        onClick={() => setShareModalActive(true)}
+                        onClick={(e) =>{e.stopPropagation(); setShareModalActive(true)}}
                         alt=""
                       />
                     </div>
