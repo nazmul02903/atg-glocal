@@ -127,30 +127,29 @@ const AllFundingUpdate = (props) => {
     });
     setJobList(tempjob);
   };
-  
+
   useEffect(() => {
-
-    const selected = jobList.find(item => item.selected === true)
-    if(selected === undefined) return
+    const selected = jobList.find((item) => item.selected === true);
+    if (selected === undefined) return;
     // console.log(selected);
-    const cat = getCategoryName(selected.id)
+    const cat = getCategoryName(selected.id);
     // console.log(cat);
-    if (cat === 'All') {
-      return setFilteredFus(fus)
+    if (cat === "All") {
+      return setFilteredFus(fus);
     }
-    let filtered = fus.filter(item => item.fundingUpdateCategory === cat)
-    setFilteredFus(filtered)
-  }, [jobList, fus])
+    let filtered = fus.filter((item) => item.fundingUpdateCategory === cat);
+    setFilteredFus(filtered);
+  }, [jobList, fus]);
 
-  const getCategoryName = id => {
-    if (id === 0) return 'All'
+  const getCategoryName = (id) => {
+    if (id === 0) return "All";
 
     if (id === 1) {
-      return 'Govt. Funds'
+      return "Govt. Funds";
     } else if (id === 2) {
-      return 'Foreign Funds'
+      return "Foreign Funds";
     } else if (id === 3) {
-      return 'CSR Funds'
+      return "CSR Funds";
     }
   };
 
@@ -167,13 +166,13 @@ const AllFundingUpdate = (props) => {
     selectedFundType && history.push(`/user/create/fundingUpdate`);
   };
 
-  const handleNavigate = url => {
+  const handleNavigate = (url) => {
     if (url === null || url === undefined || !url) {
-      history.push('/user/create/fundingUpdate')
-      return
+      history.push("/user/create/fundingUpdate");
+      return;
     }
-    window.open(url)
-  }
+    window.open(url);
+  };
 
   return (
     // <div className="list-group row">
@@ -297,8 +296,9 @@ const AllFundingUpdate = (props) => {
           return (
             <div
               key={event.id}
-              className={`category-item ${event.selected ? "selected font-bold" : "font-semibold"
-                }`}
+              className={`category-item ${
+                event.selected ? "selected font-bold" : "font-semibold"
+              }`}
               onClick={() => handleCategoryChange(event.id)}
             >
               <p> {t(`${event.name}.1`)}</p>
@@ -313,15 +313,25 @@ const AllFundingUpdate = (props) => {
             <div
               key={funding.id}
               // onClick={() => handleSelectedJob(job.jobId)}
-              className={`flex p-4 mb-4 bg-white shadow-sm cursor-pointer lg:mr-4`}
+              className={`flex p-4 mb-4 bg-white shadow-sm cursor-pointer lg:mr-4 align-items-start`}
               onClick={() => handleNavigate(funding.externalLink)}
-            // ${
-            //   selectedJob.jobId === job.jobId
-            //     ? "lg:bg-gray-50"
-            //     : "bg-white"
-            // }`}
+              // ${
+              //   selectedJob.jobId === job.jobId
+              //     ? "lg:bg-gray-50"
+              //     : "bg-white"
+              // }`}
             >
-              <img src={example} alt="" className="pr-5 pb-5 w-25" />
+              <span
+                style={{
+                  textTransform: "capitalize",
+                  padding: "10px 20px",
+                  backgroundColor: "pink",
+                  borderRadius: "5px",
+                  marginRight: "20px",
+                }}
+              >
+                {funding.postedBy[0]}
+              </span>
               <div className="grid grid-cols-2 justify-between w-full">
                 <div className="event-card-content">
                   <p className="mb-2 text-blue-600 event-title fw-bold">

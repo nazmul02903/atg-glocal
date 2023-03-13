@@ -463,6 +463,8 @@ function Home(props) {
               dots={true}
               slidesToShow={3}
               slidesToScroll={3}
+              autoplay={true}
+              speed={3000}
             >
               {newsBeans.map((bean, i) => (
                 <div
