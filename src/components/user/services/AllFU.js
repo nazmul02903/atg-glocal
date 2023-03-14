@@ -162,47 +162,6 @@ const AllFundingUpdate = (props) => {
   };
 
   return (
-    // <div className="list-group row">
-    //   {fus.map((fu, index) => {
-    //     return (
-    //       <div
-    //         className="mb-2 rounded list-group-item col-sm-8 align-items-start bg-light bg-gradient custom-card"
-    //         key={index}
-    //       >
-    //         <div className="flex">
-    //           <div className="w-75">
-    //             <h5 className="mb-1">{fu.title}</h5>
-    //           </div>
-
-    //           <div className="self-center p-2 expire-text-box">
-    //             {fu.applicationDeadlineText}
-    //           </div>
-    //         </div>
-    //         <div className="mt-3">
-    //           <span
-    //             className="p-2 rounded-pill"
-    //             style={{ color: "#3B7FBD", backgroundColor: "#E1F0F7" }}
-    //           >
-    //             {fu.createdBy}
-    //           </span>
-    //         </div>
-    //         <div className="mt-3">{parse(fu.description)}</div>
-
-    //         <div className="mt-3">
-    //           <a
-    //             className="btn btn-primary ms-2"
-    //             href={`${process.env.REACT_APP_URL}/fundingUpdate/${id}/${fu.id}`}
-    //             role="button"
-    //             target="_blank"
-    //             rel="noreferrer noopener"
-    //           >
-    //             Go To Link
-    //           </a>
-    //         </div>
-    //       </div>
-    //     );
-    //   })}
-    // </div>
     <div className="pt-0 md:m-5 md:p-5 funding-page">
       <div className="grid grid-cols-12 p-5 bg-white funding-header d-none d-md-grid">
         <div className="grid items-center cols-span-4 justify-right">
@@ -278,7 +237,7 @@ const AllFundingUpdate = (props) => {
         </div>
       </div>
 
-      <div className="flex items-center lg:bg-white all-events-categories md:px-24 md:mb-8">
+      <div className="flex items-center lg:bg-white all-events-categories md:mb-8">
         {jobList.map((event) => {
           return (
             <div
@@ -294,7 +253,7 @@ const AllFundingUpdate = (props) => {
         })}
       </div>
 
-      <div className="grid md:grid-cols-2 md:mx-24">
+      <div className="grid md:grid-cols-2">
         {filteredFus?.map((funding) => {
           return (
             <div
