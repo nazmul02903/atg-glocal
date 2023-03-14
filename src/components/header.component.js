@@ -175,6 +175,7 @@ const Header = (props) => {
             {/* <div className="lang action">English</div> */}
             <div className="link-tags">
               <div
+                id="login"
                 className="logIn action text-lg underline"
                 onClick={openLoginModal}
               >

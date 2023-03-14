@@ -115,6 +115,11 @@ const AllJobs = (props) => {
     }
   }, [jobList, dispatch]);
 
+  useEffect(() => {
+    console.log('jobs', jobs);
+    console.log('selectedJob', selectedJob);
+  }, [jobs, selectedJob]);
+
   const handleCategoryChange = (id) => {
     let tempjob = jobList.map((ev) => {
       if (ev.id === id) {
@@ -165,7 +170,11 @@ const AllJobs = (props) => {
 
   const handleApplyJobForm = (id) => {
     // console.log(id);
-    history.push({ pathname: '/user/apply/applyJobForm', state: { id } });
+    if(user) {
+      history.push({ pathname: '/user/apply/applyJobForm', state: { id } });
+    } else {
+      document.getElementById('login').click();
+    }
   };
   // console.log(jobApplied);
 
@@ -241,7 +250,7 @@ const AllJobs = (props) => {
         </div>
 
         <div>
-          <div className="grid grid-cols-1 lg:mx-5 lg:p-5 lg:grid-cols-2">
+          <div className="grid grid-cols-1 lg:mx-5 lg:grid-cols-2">
 
             <div className="col-span-1">
               {jobs.map((job) => {
