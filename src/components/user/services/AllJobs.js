@@ -248,7 +248,7 @@ const AllJobs = (props) => {
         </div>
 
         <div>
-          <div className="grid grid-cols-1 lg:mx-5 lg:grid-cols-2">
+          <div className="grid grid-cols-1 lg:mx-5 lg:px-5 lg:grid-cols-2">
 
             <div className="col-span-1">
               {jobs.map((job) => {
@@ -261,7 +261,10 @@ const AllJobs = (props) => {
                       : "bg-white"
                       }`}
                   >
-                    <img src={EventCardImg} alt="" className="pr-5 pb-5 w-25" />
+                    {/* <img src={EventCardImg} alt="" className="pr-5 pb-5 w-25" /> */}
+                    <div className="w-32 h-24 mr-4 d-flex items-center justify-center bg-pink-500">
+                      <div className="text-white fw-bold fs-1">{(job.designation).split("")[0]}</div>
+                    </div>
                     <div className="grid grid-cols-2 justify-between w-full">
                       <div className="event-card-content">
                         <p className="mb-2 text-blue-600 event-title fw-bold">{job.designation}</p>
