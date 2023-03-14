@@ -80,7 +80,7 @@ const AllFundingUpdate = (props) => {
   // const [modalShowDelete, setModalShowDelete] = useState(false);
   const { id } = props.match.params;
   const history = useHistory();
-  const [selectedFundType, setSelectedFundType] = useState(null);
+  const [selectedFundType, setSelectedFundType] = useState(0);
   const { t } = useTranslation();
 
   // useInterval(async () => {
@@ -250,7 +250,7 @@ const AllFundingUpdate = (props) => {
         </div>
       </div>
 
-      <div className="flex items-center lg:bg-white all-events-categories md:mb-8">
+      <div className="flex items-center lg:bg-white all-events-categories md:px-24 md:mb-8">
         {jobList.map((event) => {
           return (
             <div
@@ -266,7 +266,7 @@ const AllFundingUpdate = (props) => {
         })}
       </div>
 
-      <div className="grid md:grid-cols-2">
+      <div className="grid md:grid-cols-2 md:px-24">
         {filteredFus?.map((funding) => {
           return (
             <div
@@ -280,17 +280,10 @@ const AllFundingUpdate = (props) => {
               //     : "bg-white"
               // }`}
             >
-              <span
-                style={{
-                  textTransform: "capitalize",
-                  padding: "10px 20px",
-                  backgroundColor: "pink",
-                  borderRadius: "5px",
-                  marginRight: "20px",
-                }}
-              >
-                {funding.postedBy[0]}
-              </span>
+              {/* <img src={example} alt="" className="pr-5 pb-5 w-25" /> */}
+              <div className="w-32 h-24 mr-4 d-flex items-center justify-center bg-pink-500">
+                <div className="text-white fw-bold fs-1">{(funding.title).split("")[0]}</div>
+              </div>
               <div className="grid grid-cols-2 justify-between w-full">
                 <div className="event-card-content">
                   <p className="mb-2 text-blue-600 event-title fw-bold">
