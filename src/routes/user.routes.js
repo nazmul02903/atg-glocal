@@ -94,12 +94,12 @@ const UserRoutes = () => {
         />
 
        
-        <ProtectedRoute
+        {/* <ProtectedRoute
           exact
           path="/event/:category/:id/:eventId"
           component={WorkshopsEventDetails}
-        />
-        <ProtectedRoute
+        /> */}
+        {/* <ProtectedRoute
           exact
           path="/event/:category/:id/:eventId"
           component={awardsEventDetails}
@@ -108,7 +108,7 @@ const UserRoutes = () => {
           exact
           path="/event/:category/:id/:eventId"
           component={exhibitionsEventDetails}
-        />
+        /> */}
         <ProtectedRoute
           exact
           path="/user/apply/applyJobForm"

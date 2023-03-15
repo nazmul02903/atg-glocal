@@ -8,6 +8,7 @@ import Register from "../components/auth/register.component";
 import ForgotPassword from "../components/auth/forgot.component";
 import ResetPassword from "../components/auth/reset.component";
 import CSRForm from "../components/csr/csrForm";
+import WorkshopsEventDetails from "../components/user/apply/events/workshopEventDetails";
 
 import PrivacyPolicy from "../utils/privacyPolicy";
 import Terms from "../utils/terms";
@@ -38,6 +39,11 @@ const UserRoutes = () => {
         <Route exact path="/jobs/:id" component={allJobsComponent} />
         <Route exact path="/fundingUpdates/:id" component={AllFundingUpdates} />
         <Route exact path="/event/:id" component={AllEvents} />
+        <Route
+          exact
+          path="/event/:category/:id/:eventId"
+          component={WorkshopsEventDetails}
+        />
       </Switch>
     </div>
   );

@@ -205,24 +205,7 @@ function WorkshopEventDetails(props) {
             </a>
           </div>
           <div className="screen">
-            {/* <div className="topBar">
-                <div className="shopping-cart">
-                  <div className="logo50x50 left">
-                    <img src={Logo} className="logo50x50" alt=""/>
-                  </div>
-                  <ul className="right tools">
-                    <li className="language tool">
-                      <img src={Language} alt="" />
-                    </li>
-                    <li className="bell tool">
-                      <img src={Bell} alt="" />
-                    </li>
-                    <li className="search tool">
-                      <img src={Search} alt="" />
-                    </li>
-                  </ul>
-                </div>
-              </div> */}
+         
             <div></div>
             <div className="mt-2 mb-2 category_indication">
               <span className="ml-4">
@@ -232,7 +215,7 @@ function WorkshopEventDetails(props) {
                 </span>{" "}
               </span>
             </div>
-            <div className="flex-row gap-2 mb-2  d-flex align-items-center">
+            <div className="flex-row gap-2 mb-2 d-flex align-items-center">
               {workshopDetails.eventCategoryId === "1" && (
                 <img className="event-img" src={workshop} alt="" />
               )}
@@ -245,7 +228,7 @@ function WorkshopEventDetails(props) {
               <h2 className="event_title">{workshopDetails.title}</h2>
             </div>
             <div
-              className="banner "
+              className="banner"
               style={{ borderRadius: "5px", marginBottom: "45px" }}
             >
               <img
@@ -284,26 +267,17 @@ function WorkshopEventDetails(props) {
                   </a>
                 </div>
               )}
-              {/* <div
-                id="otherLink"
-                onClick={addClassOther}
-                className={otherActive ? "link active" : "link"}
-              >
-                <a className="link_text" href="#other">
-                  Other Details
-                </a>
-              </div> */}
             </div>
 
             <div className="details_container details-flex">
-              <div id="mainDetails" className="main_details ">
+              <div id="mainDetails" className="main_details">
                 <div className="frame8157 detailsCard">
                   <div className="frame8176">
                     <div className="title_section">
                       {/* <div className="event-icon">
                         <img className="event-img" src={EventIcon} alt="" />
                       </div> */}
-                      <div className=" event-icon">
+                      <div className="event-icon">
                         {workshopDetails.eventCategoryId === "1" && (
                           <img className="event-img" src={workshop} alt="" />
                         )}
@@ -337,8 +311,8 @@ function WorkshopEventDetails(props) {
                             alt=""
                           />
                         </div>
-                        {/* <div className="duration details_description ">
-                            <p className="start date details_description ">
+                        {/* <div className="duration details_description">
+                            <p className="start date details_description">
                               {workshopDetails.eventTime}{" "}
                             </p>
                             <p className="end date details_description">end</p>
@@ -469,7 +443,7 @@ function WorkshopEventDetails(props) {
                     {hasUserRegistered ? "Already Registered" : "Register"}
                   </button>
                 </div>{" "}
-                <div className="pr-0 d-flex ">
+                <div className="pr-0 d-flex">
                   <div
                     className="share-btn"
                     onClick={() => {
@@ -531,7 +505,7 @@ function WorkshopEventDetails(props) {
         {/* )} */}
         <div
           id="mainDetails "
-          className=" desk__details"
+          className="desk__details"
           style={{ position: "sticky", top: 0 }}
         >
           <div className="p-4 mb-2 detailsCard">
@@ -581,8 +555,8 @@ function WorkshopEventDetails(props) {
                       alt=""
                     />
                   </div>
-                  {/* <div className="duration details_description ">
-                            <p className="start date details_description ">
+                  {/* <div className="duration details_description">
+                            <p className="start date details_description">
                               {workshopDetails.eventTime}{" "}
                             </p>
                             <p className="end date details_description">end</p>
