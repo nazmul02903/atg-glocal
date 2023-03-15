@@ -170,7 +170,7 @@ const AllJobs = (props) => {
 
   const handleApplyJobForm = (id) => {
     // console.log(id);
-    if(user) {
+    if (user) {
       history.push({ pathname: '/user/apply/applyJobForm', state: { id } });
     } else {
       document.getElementById('login').click();
@@ -187,7 +187,22 @@ const AllJobs = (props) => {
     setShareUrl(`https://glocal-bodh-test.netlify.app/jobs/0?jobid=${id}`)
   };
 
-  console.log(selectedJob);
+  const getBackground = (totalLength, idx) => {
+    let index = idx
+    if (idx > totalLength - 1) {
+      index = index % totalLength
+    }
+    const backgrounds = [
+      '#51D294',
+      '#C56DEE',
+      '#6F7ADE',
+      '#7DE94A',
+      '#F6935A',
+    ]
+    return backgrounds[idx]
+  }
+
+  // console.log(selectedJob);
 
   return (
     <>
@@ -253,7 +268,7 @@ const AllJobs = (props) => {
           <div className="grid grid-cols-1 lg:mx-5 lg:px-5 lg:grid-cols-2">
 
             <div className="col-span-1">
-              {jobs.map((job) => {
+              {jobs.map((job, idx) => {
                 return (
                   <div
                     key={job.jobId}
@@ -264,7 +279,7 @@ const AllJobs = (props) => {
                       }`}
                   >
                     {/* <img src={EventCardImg} alt="" className="pr-5 pb-5 w-25" /> */}
-                    <div className="w-32 h-24 mr-4 d-flex items-center justify-center bg-pink-500">
+                    <div className="w-32 h-24 mr-4 d-flex items-center justify-center rounded-xl" style={{backgroundColor: getBackground(jobs.length, idx)}} >
                       <div className="text-white fw-bold fs-1">{(job.designation).split("")[0]}</div>
                     </div>
                     <div className="grid grid-cols-2 justify-between w-full">

@@ -166,13 +166,29 @@ const AllFundingUpdate = (props) => {
     selectedFundType && history.push(`/user/create/fundingUpdate`);
   };
 
-  const handleNavigate = (url) => {
-    if (url === null || url === undefined || !url) {
-      history.push("/user/create/fundingUpdate");
+  const handleNavigate = (url, id) => {
+    // if (url === null || url === undefined || !url) {
+      window.open(`${process.env.REACT_APP_URL}/fundingUpdate/ngo/${id}`)
+      // history.push("/user/create/fundingUpdate");
       return;
-    }
-    window.open(url);
+    // }
+    // window.open(url);
   };
+
+  const getBackground = (totalLength, idx) => {
+    let index = idx
+    if (idx > totalLength - 1) {
+      index = index % totalLength
+    }
+    const backgrounds = [
+      '#51D294',
+      '#C56DEE',
+      '#6F7ADE',
+      '#7DE94A',
+      '#F6935A',
+    ]
+    return backgrounds[idx]
+  }
 
   return (
     <div className="pt-0 md:m-5 md:p-5 funding-page">
@@ -267,13 +283,13 @@ const AllFundingUpdate = (props) => {
       </div>
 
       <div className="grid md:grid-cols-2 md:px-24">
-        {filteredFus?.map((funding) => {
+        {filteredFus?.map((funding, idx) => {
           return (
             <div
               key={funding.id}
               // onClick={() => handleSelectedJob(job.jobId)}
               className={`flex p-4 mb-4 bg-white shadow-sm cursor-pointer lg:mr-4 align-items-start`}
-              onClick={() => handleNavigate(funding.externalLink)}
+              onClick={() => handleNavigate(funding.externalLink, funding.id)}
               // ${
               //   selectedJob.jobId === job.jobId
               //     ? "lg:bg-gray-50"
@@ -281,7 +297,8 @@ const AllFundingUpdate = (props) => {
               // }`}
             >
               {/* <img src={example} alt="" className="pr-5 pb-5 w-25" /> */}
-              <div className="w-32 h-24 mr-4 d-flex items-center justify-center bg-pink-500">
+              <div className="w-32 h-24 mr-4 d-flex items-center justify-center rounded-xl"
+               style={{backgroundColor: getBackground(filteredFus.length, idx)}}>
                 <div className="text-white fw-bold fs-1">{(funding.title).split("")[0]}</div>
               </div>
               <div className="grid grid-cols-2 justify-between w-full">

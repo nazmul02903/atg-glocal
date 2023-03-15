@@ -31,6 +31,7 @@ const AllFundingUpdate = (props) => {
     dispatch(setLoader());
     AdminService.fetchFundingUpdate({ dataType: 1 }).then((res) => {
       dispatch(clearLoader());
+      console.log('data', res.data.fundingUpdateBeans);
       setFus(res.data.fundingUpdateBeans);
     });
   }, [id]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -40,7 +41,7 @@ const AllFundingUpdate = (props) => {
       {fus.map((fu, index) => {
         return (
           <div
-            className="list-group-item col-sm-8 align-items-start rounded mb-2 bg-light bg-gradient custom-card"
+            className="list-group-item col-sm-12 align-items-start rounded mb-2 bg-light bg-gradient custom-card"
             key={index}
           >
             <div className="flex ">

@@ -31,6 +31,7 @@ const AllJobs = (props) => {
     props.dispatch(setLoader());
     AdminService.fetchAllJobs().then((res) => {
       props.dispatch(clearLoader());
+      console.log('data', res.data.jobDetailsBeans);
       setJobs(res.data.jobDetailsBeans);
     });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps

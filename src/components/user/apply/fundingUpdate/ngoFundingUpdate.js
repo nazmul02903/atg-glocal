@@ -141,7 +141,7 @@ const NgoFundingUpdate = (props) => {
                   <div className="font-bold label-box w-25">Age Group</div>
                   <div className="ms-2 rounded-lg bg-yellow-100 p-2">
                     {" "}
-                    {`${fuDetails.fundingUpdateTargetAudienceBean.minAge} to ${fuDetails.fundingUpdateTargetAudienceBean.maxAge} Years`}
+                    {`${fuDetails?.fundingUpdateTargetAudienceBean?.minAge ? fuDetails?.fundingUpdateTargetAudienceBean?.minAge : '-'} to ${fuDetails.fundingUpdateTargetAudienceBean?.maxAge ? fuDetails.fundingUpdateTargetAudienceBean?.maxAge : '-'} Years`}
                   </div>
                 </div>
 
